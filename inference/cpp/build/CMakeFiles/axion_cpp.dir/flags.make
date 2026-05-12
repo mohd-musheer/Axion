@@ -6,5 +6,5 @@ CXX_DEFINES = -Daxion_cpp_EXPORTS
 
 CXX_INCLUDES = @CMakeFiles/axion_cpp.dir/includes_CXX.rsp
 
-CXX_FLAGS = -std=gnu++17 -fvisibility=hidden
+CXX_FLAGS = -std=gnu++17 -fvisibility=hidden -fopenmp
 

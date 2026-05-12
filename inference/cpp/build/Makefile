@@ -201,6 +201,54 @@ core/tensor.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/axion_cpp.dir/build.make CMakeFiles/axion_cpp.dir/core/tensor.cpp.s
 .PHONY : core/tensor.cpp.s
 
+kernels/attention.obj: kernels/attention.cpp.obj
+.PHONY : kernels/attention.obj
+
+# target to build an object file
+kernels/attention.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/axion_cpp.dir/build.make CMakeFiles/axion_cpp.dir/kernels/attention.cpp.obj
+.PHONY : kernels/attention.cpp.obj
+
+kernels/attention.i: kernels/attention.cpp.i
+.PHONY : kernels/attention.i
+
+# target to preprocess a source file
+kernels/attention.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/axion_cpp.dir/build.make CMakeFiles/axion_cpp.dir/kernels/attention.cpp.i
+.PHONY : kernels/attention.cpp.i
+
+kernels/attention.s: kernels/attention.cpp.s
+.PHONY : kernels/attention.s
+
+# target to generate assembly for a file
+kernels/attention.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/axion_cpp.dir/build.make CMakeFiles/axion_cpp.dir/kernels/attention.cpp.s
+.PHONY : kernels/attention.cpp.s
+
+kernels/attention_output.obj: kernels/attention_output.cpp.obj
+.PHONY : kernels/attention_output.obj
+
+# target to build an object file
+kernels/attention_output.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/axion_cpp.dir/build.make CMakeFiles/axion_cpp.dir/kernels/attention_output.cpp.obj
+.PHONY : kernels/attention_output.cpp.obj
+
+kernels/attention_output.i: kernels/attention_output.cpp.i
+.PHONY : kernels/attention_output.i
+
+# target to preprocess a source file
+kernels/attention_output.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/axion_cpp.dir/build.make CMakeFiles/axion_cpp.dir/kernels/attention_output.cpp.i
+.PHONY : kernels/attention_output.cpp.i
+
+kernels/attention_output.s: kernels/attention_output.cpp.s
+.PHONY : kernels/attention_output.s
+
+# target to generate assembly for a file
+kernels/attention_output.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/axion_cpp.dir/build.make CMakeFiles/axion_cpp.dir/kernels/attention_output.cpp.s
+.PHONY : kernels/attention_output.cpp.s
+
 kernels/blas.obj: kernels/blas.cpp.obj
 .PHONY : kernels/blas.obj
 
@@ -224,6 +272,222 @@ kernels/blas.s: kernels/blas.cpp.s
 kernels/blas.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/axion_cpp.dir/build.make CMakeFiles/axion_cpp.dir/kernels/blas.cpp.s
 .PHONY : kernels/blas.cpp.s
+
+kernels/elementwise.obj: kernels/elementwise.cpp.obj
+.PHONY : kernels/elementwise.obj
+
+# target to build an object file
+kernels/elementwise.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/axion_cpp.dir/build.make CMakeFiles/axion_cpp.dir/kernels/elementwise.cpp.obj
+.PHONY : kernels/elementwise.cpp.obj
+
+kernels/elementwise.i: kernels/elementwise.cpp.i
+.PHONY : kernels/elementwise.i
+
+# target to preprocess a source file
+kernels/elementwise.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/axion_cpp.dir/build.make CMakeFiles/axion_cpp.dir/kernels/elementwise.cpp.i
+.PHONY : kernels/elementwise.cpp.i
+
+kernels/elementwise.s: kernels/elementwise.cpp.s
+.PHONY : kernels/elementwise.s
+
+# target to generate assembly for a file
+kernels/elementwise.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/axion_cpp.dir/build.make CMakeFiles/axion_cpp.dir/kernels/elementwise.cpp.s
+.PHONY : kernels/elementwise.cpp.s
+
+kernels/mlp.obj: kernels/mlp.cpp.obj
+.PHONY : kernels/mlp.obj
+
+# target to build an object file
+kernels/mlp.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/axion_cpp.dir/build.make CMakeFiles/axion_cpp.dir/kernels/mlp.cpp.obj
+.PHONY : kernels/mlp.cpp.obj
+
+kernels/mlp.i: kernels/mlp.cpp.i
+.PHONY : kernels/mlp.i
+
+# target to preprocess a source file
+kernels/mlp.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/axion_cpp.dir/build.make CMakeFiles/axion_cpp.dir/kernels/mlp.cpp.i
+.PHONY : kernels/mlp.cpp.i
+
+kernels/mlp.s: kernels/mlp.cpp.s
+.PHONY : kernels/mlp.s
+
+# target to generate assembly for a file
+kernels/mlp.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/axion_cpp.dir/build.make CMakeFiles/axion_cpp.dir/kernels/mlp.cpp.s
+.PHONY : kernels/mlp.cpp.s
+
+kernels/residual.obj: kernels/residual.cpp.obj
+.PHONY : kernels/residual.obj
+
+# target to build an object file
+kernels/residual.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/axion_cpp.dir/build.make CMakeFiles/axion_cpp.dir/kernels/residual.cpp.obj
+.PHONY : kernels/residual.cpp.obj
+
+kernels/residual.i: kernels/residual.cpp.i
+.PHONY : kernels/residual.i
+
+# target to preprocess a source file
+kernels/residual.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/axion_cpp.dir/build.make CMakeFiles/axion_cpp.dir/kernels/residual.cpp.i
+.PHONY : kernels/residual.cpp.i
+
+kernels/residual.s: kernels/residual.cpp.s
+.PHONY : kernels/residual.s
+
+# target to generate assembly for a file
+kernels/residual.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/axion_cpp.dir/build.make CMakeFiles/axion_cpp.dir/kernels/residual.cpp.s
+.PHONY : kernels/residual.cpp.s
+
+kernels/rmsnorm.obj: kernels/rmsnorm.cpp.obj
+.PHONY : kernels/rmsnorm.obj
+
+# target to build an object file
+kernels/rmsnorm.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/axion_cpp.dir/build.make CMakeFiles/axion_cpp.dir/kernels/rmsnorm.cpp.obj
+.PHONY : kernels/rmsnorm.cpp.obj
+
+kernels/rmsnorm.i: kernels/rmsnorm.cpp.i
+.PHONY : kernels/rmsnorm.i
+
+# target to preprocess a source file
+kernels/rmsnorm.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/axion_cpp.dir/build.make CMakeFiles/axion_cpp.dir/kernels/rmsnorm.cpp.i
+.PHONY : kernels/rmsnorm.cpp.i
+
+kernels/rmsnorm.s: kernels/rmsnorm.cpp.s
+.PHONY : kernels/rmsnorm.s
+
+# target to generate assembly for a file
+kernels/rmsnorm.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/axion_cpp.dir/build.make CMakeFiles/axion_cpp.dir/kernels/rmsnorm.cpp.s
+.PHONY : kernels/rmsnorm.cpp.s
+
+kernels/rope.obj: kernels/rope.cpp.obj
+.PHONY : kernels/rope.obj
+
+# target to build an object file
+kernels/rope.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/axion_cpp.dir/build.make CMakeFiles/axion_cpp.dir/kernels/rope.cpp.obj
+.PHONY : kernels/rope.cpp.obj
+
+kernels/rope.i: kernels/rope.cpp.i
+.PHONY : kernels/rope.i
+
+# target to preprocess a source file
+kernels/rope.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/axion_cpp.dir/build.make CMakeFiles/axion_cpp.dir/kernels/rope.cpp.i
+.PHONY : kernels/rope.cpp.i
+
+kernels/rope.s: kernels/rope.cpp.s
+.PHONY : kernels/rope.s
+
+# target to generate assembly for a file
+kernels/rope.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/axion_cpp.dir/build.make CMakeFiles/axion_cpp.dir/kernels/rope.cpp.s
+.PHONY : kernels/rope.cpp.s
+
+kernels/silu.obj: kernels/silu.cpp.obj
+.PHONY : kernels/silu.obj
+
+# target to build an object file
+kernels/silu.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/axion_cpp.dir/build.make CMakeFiles/axion_cpp.dir/kernels/silu.cpp.obj
+.PHONY : kernels/silu.cpp.obj
+
+kernels/silu.i: kernels/silu.cpp.i
+.PHONY : kernels/silu.i
+
+# target to preprocess a source file
+kernels/silu.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/axion_cpp.dir/build.make CMakeFiles/axion_cpp.dir/kernels/silu.cpp.i
+.PHONY : kernels/silu.cpp.i
+
+kernels/silu.s: kernels/silu.cpp.s
+.PHONY : kernels/silu.s
+
+# target to generate assembly for a file
+kernels/silu.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/axion_cpp.dir/build.make CMakeFiles/axion_cpp.dir/kernels/silu.cpp.s
+.PHONY : kernels/silu.cpp.s
+
+kernels/softmax.obj: kernels/softmax.cpp.obj
+.PHONY : kernels/softmax.obj
+
+# target to build an object file
+kernels/softmax.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/axion_cpp.dir/build.make CMakeFiles/axion_cpp.dir/kernels/softmax.cpp.obj
+.PHONY : kernels/softmax.cpp.obj
+
+kernels/softmax.i: kernels/softmax.cpp.i
+.PHONY : kernels/softmax.i
+
+# target to preprocess a source file
+kernels/softmax.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/axion_cpp.dir/build.make CMakeFiles/axion_cpp.dir/kernels/softmax.cpp.i
+.PHONY : kernels/softmax.cpp.i
+
+kernels/softmax.s: kernels/softmax.cpp.s
+.PHONY : kernels/softmax.s
+
+# target to generate assembly for a file
+kernels/softmax.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/axion_cpp.dir/build.make CMakeFiles/axion_cpp.dir/kernels/softmax.cpp.s
+.PHONY : kernels/softmax.cpp.s
+
+kernels/transpose.obj: kernels/transpose.cpp.obj
+.PHONY : kernels/transpose.obj
+
+# target to build an object file
+kernels/transpose.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/axion_cpp.dir/build.make CMakeFiles/axion_cpp.dir/kernels/transpose.cpp.obj
+.PHONY : kernels/transpose.cpp.obj
+
+kernels/transpose.i: kernels/transpose.cpp.i
+.PHONY : kernels/transpose.i
+
+# target to preprocess a source file
+kernels/transpose.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/axion_cpp.dir/build.make CMakeFiles/axion_cpp.dir/kernels/transpose.cpp.i
+.PHONY : kernels/transpose.cpp.i
+
+kernels/transpose.s: kernels/transpose.cpp.s
+.PHONY : kernels/transpose.s
+
+# target to generate assembly for a file
+kernels/transpose.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/axion_cpp.dir/build.make CMakeFiles/axion_cpp.dir/kernels/transpose.cpp.s
+.PHONY : kernels/transpose.cpp.s
+
+runtime/generation.obj: runtime/generation.cpp.obj
+.PHONY : runtime/generation.obj
+
+# target to build an object file
+runtime/generation.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/axion_cpp.dir/build.make CMakeFiles/axion_cpp.dir/runtime/generation.cpp.obj
+.PHONY : runtime/generation.cpp.obj
+
+runtime/generation.i: runtime/generation.cpp.i
+.PHONY : runtime/generation.i
+
+# target to preprocess a source file
+runtime/generation.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/axion_cpp.dir/build.make CMakeFiles/axion_cpp.dir/runtime/generation.cpp.i
+.PHONY : runtime/generation.cpp.i
+
+runtime/generation.s: runtime/generation.cpp.s
+.PHONY : runtime/generation.s
+
+# target to generate assembly for a file
+runtime/generation.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/axion_cpp.dir/build.make CMakeFiles/axion_cpp.dir/runtime/generation.cpp.s
+.PHONY : runtime/generation.cpp.s
 
 runtime/inference_engine.obj: runtime/inference_engine.cpp.obj
 .PHONY : runtime/inference_engine.obj
@@ -249,6 +513,30 @@ runtime/inference_engine.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/axion_cpp.dir/build.make CMakeFiles/axion_cpp.dir/runtime/inference_engine.cpp.s
 .PHONY : runtime/inference_engine.cpp.s
 
+runtime/transformer_layer.obj: runtime/transformer_layer.cpp.obj
+.PHONY : runtime/transformer_layer.obj
+
+# target to build an object file
+runtime/transformer_layer.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/axion_cpp.dir/build.make CMakeFiles/axion_cpp.dir/runtime/transformer_layer.cpp.obj
+.PHONY : runtime/transformer_layer.cpp.obj
+
+runtime/transformer_layer.i: runtime/transformer_layer.cpp.i
+.PHONY : runtime/transformer_layer.i
+
+# target to preprocess a source file
+runtime/transformer_layer.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/axion_cpp.dir/build.make CMakeFiles/axion_cpp.dir/runtime/transformer_layer.cpp.i
+.PHONY : runtime/transformer_layer.cpp.i
+
+runtime/transformer_layer.s: runtime/transformer_layer.cpp.s
+.PHONY : runtime/transformer_layer.s
+
+# target to generate assembly for a file
+runtime/transformer_layer.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/axion_cpp.dir/build.make CMakeFiles/axion_cpp.dir/runtime/transformer_layer.cpp.s
+.PHONY : runtime/transformer_layer.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -267,12 +555,48 @@ help:
 	@echo "... core/tensor.obj"
 	@echo "... core/tensor.i"
 	@echo "... core/tensor.s"
+	@echo "... kernels/attention.obj"
+	@echo "... kernels/attention.i"
+	@echo "... kernels/attention.s"
+	@echo "... kernels/attention_output.obj"
+	@echo "... kernels/attention_output.i"
+	@echo "... kernels/attention_output.s"
 	@echo "... kernels/blas.obj"
 	@echo "... kernels/blas.i"
 	@echo "... kernels/blas.s"
+	@echo "... kernels/elementwise.obj"
+	@echo "... kernels/elementwise.i"
+	@echo "... kernels/elementwise.s"
+	@echo "... kernels/mlp.obj"
+	@echo "... kernels/mlp.i"
+	@echo "... kernels/mlp.s"
+	@echo "... kernels/residual.obj"
+	@echo "... kernels/residual.i"
+	@echo "... kernels/residual.s"
+	@echo "... kernels/rmsnorm.obj"
+	@echo "... kernels/rmsnorm.i"
+	@echo "... kernels/rmsnorm.s"
+	@echo "... kernels/rope.obj"
+	@echo "... kernels/rope.i"
+	@echo "... kernels/rope.s"
+	@echo "... kernels/silu.obj"
+	@echo "... kernels/silu.i"
+	@echo "... kernels/silu.s"
+	@echo "... kernels/softmax.obj"
+	@echo "... kernels/softmax.i"
+	@echo "... kernels/softmax.s"
+	@echo "... kernels/transpose.obj"
+	@echo "... kernels/transpose.i"
+	@echo "... kernels/transpose.s"
+	@echo "... runtime/generation.obj"
+	@echo "... runtime/generation.i"
+	@echo "... runtime/generation.s"
 	@echo "... runtime/inference_engine.obj"
 	@echo "... runtime/inference_engine.i"
 	@echo "... runtime/inference_engine.s"
+	@echo "... runtime/transformer_layer.obj"
+	@echo "... runtime/transformer_layer.i"
+	@echo "... runtime/transformer_layer.s"
 .PHONY : help
 
 

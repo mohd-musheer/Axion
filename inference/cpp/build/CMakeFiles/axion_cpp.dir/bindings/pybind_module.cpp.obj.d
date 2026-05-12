@@ -407,4 +407,16 @@ CMakeFiles/axion_cpp.dir/bindings/pybind_module.cpp.obj: \
  c:\rtools44\x86_64-w64-mingw32.static.posix\lib\gcc\x86_64-w64-mingw32.static.posix\13.3.0\include\c++\variant \
  d:\llm\ projects\axion\inference\cpp\kernels\blas.hpp \
  d:\llm\ projects\axion\inference\cpp\core\tensor.hpp \
- d:\llm\ projects\axion\inference\cpp\core\mmap_loader.hpp
+ d:\llm\ projects\axion\inference\cpp\kernels\rmsnorm.hpp \
+ d:\llm\ projects\axion\inference\cpp\runtime\transformer_layer.hpp \
+ d:\llm\ projects\axion\inference\cpp\core\mmap_loader.hpp \
+ d:\llm\ projects\axion\inference\cpp\kernels\transpose.hpp \
+ d:\llm\ projects\axion\inference\cpp\kernels\attention.hpp \
+ d:\llm\ projects\axion\inference\cpp\kernels\softmax.hpp \
+ d:\llm\ projects\axion\inference\cpp\kernels\silu.hpp \
+ d:\llm\ projects\axion\inference\cpp\kernels\elementwise.hpp \
+ d:\llm\ projects\axion\inference\cpp\kernels\mlp.hpp \
+ d:\llm\ projects\axion\inference\cpp\kernels\attention_output.hpp \
+ d:\llm\ projects\axion\inference\cpp\kernels\rope.hpp \
+ d:\llm\ projects\axion\inference\cpp\kernels\residual.hpp \
+ d:\llm\ projects\axion\inference\cpp\runtime\generation.hpp

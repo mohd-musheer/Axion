@@ -1,4 +1,3 @@
-
 cmake_minimum_required(VERSION 3.14)
 
 project(axion_cpp)
@@ -15,11 +14,6 @@ find_package(pybind11 REQUIRED)
 
 find_package(OpenMP REQUIRED)
 
-target_link_libraries(axion_cpp PRIVATE
-    Python::Python
-    OpenMP::OpenMP_CXX
-)
-
 include_directories(
     third_party
 )
@@ -30,9 +24,23 @@ pybind11_add_module(axion_cpp
 
     core/tensor.cpp
     core/mmap_loader.cpp
-
+    kernels/attention_output.cpp
     kernels/blas.cpp
-
+    kernels/rmsnorm.cpp
+    runtime/generation.cpp
+    kernels/residual.cpp
+    kernels/softmax.cpp
+    kernels/attention.cpp
+    runtime/transformer_layer.cpp
+    kernels/silu.cpp
+    kernels/elementwise.cpp
+    kernels/mlp.cpp
+    kernels/transpose.cpp
+    kernels/rope.cpp
     runtime/inference_engine.cpp
 )
 
+target_link_libraries(axion_cpp PRIVATE
+    Python::Python
+    OpenMP::OpenMP_CXX
+)

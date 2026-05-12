@@ -15,6 +15,7 @@ class MMapLoader {
 public:
 
     std::vector<char> file_data;
+    std::vector<std::string> list_tensors();
 
     bool load_file(const std::string& path);
 

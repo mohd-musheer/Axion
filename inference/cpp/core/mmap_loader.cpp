@@ -193,6 +193,26 @@ Tensor MMapLoader::load_tensor_data(
 
     return tensor;
 }
+std::vector<std::string>
+MMapLoader::list_tensors() {
+
+    auto parsed = json::parse(header_json);
+
+    std::vector<std::string> names;
+
+    for (auto& item : parsed.items()) {
+
+        std::string tensor_name = item.key();
+
+        if (tensor_name == "__metadata__") {
+            continue;
+        }
+
+        names.push_back(tensor_name);
+    }
+
+    return names;
+}
 
 
 

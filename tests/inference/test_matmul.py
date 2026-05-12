@@ -45,11 +45,3 @@ print(C.data)
 
 
 
-# PS D:\LLM projects\Axion\inference\cpp\build> python -u "d:\LLM projects\Axion\tests\inference\test_matmul.py"
-# Output Shape:
-# [2, 2]
-
-# Output Data:
-# [58.0, 64.0, 139.0, 154.0]
-# PS D:\LLM projects\Axion\inference\cpp\build> 
-

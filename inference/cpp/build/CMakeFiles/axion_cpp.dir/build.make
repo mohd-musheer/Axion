@@ -114,11 +114,26 @@ CMakeFiles/axion_cpp.dir/core/mmap_loader.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/axion_cpp.dir/core/mmap_loader.cpp.s"
 	C:/rtools44/x86_64-w64-mingw32.static.posix/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "D:/LLM projects/Axion/inference/cpp/core/mmap_loader.cpp" -o CMakeFiles/axion_cpp.dir/core/mmap_loader.cpp.s
 
+CMakeFiles/axion_cpp.dir/kernels/attention_output.cpp.obj: CMakeFiles/axion_cpp.dir/flags.make
+CMakeFiles/axion_cpp.dir/kernels/attention_output.cpp.obj: CMakeFiles/axion_cpp.dir/includes_CXX.rsp
+CMakeFiles/axion_cpp.dir/kernels/attention_output.cpp.obj: D:/LLM\ projects/Axion/inference/cpp/kernels/attention_output.cpp
+CMakeFiles/axion_cpp.dir/kernels/attention_output.cpp.obj: CMakeFiles/axion_cpp.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="D:/LLM projects/Axion/inference/cpp/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/axion_cpp.dir/kernels/attention_output.cpp.obj"
+	C:/rtools44/x86_64-w64-mingw32.static.posix/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/axion_cpp.dir/kernels/attention_output.cpp.obj -MF CMakeFiles/axion_cpp.dir/kernels/attention_output.cpp.obj.d -o CMakeFiles/axion_cpp.dir/kernels/attention_output.cpp.obj -c "D:/LLM projects/Axion/inference/cpp/kernels/attention_output.cpp"
+
+CMakeFiles/axion_cpp.dir/kernels/attention_output.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/axion_cpp.dir/kernels/attention_output.cpp.i"
+	C:/rtools44/x86_64-w64-mingw32.static.posix/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "D:/LLM projects/Axion/inference/cpp/kernels/attention_output.cpp" > CMakeFiles/axion_cpp.dir/kernels/attention_output.cpp.i
+
+CMakeFiles/axion_cpp.dir/kernels/attention_output.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/axion_cpp.dir/kernels/attention_output.cpp.s"
+	C:/rtools44/x86_64-w64-mingw32.static.posix/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "D:/LLM projects/Axion/inference/cpp/kernels/attention_output.cpp" -o CMakeFiles/axion_cpp.dir/kernels/attention_output.cpp.s
+
 CMakeFiles/axion_cpp.dir/kernels/blas.cpp.obj: CMakeFiles/axion_cpp.dir/flags.make
 CMakeFiles/axion_cpp.dir/kernels/blas.cpp.obj: CMakeFiles/axion_cpp.dir/includes_CXX.rsp
 CMakeFiles/axion_cpp.dir/kernels/blas.cpp.obj: D:/LLM\ projects/Axion/inference/cpp/kernels/blas.cpp
 CMakeFiles/axion_cpp.dir/kernels/blas.cpp.obj: CMakeFiles/axion_cpp.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="D:/LLM projects/Axion/inference/cpp/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/axion_cpp.dir/kernels/blas.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="D:/LLM projects/Axion/inference/cpp/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/axion_cpp.dir/kernels/blas.cpp.obj"
 	C:/rtools44/x86_64-w64-mingw32.static.posix/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/axion_cpp.dir/kernels/blas.cpp.obj -MF CMakeFiles/axion_cpp.dir/kernels/blas.cpp.obj.d -o CMakeFiles/axion_cpp.dir/kernels/blas.cpp.obj -c "D:/LLM projects/Axion/inference/cpp/kernels/blas.cpp"
 
 CMakeFiles/axion_cpp.dir/kernels/blas.cpp.i: cmake_force
@@ -129,11 +144,176 @@ CMakeFiles/axion_cpp.dir/kernels/blas.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/axion_cpp.dir/kernels/blas.cpp.s"
 	C:/rtools44/x86_64-w64-mingw32.static.posix/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "D:/LLM projects/Axion/inference/cpp/kernels/blas.cpp" -o CMakeFiles/axion_cpp.dir/kernels/blas.cpp.s
 
+CMakeFiles/axion_cpp.dir/kernels/rmsnorm.cpp.obj: CMakeFiles/axion_cpp.dir/flags.make
+CMakeFiles/axion_cpp.dir/kernels/rmsnorm.cpp.obj: CMakeFiles/axion_cpp.dir/includes_CXX.rsp
+CMakeFiles/axion_cpp.dir/kernels/rmsnorm.cpp.obj: D:/LLM\ projects/Axion/inference/cpp/kernels/rmsnorm.cpp
+CMakeFiles/axion_cpp.dir/kernels/rmsnorm.cpp.obj: CMakeFiles/axion_cpp.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="D:/LLM projects/Axion/inference/cpp/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/axion_cpp.dir/kernels/rmsnorm.cpp.obj"
+	C:/rtools44/x86_64-w64-mingw32.static.posix/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/axion_cpp.dir/kernels/rmsnorm.cpp.obj -MF CMakeFiles/axion_cpp.dir/kernels/rmsnorm.cpp.obj.d -o CMakeFiles/axion_cpp.dir/kernels/rmsnorm.cpp.obj -c "D:/LLM projects/Axion/inference/cpp/kernels/rmsnorm.cpp"
+
+CMakeFiles/axion_cpp.dir/kernels/rmsnorm.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/axion_cpp.dir/kernels/rmsnorm.cpp.i"
+	C:/rtools44/x86_64-w64-mingw32.static.posix/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "D:/LLM projects/Axion/inference/cpp/kernels/rmsnorm.cpp" > CMakeFiles/axion_cpp.dir/kernels/rmsnorm.cpp.i
+
+CMakeFiles/axion_cpp.dir/kernels/rmsnorm.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/axion_cpp.dir/kernels/rmsnorm.cpp.s"
+	C:/rtools44/x86_64-w64-mingw32.static.posix/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "D:/LLM projects/Axion/inference/cpp/kernels/rmsnorm.cpp" -o CMakeFiles/axion_cpp.dir/kernels/rmsnorm.cpp.s
+
+CMakeFiles/axion_cpp.dir/runtime/generation.cpp.obj: CMakeFiles/axion_cpp.dir/flags.make
+CMakeFiles/axion_cpp.dir/runtime/generation.cpp.obj: CMakeFiles/axion_cpp.dir/includes_CXX.rsp
+CMakeFiles/axion_cpp.dir/runtime/generation.cpp.obj: D:/LLM\ projects/Axion/inference/cpp/runtime/generation.cpp
+CMakeFiles/axion_cpp.dir/runtime/generation.cpp.obj: CMakeFiles/axion_cpp.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="D:/LLM projects/Axion/inference/cpp/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/axion_cpp.dir/runtime/generation.cpp.obj"
+	C:/rtools44/x86_64-w64-mingw32.static.posix/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/axion_cpp.dir/runtime/generation.cpp.obj -MF CMakeFiles/axion_cpp.dir/runtime/generation.cpp.obj.d -o CMakeFiles/axion_cpp.dir/runtime/generation.cpp.obj -c "D:/LLM projects/Axion/inference/cpp/runtime/generation.cpp"
+
+CMakeFiles/axion_cpp.dir/runtime/generation.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/axion_cpp.dir/runtime/generation.cpp.i"
+	C:/rtools44/x86_64-w64-mingw32.static.posix/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "D:/LLM projects/Axion/inference/cpp/runtime/generation.cpp" > CMakeFiles/axion_cpp.dir/runtime/generation.cpp.i
+
+CMakeFiles/axion_cpp.dir/runtime/generation.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/axion_cpp.dir/runtime/generation.cpp.s"
+	C:/rtools44/x86_64-w64-mingw32.static.posix/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "D:/LLM projects/Axion/inference/cpp/runtime/generation.cpp" -o CMakeFiles/axion_cpp.dir/runtime/generation.cpp.s
+
+CMakeFiles/axion_cpp.dir/kernels/residual.cpp.obj: CMakeFiles/axion_cpp.dir/flags.make
+CMakeFiles/axion_cpp.dir/kernels/residual.cpp.obj: CMakeFiles/axion_cpp.dir/includes_CXX.rsp
+CMakeFiles/axion_cpp.dir/kernels/residual.cpp.obj: D:/LLM\ projects/Axion/inference/cpp/kernels/residual.cpp
+CMakeFiles/axion_cpp.dir/kernels/residual.cpp.obj: CMakeFiles/axion_cpp.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="D:/LLM projects/Axion/inference/cpp/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/axion_cpp.dir/kernels/residual.cpp.obj"
+	C:/rtools44/x86_64-w64-mingw32.static.posix/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/axion_cpp.dir/kernels/residual.cpp.obj -MF CMakeFiles/axion_cpp.dir/kernels/residual.cpp.obj.d -o CMakeFiles/axion_cpp.dir/kernels/residual.cpp.obj -c "D:/LLM projects/Axion/inference/cpp/kernels/residual.cpp"
+
+CMakeFiles/axion_cpp.dir/kernels/residual.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/axion_cpp.dir/kernels/residual.cpp.i"
+	C:/rtools44/x86_64-w64-mingw32.static.posix/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "D:/LLM projects/Axion/inference/cpp/kernels/residual.cpp" > CMakeFiles/axion_cpp.dir/kernels/residual.cpp.i
+
+CMakeFiles/axion_cpp.dir/kernels/residual.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/axion_cpp.dir/kernels/residual.cpp.s"
+	C:/rtools44/x86_64-w64-mingw32.static.posix/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "D:/LLM projects/Axion/inference/cpp/kernels/residual.cpp" -o CMakeFiles/axion_cpp.dir/kernels/residual.cpp.s
+
+CMakeFiles/axion_cpp.dir/kernels/softmax.cpp.obj: CMakeFiles/axion_cpp.dir/flags.make
+CMakeFiles/axion_cpp.dir/kernels/softmax.cpp.obj: CMakeFiles/axion_cpp.dir/includes_CXX.rsp
+CMakeFiles/axion_cpp.dir/kernels/softmax.cpp.obj: D:/LLM\ projects/Axion/inference/cpp/kernels/softmax.cpp
+CMakeFiles/axion_cpp.dir/kernels/softmax.cpp.obj: CMakeFiles/axion_cpp.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="D:/LLM projects/Axion/inference/cpp/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/axion_cpp.dir/kernels/softmax.cpp.obj"
+	C:/rtools44/x86_64-w64-mingw32.static.posix/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/axion_cpp.dir/kernels/softmax.cpp.obj -MF CMakeFiles/axion_cpp.dir/kernels/softmax.cpp.obj.d -o CMakeFiles/axion_cpp.dir/kernels/softmax.cpp.obj -c "D:/LLM projects/Axion/inference/cpp/kernels/softmax.cpp"
+
+CMakeFiles/axion_cpp.dir/kernels/softmax.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/axion_cpp.dir/kernels/softmax.cpp.i"
+	C:/rtools44/x86_64-w64-mingw32.static.posix/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "D:/LLM projects/Axion/inference/cpp/kernels/softmax.cpp" > CMakeFiles/axion_cpp.dir/kernels/softmax.cpp.i
+
+CMakeFiles/axion_cpp.dir/kernels/softmax.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/axion_cpp.dir/kernels/softmax.cpp.s"
+	C:/rtools44/x86_64-w64-mingw32.static.posix/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "D:/LLM projects/Axion/inference/cpp/kernels/softmax.cpp" -o CMakeFiles/axion_cpp.dir/kernels/softmax.cpp.s
+
+CMakeFiles/axion_cpp.dir/kernels/attention.cpp.obj: CMakeFiles/axion_cpp.dir/flags.make
+CMakeFiles/axion_cpp.dir/kernels/attention.cpp.obj: CMakeFiles/axion_cpp.dir/includes_CXX.rsp
+CMakeFiles/axion_cpp.dir/kernels/attention.cpp.obj: D:/LLM\ projects/Axion/inference/cpp/kernels/attention.cpp
+CMakeFiles/axion_cpp.dir/kernels/attention.cpp.obj: CMakeFiles/axion_cpp.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="D:/LLM projects/Axion/inference/cpp/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/axion_cpp.dir/kernels/attention.cpp.obj"
+	C:/rtools44/x86_64-w64-mingw32.static.posix/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/axion_cpp.dir/kernels/attention.cpp.obj -MF CMakeFiles/axion_cpp.dir/kernels/attention.cpp.obj.d -o CMakeFiles/axion_cpp.dir/kernels/attention.cpp.obj -c "D:/LLM projects/Axion/inference/cpp/kernels/attention.cpp"
+
+CMakeFiles/axion_cpp.dir/kernels/attention.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/axion_cpp.dir/kernels/attention.cpp.i"
+	C:/rtools44/x86_64-w64-mingw32.static.posix/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "D:/LLM projects/Axion/inference/cpp/kernels/attention.cpp" > CMakeFiles/axion_cpp.dir/kernels/attention.cpp.i
+
+CMakeFiles/axion_cpp.dir/kernels/attention.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/axion_cpp.dir/kernels/attention.cpp.s"
+	C:/rtools44/x86_64-w64-mingw32.static.posix/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "D:/LLM projects/Axion/inference/cpp/kernels/attention.cpp" -o CMakeFiles/axion_cpp.dir/kernels/attention.cpp.s
+
+CMakeFiles/axion_cpp.dir/runtime/transformer_layer.cpp.obj: CMakeFiles/axion_cpp.dir/flags.make
+CMakeFiles/axion_cpp.dir/runtime/transformer_layer.cpp.obj: CMakeFiles/axion_cpp.dir/includes_CXX.rsp
+CMakeFiles/axion_cpp.dir/runtime/transformer_layer.cpp.obj: D:/LLM\ projects/Axion/inference/cpp/runtime/transformer_layer.cpp
+CMakeFiles/axion_cpp.dir/runtime/transformer_layer.cpp.obj: CMakeFiles/axion_cpp.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="D:/LLM projects/Axion/inference/cpp/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/axion_cpp.dir/runtime/transformer_layer.cpp.obj"
+	C:/rtools44/x86_64-w64-mingw32.static.posix/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/axion_cpp.dir/runtime/transformer_layer.cpp.obj -MF CMakeFiles/axion_cpp.dir/runtime/transformer_layer.cpp.obj.d -o CMakeFiles/axion_cpp.dir/runtime/transformer_layer.cpp.obj -c "D:/LLM projects/Axion/inference/cpp/runtime/transformer_layer.cpp"
+
+CMakeFiles/axion_cpp.dir/runtime/transformer_layer.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/axion_cpp.dir/runtime/transformer_layer.cpp.i"
+	C:/rtools44/x86_64-w64-mingw32.static.posix/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "D:/LLM projects/Axion/inference/cpp/runtime/transformer_layer.cpp" > CMakeFiles/axion_cpp.dir/runtime/transformer_layer.cpp.i
+
+CMakeFiles/axion_cpp.dir/runtime/transformer_layer.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/axion_cpp.dir/runtime/transformer_layer.cpp.s"
+	C:/rtools44/x86_64-w64-mingw32.static.posix/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "D:/LLM projects/Axion/inference/cpp/runtime/transformer_layer.cpp" -o CMakeFiles/axion_cpp.dir/runtime/transformer_layer.cpp.s
+
+CMakeFiles/axion_cpp.dir/kernels/silu.cpp.obj: CMakeFiles/axion_cpp.dir/flags.make
+CMakeFiles/axion_cpp.dir/kernels/silu.cpp.obj: CMakeFiles/axion_cpp.dir/includes_CXX.rsp
+CMakeFiles/axion_cpp.dir/kernels/silu.cpp.obj: D:/LLM\ projects/Axion/inference/cpp/kernels/silu.cpp
+CMakeFiles/axion_cpp.dir/kernels/silu.cpp.obj: CMakeFiles/axion_cpp.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="D:/LLM projects/Axion/inference/cpp/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object CMakeFiles/axion_cpp.dir/kernels/silu.cpp.obj"
+	C:/rtools44/x86_64-w64-mingw32.static.posix/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/axion_cpp.dir/kernels/silu.cpp.obj -MF CMakeFiles/axion_cpp.dir/kernels/silu.cpp.obj.d -o CMakeFiles/axion_cpp.dir/kernels/silu.cpp.obj -c "D:/LLM projects/Axion/inference/cpp/kernels/silu.cpp"
+
+CMakeFiles/axion_cpp.dir/kernels/silu.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/axion_cpp.dir/kernels/silu.cpp.i"
+	C:/rtools44/x86_64-w64-mingw32.static.posix/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "D:/LLM projects/Axion/inference/cpp/kernels/silu.cpp" > CMakeFiles/axion_cpp.dir/kernels/silu.cpp.i
+
+CMakeFiles/axion_cpp.dir/kernels/silu.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/axion_cpp.dir/kernels/silu.cpp.s"
+	C:/rtools44/x86_64-w64-mingw32.static.posix/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "D:/LLM projects/Axion/inference/cpp/kernels/silu.cpp" -o CMakeFiles/axion_cpp.dir/kernels/silu.cpp.s
+
+CMakeFiles/axion_cpp.dir/kernels/elementwise.cpp.obj: CMakeFiles/axion_cpp.dir/flags.make
+CMakeFiles/axion_cpp.dir/kernels/elementwise.cpp.obj: CMakeFiles/axion_cpp.dir/includes_CXX.rsp
+CMakeFiles/axion_cpp.dir/kernels/elementwise.cpp.obj: D:/LLM\ projects/Axion/inference/cpp/kernels/elementwise.cpp
+CMakeFiles/axion_cpp.dir/kernels/elementwise.cpp.obj: CMakeFiles/axion_cpp.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="D:/LLM projects/Axion/inference/cpp/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object CMakeFiles/axion_cpp.dir/kernels/elementwise.cpp.obj"
+	C:/rtools44/x86_64-w64-mingw32.static.posix/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/axion_cpp.dir/kernels/elementwise.cpp.obj -MF CMakeFiles/axion_cpp.dir/kernels/elementwise.cpp.obj.d -o CMakeFiles/axion_cpp.dir/kernels/elementwise.cpp.obj -c "D:/LLM projects/Axion/inference/cpp/kernels/elementwise.cpp"
+
+CMakeFiles/axion_cpp.dir/kernels/elementwise.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/axion_cpp.dir/kernels/elementwise.cpp.i"
+	C:/rtools44/x86_64-w64-mingw32.static.posix/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "D:/LLM projects/Axion/inference/cpp/kernels/elementwise.cpp" > CMakeFiles/axion_cpp.dir/kernels/elementwise.cpp.i
+
+CMakeFiles/axion_cpp.dir/kernels/elementwise.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/axion_cpp.dir/kernels/elementwise.cpp.s"
+	C:/rtools44/x86_64-w64-mingw32.static.posix/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "D:/LLM projects/Axion/inference/cpp/kernels/elementwise.cpp" -o CMakeFiles/axion_cpp.dir/kernels/elementwise.cpp.s
+
+CMakeFiles/axion_cpp.dir/kernels/mlp.cpp.obj: CMakeFiles/axion_cpp.dir/flags.make
+CMakeFiles/axion_cpp.dir/kernels/mlp.cpp.obj: CMakeFiles/axion_cpp.dir/includes_CXX.rsp
+CMakeFiles/axion_cpp.dir/kernels/mlp.cpp.obj: D:/LLM\ projects/Axion/inference/cpp/kernels/mlp.cpp
+CMakeFiles/axion_cpp.dir/kernels/mlp.cpp.obj: CMakeFiles/axion_cpp.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="D:/LLM projects/Axion/inference/cpp/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_14) "Building CXX object CMakeFiles/axion_cpp.dir/kernels/mlp.cpp.obj"
+	C:/rtools44/x86_64-w64-mingw32.static.posix/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/axion_cpp.dir/kernels/mlp.cpp.obj -MF CMakeFiles/axion_cpp.dir/kernels/mlp.cpp.obj.d -o CMakeFiles/axion_cpp.dir/kernels/mlp.cpp.obj -c "D:/LLM projects/Axion/inference/cpp/kernels/mlp.cpp"
+
+CMakeFiles/axion_cpp.dir/kernels/mlp.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/axion_cpp.dir/kernels/mlp.cpp.i"
+	C:/rtools44/x86_64-w64-mingw32.static.posix/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "D:/LLM projects/Axion/inference/cpp/kernels/mlp.cpp" > CMakeFiles/axion_cpp.dir/kernels/mlp.cpp.i
+
+CMakeFiles/axion_cpp.dir/kernels/mlp.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/axion_cpp.dir/kernels/mlp.cpp.s"
+	C:/rtools44/x86_64-w64-mingw32.static.posix/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "D:/LLM projects/Axion/inference/cpp/kernels/mlp.cpp" -o CMakeFiles/axion_cpp.dir/kernels/mlp.cpp.s
+
+CMakeFiles/axion_cpp.dir/kernels/transpose.cpp.obj: CMakeFiles/axion_cpp.dir/flags.make
+CMakeFiles/axion_cpp.dir/kernels/transpose.cpp.obj: CMakeFiles/axion_cpp.dir/includes_CXX.rsp
+CMakeFiles/axion_cpp.dir/kernels/transpose.cpp.obj: D:/LLM\ projects/Axion/inference/cpp/kernels/transpose.cpp
+CMakeFiles/axion_cpp.dir/kernels/transpose.cpp.obj: CMakeFiles/axion_cpp.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="D:/LLM projects/Axion/inference/cpp/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_15) "Building CXX object CMakeFiles/axion_cpp.dir/kernels/transpose.cpp.obj"
+	C:/rtools44/x86_64-w64-mingw32.static.posix/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/axion_cpp.dir/kernels/transpose.cpp.obj -MF CMakeFiles/axion_cpp.dir/kernels/transpose.cpp.obj.d -o CMakeFiles/axion_cpp.dir/kernels/transpose.cpp.obj -c "D:/LLM projects/Axion/inference/cpp/kernels/transpose.cpp"
+
+CMakeFiles/axion_cpp.dir/kernels/transpose.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/axion_cpp.dir/kernels/transpose.cpp.i"
+	C:/rtools44/x86_64-w64-mingw32.static.posix/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "D:/LLM projects/Axion/inference/cpp/kernels/transpose.cpp" > CMakeFiles/axion_cpp.dir/kernels/transpose.cpp.i
+
+CMakeFiles/axion_cpp.dir/kernels/transpose.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/axion_cpp.dir/kernels/transpose.cpp.s"
+	C:/rtools44/x86_64-w64-mingw32.static.posix/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "D:/LLM projects/Axion/inference/cpp/kernels/transpose.cpp" -o CMakeFiles/axion_cpp.dir/kernels/transpose.cpp.s
+
+CMakeFiles/axion_cpp.dir/kernels/rope.cpp.obj: CMakeFiles/axion_cpp.dir/flags.make
+CMakeFiles/axion_cpp.dir/kernels/rope.cpp.obj: CMakeFiles/axion_cpp.dir/includes_CXX.rsp
+CMakeFiles/axion_cpp.dir/kernels/rope.cpp.obj: D:/LLM\ projects/Axion/inference/cpp/kernels/rope.cpp
+CMakeFiles/axion_cpp.dir/kernels/rope.cpp.obj: CMakeFiles/axion_cpp.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="D:/LLM projects/Axion/inference/cpp/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_16) "Building CXX object CMakeFiles/axion_cpp.dir/kernels/rope.cpp.obj"
+	C:/rtools44/x86_64-w64-mingw32.static.posix/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/axion_cpp.dir/kernels/rope.cpp.obj -MF CMakeFiles/axion_cpp.dir/kernels/rope.cpp.obj.d -o CMakeFiles/axion_cpp.dir/kernels/rope.cpp.obj -c "D:/LLM projects/Axion/inference/cpp/kernels/rope.cpp"
+
+CMakeFiles/axion_cpp.dir/kernels/rope.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/axion_cpp.dir/kernels/rope.cpp.i"
+	C:/rtools44/x86_64-w64-mingw32.static.posix/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "D:/LLM projects/Axion/inference/cpp/kernels/rope.cpp" > CMakeFiles/axion_cpp.dir/kernels/rope.cpp.i
+
+CMakeFiles/axion_cpp.dir/kernels/rope.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/axion_cpp.dir/kernels/rope.cpp.s"
+	C:/rtools44/x86_64-w64-mingw32.static.posix/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "D:/LLM projects/Axion/inference/cpp/kernels/rope.cpp" -o CMakeFiles/axion_cpp.dir/kernels/rope.cpp.s
+
 CMakeFiles/axion_cpp.dir/runtime/inference_engine.cpp.obj: CMakeFiles/axion_cpp.dir/flags.make
 CMakeFiles/axion_cpp.dir/runtime/inference_engine.cpp.obj: CMakeFiles/axion_cpp.dir/includes_CXX.rsp
 CMakeFiles/axion_cpp.dir/runtime/inference_engine.cpp.obj: D:/LLM\ projects/Axion/inference/cpp/runtime/inference_engine.cpp
 CMakeFiles/axion_cpp.dir/runtime/inference_engine.cpp.obj: CMakeFiles/axion_cpp.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="D:/LLM projects/Axion/inference/cpp/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/axion_cpp.dir/runtime/inference_engine.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="D:/LLM projects/Axion/inference/cpp/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_17) "Building CXX object CMakeFiles/axion_cpp.dir/runtime/inference_engine.cpp.obj"
 	C:/rtools44/x86_64-w64-mingw32.static.posix/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/axion_cpp.dir/runtime/inference_engine.cpp.obj -MF CMakeFiles/axion_cpp.dir/runtime/inference_engine.cpp.obj.d -o CMakeFiles/axion_cpp.dir/runtime/inference_engine.cpp.obj -c "D:/LLM projects/Axion/inference/cpp/runtime/inference_engine.cpp"
 
 CMakeFiles/axion_cpp.dir/runtime/inference_engine.cpp.i: cmake_force
@@ -149,7 +329,19 @@ axion_cpp_OBJECTS = \
 "CMakeFiles/axion_cpp.dir/bindings/pybind_module.cpp.obj" \
 "CMakeFiles/axion_cpp.dir/core/tensor.cpp.obj" \
 "CMakeFiles/axion_cpp.dir/core/mmap_loader.cpp.obj" \
+"CMakeFiles/axion_cpp.dir/kernels/attention_output.cpp.obj" \
 "CMakeFiles/axion_cpp.dir/kernels/blas.cpp.obj" \
+"CMakeFiles/axion_cpp.dir/kernels/rmsnorm.cpp.obj" \
+"CMakeFiles/axion_cpp.dir/runtime/generation.cpp.obj" \
+"CMakeFiles/axion_cpp.dir/kernels/residual.cpp.obj" \
+"CMakeFiles/axion_cpp.dir/kernels/softmax.cpp.obj" \
+"CMakeFiles/axion_cpp.dir/kernels/attention.cpp.obj" \
+"CMakeFiles/axion_cpp.dir/runtime/transformer_layer.cpp.obj" \
+"CMakeFiles/axion_cpp.dir/kernels/silu.cpp.obj" \
+"CMakeFiles/axion_cpp.dir/kernels/elementwise.cpp.obj" \
+"CMakeFiles/axion_cpp.dir/kernels/mlp.cpp.obj" \
+"CMakeFiles/axion_cpp.dir/kernels/transpose.cpp.obj" \
+"CMakeFiles/axion_cpp.dir/kernels/rope.cpp.obj" \
 "CMakeFiles/axion_cpp.dir/runtime/inference_engine.cpp.obj"
 
 # External object files for target axion_cpp
@@ -158,14 +350,29 @@ axion_cpp_EXTERNAL_OBJECTS =
 axion_cpp.cp311-win_amd64.pyd: CMakeFiles/axion_cpp.dir/bindings/pybind_module.cpp.obj
 axion_cpp.cp311-win_amd64.pyd: CMakeFiles/axion_cpp.dir/core/tensor.cpp.obj
 axion_cpp.cp311-win_amd64.pyd: CMakeFiles/axion_cpp.dir/core/mmap_loader.cpp.obj
+axion_cpp.cp311-win_amd64.pyd: CMakeFiles/axion_cpp.dir/kernels/attention_output.cpp.obj
 axion_cpp.cp311-win_amd64.pyd: CMakeFiles/axion_cpp.dir/kernels/blas.cpp.obj
+axion_cpp.cp311-win_amd64.pyd: CMakeFiles/axion_cpp.dir/kernels/rmsnorm.cpp.obj
+axion_cpp.cp311-win_amd64.pyd: CMakeFiles/axion_cpp.dir/runtime/generation.cpp.obj
+axion_cpp.cp311-win_amd64.pyd: CMakeFiles/axion_cpp.dir/kernels/residual.cpp.obj
+axion_cpp.cp311-win_amd64.pyd: CMakeFiles/axion_cpp.dir/kernels/softmax.cpp.obj
+axion_cpp.cp311-win_amd64.pyd: CMakeFiles/axion_cpp.dir/kernels/attention.cpp.obj
+axion_cpp.cp311-win_amd64.pyd: CMakeFiles/axion_cpp.dir/runtime/transformer_layer.cpp.obj
+axion_cpp.cp311-win_amd64.pyd: CMakeFiles/axion_cpp.dir/kernels/silu.cpp.obj
+axion_cpp.cp311-win_amd64.pyd: CMakeFiles/axion_cpp.dir/kernels/elementwise.cpp.obj
+axion_cpp.cp311-win_amd64.pyd: CMakeFiles/axion_cpp.dir/kernels/mlp.cpp.obj
+axion_cpp.cp311-win_amd64.pyd: CMakeFiles/axion_cpp.dir/kernels/transpose.cpp.obj
+axion_cpp.cp311-win_amd64.pyd: CMakeFiles/axion_cpp.dir/kernels/rope.cpp.obj
 axion_cpp.cp311-win_amd64.pyd: CMakeFiles/axion_cpp.dir/runtime/inference_engine.cpp.obj
 axion_cpp.cp311-win_amd64.pyd: CMakeFiles/axion_cpp.dir/build.make
 axion_cpp.cp311-win_amd64.pyd: C:/Users/mushe/AppData/Local/Programs/Python/Python311/libs/python311.lib
 axion_cpp.cp311-win_amd64.pyd: C:/Users/mushe/AppData/Local/Programs/Python/Python311/libs/python311.lib
+axion_cpp.cp311-win_amd64.pyd: C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/libgomp.a
+axion_cpp.cp311-win_amd64.pyd: C:/rtools44/x86_64-w64-mingw32.static.posix/lib/libdl.a
+axion_cpp.cp311-win_amd64.pyd: C:/rtools44/x86_64-w64-mingw32.static.posix/lib/libmingwthrd.a
 axion_cpp.cp311-win_amd64.pyd: CMakeFiles/axion_cpp.dir/linkLibs.rsp
 axion_cpp.cp311-win_amd64.pyd: CMakeFiles/axion_cpp.dir/objects1.rsp
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir="D:/LLM projects/Axion/inference/cpp/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_6) "Linking CXX shared module axion_cpp.cp311-win_amd64.pyd"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir="D:/LLM projects/Axion/inference/cpp/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_18) "Linking CXX shared module axion_cpp.cp311-win_amd64.pyd"
 	C:/rtools44/x86_64-w64-mingw32.static.posix/bin/cmake.exe -E rm -f CMakeFiles/axion_cpp.dir/objects.a
 	C:/rtools44/x86_64-w64-mingw32.static.posix/bin/ar.exe qc CMakeFiles/axion_cpp.dir/objects.a @CMakeFiles/axion_cpp.dir/objects1.rsp
 	C:/rtools44/x86_64-w64-mingw32.static.posix/bin/c++.exe -shared -o axion_cpp.cp311-win_amd64.pyd -Wl,--major-image-version,0,--minor-image-version,0 -Wl,--whole-archive CMakeFiles/axion_cpp.dir/objects.a -Wl,--no-whole-archive @CMakeFiles/axion_cpp.dir/linkLibs.rsp

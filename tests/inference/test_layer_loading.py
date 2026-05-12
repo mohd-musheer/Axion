@@ -1,28 +1,44 @@
 
+from pathlib import Path
 import sys
 
+ROOT = Path(__file__).resolve().parents[2]
+
 sys.path.append(
-    "inference/cpp/build"
+    str(ROOT / "inference/cpp/build")
 )
 
 import axion_cpp
 
 loader = axion_cpp.MMapLoader()
 
-path = (
-    "models/cache/qwen2.5-3b/"
-    "layers/layer_0.safetensors"
+model_path = (
+    ROOT
+    / "tests"
+    / "inference"
+    / "adapter_model.safetensors"
 )
 
-loader.load_file(path)
+print(f"\nLoading file:\n{model_path}\n")
 
-tensor = loader.load_tensor_data(
-    "self_attn.q_proj.weight"
+success = loader.load_file(
+    str(model_path)
 )
 
-tensor.print_info()
+if not success:
 
-print("\nFIRST 10 VALUES:\n")
+    raise RuntimeError(
+        "Failed to load safetensors file"
+    )
 
-for i in range(10):
-    print(tensor.data[i])
+print("Safetensors loaded successfully.\n")
+
+names = loader.list_tensors()
+
+print(f"Total tensors: {len(names)}\n")
+
+print("FIRST 30 TENSORS:\n")
+
+for i, n in enumerate(names[:30]):
+
+    print(f"{i+1}. {n}")
