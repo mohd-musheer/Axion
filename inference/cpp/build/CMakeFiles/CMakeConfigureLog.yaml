@@ -1,0 +1,605 @@
+
+---
+events:
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/rtools44/x86_64-w64-mingw32.static.posix/share/cmake-3.30.4/Modules/CMakeDetermineSystem.cmake:205 (message)"
+      - "CMakeLists.txt:4 (project)"
+    message: |
+      The system is: Windows - 6.2.9200 - AMD64
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/rtools44/x86_64-w64-mingw32.static.posix/share/cmake-3.30.4/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "C:/rtools44/x86_64-w64-mingw32.static.posix/share/cmake-3.30.4/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "C:/rtools44/x86_64-w64-mingw32.static.posix/share/cmake-3.30.4/Modules/CMakeDetermineCCompiler.cmake:123 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:4 (project)"
+    message: |
+      Compiling the C compiler identification source file "CMakeCCompilerId.c" succeeded.
+      Compiler: C:/rtools44/x86_64-w64-mingw32.static.posix/bin/gcc.exe 
+      Build flags: 
+      Id flags:  
+      
+      The output was:
+      0
+      
+      
+      Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "a.exe"
+      
+      The C compiler identification is GNU, found in:
+        D:/LLM projects/Axion/inference/cpp/build/CMakeFiles/3.30.4/CompilerIdC/a.exe
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/rtools44/x86_64-w64-mingw32.static.posix/share/cmake-3.30.4/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "C:/rtools44/x86_64-w64-mingw32.static.posix/share/cmake-3.30.4/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "C:/rtools44/x86_64-w64-mingw32.static.posix/share/cmake-3.30.4/Modules/CMakeDetermineCXXCompiler.cmake:126 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:4 (project)"
+    message: |
+      Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" succeeded.
+      Compiler: C:/rtools44/x86_64-w64-mingw32.static.posix/bin/c++.exe 
+      Build flags: 
+      Id flags:  
+      
+      The output was:
+      0
+      
+      
+      Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "a.exe"
+      
+      The CXX compiler identification is GNU, found in:
+        D:/LLM projects/Axion/inference/cpp/build/CMakeFiles/3.30.4/CompilerIdCXX/a.exe
+      
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "C:/rtools44/x86_64-w64-mingw32.static.posix/share/cmake-3.30.4/Modules/CMakeDetermineCompilerABI.cmake:74 (try_compile)"
+      - "C:/rtools44/x86_64-w64-mingw32.static.posix/share/cmake-3.30.4/Modules/CMakeTestCCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:4 (project)"
+    checks:
+      - "Detecting C compiler ABI info"
+    directories:
+      source: "D:/LLM projects/Axion/inference/cpp/build/CMakeFiles/CMakeScratch/TryCompile-zf14sa"
+      binary: "D:/LLM projects/Axion/inference/cpp/build/CMakeFiles/CMakeScratch/TryCompile-zf14sa"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+    buildResult:
+      variable: "CMAKE_C_ABI_COMPILED"
+      cached: true
+      stdout: |
+        Change Dir: 'D:/LLM projects/Axion/inference/cpp/build/CMakeFiles/CMakeScratch/TryCompile-zf14sa'
+        
+        Run Build Command(s): C:/rtools44/x86_64-w64-mingw32.static.posix/bin/cmake.exe -E env VERBOSE=1 C:/rtools44/usr/bin/make.exe -f Makefile cmTC_d7961/fast
+        /usr/bin/make  -f CMakeFiles/cmTC_d7961.dir/build.make CMakeFiles/cmTC_d7961.dir/build
+        make[1]: Entering directory '/d/LLM projects/Axion/inference/cpp/build/CMakeFiles/CMakeScratch/TryCompile-zf14sa'
+        Building C object CMakeFiles/cmTC_d7961.dir/CMakeCCompilerABI.c.obj
+        C:/rtools44/x86_64-w64-mingw32.static.posix/bin/gcc.exe   -v -o CMakeFiles/cmTC_d7961.dir/CMakeCCompilerABI.c.obj -c C:/rtools44/x86_64-w64-mingw32.static.posix/share/cmake-3.30.4/Modules/CMakeCCompilerABI.c
+        Using built-in specs.
+        COLLECT_GCC=C:\\rtools44\\x86_64-w64-mingw32.static.posix\\bin\\gcc.exe
+        Target: x86_64-w64-mingw32.static.posix
+        Configured with: /root/mxe/tmp-gcc-host-x86_64-w64-mingw32.static.posix/gcc-13.3.0/configure --host=x86_64-w64-mingw32.static.posix --target=x86_64-w64-mingw32.static.posix --build=x86_64-pc-linux-gnu --prefix=/usr/lib/mxe/usr/x86_64-w64-mingw32.static.posix --with-native-system-header-dir=/usr/lib/mxe/usr/x86_64-w64-mingw32.static.posix/include --enable-languages=c,c++,objc,fortran --enable-version-specific-runtime-libs --with-gcc --with-gnu-ld --with-gnu-as --disable-nls --without-libiconv-prefix --disable-shared --disable-multilib --without-x --disable-win32-registry --enable-threads=posix --enable-libgomp --with-gmp=/usr/lib/mxe/usr/x86_64-w64-mingw32.static.posix --with-isl=/usr/lib/mxe/usr/x86_64-w64-mingw32.static.posix --with-mpc=/usr/lib/mxe/usr/x86_64-w64-mingw32.static.posix --with-mpfr=/usr/lib/mxe/usr/x86_64-w64-mingw32.static.posix --enable-libstdcxx-time target_configargs=XCFLAGS=-Wno-format ac_cv_header_sys_mman_h=no
+        Thread model: posix
+        Supported LTO compression algorithms: zlib zstd
+        gcc version 13.3.0 (GCC) 
+        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_d7961.dir/CMakeCCompilerABI.c.obj' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_d7961.dir/'
+         c:/rtools44/x86_64-w64-mingw32.static.posix/bin/../libexec/gcc/x86_64-w64-mingw32.static.posix/13.3.0/cc1.exe -quiet -v -iprefix c:\\rtools44\\x86_64-w64-mingw32.static.posix\\bin\\../lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/ -D_REENTRANT C:/rtools44/x86_64-w64-mingw32.static.posix/share/cmake-3.30.4/Modules/CMakeCCompilerABI.c -quiet -dumpdir CMakeFiles/cmTC_d7961.dir/ -dumpbase CMakeCCompilerABI.c.c -dumpbase-ext .c -mtune=generic -march=x86-64 -version -o C:\\Users\\mushe\\AppData\\Local\\Temp\\ccZ0QnQh.s
+        GNU C17 (GCC) version 13.3.0 (x86_64-w64-mingw32.static.posix)
+        	compiled by GNU C version 13.3.0, GMP version 6.3.0, MPFR version 4.2.1, MPC version 1.3.1, isl version isl-0.24-GMP
+        
+        GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
+        ignoring nonexistent directory "c:\\rtools44\\x86_64-w64-mingw32.static.posix\\bin\\../lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/../../../../x86_64-w64-mingw32.static.posix/include"
+        ignoring duplicate directory "c:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/../../lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include"
+        ignoring nonexistent directory "/usr/lib/mxe/usr/x86_64-w64-mingw32.static.posix/include"
+        ignoring duplicate directory "c:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/../../include"
+        ignoring duplicate directory "c:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/../../lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include-fixed"
+        ignoring nonexistent directory "c:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/../../lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/../../../../x86_64-w64-mingw32.static.posix/include"
+        ignoring nonexistent directory "/include"
+        #include "..." search starts here:
+        #include <...> search starts here:
+         c:\\rtools44\\x86_64-w64-mingw32.static.posix\\bin\\../lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include
+         c:\\rtools44\\x86_64-w64-mingw32.static.posix\\bin\\../lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/../../../../include
+         c:\\rtools44\\x86_64-w64-mingw32.static.posix\\bin\\../lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include-fixed
+        End of search list.
+        Compiler executable checksum: d80d48859562c7bd94aa9c6496b16701
+        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_d7961.dir/CMakeCCompilerABI.c.obj' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_d7961.dir/'
+         as -v -o CMakeFiles/cmTC_d7961.dir/CMakeCCompilerABI.c.obj C:\\Users\\mushe\\AppData\\Local\\Temp\\ccZ0QnQh.s
+        GNU assembler version 2.42 (x86_64-w64-mingw32.static.posix) using BFD version (GNU Binutils) 2.42
+        COMPILER_PATH=c:/rtools44/x86_64-w64-mingw32.static.posix/bin/../libexec/gcc/x86_64-w64-mingw32.static.posix/13.3.0/;c:/rtools44/x86_64-w64-mingw32.static.posix/bin/../libexec/gcc/
+        LIBRARY_PATH=c:/rtools44/x86_64-w64-mingw32.static.posix/bin/../lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/;c:/rtools44/x86_64-w64-mingw32.static.posix/bin/../lib/gcc/;c:/rtools44/x86_64-w64-mingw32.static.posix/bin/../lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/../../../../lib/;c:/rtools44/x86_64-w64-mingw32.static.posix/bin/../lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/../../../
+        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_d7961.dir/CMakeCCompilerABI.c.obj' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_d7961.dir/CMakeCCompilerABI.c.'
+        Linking C executable cmTC_d7961.exe
+        C:/rtools44/x86_64-w64-mingw32.static.posix/bin/cmake.exe -E rm -f CMakeFiles/cmTC_d7961.dir/objects.a
+        C:/rtools44/x86_64-w64-mingw32.static.posix/bin/ar.exe qc CMakeFiles/cmTC_d7961.dir/objects.a @CMakeFiles/cmTC_d7961.dir/objects1.rsp
+        C:/rtools44/x86_64-w64-mingw32.static.posix/bin/gcc.exe  -v -Wl,-v -Wl,--whole-archive CMakeFiles/cmTC_d7961.dir/objects.a -Wl,--no-whole-archive -o cmTC_d7961.exe -Wl,--out-implib,libcmTC_d7961.dll.a -Wl,--major-image-version,0,--minor-image-version,0
+        Using built-in specs.
+        COLLECT_GCC=C:\\rtools44\\x86_64-w64-mingw32.static.posix\\bin\\gcc.exe
+        COLLECT_LTO_WRAPPER=c:/rtools44/x86_64-w64-mingw32.static.posix/bin/../libexec/gcc/x86_64-w64-mingw32.static.posix/13.3.0/lto-wrapper.exe
+        Target: x86_64-w64-mingw32.static.posix
+        Configured with: /root/mxe/tmp-gcc-host-x86_64-w64-mingw32.static.posix/gcc-13.3.0/configure --host=x86_64-w64-mingw32.static.posix --target=x86_64-w64-mingw32.static.posix --build=x86_64-pc-linux-gnu --prefix=/usr/lib/mxe/usr/x86_64-w64-mingw32.static.posix --with-native-system-header-dir=/usr/lib/mxe/usr/x86_64-w64-mingw32.static.posix/include --enable-languages=c,c++,objc,fortran --enable-version-specific-runtime-libs --with-gcc --with-gnu-ld --with-gnu-as --disable-nls --without-libiconv-prefix --disable-shared --disable-multilib --without-x --disable-win32-registry --enable-threads=posix --enable-libgomp --with-gmp=/usr/lib/mxe/usr/x86_64-w64-mingw32.static.posix --with-isl=/usr/lib/mxe/usr/x86_64-w64-mingw32.static.posix --with-mpc=/usr/lib/mxe/usr/x86_64-w64-mingw32.static.posix --with-mpfr=/usr/lib/mxe/usr/x86_64-w64-mingw32.static.posix --enable-libstdcxx-time target_configargs=XCFLAGS=-Wno-format ac_cv_header_sys_mman_h=no
+        Thread model: posix
+        Supported LTO compression algorithms: zlib zstd
+        gcc version 13.3.0 (GCC) 
+        COMPILER_PATH=c:/rtools44/x86_64-w64-mingw32.static.posix/bin/../libexec/gcc/x86_64-w64-mingw32.static.posix/13.3.0/;c:/rtools44/x86_64-w64-mingw32.static.posix/bin/../libexec/gcc/
+        LIBRARY_PATH=c:/rtools44/x86_64-w64-mingw32.static.posix/bin/../lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/;c:/rtools44/x86_64-w64-mingw32.static.posix/bin/../lib/gcc/;c:/rtools44/x86_64-w64-mingw32.static.posix/bin/../lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/../../../../lib/;c:/rtools44/x86_64-w64-mingw32.static.posix/bin/../lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/../../../
+        COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_d7961.exe' '-mtune=generic' '-march=x86-64' '-dumpdir' 'cmTC_d7961.'
+         c:/rtools44/x86_64-w64-mingw32.static.posix/bin/../libexec/gcc/x86_64-w64-mingw32.static.posix/13.3.0/collect2.exe -plugin c:/rtools44/x86_64-w64-mingw32.static.posix/bin/../libexec/gcc/x86_64-w64-mingw32.static.posix/13.3.0/liblto_plugin.dll -plugin-opt=c:/rtools44/x86_64-w64-mingw32.static.posix/bin/../libexec/gcc/x86_64-w64-mingw32.static.posix/13.3.0/lto-wrapper.exe -plugin-opt=-fresolution=C:\\Users\\mushe\\AppData\\Local\\Temp\\cctKpc5H.res -plugin-opt=-pass-through=-lmingw32 -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lmoldname -plugin-opt=-pass-through=-lmingwex -plugin-opt=-pass-through=-lmsvcrt -plugin-opt=-pass-through=-lkernel32 -plugin-opt=-pass-through=-lpthread -plugin-opt=-pass-through=-ladvapi32 -plugin-opt=-pass-through=-lshell32 -plugin-opt=-pass-through=-luser32 -plugin-opt=-pass-through=-lkernel32 -plugin-opt=-pass-through=-lmingw32 -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lmoldname -plugin-opt=-pass-through=-lmingwex -plugin-opt=-pass-through=-lmsvcrt -plugin-opt=-pass-through=-lkernel32 -m i386pep -Bdynamic -o cmTC_d7961.exe c:/rtools44/x86_64-w64-mingw32.static.posix/bin/../lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/../../../../lib/crt2.o c:/rtools44/x86_64-w64-mingw32.static.posix/bin/../lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/crtbegin.o -Lc:/rtools44/x86_64-w64-mingw32.static.posix/bin/../lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0 -Lc:/rtools44/x86_64-w64-mingw32.static.posix/bin/../lib/gcc -Lc:/rtools44/x86_64-w64-mingw32.static.posix/bin/../lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/../../../../lib -Lc:/rtools44/x86_64-w64-mingw32.static.posix/bin/../lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/../../.. -v --whole-archive CMakeFiles/cmTC_d7961.dir/objects.a --no-whole-archive --out-implib libcmTC_d7961.dll.a --major-image-version 0 --minor-image-version 0 -lmingw32 -lgcc -lmoldname -lmingwex -lmsvcrt -lkernel32 -lpthread -ladvapi32 -lshell32 -luser32 -lkernel32 -lmingw32 -lgcc -lmoldname -lmingwex -lmsvcrt -lkernel32 c:/rtools44/x86_64-w64-mingw32.static.posix/bin/../lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/crtend.o
+        collect2 version 13.3.0
+        C:\\rtools44\\x86_64-w64-mingw32.static.posix\\bin/ld.exe -plugin c:/rtools44/x86_64-w64-mingw32.static.posix/bin/../libexec/gcc/x86_64-w64-mingw32.static.posix/13.3.0/liblto_plugin.dll -plugin-opt=c:/rtools44/x86_64-w64-mingw32.static.posix/bin/../libexec/gcc/x86_64-w64-mingw32.static.posix/13.3.0/lto-wrapper.exe -plugin-opt=-fresolution=C:\\Users\\mushe\\AppData\\Local\\Temp\\cctKpc5H.res -plugin-opt=-pass-through=-lmingw32 -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lmoldname -plugin-opt=-pass-through=-lmingwex -plugin-opt=-pass-through=-lmsvcrt -plugin-opt=-pass-through=-lkernel32 -plugin-opt=-pass-through=-lpthread -plugin-opt=-pass-through=-ladvapi32 -plugin-opt=-pass-through=-lshell32 -plugin-opt=-pass-through=-luser32 -plugin-opt=-pass-through=-lkernel32 -plugin-opt=-pass-through=-lmingw32 -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lmoldname -plugin-opt=-pass-through=-lmingwex -plugin-opt=-pass-through=-lmsvcrt -plugin-opt=-pass-through=-lkernel32 -m i386pep -Bdynamic -o cmTC_d7961.exe c:/rtools44/x86_64-w64-mingw32.static.posix/bin/../lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/../../../../lib/crt2.o c:/rtools44/x86_64-w64-mingw32.static.posix/bin/../lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/crtbegin.o -Lc:/rtools44/x86_64-w64-mingw32.static.posix/bin/../lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0 -Lc:/rtools44/x86_64-w64-mingw32.static.posix/bin/../lib/gcc -Lc:/rtools44/x86_64-w64-mingw32.static.posix/bin/../lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/../../../../lib -Lc:/rtools44/x86_64-w64-mingw32.static.posix/bin/../lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/../../.. -v --whole-archive CMakeFiles/cmTC_d7961.dir/objects.a --no-whole-archive --out-implib libcmTC_d7961.dll.a --major-image-version 0 --minor-image-version 0 -lmingw32 -lgcc -lmoldname -lmingwex -lmsvcrt -lkernel32 -lpthread -ladvapi32 -lshell32 -luser32 -lkernel32 -lmingw32 -lgcc -lmoldname -lmingwex -lmsvcrt -lkernel32 c:/rtools44/x86_64-w64-mingw32.static.posix/bin/../lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/crtend.o
+        GNU ld (GNU Binutils) 2.42
+        COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_d7961.exe' '-mtune=generic' '-march=x86-64' '-dumpdir' 'cmTC_d7961.'
+        make[1]: Leaving directory '/d/LLM projects/Axion/inference/cpp/build/CMakeFiles/CMakeScratch/TryCompile-zf14sa'
+        
+      exitCode: 0
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/rtools44/x86_64-w64-mingw32.static.posix/share/cmake-3.30.4/Modules/CMakeDetermineCompilerABI.cmake:182 (message)"
+      - "C:/rtools44/x86_64-w64-mingw32.static.posix/share/cmake-3.30.4/Modules/CMakeTestCCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:4 (project)"
+    message: |
+      Parsed C implicit include dir info: rv=done
+        found start of include info
+        found start of implicit include info
+          add: [c:/rtools44/x86_64-w64-mingw32.static.posix/bin/../lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include]
+          add: [c:/rtools44/x86_64-w64-mingw32.static.posix/bin/../lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/../../../../include]
+          add: [c:/rtools44/x86_64-w64-mingw32.static.posix/bin/../lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include-fixed]
+        end of search list found
+        collapse include dir [c:/rtools44/x86_64-w64-mingw32.static.posix/bin/../lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include] ==> [C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include]
+        collapse include dir [c:/rtools44/x86_64-w64-mingw32.static.posix/bin/../lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/../../../../include] ==> [C:/rtools44/x86_64-w64-mingw32.static.posix/include]
+        collapse include dir [c:/rtools44/x86_64-w64-mingw32.static.posix/bin/../lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include-fixed] ==> [C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include-fixed]
+        implicit include dirs: [C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include;C:/rtools44/x86_64-w64-mingw32.static.posix/include;C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include-fixed]
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/rtools44/x86_64-w64-mingw32.static.posix/share/cmake-3.30.4/Modules/CMakeDetermineCompilerABI.cmake:218 (message)"
+      - "C:/rtools44/x86_64-w64-mingw32.static.posix/share/cmake-3.30.4/Modules/CMakeTestCCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:4 (project)"
+    message: |
+      Parsed C implicit link information:
+        link line regex: [^( *|.*[/\\])(ld[0-9]*(\\.[a-z]+)?|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\\]+-)?ld|collect2)[^/\\]*( |$)]
+        linker tool regex: [^[ 	]*(->|")?[ 	]*(([^"]*[/\\])?(ld[0-9]*(\\.[a-z]+)?))("|,| |$)]
+        ignore line: [Change Dir: 'D:/LLM projects/Axion/inference/cpp/build/CMakeFiles/CMakeScratch/TryCompile-zf14sa']
+        ignore line: []
+        ignore line: [Run Build Command(s): C:/rtools44/x86_64-w64-mingw32.static.posix/bin/cmake.exe -E env VERBOSE=1 C:/rtools44/usr/bin/make.exe -f Makefile cmTC_d7961/fast]
+        ignore line: [/usr/bin/make  -f CMakeFiles/cmTC_d7961.dir/build.make CMakeFiles/cmTC_d7961.dir/build]
+        ignore line: [make[1]: Entering directory '/d/LLM projects/Axion/inference/cpp/build/CMakeFiles/CMakeScratch/TryCompile-zf14sa']
+        ignore line: [Building C object CMakeFiles/cmTC_d7961.dir/CMakeCCompilerABI.c.obj]
+        ignore line: [C:/rtools44/x86_64-w64-mingw32.static.posix/bin/gcc.exe   -v -o CMakeFiles/cmTC_d7961.dir/CMakeCCompilerABI.c.obj -c C:/rtools44/x86_64-w64-mingw32.static.posix/share/cmake-3.30.4/Modules/CMakeCCompilerABI.c]
+        ignore line: [Using built-in specs.]
+        ignore line: [COLLECT_GCC=C:\\rtools44\\x86_64-w64-mingw32.static.posix\\bin\\gcc.exe]
+        ignore line: [Target: x86_64-w64-mingw32.static.posix]
+        ignore line: [Configured with: /root/mxe/tmp-gcc-host-x86_64-w64-mingw32.static.posix/gcc-13.3.0/configure --host=x86_64-w64-mingw32.static.posix --target=x86_64-w64-mingw32.static.posix --build=x86_64-pc-linux-gnu --prefix=/usr/lib/mxe/usr/x86_64-w64-mingw32.static.posix --with-native-system-header-dir=/usr/lib/mxe/usr/x86_64-w64-mingw32.static.posix/include --enable-languages=c,c++,objc,fortran --enable-version-specific-runtime-libs --with-gcc --with-gnu-ld --with-gnu-as --disable-nls --without-libiconv-prefix --disable-shared --disable-multilib --without-x --disable-win32-registry --enable-threads=posix --enable-libgomp --with-gmp=/usr/lib/mxe/usr/x86_64-w64-mingw32.static.posix --with-isl=/usr/lib/mxe/usr/x86_64-w64-mingw32.static.posix --with-mpc=/usr/lib/mxe/usr/x86_64-w64-mingw32.static.posix --with-mpfr=/usr/lib/mxe/usr/x86_64-w64-mingw32.static.posix --enable-libstdcxx-time target_configargs=XCFLAGS=-Wno-format ac_cv_header_sys_mman_h=no]
+        ignore line: [Thread model: posix]
+        ignore line: [Supported LTO compression algorithms: zlib zstd]
+        ignore line: [gcc version 13.3.0 (GCC) ]
+        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_d7961.dir/CMakeCCompilerABI.c.obj' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_d7961.dir/']
+        ignore line: [ c:/rtools44/x86_64-w64-mingw32.static.posix/bin/../libexec/gcc/x86_64-w64-mingw32.static.posix/13.3.0/cc1.exe -quiet -v -iprefix c:\\rtools44\\x86_64-w64-mingw32.static.posix\\bin\\../lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/ -D_REENTRANT C:/rtools44/x86_64-w64-mingw32.static.posix/share/cmake-3.30.4/Modules/CMakeCCompilerABI.c -quiet -dumpdir CMakeFiles/cmTC_d7961.dir/ -dumpbase CMakeCCompilerABI.c.c -dumpbase-ext .c -mtune=generic -march=x86-64 -version -o C:\\Users\\mushe\\AppData\\Local\\Temp\\ccZ0QnQh.s]
+        ignore line: [GNU C17 (GCC) version 13.3.0 (x86_64-w64-mingw32.static.posix)]
+        ignore line: [	compiled by GNU C version 13.3.0  GMP version 6.3.0  MPFR version 4.2.1  MPC version 1.3.1  isl version isl-0.24-GMP]
+        ignore line: []
+        ignore line: [GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072]
+        ignore line: [ignoring nonexistent directory "c:\\rtools44\\x86_64-w64-mingw32.static.posix\\bin\\../lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/../../../../x86_64-w64-mingw32.static.posix/include"]
+        ignore line: [ignoring duplicate directory "c:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/../../lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include"]
+        ignore line: [ignoring nonexistent directory "/usr/lib/mxe/usr/x86_64-w64-mingw32.static.posix/include"]
+        ignore line: [ignoring duplicate directory "c:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/../../include"]
+        ignore line: [ignoring duplicate directory "c:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/../../lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include-fixed"]
+        ignore line: [ignoring nonexistent directory "c:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/../../lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/../../../../x86_64-w64-mingw32.static.posix/include"]
+        ignore line: [ignoring nonexistent directory "/include"]
+        ignore line: [#include "..." search starts here:]
+        ignore line: [#include <...> search starts here:]
+        ignore line: [ c:\\rtools44\\x86_64-w64-mingw32.static.posix\\bin\\../lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include]
+        ignore line: [ c:\\rtools44\\x86_64-w64-mingw32.static.posix\\bin\\../lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/../../../../include]
+        ignore line: [ c:\\rtools44\\x86_64-w64-mingw32.static.posix\\bin\\../lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include-fixed]
+        ignore line: [End of search list.]
+        ignore line: [Compiler executable checksum: d80d48859562c7bd94aa9c6496b16701]
+        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_d7961.dir/CMakeCCompilerABI.c.obj' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_d7961.dir/']
+        ignore line: [ as -v -o CMakeFiles/cmTC_d7961.dir/CMakeCCompilerABI.c.obj C:\\Users\\mushe\\AppData\\Local\\Temp\\ccZ0QnQh.s]
+        ignore line: [GNU assembler version 2.42 (x86_64-w64-mingw32.static.posix) using BFD version (GNU Binutils) 2.42]
+        ignore line: [COMPILER_PATH=c:/rtools44/x86_64-w64-mingw32.static.posix/bin/../libexec/gcc/x86_64-w64-mingw32.static.posix/13.3.0/]
+        ignore line: [c:/rtools44/x86_64-w64-mingw32.static.posix/bin/../libexec/gcc/]
+        ignore line: [LIBRARY_PATH=c:/rtools44/x86_64-w64-mingw32.static.posix/bin/../lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/]
+        ignore line: [c:/rtools44/x86_64-w64-mingw32.static.posix/bin/../lib/gcc/]
+        ignore line: [c:/rtools44/x86_64-w64-mingw32.static.posix/bin/../lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/../../../../lib/]
+        ignore line: [c:/rtools44/x86_64-w64-mingw32.static.posix/bin/../lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/../../../]
+        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_d7961.dir/CMakeCCompilerABI.c.obj' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_d7961.dir/CMakeCCompilerABI.c.']
+        ignore line: [Linking C executable cmTC_d7961.exe]
+        ignore line: [C:/rtools44/x86_64-w64-mingw32.static.posix/bin/cmake.exe -E rm -f CMakeFiles/cmTC_d7961.dir/objects.a]
+        ignore line: [C:/rtools44/x86_64-w64-mingw32.static.posix/bin/ar.exe qc CMakeFiles/cmTC_d7961.dir/objects.a @CMakeFiles/cmTC_d7961.dir/objects1.rsp]
+        ignore line: [C:/rtools44/x86_64-w64-mingw32.static.posix/bin/gcc.exe  -v -Wl -v -Wl --whole-archive CMakeFiles/cmTC_d7961.dir/objects.a -Wl --no-whole-archive -o cmTC_d7961.exe -Wl --out-implib libcmTC_d7961.dll.a -Wl --major-image-version 0 --minor-image-version 0]
+        ignore line: [Using built-in specs.]
+        ignore line: [COLLECT_GCC=C:\\rtools44\\x86_64-w64-mingw32.static.posix\\bin\\gcc.exe]
+        ignore line: [COLLECT_LTO_WRAPPER=c:/rtools44/x86_64-w64-mingw32.static.posix/bin/../libexec/gcc/x86_64-w64-mingw32.static.posix/13.3.0/lto-wrapper.exe]
+        ignore line: [Target: x86_64-w64-mingw32.static.posix]
+        ignore line: [Configured with: /root/mxe/tmp-gcc-host-x86_64-w64-mingw32.static.posix/gcc-13.3.0/configure --host=x86_64-w64-mingw32.static.posix --target=x86_64-w64-mingw32.static.posix --build=x86_64-pc-linux-gnu --prefix=/usr/lib/mxe/usr/x86_64-w64-mingw32.static.posix --with-native-system-header-dir=/usr/lib/mxe/usr/x86_64-w64-mingw32.static.posix/include --enable-languages=c,c++,objc,fortran --enable-version-specific-runtime-libs --with-gcc --with-gnu-ld --with-gnu-as --disable-nls --without-libiconv-prefix --disable-shared --disable-multilib --without-x --disable-win32-registry --enable-threads=posix --enable-libgomp --with-gmp=/usr/lib/mxe/usr/x86_64-w64-mingw32.static.posix --with-isl=/usr/lib/mxe/usr/x86_64-w64-mingw32.static.posix --with-mpc=/usr/lib/mxe/usr/x86_64-w64-mingw32.static.posix --with-mpfr=/usr/lib/mxe/usr/x86_64-w64-mingw32.static.posix --enable-libstdcxx-time target_configargs=XCFLAGS=-Wno-format ac_cv_header_sys_mman_h=no]
+        ignore line: [Thread model: posix]
+        ignore line: [Supported LTO compression algorithms: zlib zstd]
+        ignore line: [gcc version 13.3.0 (GCC) ]
+        ignore line: [COMPILER_PATH=c:/rtools44/x86_64-w64-mingw32.static.posix/bin/../libexec/gcc/x86_64-w64-mingw32.static.posix/13.3.0/]
+        ignore line: [c:/rtools44/x86_64-w64-mingw32.static.posix/bin/../libexec/gcc/]
+        ignore line: [LIBRARY_PATH=c:/rtools44/x86_64-w64-mingw32.static.posix/bin/../lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/]
+        ignore line: [c:/rtools44/x86_64-w64-mingw32.static.posix/bin/../lib/gcc/]
+        ignore line: [c:/rtools44/x86_64-w64-mingw32.static.posix/bin/../lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/../../../../lib/]
+        ignore line: [c:/rtools44/x86_64-w64-mingw32.static.posix/bin/../lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/../../../]
+        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_d7961.exe' '-mtune=generic' '-march=x86-64' '-dumpdir' 'cmTC_d7961.']
+        link line: [ c:/rtools44/x86_64-w64-mingw32.static.posix/bin/../libexec/gcc/x86_64-w64-mingw32.static.posix/13.3.0/collect2.exe -plugin c:/rtools44/x86_64-w64-mingw32.static.posix/bin/../libexec/gcc/x86_64-w64-mingw32.static.posix/13.3.0/liblto_plugin.dll -plugin-opt=c:/rtools44/x86_64-w64-mingw32.static.posix/bin/../libexec/gcc/x86_64-w64-mingw32.static.posix/13.3.0/lto-wrapper.exe -plugin-opt=-fresolution=C:\\Users\\mushe\\AppData\\Local\\Temp\\cctKpc5H.res -plugin-opt=-pass-through=-lmingw32 -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lmoldname -plugin-opt=-pass-through=-lmingwex -plugin-opt=-pass-through=-lmsvcrt -plugin-opt=-pass-through=-lkernel32 -plugin-opt=-pass-through=-lpthread -plugin-opt=-pass-through=-ladvapi32 -plugin-opt=-pass-through=-lshell32 -plugin-opt=-pass-through=-luser32 -plugin-opt=-pass-through=-lkernel32 -plugin-opt=-pass-through=-lmingw32 -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lmoldname -plugin-opt=-pass-through=-lmingwex -plugin-opt=-pass-through=-lmsvcrt -plugin-opt=-pass-through=-lkernel32 -m i386pep -Bdynamic -o cmTC_d7961.exe c:/rtools44/x86_64-w64-mingw32.static.posix/bin/../lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/../../../../lib/crt2.o c:/rtools44/x86_64-w64-mingw32.static.posix/bin/../lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/crtbegin.o -Lc:/rtools44/x86_64-w64-mingw32.static.posix/bin/../lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0 -Lc:/rtools44/x86_64-w64-mingw32.static.posix/bin/../lib/gcc -Lc:/rtools44/x86_64-w64-mingw32.static.posix/bin/../lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/../../../../lib -Lc:/rtools44/x86_64-w64-mingw32.static.posix/bin/../lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/../../.. -v --whole-archive CMakeFiles/cmTC_d7961.dir/objects.a --no-whole-archive --out-implib libcmTC_d7961.dll.a --major-image-version 0 --minor-image-version 0 -lmingw32 -lgcc -lmoldname -lmingwex -lmsvcrt -lkernel32 -lpthread -ladvapi32 -lshell32 -luser32 -lkernel32 -lmingw32 -lgcc -lmoldname -lmingwex -lmsvcrt -lkernel32 c:/rtools44/x86_64-w64-mingw32.static.posix/bin/../lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/crtend.o]
+          arg [c:/rtools44/x86_64-w64-mingw32.static.posix/bin/../libexec/gcc/x86_64-w64-mingw32.static.posix/13.3.0/collect2.exe] ==> ignore
+          arg [-plugin] ==> ignore
+          arg [c:/rtools44/x86_64-w64-mingw32.static.posix/bin/../libexec/gcc/x86_64-w64-mingw32.static.posix/13.3.0/liblto_plugin.dll] ==> ignore
+          arg [-plugin-opt=c:/rtools44/x86_64-w64-mingw32.static.posix/bin/../libexec/gcc/x86_64-w64-mingw32.static.posix/13.3.0/lto-wrapper.exe] ==> ignore
+          arg [-plugin-opt=-fresolution=C:\\Users\\mushe\\AppData\\Local\\Temp\\cctKpc5H.res] ==> ignore
+          arg [-plugin-opt=-pass-through=-lmingw32] ==> ignore
+          arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
+          arg [-plugin-opt=-pass-through=-lmoldname] ==> ignore
+          arg [-plugin-opt=-pass-through=-lmingwex] ==> ignore
+          arg [-plugin-opt=-pass-through=-lmsvcrt] ==> ignore
+          arg [-plugin-opt=-pass-through=-lkernel32] ==> ignore
+          arg [-plugin-opt=-pass-through=-lpthread] ==> ignore
+          arg [-plugin-opt=-pass-through=-ladvapi32] ==> ignore
+          arg [-plugin-opt=-pass-through=-lshell32] ==> ignore
+          arg [-plugin-opt=-pass-through=-luser32] ==> ignore
+          arg [-plugin-opt=-pass-through=-lkernel32] ==> ignore
+          arg [-plugin-opt=-pass-through=-lmingw32] ==> ignore
+          arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
+          arg [-plugin-opt=-pass-through=-lmoldname] ==> ignore
+          arg [-plugin-opt=-pass-through=-lmingwex] ==> ignore
+          arg [-plugin-opt=-pass-through=-lmsvcrt] ==> ignore
+          arg [-plugin-opt=-pass-through=-lkernel32] ==> ignore
+          arg [-m] ==> ignore
+          arg [i386pep] ==> ignore
+          arg [-Bdynamic] ==> search dynamic
+          arg [-o] ==> ignore
+          arg [cmTC_d7961.exe] ==> ignore
+          arg [c:/rtools44/x86_64-w64-mingw32.static.posix/bin/../lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/../../../../lib/crt2.o] ==> obj [c:/rtools44/x86_64-w64-mingw32.static.posix/bin/../lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/../../../../lib/crt2.o]
+          arg [c:/rtools44/x86_64-w64-mingw32.static.posix/bin/../lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/crtbegin.o] ==> obj [c:/rtools44/x86_64-w64-mingw32.static.posix/bin/../lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/crtbegin.o]
+          arg [-Lc:/rtools44/x86_64-w64-mingw32.static.posix/bin/../lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0] ==> dir [c:/rtools44/x86_64-w64-mingw32.static.posix/bin/../lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0]
+          arg [-Lc:/rtools44/x86_64-w64-mingw32.static.posix/bin/../lib/gcc] ==> dir [c:/rtools44/x86_64-w64-mingw32.static.posix/bin/../lib/gcc]
+          arg [-Lc:/rtools44/x86_64-w64-mingw32.static.posix/bin/../lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/../../../../lib] ==> dir [c:/rtools44/x86_64-w64-mingw32.static.posix/bin/../lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/../../../../lib]
+          arg [-Lc:/rtools44/x86_64-w64-mingw32.static.posix/bin/../lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/../../..] ==> dir [c:/rtools44/x86_64-w64-mingw32.static.posix/bin/../lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/../../..]
+          arg [-v] ==> ignore
+          arg [--whole-archive] ==> ignore
+          arg [CMakeFiles/cmTC_d7961.dir/objects.a] ==> ignore
+          arg [--no-whole-archive] ==> ignore
+          arg [--out-implib] ==> ignore
+          arg [libcmTC_d7961.dll.a] ==> ignore
+          arg [--major-image-version] ==> ignore
+          arg [0] ==> ignore
+          arg [--minor-image-version] ==> ignore
+          arg [0] ==> ignore
+          arg [-lmingw32] ==> lib [mingw32]
+          arg [-lgcc] ==> lib [gcc]
+          arg [-lmoldname] ==> lib [moldname]
+          arg [-lmingwex] ==> lib [mingwex]
+          arg [-lmsvcrt] ==> lib [msvcrt]
+          arg [-lkernel32] ==> lib [kernel32]
+          arg [-lpthread] ==> lib [pthread]
+          arg [-ladvapi32] ==> lib [advapi32]
+          arg [-lshell32] ==> lib [shell32]
+          arg [-luser32] ==> lib [user32]
+          arg [-lkernel32] ==> lib [kernel32]
+          arg [-lmingw32] ==> lib [mingw32]
+          arg [-lgcc] ==> lib [gcc]
+          arg [-lmoldname] ==> lib [moldname]
+          arg [-lmingwex] ==> lib [mingwex]
+          arg [-lmsvcrt] ==> lib [msvcrt]
+          arg [-lkernel32] ==> lib [kernel32]
+          arg [c:/rtools44/x86_64-w64-mingw32.static.posix/bin/../lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/crtend.o] ==> obj [c:/rtools44/x86_64-w64-mingw32.static.posix/bin/../lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/crtend.o]
+        ignore line: [collect2 version 13.3.0]
+        ignore line: [C:\\rtools44\\x86_64-w64-mingw32.static.posix\\bin/ld.exe -plugin c:/rtools44/x86_64-w64-mingw32.static.posix/bin/../libexec/gcc/x86_64-w64-mingw32.static.posix/13.3.0/liblto_plugin.dll -plugin-opt=c:/rtools44/x86_64-w64-mingw32.static.posix/bin/../libexec/gcc/x86_64-w64-mingw32.static.posix/13.3.0/lto-wrapper.exe -plugin-opt=-fresolution=C:\\Users\\mushe\\AppData\\Local\\Temp\\cctKpc5H.res -plugin-opt=-pass-through=-lmingw32 -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lmoldname -plugin-opt=-pass-through=-lmingwex -plugin-opt=-pass-through=-lmsvcrt -plugin-opt=-pass-through=-lkernel32 -plugin-opt=-pass-through=-lpthread -plugin-opt=-pass-through=-ladvapi32 -plugin-opt=-pass-through=-lshell32 -plugin-opt=-pass-through=-luser32 -plugin-opt=-pass-through=-lkernel32 -plugin-opt=-pass-through=-lmingw32 -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lmoldname -plugin-opt=-pass-through=-lmingwex -plugin-opt=-pass-through=-lmsvcrt -plugin-opt=-pass-through=-lkernel32 -m i386pep -Bdynamic -o cmTC_d7961.exe c:/rtools44/x86_64-w64-mingw32.static.posix/bin/../lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/../../../../lib/crt2.o c:/rtools44/x86_64-w64-mingw32.static.posix/bin/../lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/crtbegin.o -Lc:/rtools44/x86_64-w64-mingw32.static.posix/bin/../lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0 -Lc:/rtools44/x86_64-w64-mingw32.static.posix/bin/../lib/gcc -Lc:/rtools44/x86_64-w64-mingw32.static.posix/bin/../lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/../../../../lib -Lc:/rtools44/x86_64-w64-mingw32.static.posix/bin/../lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/../../.. -v --whole-archive CMakeFiles/cmTC_d7961.dir/objects.a --no-whole-archive --out-implib libcmTC_d7961.dll.a --major-image-version 0 --minor-image-version 0 -lmingw32 -lgcc -lmoldname -lmingwex -lmsvcrt -lkernel32 -lpthread -ladvapi32 -lshell32 -luser32 -lkernel32 -lmingw32 -lgcc -lmoldname -lmingwex -lmsvcrt -lkernel32 c:/rtools44/x86_64-w64-mingw32.static.posix/bin/../lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/crtend.o]
+        linker tool for 'C': C:/rtools44/x86_64-w64-mingw32.static.posix/bin/ld.exe
+        remove lib [msvcrt]
+        remove lib [msvcrt]
+        collapse obj [c:/rtools44/x86_64-w64-mingw32.static.posix/bin/../lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/../../../../lib/crt2.o] ==> [C:/rtools44/x86_64-w64-mingw32.static.posix/lib/crt2.o]
+        collapse obj [c:/rtools44/x86_64-w64-mingw32.static.posix/bin/../lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/crtbegin.o] ==> [C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/crtbegin.o]
+        collapse obj [c:/rtools44/x86_64-w64-mingw32.static.posix/bin/../lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/crtend.o] ==> [C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/crtend.o]
+        collapse library dir [c:/rtools44/x86_64-w64-mingw32.static.posix/bin/../lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0] ==> [C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0]
+        collapse library dir [c:/rtools44/x86_64-w64-mingw32.static.posix/bin/../lib/gcc] ==> [C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc]
+        collapse library dir [c:/rtools44/x86_64-w64-mingw32.static.posix/bin/../lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/../../../../lib] ==> [C:/rtools44/x86_64-w64-mingw32.static.posix/lib]
+        collapse library dir [c:/rtools44/x86_64-w64-mingw32.static.posix/bin/../lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/../../..] ==> [C:/rtools44/x86_64-w64-mingw32.static.posix/lib]
+        implicit libs: [mingw32;gcc;moldname;mingwex;kernel32;pthread;advapi32;shell32;user32;kernel32;mingw32;gcc;moldname;mingwex;kernel32]
+        implicit objs: [C:/rtools44/x86_64-w64-mingw32.static.posix/lib/crt2.o;C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/crtbegin.o;C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/crtend.o]
+        implicit dirs: [C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0;C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc;C:/rtools44/x86_64-w64-mingw32.static.posix/lib]
+        implicit fwks: []
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/rtools44/x86_64-w64-mingw32.static.posix/share/cmake-3.30.4/Modules/Internal/CMakeDetermineLinkerId.cmake:40 (message)"
+      - "C:/rtools44/x86_64-w64-mingw32.static.posix/share/cmake-3.30.4/Modules/CMakeDetermineCompilerABI.cmake:255 (cmake_determine_linker_id)"
+      - "C:/rtools44/x86_64-w64-mingw32.static.posix/share/cmake-3.30.4/Modules/CMakeTestCCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:4 (project)"
+    message: |
+      Running the C compiler's linker: "C:/rtools44/x86_64-w64-mingw32.static.posix/bin/ld.exe" "-v"
+      GNU ld (GNU Binutils) 2.42
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "C:/rtools44/x86_64-w64-mingw32.static.posix/share/cmake-3.30.4/Modules/CMakeDetermineCompilerABI.cmake:74 (try_compile)"
+      - "C:/rtools44/x86_64-w64-mingw32.static.posix/share/cmake-3.30.4/Modules/CMakeTestCXXCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:4 (project)"
+    checks:
+      - "Detecting CXX compiler ABI info"
+    directories:
+      source: "D:/LLM projects/Axion/inference/cpp/build/CMakeFiles/CMakeScratch/TryCompile-hvo4f3"
+      binary: "D:/LLM projects/Axion/inference/cpp/build/CMakeFiles/CMakeScratch/TryCompile-hvo4f3"
+    cmakeVariables:
+      CMAKE_CXX_FLAGS: ""
+      CMAKE_CXX_FLAGS_DEBUG: "-g"
+      CMAKE_CXX_SCAN_FOR_MODULES: "OFF"
+      CMAKE_EXE_LINKER_FLAGS: ""
+    buildResult:
+      variable: "CMAKE_CXX_ABI_COMPILED"
+      cached: true
+      stdout: |
+        Change Dir: 'D:/LLM projects/Axion/inference/cpp/build/CMakeFiles/CMakeScratch/TryCompile-hvo4f3'
+        
+        Run Build Command(s): C:/rtools44/x86_64-w64-mingw32.static.posix/bin/cmake.exe -E env VERBOSE=1 C:/rtools44/usr/bin/make.exe -f Makefile cmTC_89225/fast
+        /usr/bin/make  -f CMakeFiles/cmTC_89225.dir/build.make CMakeFiles/cmTC_89225.dir/build
+        make[1]: Entering directory '/d/LLM projects/Axion/inference/cpp/build/CMakeFiles/CMakeScratch/TryCompile-hvo4f3'
+        Building CXX object CMakeFiles/cmTC_89225.dir/CMakeCXXCompilerABI.cpp.obj
+        C:/rtools44/x86_64-w64-mingw32.static.posix/bin/c++.exe   -v -o CMakeFiles/cmTC_89225.dir/CMakeCXXCompilerABI.cpp.obj -c C:/rtools44/x86_64-w64-mingw32.static.posix/share/cmake-3.30.4/Modules/CMakeCXXCompilerABI.cpp
+        Using built-in specs.
+        COLLECT_GCC=C:\\rtools44\\x86_64-w64-mingw32.static.posix\\bin\\c++.exe
+        Target: x86_64-w64-mingw32.static.posix
+        Configured with: /root/mxe/tmp-gcc-host-x86_64-w64-mingw32.static.posix/gcc-13.3.0/configure --host=x86_64-w64-mingw32.static.posix --target=x86_64-w64-mingw32.static.posix --build=x86_64-pc-linux-gnu --prefix=/usr/lib/mxe/usr/x86_64-w64-mingw32.static.posix --with-native-system-header-dir=/usr/lib/mxe/usr/x86_64-w64-mingw32.static.posix/include --enable-languages=c,c++,objc,fortran --enable-version-specific-runtime-libs --with-gcc --with-gnu-ld --with-gnu-as --disable-nls --without-libiconv-prefix --disable-shared --disable-multilib --without-x --disable-win32-registry --enable-threads=posix --enable-libgomp --with-gmp=/usr/lib/mxe/usr/x86_64-w64-mingw32.static.posix --with-isl=/usr/lib/mxe/usr/x86_64-w64-mingw32.static.posix --with-mpc=/usr/lib/mxe/usr/x86_64-w64-mingw32.static.posix --with-mpfr=/usr/lib/mxe/usr/x86_64-w64-mingw32.static.posix --enable-libstdcxx-time target_configargs=XCFLAGS=-Wno-format ac_cv_header_sys_mman_h=no
+        Thread model: posix
+        Supported LTO compression algorithms: zlib zstd
+        gcc version 13.3.0 (GCC) 
+        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_89225.dir/CMakeCXXCompilerABI.cpp.obj' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_89225.dir/'
+         c:/rtools44/x86_64-w64-mingw32.static.posix/bin/../libexec/gcc/x86_64-w64-mingw32.static.posix/13.3.0/cc1plus.exe -quiet -v -iprefix c:\\rtools44\\x86_64-w64-mingw32.static.posix\\bin\\../lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/ -D_REENTRANT C:/rtools44/x86_64-w64-mingw32.static.posix/share/cmake-3.30.4/Modules/CMakeCXXCompilerABI.cpp -quiet -dumpdir CMakeFiles/cmTC_89225.dir/ -dumpbase CMakeCXXCompilerABI.cpp.cpp -dumpbase-ext .cpp -mtune=generic -march=x86-64 -version -o C:\\Users\\mushe\\AppData\\Local\\Temp\\ccwnVBVs.s
+        GNU C++17 (GCC) version 13.3.0 (x86_64-w64-mingw32.static.posix)
+        	compiled by GNU C version 13.3.0, GMP version 6.3.0, MPFR version 4.2.1, MPC version 1.3.1, isl version isl-0.24-GMP
+        
+        GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
+        ignoring nonexistent directory "c:\\rtools44\\x86_64-w64-mingw32.static.posix\\bin\\../lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/../../../../x86_64-w64-mingw32.static.posix/include"
+        ignoring duplicate directory "c:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/../../lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++"
+        ignoring duplicate directory "c:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/../../lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/x86_64-w64-mingw32.static.posix"
+        ignoring duplicate directory "c:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/../../lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/backward"
+        ignoring duplicate directory "c:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/../../lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include"
+        ignoring nonexistent directory "/usr/lib/mxe/usr/x86_64-w64-mingw32.static.posix/include"
+        ignoring duplicate directory "c:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/../../include"
+        ignoring duplicate directory "c:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/../../lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include-fixed"
+        ignoring nonexistent directory "c:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/../../lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/../../../../x86_64-w64-mingw32.static.posix/include"
+        ignoring nonexistent directory "/include"
+        #include "..." search starts here:
+        #include <...> search starts here:
+         c:\\rtools44\\x86_64-w64-mingw32.static.posix\\bin\\../lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++
+         c:\\rtools44\\x86_64-w64-mingw32.static.posix\\bin\\../lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/x86_64-w64-mingw32.static.posix
+         c:\\rtools44\\x86_64-w64-mingw32.static.posix\\bin\\../lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/backward
+         c:\\rtools44\\x86_64-w64-mingw32.static.posix\\bin\\../lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include
+         c:\\rtools44\\x86_64-w64-mingw32.static.posix\\bin\\../lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/../../../../include
+         c:\\rtools44\\x86_64-w64-mingw32.static.posix\\bin\\../lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include-fixed
+        End of search list.
+        Compiler executable checksum: 470ac89dfc9b7a20b2d0c8f68734707f
+        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_89225.dir/CMakeCXXCompilerABI.cpp.obj' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_89225.dir/'
+         as -v -o CMakeFiles/cmTC_89225.dir/CMakeCXXCompilerABI.cpp.obj C:\\Users\\mushe\\AppData\\Local\\Temp\\ccwnVBVs.s
+        GNU assembler version 2.42 (x86_64-w64-mingw32.static.posix) using BFD version (GNU Binutils) 2.42
+        COMPILER_PATH=c:/rtools44/x86_64-w64-mingw32.static.posix/bin/../libexec/gcc/x86_64-w64-mingw32.static.posix/13.3.0/;c:/rtools44/x86_64-w64-mingw32.static.posix/bin/../libexec/gcc/
+        LIBRARY_PATH=c:/rtools44/x86_64-w64-mingw32.static.posix/bin/../lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/;c:/rtools44/x86_64-w64-mingw32.static.posix/bin/../lib/gcc/;c:/rtools44/x86_64-w64-mingw32.static.posix/bin/../lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/../../../../lib/;c:/rtools44/x86_64-w64-mingw32.static.posix/bin/../lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/../../../
+        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_89225.dir/CMakeCXXCompilerABI.cpp.obj' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_89225.dir/CMakeCXXCompilerABI.cpp.'
+        Linking CXX executable cmTC_89225.exe
+        C:/rtools44/x86_64-w64-mingw32.static.posix/bin/cmake.exe -E rm -f CMakeFiles/cmTC_89225.dir/objects.a
+        C:/rtools44/x86_64-w64-mingw32.static.posix/bin/ar.exe qc CMakeFiles/cmTC_89225.dir/objects.a @CMakeFiles/cmTC_89225.dir/objects1.rsp
+        C:/rtools44/x86_64-w64-mingw32.static.posix/bin/c++.exe  -v -Wl,-v -Wl,--whole-archive CMakeFiles/cmTC_89225.dir/objects.a -Wl,--no-whole-archive -o cmTC_89225.exe -Wl,--out-implib,libcmTC_89225.dll.a -Wl,--major-image-version,0,--minor-image-version,0
+        Using built-in specs.
+        COLLECT_GCC=C:\\rtools44\\x86_64-w64-mingw32.static.posix\\bin\\c++.exe
+        COLLECT_LTO_WRAPPER=c:/rtools44/x86_64-w64-mingw32.static.posix/bin/../libexec/gcc/x86_64-w64-mingw32.static.posix/13.3.0/lto-wrapper.exe
+        Target: x86_64-w64-mingw32.static.posix
+        Configured with: /root/mxe/tmp-gcc-host-x86_64-w64-mingw32.static.posix/gcc-13.3.0/configure --host=x86_64-w64-mingw32.static.posix --target=x86_64-w64-mingw32.static.posix --build=x86_64-pc-linux-gnu --prefix=/usr/lib/mxe/usr/x86_64-w64-mingw32.static.posix --with-native-system-header-dir=/usr/lib/mxe/usr/x86_64-w64-mingw32.static.posix/include --enable-languages=c,c++,objc,fortran --enable-version-specific-runtime-libs --with-gcc --with-gnu-ld --with-gnu-as --disable-nls --without-libiconv-prefix --disable-shared --disable-multilib --without-x --disable-win32-registry --enable-threads=posix --enable-libgomp --with-gmp=/usr/lib/mxe/usr/x86_64-w64-mingw32.static.posix --with-isl=/usr/lib/mxe/usr/x86_64-w64-mingw32.static.posix --with-mpc=/usr/lib/mxe/usr/x86_64-w64-mingw32.static.posix --with-mpfr=/usr/lib/mxe/usr/x86_64-w64-mingw32.static.posix --enable-libstdcxx-time target_configargs=XCFLAGS=-Wno-format ac_cv_header_sys_mman_h=no
+        Thread model: posix
+        Supported LTO compression algorithms: zlib zstd
+        gcc version 13.3.0 (GCC) 
+        COMPILER_PATH=c:/rtools44/x86_64-w64-mingw32.static.posix/bin/../libexec/gcc/x86_64-w64-mingw32.static.posix/13.3.0/;c:/rtools44/x86_64-w64-mingw32.static.posix/bin/../libexec/gcc/
+        LIBRARY_PATH=c:/rtools44/x86_64-w64-mingw32.static.posix/bin/../lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/;c:/rtools44/x86_64-w64-mingw32.static.posix/bin/../lib/gcc/;c:/rtools44/x86_64-w64-mingw32.static.posix/bin/../lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/../../../../lib/;c:/rtools44/x86_64-w64-mingw32.static.posix/bin/../lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/../../../
+        COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_89225.exe' '-mtune=generic' '-march=x86-64' '-dumpdir' 'cmTC_89225.'
+         c:/rtools44/x86_64-w64-mingw32.static.posix/bin/../libexec/gcc/x86_64-w64-mingw32.static.posix/13.3.0/collect2.exe -plugin c:/rtools44/x86_64-w64-mingw32.static.posix/bin/../libexec/gcc/x86_64-w64-mingw32.static.posix/13.3.0/liblto_plugin.dll -plugin-opt=c:/rtools44/x86_64-w64-mingw32.static.posix/bin/../libexec/gcc/x86_64-w64-mingw32.static.posix/13.3.0/lto-wrapper.exe -plugin-opt=-fresolution=C:\\Users\\mushe\\AppData\\Local\\Temp\\ccYnQMNT.res -plugin-opt=-pass-through=-lmingw32 -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lmoldname -plugin-opt=-pass-through=-lmingwex -plugin-opt=-pass-through=-lmsvcrt -plugin-opt=-pass-through=-lkernel32 -plugin-opt=-pass-through=-lpthread -plugin-opt=-pass-through=-ladvapi32 -plugin-opt=-pass-through=-lshell32 -plugin-opt=-pass-through=-luser32 -plugin-opt=-pass-through=-lkernel32 -plugin-opt=-pass-through=-lmingw32 -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lmoldname -plugin-opt=-pass-through=-lmingwex -plugin-opt=-pass-through=-lmsvcrt -plugin-opt=-pass-through=-lkernel32 -m i386pep -Bdynamic -o cmTC_89225.exe c:/rtools44/x86_64-w64-mingw32.static.posix/bin/../lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/../../../../lib/crt2.o c:/rtools44/x86_64-w64-mingw32.static.posix/bin/../lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/crtbegin.o -Lc:/rtools44/x86_64-w64-mingw32.static.posix/bin/../lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0 -Lc:/rtools44/x86_64-w64-mingw32.static.posix/bin/../lib/gcc -Lc:/rtools44/x86_64-w64-mingw32.static.posix/bin/../lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/../../../../lib -Lc:/rtools44/x86_64-w64-mingw32.static.posix/bin/../lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/../../.. -v --whole-archive CMakeFiles/cmTC_89225.dir/objects.a --no-whole-archive --out-implib libcmTC_89225.dll.a --major-image-version 0 --minor-image-version 0 -lstdc++ -lmingw32 -lgcc -lmoldname -lmingwex -lmsvcrt -lkernel32 -lpthread -ladvapi32 -lshell32 -luser32 -lkernel32 -lmingw32 -lgcc -lmoldname -lmingwex -lmsvcrt -lkernel32 c:/rtools44/x86_64-w64-mingw32.static.posix/bin/../lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/crtend.o
+        collect2 version 13.3.0
+        C:\\rtools44\\x86_64-w64-mingw32.static.posix\\bin/ld.exe -plugin c:/rtools44/x86_64-w64-mingw32.static.posix/bin/../libexec/gcc/x86_64-w64-mingw32.static.posix/13.3.0/liblto_plugin.dll -plugin-opt=c:/rtools44/x86_64-w64-mingw32.static.posix/bin/../libexec/gcc/x86_64-w64-mingw32.static.posix/13.3.0/lto-wrapper.exe -plugin-opt=-fresolution=C:\\Users\\mushe\\AppData\\Local\\Temp\\ccYnQMNT.res -plugin-opt=-pass-through=-lmingw32 -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lmoldname -plugin-opt=-pass-through=-lmingwex -plugin-opt=-pass-through=-lmsvcrt -plugin-opt=-pass-through=-lkernel32 -plugin-opt=-pass-through=-lpthread -plugin-opt=-pass-through=-ladvapi32 -plugin-opt=-pass-through=-lshell32 -plugin-opt=-pass-through=-luser32 -plugin-opt=-pass-through=-lkernel32 -plugin-opt=-pass-through=-lmingw32 -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lmoldname -plugin-opt=-pass-through=-lmingwex -plugin-opt=-pass-through=-lmsvcrt -plugin-opt=-pass-through=-lkernel32 -m i386pep -Bdynamic -o cmTC_89225.exe c:/rtools44/x86_64-w64-mingw32.static.posix/bin/../lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/../../../../lib/crt2.o c:/rtools44/x86_64-w64-mingw32.static.posix/bin/../lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/crtbegin.o -Lc:/rtools44/x86_64-w64-mingw32.static.posix/bin/../lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0 -Lc:/rtools44/x86_64-w64-mingw32.static.posix/bin/../lib/gcc -Lc:/rtools44/x86_64-w64-mingw32.static.posix/bin/../lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/../../../../lib -Lc:/rtools44/x86_64-w64-mingw32.static.posix/bin/../lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/../../.. -v --whole-archive CMakeFiles/cmTC_89225.dir/objects.a --no-whole-archive --out-implib libcmTC_89225.dll.a --major-image-version 0 --minor-image-version 0 -lstdc++ -lmingw32 -lgcc -lmoldname -lmingwex -lmsvcrt -lkernel32 -lpthread -ladvapi32 -lshell32 -luser32 -lkernel32 -lmingw32 -lgcc -lmoldname -lmingwex -lmsvcrt -lkernel32 c:/rtools44/x86_64-w64-mingw32.static.posix/bin/../lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/crtend.o
+        GNU ld (GNU Binutils) 2.42
+        COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_89225.exe' '-mtune=generic' '-march=x86-64' '-dumpdir' 'cmTC_89225.'
+        make[1]: Leaving directory '/d/LLM projects/Axion/inference/cpp/build/CMakeFiles/CMakeScratch/TryCompile-hvo4f3'
+        
+      exitCode: 0
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/rtools44/x86_64-w64-mingw32.static.posix/share/cmake-3.30.4/Modules/CMakeDetermineCompilerABI.cmake:182 (message)"
+      - "C:/rtools44/x86_64-w64-mingw32.static.posix/share/cmake-3.30.4/Modules/CMakeTestCXXCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:4 (project)"
+    message: |
+      Parsed CXX implicit include dir info: rv=done
+        found start of include info
+        found start of implicit include info
+          add: [c:/rtools44/x86_64-w64-mingw32.static.posix/bin/../lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++]
+          add: [c:/rtools44/x86_64-w64-mingw32.static.posix/bin/../lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/x86_64-w64-mingw32.static.posix]
+          add: [c:/rtools44/x86_64-w64-mingw32.static.posix/bin/../lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/backward]
+          add: [c:/rtools44/x86_64-w64-mingw32.static.posix/bin/../lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include]
+          add: [c:/rtools44/x86_64-w64-mingw32.static.posix/bin/../lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/../../../../include]
+          add: [c:/rtools44/x86_64-w64-mingw32.static.posix/bin/../lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include-fixed]
+        end of search list found
+        collapse include dir [c:/rtools44/x86_64-w64-mingw32.static.posix/bin/../lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++] ==> [C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++]
+        collapse include dir [c:/rtools44/x86_64-w64-mingw32.static.posix/bin/../lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/x86_64-w64-mingw32.static.posix] ==> [C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/x86_64-w64-mingw32.static.posix]
+        collapse include dir [c:/rtools44/x86_64-w64-mingw32.static.posix/bin/../lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/backward] ==> [C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/backward]
+        collapse include dir [c:/rtools44/x86_64-w64-mingw32.static.posix/bin/../lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include] ==> [C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include]
+        collapse include dir [c:/rtools44/x86_64-w64-mingw32.static.posix/bin/../lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/../../../../include] ==> [C:/rtools44/x86_64-w64-mingw32.static.posix/include]
+        collapse include dir [c:/rtools44/x86_64-w64-mingw32.static.posix/bin/../lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include-fixed] ==> [C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include-fixed]
+        implicit include dirs: [C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++;C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/x86_64-w64-mingw32.static.posix;C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/backward;C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include;C:/rtools44/x86_64-w64-mingw32.static.posix/include;C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include-fixed]
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/rtools44/x86_64-w64-mingw32.static.posix/share/cmake-3.30.4/Modules/CMakeDetermineCompilerABI.cmake:218 (message)"
+      - "C:/rtools44/x86_64-w64-mingw32.static.posix/share/cmake-3.30.4/Modules/CMakeTestCXXCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:4 (project)"
+    message: |
+      Parsed CXX implicit link information:
+        link line regex: [^( *|.*[/\\])(ld[0-9]*(\\.[a-z]+)?|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\\]+-)?ld|collect2)[^/\\]*( |$)]
+        linker tool regex: [^[ 	]*(->|")?[ 	]*(([^"]*[/\\])?(ld[0-9]*(\\.[a-z]+)?))("|,| |$)]
+        ignore line: [Change Dir: 'D:/LLM projects/Axion/inference/cpp/build/CMakeFiles/CMakeScratch/TryCompile-hvo4f3']
+        ignore line: []
+        ignore line: [Run Build Command(s): C:/rtools44/x86_64-w64-mingw32.static.posix/bin/cmake.exe -E env VERBOSE=1 C:/rtools44/usr/bin/make.exe -f Makefile cmTC_89225/fast]
+        ignore line: [/usr/bin/make  -f CMakeFiles/cmTC_89225.dir/build.make CMakeFiles/cmTC_89225.dir/build]
+        ignore line: [make[1]: Entering directory '/d/LLM projects/Axion/inference/cpp/build/CMakeFiles/CMakeScratch/TryCompile-hvo4f3']
+        ignore line: [Building CXX object CMakeFiles/cmTC_89225.dir/CMakeCXXCompilerABI.cpp.obj]
+        ignore line: [C:/rtools44/x86_64-w64-mingw32.static.posix/bin/c++.exe   -v -o CMakeFiles/cmTC_89225.dir/CMakeCXXCompilerABI.cpp.obj -c C:/rtools44/x86_64-w64-mingw32.static.posix/share/cmake-3.30.4/Modules/CMakeCXXCompilerABI.cpp]
+        ignore line: [Using built-in specs.]
+        ignore line: [COLLECT_GCC=C:\\rtools44\\x86_64-w64-mingw32.static.posix\\bin\\c++.exe]
+        ignore line: [Target: x86_64-w64-mingw32.static.posix]
+        ignore line: [Configured with: /root/mxe/tmp-gcc-host-x86_64-w64-mingw32.static.posix/gcc-13.3.0/configure --host=x86_64-w64-mingw32.static.posix --target=x86_64-w64-mingw32.static.posix --build=x86_64-pc-linux-gnu --prefix=/usr/lib/mxe/usr/x86_64-w64-mingw32.static.posix --with-native-system-header-dir=/usr/lib/mxe/usr/x86_64-w64-mingw32.static.posix/include --enable-languages=c,c++,objc,fortran --enable-version-specific-runtime-libs --with-gcc --with-gnu-ld --with-gnu-as --disable-nls --without-libiconv-prefix --disable-shared --disable-multilib --without-x --disable-win32-registry --enable-threads=posix --enable-libgomp --with-gmp=/usr/lib/mxe/usr/x86_64-w64-mingw32.static.posix --with-isl=/usr/lib/mxe/usr/x86_64-w64-mingw32.static.posix --with-mpc=/usr/lib/mxe/usr/x86_64-w64-mingw32.static.posix --with-mpfr=/usr/lib/mxe/usr/x86_64-w64-mingw32.static.posix --enable-libstdcxx-time target_configargs=XCFLAGS=-Wno-format ac_cv_header_sys_mman_h=no]
+        ignore line: [Thread model: posix]
+        ignore line: [Supported LTO compression algorithms: zlib zstd]
+        ignore line: [gcc version 13.3.0 (GCC) ]
+        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_89225.dir/CMakeCXXCompilerABI.cpp.obj' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_89225.dir/']
+        ignore line: [ c:/rtools44/x86_64-w64-mingw32.static.posix/bin/../libexec/gcc/x86_64-w64-mingw32.static.posix/13.3.0/cc1plus.exe -quiet -v -iprefix c:\\rtools44\\x86_64-w64-mingw32.static.posix\\bin\\../lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/ -D_REENTRANT C:/rtools44/x86_64-w64-mingw32.static.posix/share/cmake-3.30.4/Modules/CMakeCXXCompilerABI.cpp -quiet -dumpdir CMakeFiles/cmTC_89225.dir/ -dumpbase CMakeCXXCompilerABI.cpp.cpp -dumpbase-ext .cpp -mtune=generic -march=x86-64 -version -o C:\\Users\\mushe\\AppData\\Local\\Temp\\ccwnVBVs.s]
+        ignore line: [GNU C++17 (GCC) version 13.3.0 (x86_64-w64-mingw32.static.posix)]
+        ignore line: [	compiled by GNU C version 13.3.0  GMP version 6.3.0  MPFR version 4.2.1  MPC version 1.3.1  isl version isl-0.24-GMP]
+        ignore line: []
+        ignore line: [GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072]
+        ignore line: [ignoring nonexistent directory "c:\\rtools44\\x86_64-w64-mingw32.static.posix\\bin\\../lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/../../../../x86_64-w64-mingw32.static.posix/include"]
+        ignore line: [ignoring duplicate directory "c:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/../../lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++"]
+        ignore line: [ignoring duplicate directory "c:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/../../lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/x86_64-w64-mingw32.static.posix"]
+        ignore line: [ignoring duplicate directory "c:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/../../lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/backward"]
+        ignore line: [ignoring duplicate directory "c:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/../../lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include"]
+        ignore line: [ignoring nonexistent directory "/usr/lib/mxe/usr/x86_64-w64-mingw32.static.posix/include"]
+        ignore line: [ignoring duplicate directory "c:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/../../include"]
+        ignore line: [ignoring duplicate directory "c:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/../../lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include-fixed"]
+        ignore line: [ignoring nonexistent directory "c:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/../../lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/../../../../x86_64-w64-mingw32.static.posix/include"]
+        ignore line: [ignoring nonexistent directory "/include"]
+        ignore line: [#include "..." search starts here:]
+        ignore line: [#include <...> search starts here:]
+        ignore line: [ c:\\rtools44\\x86_64-w64-mingw32.static.posix\\bin\\../lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++]
+        ignore line: [ c:\\rtools44\\x86_64-w64-mingw32.static.posix\\bin\\../lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/x86_64-w64-mingw32.static.posix]
+        ignore line: [ c:\\rtools44\\x86_64-w64-mingw32.static.posix\\bin\\../lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/backward]
+        ignore line: [ c:\\rtools44\\x86_64-w64-mingw32.static.posix\\bin\\../lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include]
+        ignore line: [ c:\\rtools44\\x86_64-w64-mingw32.static.posix\\bin\\../lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/../../../../include]
+        ignore line: [ c:\\rtools44\\x86_64-w64-mingw32.static.posix\\bin\\../lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include-fixed]
+        ignore line: [End of search list.]
+        ignore line: [Compiler executable checksum: 470ac89dfc9b7a20b2d0c8f68734707f]
+        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_89225.dir/CMakeCXXCompilerABI.cpp.obj' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_89225.dir/']
+        ignore line: [ as -v -o CMakeFiles/cmTC_89225.dir/CMakeCXXCompilerABI.cpp.obj C:\\Users\\mushe\\AppData\\Local\\Temp\\ccwnVBVs.s]
+        ignore line: [GNU assembler version 2.42 (x86_64-w64-mingw32.static.posix) using BFD version (GNU Binutils) 2.42]
+        ignore line: [COMPILER_PATH=c:/rtools44/x86_64-w64-mingw32.static.posix/bin/../libexec/gcc/x86_64-w64-mingw32.static.posix/13.3.0/]
+        ignore line: [c:/rtools44/x86_64-w64-mingw32.static.posix/bin/../libexec/gcc/]
+        ignore line: [LIBRARY_PATH=c:/rtools44/x86_64-w64-mingw32.static.posix/bin/../lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/]
+        ignore line: [c:/rtools44/x86_64-w64-mingw32.static.posix/bin/../lib/gcc/]
+        ignore line: [c:/rtools44/x86_64-w64-mingw32.static.posix/bin/../lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/../../../../lib/]
+        ignore line: [c:/rtools44/x86_64-w64-mingw32.static.posix/bin/../lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/../../../]
+        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_89225.dir/CMakeCXXCompilerABI.cpp.obj' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_89225.dir/CMakeCXXCompilerABI.cpp.']
+        ignore line: [Linking CXX executable cmTC_89225.exe]
+        ignore line: [C:/rtools44/x86_64-w64-mingw32.static.posix/bin/cmake.exe -E rm -f CMakeFiles/cmTC_89225.dir/objects.a]
+        ignore line: [C:/rtools44/x86_64-w64-mingw32.static.posix/bin/ar.exe qc CMakeFiles/cmTC_89225.dir/objects.a @CMakeFiles/cmTC_89225.dir/objects1.rsp]
+        ignore line: [C:/rtools44/x86_64-w64-mingw32.static.posix/bin/c++.exe  -v -Wl -v -Wl --whole-archive CMakeFiles/cmTC_89225.dir/objects.a -Wl --no-whole-archive -o cmTC_89225.exe -Wl --out-implib libcmTC_89225.dll.a -Wl --major-image-version 0 --minor-image-version 0]
+        ignore line: [Using built-in specs.]
+        ignore line: [COLLECT_GCC=C:\\rtools44\\x86_64-w64-mingw32.static.posix\\bin\\c++.exe]
+        ignore line: [COLLECT_LTO_WRAPPER=c:/rtools44/x86_64-w64-mingw32.static.posix/bin/../libexec/gcc/x86_64-w64-mingw32.static.posix/13.3.0/lto-wrapper.exe]
+        ignore line: [Target: x86_64-w64-mingw32.static.posix]
+        ignore line: [Configured with: /root/mxe/tmp-gcc-host-x86_64-w64-mingw32.static.posix/gcc-13.3.0/configure --host=x86_64-w64-mingw32.static.posix --target=x86_64-w64-mingw32.static.posix --build=x86_64-pc-linux-gnu --prefix=/usr/lib/mxe/usr/x86_64-w64-mingw32.static.posix --with-native-system-header-dir=/usr/lib/mxe/usr/x86_64-w64-mingw32.static.posix/include --enable-languages=c,c++,objc,fortran --enable-version-specific-runtime-libs --with-gcc --with-gnu-ld --with-gnu-as --disable-nls --without-libiconv-prefix --disable-shared --disable-multilib --without-x --disable-win32-registry --enable-threads=posix --enable-libgomp --with-gmp=/usr/lib/mxe/usr/x86_64-w64-mingw32.static.posix --with-isl=/usr/lib/mxe/usr/x86_64-w64-mingw32.static.posix --with-mpc=/usr/lib/mxe/usr/x86_64-w64-mingw32.static.posix --with-mpfr=/usr/lib/mxe/usr/x86_64-w64-mingw32.static.posix --enable-libstdcxx-time target_configargs=XCFLAGS=-Wno-format ac_cv_header_sys_mman_h=no]
+        ignore line: [Thread model: posix]
+        ignore line: [Supported LTO compression algorithms: zlib zstd]
+        ignore line: [gcc version 13.3.0 (GCC) ]
+        ignore line: [COMPILER_PATH=c:/rtools44/x86_64-w64-mingw32.static.posix/bin/../libexec/gcc/x86_64-w64-mingw32.static.posix/13.3.0/]
+        ignore line: [c:/rtools44/x86_64-w64-mingw32.static.posix/bin/../libexec/gcc/]
+        ignore line: [LIBRARY_PATH=c:/rtools44/x86_64-w64-mingw32.static.posix/bin/../lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/]
+        ignore line: [c:/rtools44/x86_64-w64-mingw32.static.posix/bin/../lib/gcc/]
+        ignore line: [c:/rtools44/x86_64-w64-mingw32.static.posix/bin/../lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/../../../../lib/]
+        ignore line: [c:/rtools44/x86_64-w64-mingw32.static.posix/bin/../lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/../../../]
+        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_89225.exe' '-mtune=generic' '-march=x86-64' '-dumpdir' 'cmTC_89225.']
+        link line: [ c:/rtools44/x86_64-w64-mingw32.static.posix/bin/../libexec/gcc/x86_64-w64-mingw32.static.posix/13.3.0/collect2.exe -plugin c:/rtools44/x86_64-w64-mingw32.static.posix/bin/../libexec/gcc/x86_64-w64-mingw32.static.posix/13.3.0/liblto_plugin.dll -plugin-opt=c:/rtools44/x86_64-w64-mingw32.static.posix/bin/../libexec/gcc/x86_64-w64-mingw32.static.posix/13.3.0/lto-wrapper.exe -plugin-opt=-fresolution=C:\\Users\\mushe\\AppData\\Local\\Temp\\ccYnQMNT.res -plugin-opt=-pass-through=-lmingw32 -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lmoldname -plugin-opt=-pass-through=-lmingwex -plugin-opt=-pass-through=-lmsvcrt -plugin-opt=-pass-through=-lkernel32 -plugin-opt=-pass-through=-lpthread -plugin-opt=-pass-through=-ladvapi32 -plugin-opt=-pass-through=-lshell32 -plugin-opt=-pass-through=-luser32 -plugin-opt=-pass-through=-lkernel32 -plugin-opt=-pass-through=-lmingw32 -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lmoldname -plugin-opt=-pass-through=-lmingwex -plugin-opt=-pass-through=-lmsvcrt -plugin-opt=-pass-through=-lkernel32 -m i386pep -Bdynamic -o cmTC_89225.exe c:/rtools44/x86_64-w64-mingw32.static.posix/bin/../lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/../../../../lib/crt2.o c:/rtools44/x86_64-w64-mingw32.static.posix/bin/../lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/crtbegin.o -Lc:/rtools44/x86_64-w64-mingw32.static.posix/bin/../lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0 -Lc:/rtools44/x86_64-w64-mingw32.static.posix/bin/../lib/gcc -Lc:/rtools44/x86_64-w64-mingw32.static.posix/bin/../lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/../../../../lib -Lc:/rtools44/x86_64-w64-mingw32.static.posix/bin/../lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/../../.. -v --whole-archive CMakeFiles/cmTC_89225.dir/objects.a --no-whole-archive --out-implib libcmTC_89225.dll.a --major-image-version 0 --minor-image-version 0 -lstdc++ -lmingw32 -lgcc -lmoldname -lmingwex -lmsvcrt -lkernel32 -lpthread -ladvapi32 -lshell32 -luser32 -lkernel32 -lmingw32 -lgcc -lmoldname -lmingwex -lmsvcrt -lkernel32 c:/rtools44/x86_64-w64-mingw32.static.posix/bin/../lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/crtend.o]
+          arg [c:/rtools44/x86_64-w64-mingw32.static.posix/bin/../libexec/gcc/x86_64-w64-mingw32.static.posix/13.3.0/collect2.exe] ==> ignore
+          arg [-plugin] ==> ignore
+          arg [c:/rtools44/x86_64-w64-mingw32.static.posix/bin/../libexec/gcc/x86_64-w64-mingw32.static.posix/13.3.0/liblto_plugin.dll] ==> ignore
+          arg [-plugin-opt=c:/rtools44/x86_64-w64-mingw32.static.posix/bin/../libexec/gcc/x86_64-w64-mingw32.static.posix/13.3.0/lto-wrapper.exe] ==> ignore
+          arg [-plugin-opt=-fresolution=C:\\Users\\mushe\\AppData\\Local\\Temp\\ccYnQMNT.res] ==> ignore
+          arg [-plugin-opt=-pass-through=-lmingw32] ==> ignore
+          arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
+          arg [-plugin-opt=-pass-through=-lmoldname] ==> ignore
+          arg [-plugin-opt=-pass-through=-lmingwex] ==> ignore
+          arg [-plugin-opt=-pass-through=-lmsvcrt] ==> ignore
+          arg [-plugin-opt=-pass-through=-lkernel32] ==> ignore
+          arg [-plugin-opt=-pass-through=-lpthread] ==> ignore
+          arg [-plugin-opt=-pass-through=-ladvapi32] ==> ignore
+          arg [-plugin-opt=-pass-through=-lshell32] ==> ignore
+          arg [-plugin-opt=-pass-through=-luser32] ==> ignore
+          arg [-plugin-opt=-pass-through=-lkernel32] ==> ignore
+          arg [-plugin-opt=-pass-through=-lmingw32] ==> ignore
+          arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
+          arg [-plugin-opt=-pass-through=-lmoldname] ==> ignore
+          arg [-plugin-opt=-pass-through=-lmingwex] ==> ignore
+          arg [-plugin-opt=-pass-through=-lmsvcrt] ==> ignore
+          arg [-plugin-opt=-pass-through=-lkernel32] ==> ignore
+          arg [-m] ==> ignore
+          arg [i386pep] ==> ignore
+          arg [-Bdynamic] ==> search dynamic
+          arg [-o] ==> ignore
+          arg [cmTC_89225.exe] ==> ignore
+          arg [c:/rtools44/x86_64-w64-mingw32.static.posix/bin/../lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/../../../../lib/crt2.o] ==> obj [c:/rtools44/x86_64-w64-mingw32.static.posix/bin/../lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/../../../../lib/crt2.o]
+          arg [c:/rtools44/x86_64-w64-mingw32.static.posix/bin/../lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/crtbegin.o] ==> obj [c:/rtools44/x86_64-w64-mingw32.static.posix/bin/../lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/crtbegin.o]
+          arg [-Lc:/rtools44/x86_64-w64-mingw32.static.posix/bin/../lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0] ==> dir [c:/rtools44/x86_64-w64-mingw32.static.posix/bin/../lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0]
+          arg [-Lc:/rtools44/x86_64-w64-mingw32.static.posix/bin/../lib/gcc] ==> dir [c:/rtools44/x86_64-w64-mingw32.static.posix/bin/../lib/gcc]
+          arg [-Lc:/rtools44/x86_64-w64-mingw32.static.posix/bin/../lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/../../../../lib] ==> dir [c:/rtools44/x86_64-w64-mingw32.static.posix/bin/../lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/../../../../lib]
+          arg [-Lc:/rtools44/x86_64-w64-mingw32.static.posix/bin/../lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/../../..] ==> dir [c:/rtools44/x86_64-w64-mingw32.static.posix/bin/../lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/../../..]
+          arg [-v] ==> ignore
+          arg [--whole-archive] ==> ignore
+          arg [CMakeFiles/cmTC_89225.dir/objects.a] ==> ignore
+          arg [--no-whole-archive] ==> ignore
+          arg [--out-implib] ==> ignore
+          arg [libcmTC_89225.dll.a] ==> ignore
+          arg [--major-image-version] ==> ignore
+          arg [0] ==> ignore
+          arg [--minor-image-version] ==> ignore
+          arg [0] ==> ignore
+          arg [-lstdc++] ==> lib [stdc++]
+          arg [-lmingw32] ==> lib [mingw32]
+          arg [-lgcc] ==> lib [gcc]
+          arg [-lmoldname] ==> lib [moldname]
+          arg [-lmingwex] ==> lib [mingwex]
+          arg [-lmsvcrt] ==> lib [msvcrt]
+          arg [-lkernel32] ==> lib [kernel32]
+          arg [-lpthread] ==> lib [pthread]
+          arg [-ladvapi32] ==> lib [advapi32]
+          arg [-lshell32] ==> lib [shell32]
+          arg [-luser32] ==> lib [user32]
+          arg [-lkernel32] ==> lib [kernel32]
+          arg [-lmingw32] ==> lib [mingw32]
+          arg [-lgcc] ==> lib [gcc]
+          arg [-lmoldname] ==> lib [moldname]
+          arg [-lmingwex] ==> lib [mingwex]
+          arg [-lmsvcrt] ==> lib [msvcrt]
+          arg [-lkernel32] ==> lib [kernel32]
+          arg [c:/rtools44/x86_64-w64-mingw32.static.posix/bin/../lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/crtend.o] ==> obj [c:/rtools44/x86_64-w64-mingw32.static.posix/bin/../lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/crtend.o]
+        ignore line: [collect2 version 13.3.0]
+        ignore line: [C:\\rtools44\\x86_64-w64-mingw32.static.posix\\bin/ld.exe -plugin c:/rtools44/x86_64-w64-mingw32.static.posix/bin/../libexec/gcc/x86_64-w64-mingw32.static.posix/13.3.0/liblto_plugin.dll -plugin-opt=c:/rtools44/x86_64-w64-mingw32.static.posix/bin/../libexec/gcc/x86_64-w64-mingw32.static.posix/13.3.0/lto-wrapper.exe -plugin-opt=-fresolution=C:\\Users\\mushe\\AppData\\Local\\Temp\\ccYnQMNT.res -plugin-opt=-pass-through=-lmingw32 -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lmoldname -plugin-opt=-pass-through=-lmingwex -plugin-opt=-pass-through=-lmsvcrt -plugin-opt=-pass-through=-lkernel32 -plugin-opt=-pass-through=-lpthread -plugin-opt=-pass-through=-ladvapi32 -plugin-opt=-pass-through=-lshell32 -plugin-opt=-pass-through=-luser32 -plugin-opt=-pass-through=-lkernel32 -plugin-opt=-pass-through=-lmingw32 -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lmoldname -plugin-opt=-pass-through=-lmingwex -plugin-opt=-pass-through=-lmsvcrt -plugin-opt=-pass-through=-lkernel32 -m i386pep -Bdynamic -o cmTC_89225.exe c:/rtools44/x86_64-w64-mingw32.static.posix/bin/../lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/../../../../lib/crt2.o c:/rtools44/x86_64-w64-mingw32.static.posix/bin/../lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/crtbegin.o -Lc:/rtools44/x86_64-w64-mingw32.static.posix/bin/../lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0 -Lc:/rtools44/x86_64-w64-mingw32.static.posix/bin/../lib/gcc -Lc:/rtools44/x86_64-w64-mingw32.static.posix/bin/../lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/../../../../lib -Lc:/rtools44/x86_64-w64-mingw32.static.posix/bin/../lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/../../.. -v --whole-archive CMakeFiles/cmTC_89225.dir/objects.a --no-whole-archive --out-implib libcmTC_89225.dll.a --major-image-version 0 --minor-image-version 0 -lstdc++ -lmingw32 -lgcc -lmoldname -lmingwex -lmsvcrt -lkernel32 -lpthread -ladvapi32 -lshell32 -luser32 -lkernel32 -lmingw32 -lgcc -lmoldname -lmingwex -lmsvcrt -lkernel32 c:/rtools44/x86_64-w64-mingw32.static.posix/bin/../lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/crtend.o]
+        linker tool for 'CXX': C:/rtools44/x86_64-w64-mingw32.static.posix/bin/ld.exe
+        remove lib [msvcrt]
+        remove lib [msvcrt]
+        collapse obj [c:/rtools44/x86_64-w64-mingw32.static.posix/bin/../lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/../../../../lib/crt2.o] ==> [C:/rtools44/x86_64-w64-mingw32.static.posix/lib/crt2.o]
+        collapse obj [c:/rtools44/x86_64-w64-mingw32.static.posix/bin/../lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/crtbegin.o] ==> [C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/crtbegin.o]
+        collapse obj [c:/rtools44/x86_64-w64-mingw32.static.posix/bin/../lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/crtend.o] ==> [C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/crtend.o]
+        collapse library dir [c:/rtools44/x86_64-w64-mingw32.static.posix/bin/../lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0] ==> [C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0]
+        collapse library dir [c:/rtools44/x86_64-w64-mingw32.static.posix/bin/../lib/gcc] ==> [C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc]
+        collapse library dir [c:/rtools44/x86_64-w64-mingw32.static.posix/bin/../lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/../../../../lib] ==> [C:/rtools44/x86_64-w64-mingw32.static.posix/lib]
+        collapse library dir [c:/rtools44/x86_64-w64-mingw32.static.posix/bin/../lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/../../..] ==> [C:/rtools44/x86_64-w64-mingw32.static.posix/lib]
+        implicit libs: [stdc++;mingw32;gcc;moldname;mingwex;kernel32;pthread;advapi32;shell32;user32;kernel32;mingw32;gcc;moldname;mingwex;kernel32]
+        implicit objs: [C:/rtools44/x86_64-w64-mingw32.static.posix/lib/crt2.o;C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/crtbegin.o;C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/crtend.o]
+        implicit dirs: [C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0;C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc;C:/rtools44/x86_64-w64-mingw32.static.posix/lib]
+        implicit fwks: []
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/rtools44/x86_64-w64-mingw32.static.posix/share/cmake-3.30.4/Modules/Internal/CMakeDetermineLinkerId.cmake:40 (message)"
+      - "C:/rtools44/x86_64-w64-mingw32.static.posix/share/cmake-3.30.4/Modules/CMakeDetermineCompilerABI.cmake:255 (cmake_determine_linker_id)"
+      - "C:/rtools44/x86_64-w64-mingw32.static.posix/share/cmake-3.30.4/Modules/CMakeTestCXXCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:4 (project)"
+    message: |
+      Running the CXX compiler's linker: "C:/rtools44/x86_64-w64-mingw32.static.posix/bin/ld.exe" "-v"
+      GNU ld (GNU Binutils) 2.42
+...

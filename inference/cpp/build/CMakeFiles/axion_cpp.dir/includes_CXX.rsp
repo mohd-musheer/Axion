@@ -1,0 +1,1 @@
+-I"D:/LLM projects/Axion/inference/cpp/third_party" -isystem C:/Users/mushe/AppData/Local/Programs/Python/Python311/include -isystem "C:/Users/mushe/AppData/Local/Programs/Python/Python311/Lib/site-packages/pybind11/include"
