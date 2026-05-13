@@ -112,4 +112,5 @@ CMakeFiles/axion_cpp.dir/runtime/transformer_layer.cpp.obj: \
  d:\llm\ projects\axion\inference\cpp\kernels\softmax.hpp \
  d:\llm\ projects\axion\inference\cpp\kernels\attention_output.hpp \
  d:\llm\ projects\axion\inference\cpp\kernels\residual.hpp \
- d:\llm\ projects\axion\inference\cpp\kernels\mlp.hpp
+ d:\llm\ projects\axion\inference\cpp\kernels\mlp.hpp \
+ d:\llm\ projects\axion\inference\cpp\kernels\causal_mask.hpp

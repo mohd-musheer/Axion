@@ -135,6 +135,28 @@ Tensor MMapLoader::load_tensor(
     return tensor;
 }
 
+
+std::vector<std::string>
+MMapLoader::list_tensors() {
+
+    auto parsed = json::parse(header_json);
+
+    std::vector<std::string> names;
+
+    for (auto& item : parsed.items()) {
+
+        std::string tensor_name = item.key();
+
+        if (tensor_name == "__metadata__") {
+            continue;
+        }
+
+        names.push_back(tensor_name);
+    }
+
+    return names;
+}
+
 Tensor MMapLoader::load_tensor_data(
     const std::string& tensor_name
 ) {
@@ -160,11 +182,17 @@ Tensor MMapLoader::load_tensor_data(
 
     tensor.data.resize(total_elements);
 
+    // -------------------------
+    // FLOAT16
+    // -------------------------
+
     if (tensor.dtype == DType::FLOAT16) {
 
         const uint16_t* raw_ptr =
             reinterpret_cast<const uint16_t*>(
-                file_data.data() + tensor_start
+
+                file_data.data() +
+                tensor_start
             );
 
         for (size_t i = 0;
@@ -172,14 +200,23 @@ Tensor MMapLoader::load_tensor_data(
              i++) {
 
             tensor.data[i] =
-                fp16_to_fp32(raw_ptr[i]);
+                fp16_to_fp32(
+                    raw_ptr[i]
+                );
         }
     }
+
+    // -------------------------
+    // FLOAT32
+    // -------------------------
+
     else if (tensor.dtype == DType::FLOAT32) {
 
         const float* raw_ptr =
             reinterpret_cast<const float*>(
-                file_data.data() + tensor_start
+
+                file_data.data() +
+                tensor_start
             );
 
         for (size_t i = 0;
@@ -191,28 +228,16 @@ Tensor MMapLoader::load_tensor_data(
         }
     }
 
-    return tensor;
-}
-std::vector<std::string>
-MMapLoader::list_tensors() {
+    else {
 
-    auto parsed = json::parse(header_json);
-
-    std::vector<std::string> names;
-
-    for (auto& item : parsed.items()) {
-
-        std::string tensor_name = item.key();
-
-        if (tensor_name == "__metadata__") {
-            continue;
-        }
-
-        names.push_back(tensor_name);
+        throw std::runtime_error(
+            "Unsupported tensor dtype"
+        );
     }
 
-    return names;
+    return tensor;
 }
+
 
 
 

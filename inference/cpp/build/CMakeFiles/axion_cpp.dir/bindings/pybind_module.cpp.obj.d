@@ -407,7 +407,15 @@ CMakeFiles/axion_cpp.dir/bindings/pybind_module.cpp.obj: \
  c:\rtools44\x86_64-w64-mingw32.static.posix\lib\gcc\x86_64-w64-mingw32.static.posix\13.3.0\include\c++\variant \
  d:\llm\ projects\axion\inference\cpp\kernels\blas.hpp \
  d:\llm\ projects\axion\inference\cpp\core\tensor.hpp \
+ d:\llm\ projects\axion\inference\cpp\kernels\multihead_attention.hpp \
  d:\llm\ projects\axion\inference\cpp\kernels\rmsnorm.hpp \
+ d:\llm\ projects\axion\inference\cpp\runtime\embedding.hpp \
+ d:\llm\ projects\axion\inference\cpp\runtime\kv_cache.hpp \
+ d:\llm\ projects\axion\inference\cpp\runtime\weight_lookup.hpp \
+ d:\llm\ projects\axion\inference\cpp\runtime\execution_graph.hpp \
+ d:\llm\ projects\axion\inference\cpp\runtime\layer_scheduler.hpp \
+ d:\llm\ projects\axion\inference\cpp\kernels\causal_mask.hpp \
+ d:\llm\ projects\axion\inference\cpp\kernels\multihead.hpp \
  d:\llm\ projects\axion\inference\cpp\runtime\transformer_layer.hpp \
  d:\llm\ projects\axion\inference\cpp\core\mmap_loader.hpp \
  d:\llm\ projects\axion\inference\cpp\kernels\transpose.hpp \

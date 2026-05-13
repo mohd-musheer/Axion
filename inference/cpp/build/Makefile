@@ -273,6 +273,30 @@ kernels/blas.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/axion_cpp.dir/build.make CMakeFiles/axion_cpp.dir/kernels/blas.cpp.s
 .PHONY : kernels/blas.cpp.s
 
+kernels/causal_mask.obj: kernels/causal_mask.cpp.obj
+.PHONY : kernels/causal_mask.obj
+
+# target to build an object file
+kernels/causal_mask.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/axion_cpp.dir/build.make CMakeFiles/axion_cpp.dir/kernels/causal_mask.cpp.obj
+.PHONY : kernels/causal_mask.cpp.obj
+
+kernels/causal_mask.i: kernels/causal_mask.cpp.i
+.PHONY : kernels/causal_mask.i
+
+# target to preprocess a source file
+kernels/causal_mask.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/axion_cpp.dir/build.make CMakeFiles/axion_cpp.dir/kernels/causal_mask.cpp.i
+.PHONY : kernels/causal_mask.cpp.i
+
+kernels/causal_mask.s: kernels/causal_mask.cpp.s
+.PHONY : kernels/causal_mask.s
+
+# target to generate assembly for a file
+kernels/causal_mask.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/axion_cpp.dir/build.make CMakeFiles/axion_cpp.dir/kernels/causal_mask.cpp.s
+.PHONY : kernels/causal_mask.cpp.s
+
 kernels/elementwise.obj: kernels/elementwise.cpp.obj
 .PHONY : kernels/elementwise.obj
 
@@ -320,6 +344,54 @@ kernels/mlp.s: kernels/mlp.cpp.s
 kernels/mlp.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/axion_cpp.dir/build.make CMakeFiles/axion_cpp.dir/kernels/mlp.cpp.s
 .PHONY : kernels/mlp.cpp.s
+
+kernels/multihead.obj: kernels/multihead.cpp.obj
+.PHONY : kernels/multihead.obj
+
+# target to build an object file
+kernels/multihead.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/axion_cpp.dir/build.make CMakeFiles/axion_cpp.dir/kernels/multihead.cpp.obj
+.PHONY : kernels/multihead.cpp.obj
+
+kernels/multihead.i: kernels/multihead.cpp.i
+.PHONY : kernels/multihead.i
+
+# target to preprocess a source file
+kernels/multihead.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/axion_cpp.dir/build.make CMakeFiles/axion_cpp.dir/kernels/multihead.cpp.i
+.PHONY : kernels/multihead.cpp.i
+
+kernels/multihead.s: kernels/multihead.cpp.s
+.PHONY : kernels/multihead.s
+
+# target to generate assembly for a file
+kernels/multihead.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/axion_cpp.dir/build.make CMakeFiles/axion_cpp.dir/kernels/multihead.cpp.s
+.PHONY : kernels/multihead.cpp.s
+
+kernels/multihead_attention.obj: kernels/multihead_attention.cpp.obj
+.PHONY : kernels/multihead_attention.obj
+
+# target to build an object file
+kernels/multihead_attention.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/axion_cpp.dir/build.make CMakeFiles/axion_cpp.dir/kernels/multihead_attention.cpp.obj
+.PHONY : kernels/multihead_attention.cpp.obj
+
+kernels/multihead_attention.i: kernels/multihead_attention.cpp.i
+.PHONY : kernels/multihead_attention.i
+
+# target to preprocess a source file
+kernels/multihead_attention.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/axion_cpp.dir/build.make CMakeFiles/axion_cpp.dir/kernels/multihead_attention.cpp.i
+.PHONY : kernels/multihead_attention.cpp.i
+
+kernels/multihead_attention.s: kernels/multihead_attention.cpp.s
+.PHONY : kernels/multihead_attention.s
+
+# target to generate assembly for a file
+kernels/multihead_attention.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/axion_cpp.dir/build.make CMakeFiles/axion_cpp.dir/kernels/multihead_attention.cpp.s
+.PHONY : kernels/multihead_attention.cpp.s
 
 kernels/residual.obj: kernels/residual.cpp.obj
 .PHONY : kernels/residual.obj
@@ -465,6 +537,54 @@ kernels/transpose.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/axion_cpp.dir/build.make CMakeFiles/axion_cpp.dir/kernels/transpose.cpp.s
 .PHONY : kernels/transpose.cpp.s
 
+runtime/embedding.obj: runtime/embedding.cpp.obj
+.PHONY : runtime/embedding.obj
+
+# target to build an object file
+runtime/embedding.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/axion_cpp.dir/build.make CMakeFiles/axion_cpp.dir/runtime/embedding.cpp.obj
+.PHONY : runtime/embedding.cpp.obj
+
+runtime/embedding.i: runtime/embedding.cpp.i
+.PHONY : runtime/embedding.i
+
+# target to preprocess a source file
+runtime/embedding.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/axion_cpp.dir/build.make CMakeFiles/axion_cpp.dir/runtime/embedding.cpp.i
+.PHONY : runtime/embedding.cpp.i
+
+runtime/embedding.s: runtime/embedding.cpp.s
+.PHONY : runtime/embedding.s
+
+# target to generate assembly for a file
+runtime/embedding.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/axion_cpp.dir/build.make CMakeFiles/axion_cpp.dir/runtime/embedding.cpp.s
+.PHONY : runtime/embedding.cpp.s
+
+runtime/execution_graph.obj: runtime/execution_graph.cpp.obj
+.PHONY : runtime/execution_graph.obj
+
+# target to build an object file
+runtime/execution_graph.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/axion_cpp.dir/build.make CMakeFiles/axion_cpp.dir/runtime/execution_graph.cpp.obj
+.PHONY : runtime/execution_graph.cpp.obj
+
+runtime/execution_graph.i: runtime/execution_graph.cpp.i
+.PHONY : runtime/execution_graph.i
+
+# target to preprocess a source file
+runtime/execution_graph.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/axion_cpp.dir/build.make CMakeFiles/axion_cpp.dir/runtime/execution_graph.cpp.i
+.PHONY : runtime/execution_graph.cpp.i
+
+runtime/execution_graph.s: runtime/execution_graph.cpp.s
+.PHONY : runtime/execution_graph.s
+
+# target to generate assembly for a file
+runtime/execution_graph.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/axion_cpp.dir/build.make CMakeFiles/axion_cpp.dir/runtime/execution_graph.cpp.s
+.PHONY : runtime/execution_graph.cpp.s
+
 runtime/generation.obj: runtime/generation.cpp.obj
 .PHONY : runtime/generation.obj
 
@@ -513,6 +633,54 @@ runtime/inference_engine.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/axion_cpp.dir/build.make CMakeFiles/axion_cpp.dir/runtime/inference_engine.cpp.s
 .PHONY : runtime/inference_engine.cpp.s
 
+runtime/kv_cache.obj: runtime/kv_cache.cpp.obj
+.PHONY : runtime/kv_cache.obj
+
+# target to build an object file
+runtime/kv_cache.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/axion_cpp.dir/build.make CMakeFiles/axion_cpp.dir/runtime/kv_cache.cpp.obj
+.PHONY : runtime/kv_cache.cpp.obj
+
+runtime/kv_cache.i: runtime/kv_cache.cpp.i
+.PHONY : runtime/kv_cache.i
+
+# target to preprocess a source file
+runtime/kv_cache.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/axion_cpp.dir/build.make CMakeFiles/axion_cpp.dir/runtime/kv_cache.cpp.i
+.PHONY : runtime/kv_cache.cpp.i
+
+runtime/kv_cache.s: runtime/kv_cache.cpp.s
+.PHONY : runtime/kv_cache.s
+
+# target to generate assembly for a file
+runtime/kv_cache.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/axion_cpp.dir/build.make CMakeFiles/axion_cpp.dir/runtime/kv_cache.cpp.s
+.PHONY : runtime/kv_cache.cpp.s
+
+runtime/layer_scheduler.obj: runtime/layer_scheduler.cpp.obj
+.PHONY : runtime/layer_scheduler.obj
+
+# target to build an object file
+runtime/layer_scheduler.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/axion_cpp.dir/build.make CMakeFiles/axion_cpp.dir/runtime/layer_scheduler.cpp.obj
+.PHONY : runtime/layer_scheduler.cpp.obj
+
+runtime/layer_scheduler.i: runtime/layer_scheduler.cpp.i
+.PHONY : runtime/layer_scheduler.i
+
+# target to preprocess a source file
+runtime/layer_scheduler.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/axion_cpp.dir/build.make CMakeFiles/axion_cpp.dir/runtime/layer_scheduler.cpp.i
+.PHONY : runtime/layer_scheduler.cpp.i
+
+runtime/layer_scheduler.s: runtime/layer_scheduler.cpp.s
+.PHONY : runtime/layer_scheduler.s
+
+# target to generate assembly for a file
+runtime/layer_scheduler.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/axion_cpp.dir/build.make CMakeFiles/axion_cpp.dir/runtime/layer_scheduler.cpp.s
+.PHONY : runtime/layer_scheduler.cpp.s
+
 runtime/transformer_layer.obj: runtime/transformer_layer.cpp.obj
 .PHONY : runtime/transformer_layer.obj
 
@@ -536,6 +704,30 @@ runtime/transformer_layer.s: runtime/transformer_layer.cpp.s
 runtime/transformer_layer.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/axion_cpp.dir/build.make CMakeFiles/axion_cpp.dir/runtime/transformer_layer.cpp.s
 .PHONY : runtime/transformer_layer.cpp.s
+
+runtime/weight_lookup.obj: runtime/weight_lookup.cpp.obj
+.PHONY : runtime/weight_lookup.obj
+
+# target to build an object file
+runtime/weight_lookup.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/axion_cpp.dir/build.make CMakeFiles/axion_cpp.dir/runtime/weight_lookup.cpp.obj
+.PHONY : runtime/weight_lookup.cpp.obj
+
+runtime/weight_lookup.i: runtime/weight_lookup.cpp.i
+.PHONY : runtime/weight_lookup.i
+
+# target to preprocess a source file
+runtime/weight_lookup.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/axion_cpp.dir/build.make CMakeFiles/axion_cpp.dir/runtime/weight_lookup.cpp.i
+.PHONY : runtime/weight_lookup.cpp.i
+
+runtime/weight_lookup.s: runtime/weight_lookup.cpp.s
+.PHONY : runtime/weight_lookup.s
+
+# target to generate assembly for a file
+runtime/weight_lookup.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/axion_cpp.dir/build.make CMakeFiles/axion_cpp.dir/runtime/weight_lookup.cpp.s
+.PHONY : runtime/weight_lookup.cpp.s
 
 # Help Target
 help:
@@ -564,12 +756,21 @@ help:
 	@echo "... kernels/blas.obj"
 	@echo "... kernels/blas.i"
 	@echo "... kernels/blas.s"
+	@echo "... kernels/causal_mask.obj"
+	@echo "... kernels/causal_mask.i"
+	@echo "... kernels/causal_mask.s"
 	@echo "... kernels/elementwise.obj"
 	@echo "... kernels/elementwise.i"
 	@echo "... kernels/elementwise.s"
 	@echo "... kernels/mlp.obj"
 	@echo "... kernels/mlp.i"
 	@echo "... kernels/mlp.s"
+	@echo "... kernels/multihead.obj"
+	@echo "... kernels/multihead.i"
+	@echo "... kernels/multihead.s"
+	@echo "... kernels/multihead_attention.obj"
+	@echo "... kernels/multihead_attention.i"
+	@echo "... kernels/multihead_attention.s"
 	@echo "... kernels/residual.obj"
 	@echo "... kernels/residual.i"
 	@echo "... kernels/residual.s"
@@ -588,15 +789,30 @@ help:
 	@echo "... kernels/transpose.obj"
 	@echo "... kernels/transpose.i"
 	@echo "... kernels/transpose.s"
+	@echo "... runtime/embedding.obj"
+	@echo "... runtime/embedding.i"
+	@echo "... runtime/embedding.s"
+	@echo "... runtime/execution_graph.obj"
+	@echo "... runtime/execution_graph.i"
+	@echo "... runtime/execution_graph.s"
 	@echo "... runtime/generation.obj"
 	@echo "... runtime/generation.i"
 	@echo "... runtime/generation.s"
 	@echo "... runtime/inference_engine.obj"
 	@echo "... runtime/inference_engine.i"
 	@echo "... runtime/inference_engine.s"
+	@echo "... runtime/kv_cache.obj"
+	@echo "... runtime/kv_cache.i"
+	@echo "... runtime/kv_cache.s"
+	@echo "... runtime/layer_scheduler.obj"
+	@echo "... runtime/layer_scheduler.i"
+	@echo "... runtime/layer_scheduler.s"
 	@echo "... runtime/transformer_layer.obj"
 	@echo "... runtime/transformer_layer.i"
 	@echo "... runtime/transformer_layer.s"
+	@echo "... runtime/weight_lookup.obj"
+	@echo "... runtime/weight_lookup.i"
+	@echo "... runtime/weight_lookup.s"
 .PHONY : help
 
 

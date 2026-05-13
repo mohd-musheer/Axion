@@ -7,7 +7,7 @@
 #include "../kernels/attention_output.hpp"
 #include "../kernels/residual.hpp"
 #include "../kernels/mlp.hpp"
-
+#include "../kernels/causal_mask.hpp"
 namespace axion {
 
 Tensor transformer_layer(
@@ -45,8 +45,17 @@ Tensor transformer_layer(
             norm1
         );
 
-    Tensor probs =
-        softmax(scores);
+    
+        Tensor masked =
+            causal_mask(
+                scores
+            );
+
+        Tensor probs =
+            softmax(
+                masked
+            );
+
 
     Tensor attn =
         attention_output(
