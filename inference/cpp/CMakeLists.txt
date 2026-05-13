@@ -32,6 +32,7 @@ pybind11_add_module(axion_cpp
     runtime/weight_lookup.cpp
     kernels/residual.cpp
     runtime/execution_graph.cpp
+    runtime/logits.cpp
     kernels/multihead.cpp
     runtime/layer_scheduler.cpp
     kernels/multihead_attention.cpp

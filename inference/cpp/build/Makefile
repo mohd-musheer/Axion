@@ -681,6 +681,30 @@ runtime/layer_scheduler.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/axion_cpp.dir/build.make CMakeFiles/axion_cpp.dir/runtime/layer_scheduler.cpp.s
 .PHONY : runtime/layer_scheduler.cpp.s
 
+runtime/logits.obj: runtime/logits.cpp.obj
+.PHONY : runtime/logits.obj
+
+# target to build an object file
+runtime/logits.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/axion_cpp.dir/build.make CMakeFiles/axion_cpp.dir/runtime/logits.cpp.obj
+.PHONY : runtime/logits.cpp.obj
+
+runtime/logits.i: runtime/logits.cpp.i
+.PHONY : runtime/logits.i
+
+# target to preprocess a source file
+runtime/logits.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/axion_cpp.dir/build.make CMakeFiles/axion_cpp.dir/runtime/logits.cpp.i
+.PHONY : runtime/logits.cpp.i
+
+runtime/logits.s: runtime/logits.cpp.s
+.PHONY : runtime/logits.s
+
+# target to generate assembly for a file
+runtime/logits.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/axion_cpp.dir/build.make CMakeFiles/axion_cpp.dir/runtime/logits.cpp.s
+.PHONY : runtime/logits.cpp.s
+
 runtime/transformer_layer.obj: runtime/transformer_layer.cpp.obj
 .PHONY : runtime/transformer_layer.obj
 
@@ -807,6 +831,9 @@ help:
 	@echo "... runtime/layer_scheduler.obj"
 	@echo "... runtime/layer_scheduler.i"
 	@echo "... runtime/layer_scheduler.s"
+	@echo "... runtime/logits.obj"
+	@echo "... runtime/logits.i"
+	@echo "... runtime/logits.s"
 	@echo "... runtime/transformer_layer.obj"
 	@echo "... runtime/transformer_layer.i"
 	@echo "... runtime/transformer_layer.s"

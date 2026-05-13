@@ -409,6 +409,7 @@ CMakeFiles/axion_cpp.dir/bindings/pybind_module.cpp.obj: \
  d:\llm\ projects\axion\inference\cpp\core\tensor.hpp \
  d:\llm\ projects\axion\inference\cpp\kernels\multihead_attention.hpp \
  d:\llm\ projects\axion\inference\cpp\kernels\rmsnorm.hpp \
+ d:\llm\ projects\axion\inference\cpp\runtime\logits.hpp \
  d:\llm\ projects\axion\inference\cpp\runtime\embedding.hpp \
  d:\llm\ projects\axion\inference\cpp\runtime\kv_cache.hpp \
  d:\llm\ projects\axion\inference\cpp\runtime\weight_lookup.hpp \

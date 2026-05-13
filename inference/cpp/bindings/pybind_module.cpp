@@ -5,6 +5,7 @@
 #include "../kernels/blas.hpp"
 #include "../kernels/multihead_attention.hpp"
 #include "../kernels/rmsnorm.hpp"
+#include "../runtime/logits.hpp"
 #include "../runtime/embedding.hpp"
 #include "../runtime/kv_cache.hpp"
 #include "../runtime/weight_lookup.hpp"
@@ -207,6 +208,17 @@ PYBIND11_MODULE(axion_cpp, m) {
             "embedding_lookup",
             &embedding_lookup
         );
+
+        m.def(
+            "compute_logits",
+            &compute_logits
+        );
+
+        m.def(
+            "argmax",
+            &argmax
+        );
+
 
 
 

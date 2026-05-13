@@ -45,6 +45,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/axion_cpp.dir/runtime/kv_cache.cpp.obj.d"
   "CMakeFiles/axion_cpp.dir/runtime/layer_scheduler.cpp.obj"
   "CMakeFiles/axion_cpp.dir/runtime/layer_scheduler.cpp.obj.d"
+  "CMakeFiles/axion_cpp.dir/runtime/logits.cpp.obj"
+  "CMakeFiles/axion_cpp.dir/runtime/logits.cpp.obj.d"
   "CMakeFiles/axion_cpp.dir/runtime/transformer_layer.cpp.obj"
   "CMakeFiles/axion_cpp.dir/runtime/transformer_layer.cpp.obj.d"
   "CMakeFiles/axion_cpp.dir/runtime/weight_lookup.cpp.obj"
