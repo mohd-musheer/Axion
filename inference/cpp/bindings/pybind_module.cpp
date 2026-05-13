@@ -1,14 +1,22 @@
 // inference/cpp/bindings/pybind_module.cpp
 
 #include <pybind11/pybind11.h>
+#include "../runtime/last_token.hpp"
 #include <pybind11/stl.h>
 #include "../kernels/blas.hpp"
+#include "../runtime/residual.hpp"
+#include "../kernels/add.hpp"
 #include "../kernels/multihead_attention.hpp"
+#include "../runtime/linear.hpp"
 #include "../kernels/rmsnorm.hpp"
+#include "../runtime/full_forward.hpp"
+#include "../runtime/position_embedding.hpp"
 #include "../runtime/logits.hpp"
 #include "../runtime/embedding.hpp"
+#include "../runtime/fused_qkv.hpp"
 #include "../runtime/kv_cache.hpp"
 #include "../runtime/weight_lookup.hpp"
+#include "../runtime/real_attention.hpp"
 #include "../runtime/execution_graph.hpp"
 #include "../core/tensor.hpp"
 #include "../runtime/layer_scheduler.hpp"
@@ -16,15 +24,18 @@
 #include "../kernels/multihead.hpp"
 #include "../runtime/transformer_layer.hpp"
 #include "../core/mmap_loader.hpp"
+#include "../runtime/gpt2_ln.hpp"
 #include "../kernels/transpose.hpp"
 #include "../kernels/attention.hpp"
+#include "../kernels/gelu.hpp"
 #include "../kernels/softmax.hpp"
 #include "../kernels/silu.hpp"
 #include "../kernels/elementwise.hpp"
 #include "../kernels/mlp.hpp"
 #include "../kernels/attention_output.hpp"
 #include "../kernels/rope.hpp"
-#include "../kernels/residual.hpp"
+#include "../runtime/transformer_stack.hpp"
+#include "../runtime/final_norm.hpp"
 #include "../runtime/generation.hpp"
 namespace py = pybind11;
 
@@ -218,9 +229,68 @@ PYBIND11_MODULE(axion_cpp, m) {
             "argmax",
             &argmax
         );
+        m.def(
+            "real_attention",
+            &real_attention
+        );
 
 
+    py::class_<QKV>(m, "QKV")
 
+        .def_readwrite(
+            "Q",
+            &QKV::Q
+        )
+
+        .def_readwrite(
+            "K",
+            &QKV::K
+        )
+
+        .def_readwrite(
+            "V",
+            &QKV::V
+        );
+        m.def(
+            "split_fused_qkv",
+            &split_fused_qkv
+        );
+        m.def(
+            "transformer_stack",
+            &transformer_stack
+        );
+       m.def(
+            "final_norm",
+            &final_norm
+        );
+        m.def(
+            "full_forward",
+            &full_forward
+        );
+        m.def(
+            "linear",
+            &linear
+        );
+        m.def(
+            "gpt2_ln",
+            &gpt2_ln
+        );
+        m.def(
+            "gelu",
+            &gelu
+        );
+        m.def(
+            "last_token",
+            &last_token
+        );
+        m.def(
+            "position_embedding_lookup",
+            &position_embedding_lookup
+        );
+        m.def(
+            "add",
+            &add
+        );
 
 
 

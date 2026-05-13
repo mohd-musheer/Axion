@@ -201,6 +201,30 @@ core/tensor.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/axion_cpp.dir/build.make CMakeFiles/axion_cpp.dir/core/tensor.cpp.s
 .PHONY : core/tensor.cpp.s
 
+kernels/add.obj: kernels/add.cpp.obj
+.PHONY : kernels/add.obj
+
+# target to build an object file
+kernels/add.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/axion_cpp.dir/build.make CMakeFiles/axion_cpp.dir/kernels/add.cpp.obj
+.PHONY : kernels/add.cpp.obj
+
+kernels/add.i: kernels/add.cpp.i
+.PHONY : kernels/add.i
+
+# target to preprocess a source file
+kernels/add.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/axion_cpp.dir/build.make CMakeFiles/axion_cpp.dir/kernels/add.cpp.i
+.PHONY : kernels/add.cpp.i
+
+kernels/add.s: kernels/add.cpp.s
+.PHONY : kernels/add.s
+
+# target to generate assembly for a file
+kernels/add.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/axion_cpp.dir/build.make CMakeFiles/axion_cpp.dir/kernels/add.cpp.s
+.PHONY : kernels/add.cpp.s
+
 kernels/attention.obj: kernels/attention.cpp.obj
 .PHONY : kernels/attention.obj
 
@@ -321,6 +345,30 @@ kernels/elementwise.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/axion_cpp.dir/build.make CMakeFiles/axion_cpp.dir/kernels/elementwise.cpp.s
 .PHONY : kernels/elementwise.cpp.s
 
+kernels/gelu.obj: kernels/gelu.cpp.obj
+.PHONY : kernels/gelu.obj
+
+# target to build an object file
+kernels/gelu.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/axion_cpp.dir/build.make CMakeFiles/axion_cpp.dir/kernels/gelu.cpp.obj
+.PHONY : kernels/gelu.cpp.obj
+
+kernels/gelu.i: kernels/gelu.cpp.i
+.PHONY : kernels/gelu.i
+
+# target to preprocess a source file
+kernels/gelu.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/axion_cpp.dir/build.make CMakeFiles/axion_cpp.dir/kernels/gelu.cpp.i
+.PHONY : kernels/gelu.cpp.i
+
+kernels/gelu.s: kernels/gelu.cpp.s
+.PHONY : kernels/gelu.s
+
+# target to generate assembly for a file
+kernels/gelu.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/axion_cpp.dir/build.make CMakeFiles/axion_cpp.dir/kernels/gelu.cpp.s
+.PHONY : kernels/gelu.cpp.s
+
 kernels/mlp.obj: kernels/mlp.cpp.obj
 .PHONY : kernels/mlp.obj
 
@@ -392,30 +440,6 @@ kernels/multihead_attention.s: kernels/multihead_attention.cpp.s
 kernels/multihead_attention.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/axion_cpp.dir/build.make CMakeFiles/axion_cpp.dir/kernels/multihead_attention.cpp.s
 .PHONY : kernels/multihead_attention.cpp.s
-
-kernels/residual.obj: kernels/residual.cpp.obj
-.PHONY : kernels/residual.obj
-
-# target to build an object file
-kernels/residual.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/axion_cpp.dir/build.make CMakeFiles/axion_cpp.dir/kernels/residual.cpp.obj
-.PHONY : kernels/residual.cpp.obj
-
-kernels/residual.i: kernels/residual.cpp.i
-.PHONY : kernels/residual.i
-
-# target to preprocess a source file
-kernels/residual.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/axion_cpp.dir/build.make CMakeFiles/axion_cpp.dir/kernels/residual.cpp.i
-.PHONY : kernels/residual.cpp.i
-
-kernels/residual.s: kernels/residual.cpp.s
-.PHONY : kernels/residual.s
-
-# target to generate assembly for a file
-kernels/residual.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/axion_cpp.dir/build.make CMakeFiles/axion_cpp.dir/kernels/residual.cpp.s
-.PHONY : kernels/residual.cpp.s
 
 kernels/rmsnorm.obj: kernels/rmsnorm.cpp.obj
 .PHONY : kernels/rmsnorm.obj
@@ -585,6 +609,78 @@ runtime/execution_graph.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/axion_cpp.dir/build.make CMakeFiles/axion_cpp.dir/runtime/execution_graph.cpp.s
 .PHONY : runtime/execution_graph.cpp.s
 
+runtime/final_norm.obj: runtime/final_norm.cpp.obj
+.PHONY : runtime/final_norm.obj
+
+# target to build an object file
+runtime/final_norm.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/axion_cpp.dir/build.make CMakeFiles/axion_cpp.dir/runtime/final_norm.cpp.obj
+.PHONY : runtime/final_norm.cpp.obj
+
+runtime/final_norm.i: runtime/final_norm.cpp.i
+.PHONY : runtime/final_norm.i
+
+# target to preprocess a source file
+runtime/final_norm.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/axion_cpp.dir/build.make CMakeFiles/axion_cpp.dir/runtime/final_norm.cpp.i
+.PHONY : runtime/final_norm.cpp.i
+
+runtime/final_norm.s: runtime/final_norm.cpp.s
+.PHONY : runtime/final_norm.s
+
+# target to generate assembly for a file
+runtime/final_norm.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/axion_cpp.dir/build.make CMakeFiles/axion_cpp.dir/runtime/final_norm.cpp.s
+.PHONY : runtime/final_norm.cpp.s
+
+runtime/full_forward.obj: runtime/full_forward.cpp.obj
+.PHONY : runtime/full_forward.obj
+
+# target to build an object file
+runtime/full_forward.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/axion_cpp.dir/build.make CMakeFiles/axion_cpp.dir/runtime/full_forward.cpp.obj
+.PHONY : runtime/full_forward.cpp.obj
+
+runtime/full_forward.i: runtime/full_forward.cpp.i
+.PHONY : runtime/full_forward.i
+
+# target to preprocess a source file
+runtime/full_forward.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/axion_cpp.dir/build.make CMakeFiles/axion_cpp.dir/runtime/full_forward.cpp.i
+.PHONY : runtime/full_forward.cpp.i
+
+runtime/full_forward.s: runtime/full_forward.cpp.s
+.PHONY : runtime/full_forward.s
+
+# target to generate assembly for a file
+runtime/full_forward.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/axion_cpp.dir/build.make CMakeFiles/axion_cpp.dir/runtime/full_forward.cpp.s
+.PHONY : runtime/full_forward.cpp.s
+
+runtime/fused_qkv.obj: runtime/fused_qkv.cpp.obj
+.PHONY : runtime/fused_qkv.obj
+
+# target to build an object file
+runtime/fused_qkv.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/axion_cpp.dir/build.make CMakeFiles/axion_cpp.dir/runtime/fused_qkv.cpp.obj
+.PHONY : runtime/fused_qkv.cpp.obj
+
+runtime/fused_qkv.i: runtime/fused_qkv.cpp.i
+.PHONY : runtime/fused_qkv.i
+
+# target to preprocess a source file
+runtime/fused_qkv.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/axion_cpp.dir/build.make CMakeFiles/axion_cpp.dir/runtime/fused_qkv.cpp.i
+.PHONY : runtime/fused_qkv.cpp.i
+
+runtime/fused_qkv.s: runtime/fused_qkv.cpp.s
+.PHONY : runtime/fused_qkv.s
+
+# target to generate assembly for a file
+runtime/fused_qkv.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/axion_cpp.dir/build.make CMakeFiles/axion_cpp.dir/runtime/fused_qkv.cpp.s
+.PHONY : runtime/fused_qkv.cpp.s
+
 runtime/generation.obj: runtime/generation.cpp.obj
 .PHONY : runtime/generation.obj
 
@@ -608,6 +704,30 @@ runtime/generation.s: runtime/generation.cpp.s
 runtime/generation.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/axion_cpp.dir/build.make CMakeFiles/axion_cpp.dir/runtime/generation.cpp.s
 .PHONY : runtime/generation.cpp.s
+
+runtime/gpt2_ln.obj: runtime/gpt2_ln.cpp.obj
+.PHONY : runtime/gpt2_ln.obj
+
+# target to build an object file
+runtime/gpt2_ln.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/axion_cpp.dir/build.make CMakeFiles/axion_cpp.dir/runtime/gpt2_ln.cpp.obj
+.PHONY : runtime/gpt2_ln.cpp.obj
+
+runtime/gpt2_ln.i: runtime/gpt2_ln.cpp.i
+.PHONY : runtime/gpt2_ln.i
+
+# target to preprocess a source file
+runtime/gpt2_ln.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/axion_cpp.dir/build.make CMakeFiles/axion_cpp.dir/runtime/gpt2_ln.cpp.i
+.PHONY : runtime/gpt2_ln.cpp.i
+
+runtime/gpt2_ln.s: runtime/gpt2_ln.cpp.s
+.PHONY : runtime/gpt2_ln.s
+
+# target to generate assembly for a file
+runtime/gpt2_ln.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/axion_cpp.dir/build.make CMakeFiles/axion_cpp.dir/runtime/gpt2_ln.cpp.s
+.PHONY : runtime/gpt2_ln.cpp.s
 
 runtime/inference_engine.obj: runtime/inference_engine.cpp.obj
 .PHONY : runtime/inference_engine.obj
@@ -657,6 +777,30 @@ runtime/kv_cache.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/axion_cpp.dir/build.make CMakeFiles/axion_cpp.dir/runtime/kv_cache.cpp.s
 .PHONY : runtime/kv_cache.cpp.s
 
+runtime/last_token.obj: runtime/last_token.cpp.obj
+.PHONY : runtime/last_token.obj
+
+# target to build an object file
+runtime/last_token.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/axion_cpp.dir/build.make CMakeFiles/axion_cpp.dir/runtime/last_token.cpp.obj
+.PHONY : runtime/last_token.cpp.obj
+
+runtime/last_token.i: runtime/last_token.cpp.i
+.PHONY : runtime/last_token.i
+
+# target to preprocess a source file
+runtime/last_token.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/axion_cpp.dir/build.make CMakeFiles/axion_cpp.dir/runtime/last_token.cpp.i
+.PHONY : runtime/last_token.cpp.i
+
+runtime/last_token.s: runtime/last_token.cpp.s
+.PHONY : runtime/last_token.s
+
+# target to generate assembly for a file
+runtime/last_token.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/axion_cpp.dir/build.make CMakeFiles/axion_cpp.dir/runtime/last_token.cpp.s
+.PHONY : runtime/last_token.cpp.s
+
 runtime/layer_scheduler.obj: runtime/layer_scheduler.cpp.obj
 .PHONY : runtime/layer_scheduler.obj
 
@@ -680,6 +824,30 @@ runtime/layer_scheduler.s: runtime/layer_scheduler.cpp.s
 runtime/layer_scheduler.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/axion_cpp.dir/build.make CMakeFiles/axion_cpp.dir/runtime/layer_scheduler.cpp.s
 .PHONY : runtime/layer_scheduler.cpp.s
+
+runtime/linear.obj: runtime/linear.cpp.obj
+.PHONY : runtime/linear.obj
+
+# target to build an object file
+runtime/linear.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/axion_cpp.dir/build.make CMakeFiles/axion_cpp.dir/runtime/linear.cpp.obj
+.PHONY : runtime/linear.cpp.obj
+
+runtime/linear.i: runtime/linear.cpp.i
+.PHONY : runtime/linear.i
+
+# target to preprocess a source file
+runtime/linear.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/axion_cpp.dir/build.make CMakeFiles/axion_cpp.dir/runtime/linear.cpp.i
+.PHONY : runtime/linear.cpp.i
+
+runtime/linear.s: runtime/linear.cpp.s
+.PHONY : runtime/linear.s
+
+# target to generate assembly for a file
+runtime/linear.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/axion_cpp.dir/build.make CMakeFiles/axion_cpp.dir/runtime/linear.cpp.s
+.PHONY : runtime/linear.cpp.s
 
 runtime/logits.obj: runtime/logits.cpp.obj
 .PHONY : runtime/logits.obj
@@ -705,6 +873,78 @@ runtime/logits.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/axion_cpp.dir/build.make CMakeFiles/axion_cpp.dir/runtime/logits.cpp.s
 .PHONY : runtime/logits.cpp.s
 
+runtime/position_embedding.obj: runtime/position_embedding.cpp.obj
+.PHONY : runtime/position_embedding.obj
+
+# target to build an object file
+runtime/position_embedding.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/axion_cpp.dir/build.make CMakeFiles/axion_cpp.dir/runtime/position_embedding.cpp.obj
+.PHONY : runtime/position_embedding.cpp.obj
+
+runtime/position_embedding.i: runtime/position_embedding.cpp.i
+.PHONY : runtime/position_embedding.i
+
+# target to preprocess a source file
+runtime/position_embedding.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/axion_cpp.dir/build.make CMakeFiles/axion_cpp.dir/runtime/position_embedding.cpp.i
+.PHONY : runtime/position_embedding.cpp.i
+
+runtime/position_embedding.s: runtime/position_embedding.cpp.s
+.PHONY : runtime/position_embedding.s
+
+# target to generate assembly for a file
+runtime/position_embedding.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/axion_cpp.dir/build.make CMakeFiles/axion_cpp.dir/runtime/position_embedding.cpp.s
+.PHONY : runtime/position_embedding.cpp.s
+
+runtime/real_attention.obj: runtime/real_attention.cpp.obj
+.PHONY : runtime/real_attention.obj
+
+# target to build an object file
+runtime/real_attention.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/axion_cpp.dir/build.make CMakeFiles/axion_cpp.dir/runtime/real_attention.cpp.obj
+.PHONY : runtime/real_attention.cpp.obj
+
+runtime/real_attention.i: runtime/real_attention.cpp.i
+.PHONY : runtime/real_attention.i
+
+# target to preprocess a source file
+runtime/real_attention.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/axion_cpp.dir/build.make CMakeFiles/axion_cpp.dir/runtime/real_attention.cpp.i
+.PHONY : runtime/real_attention.cpp.i
+
+runtime/real_attention.s: runtime/real_attention.cpp.s
+.PHONY : runtime/real_attention.s
+
+# target to generate assembly for a file
+runtime/real_attention.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/axion_cpp.dir/build.make CMakeFiles/axion_cpp.dir/runtime/real_attention.cpp.s
+.PHONY : runtime/real_attention.cpp.s
+
+runtime/residual.obj: runtime/residual.cpp.obj
+.PHONY : runtime/residual.obj
+
+# target to build an object file
+runtime/residual.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/axion_cpp.dir/build.make CMakeFiles/axion_cpp.dir/runtime/residual.cpp.obj
+.PHONY : runtime/residual.cpp.obj
+
+runtime/residual.i: runtime/residual.cpp.i
+.PHONY : runtime/residual.i
+
+# target to preprocess a source file
+runtime/residual.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/axion_cpp.dir/build.make CMakeFiles/axion_cpp.dir/runtime/residual.cpp.i
+.PHONY : runtime/residual.cpp.i
+
+runtime/residual.s: runtime/residual.cpp.s
+.PHONY : runtime/residual.s
+
+# target to generate assembly for a file
+runtime/residual.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/axion_cpp.dir/build.make CMakeFiles/axion_cpp.dir/runtime/residual.cpp.s
+.PHONY : runtime/residual.cpp.s
+
 runtime/transformer_layer.obj: runtime/transformer_layer.cpp.obj
 .PHONY : runtime/transformer_layer.obj
 
@@ -728,6 +968,30 @@ runtime/transformer_layer.s: runtime/transformer_layer.cpp.s
 runtime/transformer_layer.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/axion_cpp.dir/build.make CMakeFiles/axion_cpp.dir/runtime/transformer_layer.cpp.s
 .PHONY : runtime/transformer_layer.cpp.s
+
+runtime/transformer_stack.obj: runtime/transformer_stack.cpp.obj
+.PHONY : runtime/transformer_stack.obj
+
+# target to build an object file
+runtime/transformer_stack.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/axion_cpp.dir/build.make CMakeFiles/axion_cpp.dir/runtime/transformer_stack.cpp.obj
+.PHONY : runtime/transformer_stack.cpp.obj
+
+runtime/transformer_stack.i: runtime/transformer_stack.cpp.i
+.PHONY : runtime/transformer_stack.i
+
+# target to preprocess a source file
+runtime/transformer_stack.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/axion_cpp.dir/build.make CMakeFiles/axion_cpp.dir/runtime/transformer_stack.cpp.i
+.PHONY : runtime/transformer_stack.cpp.i
+
+runtime/transformer_stack.s: runtime/transformer_stack.cpp.s
+.PHONY : runtime/transformer_stack.s
+
+# target to generate assembly for a file
+runtime/transformer_stack.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/axion_cpp.dir/build.make CMakeFiles/axion_cpp.dir/runtime/transformer_stack.cpp.s
+.PHONY : runtime/transformer_stack.cpp.s
 
 runtime/weight_lookup.obj: runtime/weight_lookup.cpp.obj
 .PHONY : runtime/weight_lookup.obj
@@ -771,6 +1035,9 @@ help:
 	@echo "... core/tensor.obj"
 	@echo "... core/tensor.i"
 	@echo "... core/tensor.s"
+	@echo "... kernels/add.obj"
+	@echo "... kernels/add.i"
+	@echo "... kernels/add.s"
 	@echo "... kernels/attention.obj"
 	@echo "... kernels/attention.i"
 	@echo "... kernels/attention.s"
@@ -786,6 +1053,9 @@ help:
 	@echo "... kernels/elementwise.obj"
 	@echo "... kernels/elementwise.i"
 	@echo "... kernels/elementwise.s"
+	@echo "... kernels/gelu.obj"
+	@echo "... kernels/gelu.i"
+	@echo "... kernels/gelu.s"
 	@echo "... kernels/mlp.obj"
 	@echo "... kernels/mlp.i"
 	@echo "... kernels/mlp.s"
@@ -795,9 +1065,6 @@ help:
 	@echo "... kernels/multihead_attention.obj"
 	@echo "... kernels/multihead_attention.i"
 	@echo "... kernels/multihead_attention.s"
-	@echo "... kernels/residual.obj"
-	@echo "... kernels/residual.i"
-	@echo "... kernels/residual.s"
 	@echo "... kernels/rmsnorm.obj"
 	@echo "... kernels/rmsnorm.i"
 	@echo "... kernels/rmsnorm.s"
@@ -819,24 +1086,54 @@ help:
 	@echo "... runtime/execution_graph.obj"
 	@echo "... runtime/execution_graph.i"
 	@echo "... runtime/execution_graph.s"
+	@echo "... runtime/final_norm.obj"
+	@echo "... runtime/final_norm.i"
+	@echo "... runtime/final_norm.s"
+	@echo "... runtime/full_forward.obj"
+	@echo "... runtime/full_forward.i"
+	@echo "... runtime/full_forward.s"
+	@echo "... runtime/fused_qkv.obj"
+	@echo "... runtime/fused_qkv.i"
+	@echo "... runtime/fused_qkv.s"
 	@echo "... runtime/generation.obj"
 	@echo "... runtime/generation.i"
 	@echo "... runtime/generation.s"
+	@echo "... runtime/gpt2_ln.obj"
+	@echo "... runtime/gpt2_ln.i"
+	@echo "... runtime/gpt2_ln.s"
 	@echo "... runtime/inference_engine.obj"
 	@echo "... runtime/inference_engine.i"
 	@echo "... runtime/inference_engine.s"
 	@echo "... runtime/kv_cache.obj"
 	@echo "... runtime/kv_cache.i"
 	@echo "... runtime/kv_cache.s"
+	@echo "... runtime/last_token.obj"
+	@echo "... runtime/last_token.i"
+	@echo "... runtime/last_token.s"
 	@echo "... runtime/layer_scheduler.obj"
 	@echo "... runtime/layer_scheduler.i"
 	@echo "... runtime/layer_scheduler.s"
+	@echo "... runtime/linear.obj"
+	@echo "... runtime/linear.i"
+	@echo "... runtime/linear.s"
 	@echo "... runtime/logits.obj"
 	@echo "... runtime/logits.i"
 	@echo "... runtime/logits.s"
+	@echo "... runtime/position_embedding.obj"
+	@echo "... runtime/position_embedding.i"
+	@echo "... runtime/position_embedding.s"
+	@echo "... runtime/real_attention.obj"
+	@echo "... runtime/real_attention.i"
+	@echo "... runtime/real_attention.s"
+	@echo "... runtime/residual.obj"
+	@echo "... runtime/residual.i"
+	@echo "... runtime/residual.s"
 	@echo "... runtime/transformer_layer.obj"
 	@echo "... runtime/transformer_layer.i"
 	@echo "... runtime/transformer_layer.s"
+	@echo "... runtime/transformer_stack.obj"
+	@echo "... runtime/transformer_stack.i"
+	@echo "... runtime/transformer_stack.s"
 	@echo "... runtime/weight_lookup.obj"
 	@echo "... runtime/weight_lookup.i"
 	@echo "... runtime/weight_lookup.s"

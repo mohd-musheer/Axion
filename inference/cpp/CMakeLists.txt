@@ -26,14 +26,25 @@ pybind11_add_module(axion_cpp
     core/mmap_loader.cpp
     kernels/attention_output.cpp
     kernels/blas.cpp
+    runtime/transformer_stack.cpp
+    runtime/residual.cpp
     kernels/rmsnorm.cpp
     runtime/generation.cpp
     runtime/embedding.cpp
+    runtime/linear.cpp
+    kernels/gelu.cpp
+    runtime/last_token.cpp
+    runtime/gpt2_ln.cpp
+    kernels/add.cpp
     runtime/weight_lookup.cpp
-    kernels/residual.cpp
+    runtime/position_embedding.cpp
+    runtime/real_attention.cpp
+    runtime/fused_qkv.cpp
+    runtime/final_norm.cpp
     runtime/execution_graph.cpp
     runtime/logits.cpp
     kernels/multihead.cpp
+    runtime/full_forward.cpp
     runtime/layer_scheduler.cpp
     kernels/multihead_attention.cpp
     kernels/causal_mask.cpp

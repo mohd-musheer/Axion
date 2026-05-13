@@ -1,3 +1,5 @@
 tests/inference/adapter_model.safetensors
 tests/inference/model.safetensors
 .vscode/settings.json
+dd.py
+data.txt

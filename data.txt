@@ -4,6 +4,8 @@ FILE: .gitignore
 ================================================================================
 
 tests/inference/adapter_model.safetensors
+tests/inference/model.safetensors
+.vscode/settings.json
 
 
 ================================================================================
@@ -132,7 +134,11 @@ FILE: README.md
 FILE: requirements.txt
 ================================================================================
 
-
+transformers
+tokenizers
+torch
+sentencepiece
+safetensors
 
 
 ================================================================================
@@ -285,6 +291,13 @@ FILE: docs\quantization.md
 
 
 ================================================================================
+FILE: inference\__init__.py
+================================================================================
+
+
+
+
+================================================================================
 FILE: inference\cpp\CMakeLists.txt
 ================================================================================
 
@@ -318,9 +331,11 @@ pybind11_add_module(axion_cpp
     kernels/blas.cpp
     kernels/rmsnorm.cpp
     runtime/generation.cpp
+    runtime/embedding.cpp
     runtime/weight_lookup.cpp
     kernels/residual.cpp
     runtime/execution_graph.cpp
+    runtime/logits.cpp
     kernels/multihead.cpp
     runtime/layer_scheduler.cpp
     kernels/multihead_attention.cpp
@@ -393,6 +408,8 @@ FILE: inference\cpp\bindings\pybind_module.cpp
 #include "../kernels/blas.hpp"
 #include "../kernels/multihead_attention.hpp"
 #include "../kernels/rmsnorm.hpp"
+#include "../runtime/logits.hpp"
+#include "../runtime/embedding.hpp"
 #include "../runtime/kv_cache.hpp"
 #include "../runtime/weight_lookup.hpp"
 #include "../runtime/execution_graph.hpp"
@@ -589,6 +606,23 @@ PYBIND11_MODULE(axion_cpp, m) {
             "execute_model",
             &execute_model
         );
+
+        m.def(
+            "embedding_lookup",
+            &embedding_lookup
+        );
+
+        m.def(
+            "compute_logits",
+            &compute_logits
+        );
+
+        m.def(
+            "argmax",
+            &argmax
+        );
+
+
 
 
 
@@ -2565,6 +2599,113 @@ FILE: inference\cpp\runtime\batch_executor.cpp
 
 
 ================================================================================
+FILE: inference\cpp\runtime\embedding.cpp
+================================================================================
+
+
+#include "embedding.hpp"
+
+#include <stdexcept>
+
+namespace axion {
+
+Tensor embedding_lookup(
+    const Tensor& embedding_matrix,
+    const std::vector<int>& token_ids
+) {
+
+    if (embedding_matrix.shape.size() != 2) {
+
+        throw std::runtime_error(
+            "Embedding matrix must be 2D"
+        );
+    }
+
+    int64_t vocab_size =
+        embedding_matrix.shape[0];
+
+    int64_t hidden_size =
+        embedding_matrix.shape[1];
+
+    Tensor output;
+
+    output.name =
+        "token_embeddings";
+
+    output.shape = {
+        (int64_t)token_ids.size(),
+        hidden_size
+    };
+
+    output.data.resize(
+        token_ids.size() *
+        hidden_size
+    );
+
+    for (size_t t = 0;
+         t < token_ids.size();
+         t++) {
+
+        int token_id =
+            token_ids[t];
+
+        if (token_id < 0 ||
+            token_id >= vocab_size) {
+
+            throw std::runtime_error(
+                "Invalid token id"
+            );
+        }
+
+        int64_t row_start =
+            token_id * hidden_size;
+
+        int64_t out_start =
+            t * hidden_size;
+
+        for (int64_t h = 0;
+             h < hidden_size;
+             h++) {
+
+            output.data[
+                out_start + h
+            ] =
+                embedding_matrix.data[
+                    row_start + h
+                ];
+        }
+    }
+
+    return output;
+}
+
+}
+
+
+
+================================================================================
+FILE: inference\cpp\runtime\embedding.hpp
+================================================================================
+
+
+#pragma once
+
+#include "../core/tensor.hpp"
+
+#include <vector>
+
+namespace axion {
+
+Tensor embedding_lookup(
+    const Tensor& embedding_matrix,
+    const std::vector<int>& token_ids
+);
+
+}
+
+
+
+================================================================================
 FILE: inference\cpp\runtime\execution_graph.cpp
 ================================================================================
 
@@ -3050,6 +3191,118 @@ namespace axion {
 
 std::vector<std::string> discover_layers(
     const std::vector<std::string>& tensor_names
+);
+
+}
+
+
+
+================================================================================
+FILE: inference\cpp\runtime\logits.cpp
+================================================================================
+
+
+#include "logits.hpp"
+#include "../kernels/transpose.hpp"
+
+#include "../kernels/blas.hpp"
+
+#include <limits>
+
+namespace axion {
+
+Tensor compute_logits(
+    const Tensor& hidden_states,
+    const Tensor& embedding_matrix
+) {
+
+    // embedding:
+    // [vocab, hidden]
+
+    // need transpose:
+    // [hidden, vocab]
+
+    Tensor W_t =
+        transpose(
+            embedding_matrix
+        );
+
+    // logits:
+    // [tokens, vocab]
+
+    return matmul(
+        hidden_states,
+        W_t
+    );
+}
+
+int argmax(
+    const Tensor& logits
+) {
+
+    if (logits.data.empty()) {
+
+        return -1;
+    }
+
+    // use last token logits
+
+    int64_t vocab_size =
+        logits.shape[1];
+
+    int64_t last_row =
+        logits.shape[0] - 1;
+
+    int64_t offset =
+        last_row * vocab_size;
+
+    float best =
+        -std::numeric_limits<float>::infinity();
+
+    int best_idx = 0;
+
+    for (int64_t i = 0;
+         i < vocab_size;
+         i++) {
+
+        float val =
+            logits.data[
+                offset + i
+            ];
+
+        if (val > best) {
+
+            best = val;
+
+            best_idx = i;
+        }
+    }
+
+    return best_idx;
+}
+
+}
+
+
+
+================================================================================
+FILE: inference\cpp\runtime\logits.hpp
+================================================================================
+
+
+#pragma once
+
+#include "../core/tensor.hpp"
+
+namespace axion {
+
+Tensor compute_logits(
+    const Tensor& hidden_states,
+    const Tensor& embedding_matrix
+);
+
+int argmax(
+    const Tensor& logits
 );
 
 }
@@ -29260,6 +29513,112 @@ FILE: inference\python\batching.py
 
 
 ================================================================================
+FILE: inference\python\generator.py
+================================================================================
+
+
+import axion_cpp
+
+from inference.python.tokenizer import (
+    AxionTokenizer
+)
+
+
+class AxionGenerator:
+
+    def __init__(
+        self,
+        model_path,
+        tokenizer_name="gpt2"
+    ):
+
+        self.tokenizer = AxionTokenizer(
+            tokenizer_name
+        )
+
+        self.loader = axion_cpp.MMapLoader()
+
+        self.loader.load_file(
+            model_path
+        )
+
+        # GPT2 embeddings
+
+        self.embedding_matrix = (
+            self.loader.load_tensor_data(
+                "wte.weight"
+            )
+        )
+
+    def forward(
+        self,
+        token_ids
+    ):
+
+        hidden = axion_cpp.embedding_lookup(
+            self.embedding_matrix,
+            token_ids
+        )
+
+        logits = axion_cpp.compute_logits(
+            hidden,
+            self.embedding_matrix
+        )
+
+        next_token = axion_cpp.argmax(
+            logits
+        )
+
+        return next_token
+
+    def generate(
+        self,
+        prompt,
+        max_new_tokens=10
+    ):
+
+        token_ids = self.tokenizer.encode(
+            prompt
+        )
+
+        print("\nINITIAL TOKENS:")
+
+        print(token_ids)
+
+        for step in range(max_new_tokens):
+
+            next_token = self.forward(
+                token_ids
+            )
+
+            token_ids.append(
+                next_token
+            )
+
+            decoded = self.tokenizer.decode(
+                [next_token]
+            )
+
+            print(
+                f"\nSTEP {step+1}"
+            )
+
+            print(
+                "TOKEN:",
+                next_token
+            )
+
+            print(
+                "TEXT:",
+                repr(decoded)
+            )
+
+        return self.tokenizer.decode(
+            token_ids
+        )
+
+
+================================================================================
 FILE: inference\python\kv_cache.py
 ================================================================================
 
@@ -29270,6 +29629,65 @@ FILE: inference\python\kv_cache.py
 FILE: inference\python\llama_cpp_backend.py
 ================================================================================
 
+
+
+
+================================================================================
+FILE: inference\python\model_adapter.py
+================================================================================
+
+
+class ModelAdapter:
+
+    def embedding_name(self):
+        raise NotImplementedError
+
+    def q_proj_name(self, layer):
+        raise NotImplementedError
+
+    def k_proj_name(self, layer):
+        raise NotImplementedError
+
+    def v_proj_name(self, layer):
+        raise NotImplementedError
+
+    def o_proj_name(self, layer):
+        raise NotImplementedError
+
+
+class LlamaAdapter(ModelAdapter):
+
+    def embedding_name(self):
+
+        return "model.embed_tokens.weight"
+
+    def q_proj_name(self, layer):
+
+        return (
+            f"model.layers.{layer}."
+            f"self_attn.q_proj.weight"
+        )
+
+    def k_proj_name(self, layer):
+
+        return (
+            f"model.layers.{layer}."
+            f"self_attn.k_proj.weight"
+        )
+
+    def v_proj_name(self, layer):
+
+        return (
+            f"model.layers.{layer}."
+            f"self_attn.v_proj.weight"
+        )
+
+    def o_proj_name(self, layer):
+
+        return (
+            f"model.layers.{layer}."
+            f"self_attn.o_proj.weight"
+        )
 
 
 
@@ -29436,6 +29854,13 @@ FILE: inference\python\vllm_backend.py
 
 
 ================================================================================
+FILE: inference\python\__init__.py
+================================================================================
+
+
+
+
+================================================================================
 FILE: models\gguf\.gitkeep
 ================================================================================
 
@@ -29565,6 +29990,31 @@ FILE: serving\api\websocket\stream.py
 FILE: serving\grpc\inference.proto
 ================================================================================
 
+
+
+
+================================================================================
+FILE: tests\conftest.py
+================================================================================
+
+
+import sys
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parent.parent
+
+sys.path.insert(0, str(ROOT))
+
+# add cpp build dir
+
+CPP_BUILD = (
+    ROOT /
+    "inference" /
+    "cpp" /
+    "build"
+)
+
+sys.path.insert(0, str(CPP_BUILD))
 
 
 
@@ -29725,6 +30175,53 @@ for r in range(rows):
 
 
 ================================================================================
+FILE: tests\inference\test_embeddings.py
+================================================================================
+
+
+import axion_cpp
+
+model_path = r"D:\LLM projects\Axion\tests\inference\model.safetensors"
+
+loader = axion_cpp.MMapLoader()
+
+loader.load_file(model_path)
+
+# GPT2 embedding matrix
+
+embedding_name = "wte.weight"
+
+embedding_matrix = loader.load_tensor_data(
+    embedding_name
+)
+
+print("\n=== EMBEDDING MATRIX ===")
+
+print(embedding_matrix.shape)
+
+# tokens:
+# Hello Axion
+
+token_ids = [
+    15496,
+    12176,
+    295
+]
+
+hidden = axion_cpp.embedding_lookup(
+    embedding_matrix,
+    token_ids
+)
+
+print("\n=== EMBEDDING OUTPUT ===")
+
+print(hidden.shape)
+
+print(hidden.data[:20])
+
+
+
+================================================================================
 FILE: tests\inference\test_execution_graph.py
 ================================================================================
 
@@ -29788,6 +30285,51 @@ print("\nValues:")
 
 for v in output.data:
     print(round(v, 4))
+
+
+
+================================================================================
+FILE: tests\inference\test_generation_loop.py
+================================================================================
+
+
+import sys
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parents[2]
+
+CPP_BUILD = (
+    ROOT /
+    "inference" /
+    "cpp" /
+    "build"
+)
+
+sys.path.insert(0, str(ROOT))
+sys.path.insert(0, str(CPP_BUILD))
+
+from inference.python.generator import (
+    AxionGenerator
+)
+
+model_path = (
+    r"D:\LLM projects\Axion"
+    r"\tests\inference\model.safetensors"
+)
+
+gen = AxionGenerator(
+    model_path=model_path,
+    tokenizer_name="gpt2"
+)
+
+output = gen.generate(
+    prompt="Hello Axion",
+    max_new_tokens=10
+)
+
+print("\n=== FINAL TEXT ===\n")
+
+print(output)
 
 
 
@@ -29951,6 +30493,115 @@ print("\n=== DISCOVERED LAYERS ===")
 
 for l in layers:
     print(l)
+
+
+
+================================================================================
+FILE: tests\inference\test_logits.py
+================================================================================
+
+
+import sys
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parents[2]
+
+CPP_BUILD = (
+    ROOT /
+    "inference" /
+    "cpp" /
+    "build"
+)
+
+sys.path.insert(0, str(ROOT))
+sys.path.insert(0, str(CPP_BUILD))
+
+import axion_cpp
+
+from inference.python.tokenizer import (
+    AxionTokenizer
+)
+
+tok = AxionTokenizer(
+    "gpt2"
+)
+
+model_path = (
+    r"D:\LLM projects\Axion"
+    r"\tests\inference\adapter_model.safetensors"
+)
+
+loader = axion_cpp.MMapLoader()
+
+loader.load_file(model_path)
+
+# -----------------------------------
+# LOAD EMBEDDINGS
+# -----------------------------------
+
+embedding_matrix = (
+    loader.load_tensor_data(
+        "wte.weight"
+    )
+)
+
+# -----------------------------------
+# TOKENIZE
+# -----------------------------------
+
+text = "Hello Axion"
+
+token_ids = tok.encode(text)
+
+print("\nTOKENS:")
+
+print(token_ids)
+
+# -----------------------------------
+# EMBEDDINGS
+# -----------------------------------
+
+hidden = axion_cpp.embedding_lookup(
+    embedding_matrix,
+    token_ids
+)
+
+print("\nHIDDEN SHAPE:")
+
+print(hidden.shape)
+
+# -----------------------------------
+# LOGITS
+# -----------------------------------
+
+logits = axion_cpp.compute_logits(
+    hidden,
+    embedding_matrix
+)
+
+print("\nLOGITS SHAPE:")
+
+print(logits.shape)
+
+# -----------------------------------
+# NEXT TOKEN
+# -----------------------------------
+
+next_token = axion_cpp.argmax(
+    logits
+)
+
+print("\nNEXT TOKEN ID:")
+
+print(next_token)
+
+decoded = tok.decode(
+    [next_token]
+)
+
+print("\nPREDICTED TOKEN:")
+
+print(decoded)
 
 
 
@@ -30579,7 +31230,8 @@ FILE: tests\inference\test_tokenizer.py
 
 
 from inference.python.tokenizer import AxionTokenizer
-
+from huggingface_hub import login
+login("hf_****************")
 tok = AxionTokenizer(
     "openai-community/gpt2"
 )
