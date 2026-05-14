@@ -52,7 +52,7 @@ std::vector<Tensor> split_heads(
             head_dim
         };
 
-        head.data.resize(
+        head.owned_data.resize(
             seq_len * head_dim
         );
 
@@ -72,8 +72,8 @@ std::vector<Tensor> split_heads(
                 int64_t dst_idx =
                     t * head_dim + d;
 
-                head.data[dst_idx] =
-                    input.data[src_idx];
+                head.data()[dst_idx] =
+                    input.data()[src_idx];
             }
         }
 
@@ -119,7 +119,7 @@ Tensor merge_heads(
         hidden_dim
     };
 
-    output.data.resize(
+    output.owned_data.resize(
         seq_len * hidden_dim
     );
 
@@ -143,8 +143,8 @@ Tensor merge_heads(
                 int64_t src_idx =
                     t * head_dim + d;
 
-                output.data[dst_idx] =
-                    heads[h].data[src_idx];
+                output.data()[dst_idx] =
+                    heads[h].data()[src_idx];
             }
         }
     }

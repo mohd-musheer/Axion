@@ -14,7 +14,7 @@ void append_kv_cache(
     // FIRST INSERT
     // -------------------------
 
-    if (cache.keys.data.empty()) {
+    if (cache.keys.owned_data.empty()) {
 
         cache.keys = K;
         cache.values = V;
@@ -37,20 +37,20 @@ void append_kv_cache(
     // APPEND KEYS
     // -------------------------
 
-    cache.keys.data.insert(
-        cache.keys.data.end(),
-        K.data.begin(),
-        K.data.end()
+    cache.keys.owned_data.insert(
+        cache.keys.owned_data.end(),
+        K.owned_data.begin(),
+        K.owned_data.end()
     );
 
     // -------------------------
     // APPEND VALUES
     // -------------------------
 
-    cache.values.data.insert(
-        cache.values.data.end(),
-        V.data.begin(),
-        V.data.end()
+    cache.values.owned_data.insert(
+        cache.values.owned_data.end(),
+        V.owned_data.begin(),
+        V.owned_data.end()
     );
 
     // -------------------------

@@ -1,4 +1,3 @@
-
 #include "tensor.hpp"
 
 #include <iostream>
@@ -31,6 +30,29 @@ size_t Tensor::bytes() const {
     return 0;
 }
 
+bool Tensor::owns_data() const {
+
+    return !owned_data.empty();
+}
+
+float* Tensor::data() {
+
+    if (owns_data()) {
+        return owned_data.data();
+    }
+
+    return data_ptr;
+}
+
+const float* Tensor::data() const {
+
+    if (owns_data()) {
+        return owned_data.data();
+    }
+
+    return data_ptr;
+}
+
 void Tensor::print_info() const {
 
     std::cout << "Tensor: "
@@ -57,7 +79,10 @@ void Tensor::print_info() const {
     std::cout << "Bytes: "
               << bytes()
               << std::endl;
+
+    std::cout << "Owns Data: "
+              << owns_data()
+              << std::endl;
 }
 
 }
-

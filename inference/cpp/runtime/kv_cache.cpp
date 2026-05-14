@@ -31,10 +31,10 @@ Tensor KVCache::get_all_keys() const {
          i < key_cache.size();
          i++) {
 
-        output.data.insert(
-            output.data.end(),
-            key_cache[i].data.begin(),
-            key_cache[i].data.end()
+        output.owned_data.insert(
+            output.owned_data.end(),
+            key_cache[i].owned_data.begin(),
+            key_cache[i].owned_data.end()
         );
 
         output.shape[0] +=
@@ -63,10 +63,10 @@ Tensor KVCache::get_all_values() const {
          i < value_cache.size();
          i++) {
 
-        output.data.insert(
-            output.data.end(),
-            value_cache[i].data.begin(),
-            value_cache[i].data.end()
+        output.owned_data.insert(
+            output.owned_data.end(),
+            value_cache[i].owned_data.begin(),
+            value_cache[i].owned_data.end()
         );
 
         output.shape[0] +=

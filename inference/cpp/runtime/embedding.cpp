@@ -28,12 +28,15 @@ Tensor embedding_lookup(
     output.name =
         "token_embeddings";
 
+    output.dtype =
+        DType::FLOAT32;
+
     output.shape = {
         (int64_t)token_ids.size(),
         hidden_size
     };
 
-    output.data.resize(
+    output.owned_data.resize(
         token_ids.size() *
         hidden_size
     );
@@ -63,12 +66,12 @@ Tensor embedding_lookup(
              h < hidden_size;
              h++) {
 
-            output.data[
+            output.data()[
                 out_start + h
             ] =
-                embedding_matrix.data[
-                    row_start + h
-                ];
+            embedding_matrix.data()[
+                row_start + h
+            ];
         }
     }
 

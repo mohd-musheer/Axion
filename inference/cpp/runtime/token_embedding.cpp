@@ -43,14 +43,14 @@ Tensor token_embedding(
     out.dtype =
         embedding_matrix.dtype;
 
-    out.data.resize(hidden);
+    out.owned_data.resize(hidden);
 
     for (int64_t h = 0;
          h < hidden;
          h++) {
 
-        out.data[h] =
-            embedding_matrix.data[
+        out.data()[h] =
+            embedding_matrix.data()[
                 token_id * hidden + h
             ];
     }

@@ -34,7 +34,7 @@ Tensor last_token(
     out.dtype =
         logits.dtype;
 
-    out.data.resize(cols);
+    out.owned_data.resize(cols);
 
     int64_t last_row =
         rows - 1;
@@ -43,8 +43,8 @@ Tensor last_token(
          c < cols;
          c++) {
 
-        out.data[c] =
-            logits.data[
+        out.data()[c] =
+            logits.data()[
                 last_row * cols + c
             ];
     }

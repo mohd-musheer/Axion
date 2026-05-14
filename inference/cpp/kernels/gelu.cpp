@@ -1,3 +1,4 @@
+
 #include "gelu.hpp"
 
 #include <cmath>
@@ -8,16 +9,29 @@ Tensor gelu(
     const Tensor& input
 ) {
 
-    Tensor out = input;
+    Tensor out;
 
-    for (size_t i = 0;
-         i < input.data.size();
+    out.name =
+        "gelu_output";
+
+    out.dtype =
+        input.dtype;
+
+    out.shape =
+        input.shape;
+
+    out.owned_data.resize(
+        input.numel()
+    );
+
+    for (int64_t i = 0;
+         i < input.numel();
          i++) {
 
         float x =
-            input.data[i];
+            input.data()[i];
 
-        out.data[i] =
+        out.data()[i] =
             0.5f *
             x *
             (

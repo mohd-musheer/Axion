@@ -20,7 +20,7 @@ Tensor final_norm(
     weight.dtype =
         input.dtype;
 
-    weight.data.resize(
+    weight.owned_data.resize(
         input.shape[1],
         1.0f
     );

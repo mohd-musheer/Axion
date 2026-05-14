@@ -1,3 +1,4 @@
+
 #include "add.hpp"
 
 #include <stdexcept>
@@ -16,15 +17,28 @@ Tensor add(
         );
     }
 
-    Tensor out = a;
+    Tensor out;
 
-    for (size_t i = 0;
-         i < a.data.size();
+    out.name =
+        "add_output";
+
+    out.dtype =
+        a.dtype;
+
+    out.shape =
+        a.shape;
+
+    out.owned_data.resize(
+        a.numel()
+    );
+
+    for (int64_t i = 0;
+         i < a.numel();
          i++) {
 
-        out.data[i] =
-            a.data[i] +
-            b.data[i];
+        out.data()[i] =
+            a.data()[i] +
+            b.data()[i];
     }
 
     return out;

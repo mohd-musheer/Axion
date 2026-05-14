@@ -39,32 +39,32 @@ QKV split_fused_qkv(
     K.shape = { rows, hidden };
     V.shape = { rows, hidden };
 
-    Q.data.resize(rows * hidden);
-    K.data.resize(rows * hidden);
-    V.data.resize(rows * hidden);
+    Q.owned_data.resize(rows * hidden);
+    K.owned_data.resize(rows * hidden);
+    V.owned_data.resize(rows * hidden);
 
     for (int64_t r = 0; r < rows; r++) {
 
         for (int64_t c = 0; c < hidden; c++) {
 
-            Q.data[
+            Q.data()[
                 r * hidden + c
             ] =
-            fused.data[
+            fused.data()    [
                 r * cols + c
             ];
 
-            K.data[
+            K.data()[
                 r * hidden + c
             ] =
-            fused.data[
+            fused.data()[
                 r * cols + hidden + c
             ];
 
-            V.data[
+            V.data()[
                 r * hidden + c
             ] =
-            fused.data[
+            fused.data()[
                 r * cols + (2 * hidden) + c
             ];
         }

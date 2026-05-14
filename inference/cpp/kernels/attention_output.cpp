@@ -41,6 +41,9 @@ Tensor attention_output(
     output.name =
         "attention_output";
 
+    output.dtype =
+        DType::FLOAT32;
+
     return output;
 }
 

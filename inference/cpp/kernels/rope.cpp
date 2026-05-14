@@ -17,7 +17,7 @@ void apply_rope(
     float theta
 ) {
 
-    if (q.data.size() != k.data.size()) {
+    if (q.owned_data.size() != k.owned_data.size()) {
 
         throw std::runtime_error(
             "Q and K size mismatch"
@@ -31,7 +31,7 @@ void apply_rope(
         );
     }
 
-    int64_t total = q.data.size();
+    int64_t total = q.owned_data.size();
 
     if (total % head_dim != 0) {
 
@@ -66,27 +66,27 @@ void apply_rope(
 
             // ----- Q -----
 
-            float q1 = q.data[idx1];
-            float q2 = q.data[idx2];
+            float q1 = q.data()[idx1];
+            float q2 = q.data()[idx2];
 
-            q.data[idx1] =
+            q.data()[idx1] =
                 q1 * cos_val -
                 q2 * sin_val;
 
-            q.data[idx2] =
+            q.data()[idx2] =
                 q1 * sin_val +
                 q2 * cos_val;
 
             // ----- K -----
 
-            float k1 = k.data[idx1];
-            float k2 = k.data[idx2];
+            float k1 = k.data()[idx1];
+            float k2 = k.data()[idx2];
 
-            k.data[idx1] =
+            k.data()[idx1] =
                 k1 * cos_val -
                 k2 * sin_val;
 
-            k.data[idx2] =
+            k.data()[idx2] =
                 k1 * sin_val +
                 k2 * cos_val;
         }

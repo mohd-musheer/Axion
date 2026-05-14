@@ -1,10 +1,7 @@
+
 #include "residual.hpp"
 
 #include <stdexcept>
-
-#ifdef _OPENMP
-#include <omp.h>
-#endif
 
 namespace axion {
 
@@ -16,7 +13,7 @@ Tensor residual_add(
     if (a.shape != b.shape) {
 
         throw std::runtime_error(
-            "Residual shape mismatch"
+            "Residual add shape mismatch"
         );
     }
 
@@ -25,24 +22,23 @@ Tensor residual_add(
     out.name =
         "residual_output";
 
-    out.shape =
-        a.shape;
-
     out.dtype =
         a.dtype;
 
-    out.data.resize(
-        a.data.size()
+    out.shape =
+        a.shape;
+
+    out.owned_data.resize(
+        a.numel()
     );
 
-    #pragma omp parallel for
     for (int64_t i = 0;
-         i < (int64_t)a.data.size();
+         i < a.numel();
          i++) {
 
-        out.data[i] =
-            a.data[i] +
-            b.data[i];
+        out.data()[i] =
+            a.data()[i] +
+            b.data()[i];
     }
 
     return out;

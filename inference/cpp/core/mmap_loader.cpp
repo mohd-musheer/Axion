@@ -175,63 +175,27 @@ Tensor MMapLoader::load_tensor_data(
         tensors[tensor_name];
 
     uint64_t tensor_start =
-        8 + header_size + tensor.offset_start;
+        8 + header_size +
+        tensor.offset_start;
 
-    size_t total_elements =
-        tensor.numel();
+    // --------------------------------
+    // DIRECT POINTER
+    // --------------------------------
 
-    tensor.data.resize(total_elements);
+    if (tensor.dtype == DType::FLOAT32) {
 
-    // -------------------------
-    // FLOAT16
-    // -------------------------
-
-    if (tensor.dtype == DType::FLOAT16) {
-
-        const uint16_t* raw_ptr =
-            reinterpret_cast<const uint16_t*>(
+        tensor.data_ptr =
+            reinterpret_cast<float*>(
 
                 file_data.data() +
                 tensor_start
             );
-
-        for (size_t i = 0;
-             i < total_elements;
-             i++) {
-
-            tensor.data[i] =
-                fp16_to_fp32(
-                    raw_ptr[i]
-                );
-        }
-    }
-
-    // -------------------------
-    // FLOAT32
-    // -------------------------
-
-    else if (tensor.dtype == DType::FLOAT32) {
-
-        const float* raw_ptr =
-            reinterpret_cast<const float*>(
-
-                file_data.data() +
-                tensor_start
-            );
-
-        for (size_t i = 0;
-             i < total_elements;
-             i++) {
-
-            tensor.data[i] =
-                raw_ptr[i];
-        }
     }
 
     else {
 
         throw std::runtime_error(
-            "Unsupported tensor dtype"
+            "Only FLOAT32 direct mmap supported yet"
         );
     }
 

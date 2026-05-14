@@ -24,7 +24,7 @@ Tensor transformer_layer(
         input.shape[1]
     };
 
-    rms_weight.data.resize(
+    rms_weight.owned_data.resize(
         input.shape[1],
         1.0f
     );

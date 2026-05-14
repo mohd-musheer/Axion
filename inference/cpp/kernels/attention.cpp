@@ -1,4 +1,3 @@
-
 #include "attention.hpp"
 #include "blas.hpp"
 #include "transpose.hpp"
@@ -45,11 +44,11 @@ Tensor attention_scores(
             static_cast<float>(q_dim)
         );
 
-    for (size_t i = 0;
-         i < scores.data.size();
+    for (int64_t i = 0;
+         i < scores.numel();
          i++) {
 
-        scores.data[i] *= scale;
+        scores.data()[i] *= scale;
     }
 
     scores.name =

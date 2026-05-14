@@ -37,7 +37,7 @@ int argmax(
     const Tensor& logits
 ) {
 
-    if (logits.data.empty()) {
+    if (logits.numel() == 0) {
 
         return -1;
     }
@@ -63,7 +63,7 @@ int argmax(
          i++) {
 
         float val =
-            logits.data[
+            logits.data()[
                 offset + i
             ];
 

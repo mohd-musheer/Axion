@@ -472,6 +472,7 @@ using namespace axion;
 
 PYBIND11_MODULE(axion_cpp, m) {
 
+
     py::class_<Tensor>(m, "Tensor")
 
         .def(py::init<>())
@@ -490,15 +491,36 @@ PYBIND11_MODULE(axion_cpp, m) {
             "numel",
             &Tensor::numel
         )
-        .def_readwrite(
+
+        // --------------------------------
+        // PYTHON DATA ACCESS
+        // --------------------------------
+
+        .def_property(
             "data",
-            &Tensor::data
+
+            [](Tensor& t) {
+
+                std::vector<float> out(
+                    t.data(),
+                    t.data() + t.numel()
+                );
+
+                return out;
+            },
+
+            [](Tensor& t,
+            const std::vector<float>& v) {
+
+                t.owned_data = v;
+            }
         )
 
         .def(
             "print_info",
             &Tensor::print_info
         );
+
 
 
     py::class_<MMapLoader>(m, "MMapLoader")
@@ -1059,63 +1081,27 @@ Tensor MMapLoader::load_tensor_data(
         tensors[tensor_name];
 
     uint64_t tensor_start =
-        8 + header_size + tensor.offset_start;
+        8 + header_size +
+        tensor.offset_start;
 
-    size_t total_elements =
-        tensor.numel();
+    // --------------------------------
+    // DIRECT POINTER
+    // --------------------------------
 
-    tensor.data.resize(total_elements);
+    if (tensor.dtype == DType::FLOAT32) {
 
-    // -------------------------
-    // FLOAT16
-    // -------------------------
-
-    if (tensor.dtype == DType::FLOAT16) {
-
-        const uint16_t* raw_ptr =
-            reinterpret_cast<const uint16_t*>(
+        tensor.data_ptr =
+            reinterpret_cast<float*>(
 
                 file_data.data() +
                 tensor_start
             );
-
-        for (size_t i = 0;
-             i < total_elements;
-             i++) {
-
-            tensor.data[i] =
-                fp16_to_fp32(
-                    raw_ptr[i]
-                );
-        }
-    }
-
-    // -------------------------
-    // FLOAT32
-    // -------------------------
-
-    else if (tensor.dtype == DType::FLOAT32) {
-
-        const float* raw_ptr =
-            reinterpret_cast<const float*>(
-
-                file_data.data() +
-                tensor_start
-            );
-
-        for (size_t i = 0;
-             i < total_elements;
-             i++) {
-
-            tensor.data[i] =
-                raw_ptr[i];
-        }
     }
 
     else {
 
         throw std::runtime_error(
-            "Unsupported tensor dtype"
+            "Only FLOAT32 direct mmap supported yet"
         );
     }
 
@@ -1196,7 +1182,6 @@ FILE: inference\cpp\core\scheduler.hpp
 FILE: inference\cpp\core\tensor.cpp
 ================================================================================
 
-
 #include "tensor.hpp"
 
 #include <iostream>
@@ -1229,6 +1214,29 @@ size_t Tensor::bytes() const {
     return 0;
 }
 
+bool Tensor::owns_data() const {
+
+    return !owned_data.empty();
+}
+
+float* Tensor::data() {
+
+    if (owns_data()) {
+        return owned_data.data();
+    }
+
+    return data_ptr;
+}
+
+const float* Tensor::data() const {
+
+    if (owns_data()) {
+        return owned_data.data();
+    }
+
+    return data_ptr;
+}
+
 void Tensor::print_info() const {
 
     std::cout << "Tensor: "
@@ -1255,17 +1263,18 @@ void Tensor::print_info() const {
     std::cout << "Bytes: "
               << bytes()
               << std::endl;
+
+    std::cout << "Owns Data: "
+              << owns_data()
+              << std::endl;
 }
 
 }
-
-
 
 
 ================================================================================
 FILE: inference\cpp\core\tensor.hpp
 ================================================================================
-
 
 #pragma once
 
@@ -1282,6 +1291,7 @@ enum class DType {
 };
 
 class Tensor {
+
 public:
 
     std::string name;
@@ -1293,7 +1303,18 @@ public:
     uint64_t offset_start = 0;
     uint64_t offset_end = 0;
 
-    std::vector<float> data;
+    // --------------------------------
+    // POINTER-BASED STORAGE
+    // --------------------------------
+
+    float* data_ptr = nullptr;
+
+    // --------------------------------
+    // OPTIONAL OWNED STORAGE
+    // for temporary tensors
+    // --------------------------------
+
+    std::vector<float> owned_data;
 
     Tensor();
 
@@ -1301,17 +1322,22 @@ public:
 
     size_t bytes() const;
 
+    bool owns_data() const;
+
+    float* data();
+
+    const float* data() const;
+
     void print_info() const;
 };
 
 }
 
 
-
-
 ================================================================================
 FILE: inference\cpp\kernels\add.cpp
 ================================================================================
+
 
 #include "add.hpp"
 
@@ -1331,21 +1357,35 @@ Tensor add(
         );
     }
 
-    Tensor out = a;
+    Tensor out;
 
-    for (size_t i = 0;
-         i < a.data.size();
+    out.name =
+        "add_output";
+
+    out.dtype =
+        a.dtype;
+
+    out.shape =
+        a.shape;
+
+    out.owned_data.resize(
+        a.numel()
+    );
+
+    for (int64_t i = 0;
+         i < a.numel();
          i++) {
 
-        out.data[i] =
-            a.data[i] +
-            b.data[i];
+        out.data()[i] =
+            a.data()[i] +
+            b.data()[i];
     }
 
     return out;
 }
 
 }
+
 
 
 ================================================================================
@@ -1369,7 +1409,6 @@ Tensor add(
 ================================================================================
 FILE: inference\cpp\kernels\attention.cpp
 ================================================================================
-
 
 #include "attention.hpp"
 #include "blas.hpp"
@@ -1417,11 +1456,11 @@ Tensor attention_scores(
             static_cast<float>(q_dim)
         );
 
-    for (size_t i = 0;
-         i < scores.data.size();
+    for (int64_t i = 0;
+         i < scores.numel();
          i++) {
 
-        scores.data[i] *= scale;
+        scores.data()[i] *= scale;
     }
 
     scores.name =
@@ -1501,6 +1540,9 @@ Tensor attention_output(
     output.name =
         "attention_output";
 
+    output.dtype =
+        DType::FLOAT32;
+
     return output;
 }
 
@@ -1531,6 +1573,7 @@ Tensor attention_output(
 ================================================================================
 FILE: inference\cpp\kernels\blas.cpp
 ================================================================================
+
 
 #include "blas.hpp"
 
@@ -1577,7 +1620,7 @@ Tensor matmul(
 
     output.shape = { M, N };
 
-    output.data.resize(M * N);
+    output.owned_data.resize(M * N);
 
     #pragma omp parallel for collapse(2)
     for (int64_t i = 0; i < M; i++) {
@@ -1589,15 +1632,15 @@ Tensor matmul(
             for (int64_t k = 0; k < K; k++) {
 
                 float a =
-                    A.data[i * K + k];
+                    A.data()[i * K + k];
 
                 float b =
-                    B.data[k * N + j];
+                    B.data()[k * N + j];
 
                 sum += a * b;
             }
 
-            output.data[i * N + j] = sum;
+            output.data()[i * N + j] = sum;
         }
     }
 
@@ -1672,7 +1715,7 @@ Tensor causal_mask(
 
             if (c > r) {
 
-                output.data[
+                output.data()[
                     r * cols + c
                 ] = -1e30f;
             }
@@ -1746,17 +1789,17 @@ Tensor elementwise_mul(
     output.shape =
         a.shape;
 
-    output.data.resize(
-        a.data.size()
+    output.owned_data.resize(
+        a.numel()
     );
 
     #pragma omp parallel for
     for (int64_t i = 0;
-         i < static_cast<int64_t>(a.data.size());
+         i < static_cast<int64_t>(a.numel());
          i++) {
 
-        output.data[i] =
-            a.data[i] * b.data[i];
+        output.data()[i] =
+            a.data()[i] * b.data()[i];
     }
 
     return output;
@@ -1798,6 +1841,7 @@ FILE: inference\cpp\kernels\fused_attention.cpp
 FILE: inference\cpp\kernels\gelu.cpp
 ================================================================================
 
+
 #include "gelu.hpp"
 
 #include <cmath>
@@ -1808,16 +1852,29 @@ Tensor gelu(
     const Tensor& input
 ) {
 
-    Tensor out = input;
+    Tensor out;
 
-    for (size_t i = 0;
-         i < input.data.size();
+    out.name =
+        "gelu_output";
+
+    out.dtype =
+        input.dtype;
+
+    out.shape =
+        input.shape;
+
+    out.owned_data.resize(
+        input.numel()
+    );
+
+    for (int64_t i = 0;
+         i < input.numel();
          i++) {
 
         float x =
-            input.data[i];
+            input.data()[i];
 
-        out.data[i] =
+        out.data()[i] =
             0.5f *
             x *
             (
@@ -1843,6 +1900,7 @@ Tensor gelu(
 }
 
 
+
 ================================================================================
 FILE: inference\cpp\kernels\gelu.hpp
 ================================================================================
@@ -1863,6 +1921,7 @@ Tensor gelu(
 ================================================================================
 FILE: inference\cpp\kernels\layernorm.cpp
 ================================================================================
+
 
 #include "layernorm.hpp"
 
@@ -1902,8 +1961,8 @@ Tensor layernorm(
     output.dtype =
         input.dtype;
 
-    output.data.resize(
-        input.data.size()
+    output.owned_data.resize(
+        input.numel()
     );
 
     for (int64_t r = 0;
@@ -1920,7 +1979,7 @@ Tensor layernorm(
              h < hidden;
              h++) {
 
-            mean += input.data[
+            mean += input.data()[
                 r * hidden + h
             ];
         }
@@ -1938,7 +1997,7 @@ Tensor layernorm(
              h++) {
 
             float x =
-                input.data[
+                input.data()[
                     r * hidden + h
                 ] - mean;
 
@@ -1960,7 +2019,7 @@ Tensor layernorm(
              h++) {
 
             float x =
-                input.data[
+                input.data()[
                     r * hidden + h
                 ];
 
@@ -1969,12 +2028,12 @@ Tensor layernorm(
                 inv_std;
 
             norm *=
-                weight.data[h];
+                weight.data()[h];
 
             norm +=
-                bias.data[h];
+                bias.data()[h];
 
-            output.data[
+            output.data()[
                 r * hidden + h
             ] = norm;
         }
@@ -1984,6 +2043,7 @@ Tensor layernorm(
 }
 
 }
+
 
 
 ================================================================================
@@ -2120,7 +2180,7 @@ std::vector<Tensor> split_heads(
             head_dim
         };
 
-        head.data.resize(
+        head.owned_data.resize(
             seq_len * head_dim
         );
 
@@ -2140,8 +2200,8 @@ std::vector<Tensor> split_heads(
                 int64_t dst_idx =
                     t * head_dim + d;
 
-                head.data[dst_idx] =
-                    input.data[src_idx];
+                head.data()[dst_idx] =
+                    input.data()[src_idx];
             }
         }
 
@@ -2187,7 +2247,7 @@ Tensor merge_heads(
         hidden_dim
     };
 
-    output.data.resize(
+    output.owned_data.resize(
         seq_len * hidden_dim
     );
 
@@ -2211,8 +2271,8 @@ Tensor merge_heads(
                 int64_t src_idx =
                     t * head_dim + d;
 
-                output.data[dst_idx] =
-                    heads[h].data[src_idx];
+                output.data()[dst_idx] =
+                    heads[h].data()[src_idx];
             }
         }
     }
@@ -2465,8 +2525,9 @@ Tensor residual_add(
 FILE: inference\cpp\kernels\rmsnorm.cpp
 ================================================================================
 
+
 #include "rmsnorm.hpp"
-#include "../kernels/rmsnorm.hpp"
+
 #include <cmath>
 #include <stdexcept>
 
@@ -2489,8 +2550,11 @@ Tensor rmsnorm(
         );
     }
 
-    int64_t rows = input.shape[0];
-    int64_t cols = input.shape[1];
+    int64_t rows =
+        input.shape[0];
+
+    int64_t cols =
+        input.shape[1];
 
     if (weight.numel() != cols) {
 
@@ -2501,23 +2565,38 @@ Tensor rmsnorm(
 
     Tensor output;
 
-    output.name = "rmsnorm_output";
+    output.name =
+        "rmsnorm_output";
 
-    output.dtype = DType::FLOAT32;
+    output.dtype =
+        DType::FLOAT32;
 
-    output.shape = input.shape;
+    output.shape =
+        input.shape;
 
-    output.data.resize(input.numel());
+    output.owned_data.resize(
+        input.numel()
+    );
 
     #pragma omp parallel for
-    for (int64_t r = 0; r < rows; r++) {
+    for (int64_t r = 0;
+         r < rows;
+         r++) {
 
         float mean_square = 0.0f;
 
-        for (int64_t c = 0; c < cols; c++) {
+        // -------------------------
+        // COMPUTE RMS
+        // -------------------------
+
+        for (int64_t c = 0;
+             c < cols;
+             c++) {
 
             float val =
-                input.data[r * cols + c];
+                input.data()[
+                    r * cols + c
+                ];
 
             mean_square += val * val;
         }
@@ -2525,16 +2604,29 @@ Tensor rmsnorm(
         mean_square /= cols;
 
         float inv_rms =
-            1.0f / std::sqrt(mean_square + eps);
+            1.0f /
+            std::sqrt(
+                mean_square + eps
+            );
 
-        for (int64_t c = 0; c < cols; c++) {
+        // -------------------------
+        // NORMALIZE
+        // -------------------------
+
+        for (int64_t c = 0;
+             c < cols;
+             c++) {
 
             float normalized =
-                input.data[r * cols + c]
-                * inv_rms;
+                input.data()[
+                    r * cols + c
+                ] * inv_rms;
 
-            output.data[r * cols + c] =
-                normalized * weight.data[c];
+            output.data()[
+                r * cols + c
+            ] =
+                normalized *
+                weight.data()[c];
         }
     }
 
@@ -2542,6 +2634,7 @@ Tensor rmsnorm(
 }
 
 }
+
 
 
 ================================================================================
@@ -2586,7 +2679,7 @@ void apply_rope(
     float theta
 ) {
 
-    if (q.data.size() != k.data.size()) {
+    if (q.owned_data.size() != k.owned_data.size()) {
 
         throw std::runtime_error(
             "Q and K size mismatch"
@@ -2600,7 +2693,7 @@ void apply_rope(
         );
     }
 
-    int64_t total = q.data.size();
+    int64_t total = q.owned_data.size();
 
     if (total % head_dim != 0) {
 
@@ -2635,27 +2728,27 @@ void apply_rope(
 
             // ----- Q -----
 
-            float q1 = q.data[idx1];
-            float q2 = q.data[idx2];
+            float q1 = q.data()[idx1];
+            float q2 = q.data()[idx2];
 
-            q.data[idx1] =
+            q.data()[idx1] =
                 q1 * cos_val -
                 q2 * sin_val;
 
-            q.data[idx2] =
+            q.data()[idx2] =
                 q1 * sin_val +
                 q2 * cos_val;
 
             // ----- K -----
 
-            float k1 = k.data[idx1];
-            float k2 = k.data[idx2];
+            float k1 = k.data()[idx1];
+            float k2 = k.data()[idx2];
 
-            k.data[idx1] =
+            k.data()[idx1] =
                 k1 * cos_val -
                 k2 * sin_val;
 
-            k.data[idx2] =
+            k.data()[idx2] =
                 k1 * sin_val +
                 k2 * cos_val;
         }
@@ -2716,17 +2809,17 @@ Tensor silu(
     output.shape =
         input.shape;
 
-    output.data.resize(
-        input.data.size()
+    output.owned_data.resize(
+        input.owned_data.size()
     );
 
     #pragma omp parallel for
     for (int64_t i = 0;
-         i < static_cast<int64_t>(input.data.size());
+         i < static_cast<int64_t>(input.owned_data.size());
          i++) {
 
         float x =
-            input.data[i];
+            input.data()[i];
 
         float sigmoid =
             1.0f /
@@ -2735,7 +2828,7 @@ Tensor silu(
                 std::exp(-x)
             );
 
-        output.data[i] =
+        output.data()[i] =
             x * sigmoid;
     }
 
@@ -2824,8 +2917,8 @@ Tensor softmax(
     output.shape =
         input.shape;
 
-    output.data.resize(
-        input.data.size()
+    output.owned_data.resize(
+        input.numel()
     );
 
     #pragma omp parallel for
@@ -2837,7 +2930,7 @@ Tensor softmax(
         for (int64_t c = 0; c < cols; c++) {
 
             float val =
-                input.data[
+                input.data()[
                     r * cols + c
                 ];
 
@@ -2853,12 +2946,12 @@ Tensor softmax(
 
             float exp_val =
                 std::exp(
-                    input.data[
+                    input.data()[
                         r * cols + c
                     ] - max_val
                 );
 
-            output.data[
+            output.data()[
                 r * cols + c
             ] = exp_val;
 
@@ -2867,7 +2960,7 @@ Tensor softmax(
 
         for (int64_t c = 0; c < cols; c++) {
 
-            output.data[
+            output.data()[
                 r * cols + c
             ] /= sum;
         }
@@ -2939,7 +3032,7 @@ Tensor transpose(
         rows
     };
 
-    output.data.resize(
+    output.owned_data.resize(
         rows * cols
     );
 
@@ -2948,10 +3041,10 @@ Tensor transpose(
 
         for (int64_t c = 0; c < cols; c++) {
 
-            output.data[
+            output.data()[
                 c * rows + r
             ] =
-            input.data[
+            input.data()[
                 r * cols + c
             ];
         }
@@ -3220,12 +3313,15 @@ Tensor embedding_lookup(
     output.name =
         "token_embeddings";
 
+    output.dtype =
+        DType::FLOAT32;
+
     output.shape = {
         (int64_t)token_ids.size(),
         hidden_size
     };
 
-    output.data.resize(
+    output.owned_data.resize(
         token_ids.size() *
         hidden_size
     );
@@ -3255,12 +3351,12 @@ Tensor embedding_lookup(
              h < hidden_size;
              h++) {
 
-            output.data[
+            output.data()[
                 out_start + h
             ] =
-                embedding_matrix.data[
-                    row_start + h
-                ];
+            embedding_matrix.data()[
+                row_start + h
+            ];
         }
     }
 
@@ -3474,7 +3570,7 @@ Tensor final_norm(
     weight.dtype =
         input.dtype;
 
-    weight.data.resize(
+    weight.owned_data.resize(
         input.shape[1],
         1.0f
     );
@@ -3628,32 +3724,32 @@ QKV split_fused_qkv(
     K.shape = { rows, hidden };
     V.shape = { rows, hidden };
 
-    Q.data.resize(rows * hidden);
-    K.data.resize(rows * hidden);
-    V.data.resize(rows * hidden);
+    Q.owned_data.resize(rows * hidden);
+    K.owned_data.resize(rows * hidden);
+    V.owned_data.resize(rows * hidden);
 
     for (int64_t r = 0; r < rows; r++) {
 
         for (int64_t c = 0; c < hidden; c++) {
 
-            Q.data[
+            Q.data()[
                 r * hidden + c
             ] =
-            fused.data[
+            fused.data()    [
                 r * cols + c
             ];
 
-            K.data[
+            K.data()[
                 r * hidden + c
             ] =
-            fused.data[
+            fused.data()[
                 r * cols + hidden + c
             ];
 
-            V.data[
+            V.data()[
                 r * hidden + c
             ] =
-            fused.data[
+            fused.data()[
                 r * cols + (2 * hidden) + c
             ];
         }
@@ -3797,7 +3893,7 @@ Tensor gpt2_ln(
              c < cols;
              c++) {
 
-            mean += input.data[
+            mean += input.data()[
                 r * cols + c
             ];
         }
@@ -3811,7 +3907,7 @@ Tensor gpt2_ln(
              c++) {
 
             float v =
-                input.data[
+                input.data()[
                     r * cols + c
                 ] - mean;
 
@@ -3830,16 +3926,16 @@ Tensor gpt2_ln(
 
             float norm =
                 (
-                    input.data[
+                    input.data()[
                         r * cols + c
                     ] - mean
                 ) * inv_std;
 
-            out.data[
+            out.data()[
                 r * cols + c
             ] =
                 norm *
-                weight.data[c];
+                weight.data()[c];
         }
     }
 
@@ -4142,7 +4238,7 @@ void append_kv_cache(
     // FIRST INSERT
     // -------------------------
 
-    if (cache.keys.data.empty()) {
+    if (cache.keys.owned_data.empty()) {
 
         cache.keys = K;
         cache.values = V;
@@ -4165,20 +4261,20 @@ void append_kv_cache(
     // APPEND KEYS
     // -------------------------
 
-    cache.keys.data.insert(
-        cache.keys.data.end(),
-        K.data.begin(),
-        K.data.end()
+    cache.keys.owned_data.insert(
+        cache.keys.owned_data.end(),
+        K.owned_data.begin(),
+        K.owned_data.end()
     );
 
     // -------------------------
     // APPEND VALUES
     // -------------------------
 
-    cache.values.data.insert(
-        cache.values.data.end(),
-        V.data.begin(),
-        V.data.end()
+    cache.values.owned_data.insert(
+        cache.values.owned_data.end(),
+        V.owned_data.begin(),
+        V.owned_data.end()
     );
 
     // -------------------------
@@ -4251,10 +4347,10 @@ Tensor KVCache::get_all_keys() const {
          i < key_cache.size();
          i++) {
 
-        output.data.insert(
-            output.data.end(),
-            key_cache[i].data.begin(),
-            key_cache[i].data.end()
+        output.owned_data.insert(
+            output.owned_data.end(),
+            key_cache[i].owned_data.begin(),
+            key_cache[i].owned_data.end()
         );
 
         output.shape[0] +=
@@ -4283,10 +4379,10 @@ Tensor KVCache::get_all_values() const {
          i < value_cache.size();
          i++) {
 
-        output.data.insert(
-            output.data.end(),
-            value_cache[i].data.begin(),
-            value_cache[i].data.end()
+        output.owned_data.insert(
+            output.owned_data.end(),
+            value_cache[i].owned_data.begin(),
+            value_cache[i].owned_data.end()
         );
 
         output.shape[0] +=
@@ -4425,7 +4521,7 @@ Tensor last_token(
     out.dtype =
         logits.dtype;
 
-    out.data.resize(cols);
+    out.owned_data.resize(cols);
 
     int64_t last_row =
         rows - 1;
@@ -4434,8 +4530,8 @@ Tensor last_token(
          c < cols;
          c++) {
 
-        out.data[c] =
-            logits.data[
+        out.data()[c] =
+            logits.data()[
                 last_row * cols + c
             ];
     }
@@ -4622,7 +4718,7 @@ int argmax(
     const Tensor& logits
 ) {
 
-    if (logits.data.empty()) {
+    if (logits.numel() == 0) {
 
         return -1;
     }
@@ -4648,7 +4744,7 @@ int argmax(
          i++) {
 
         float val =
-            logits.data[
+            logits.data()[
                 offset + i
             ];
 
@@ -4746,7 +4842,7 @@ Tensor position_embedding_lookup(
     out.dtype =
         position_matrix.dtype;
 
-    out.data.resize(
+    out.owned_data.resize(
         seq_len * hidden_size
     );
 
@@ -4758,10 +4854,10 @@ Tensor position_embedding_lookup(
              h < hidden_size;
              h++) {
 
-            out.data[
+            out.data()[
                 pos * hidden_size + h
             ] =
-            position_matrix.data[
+            position_matrix.data()[
                 pos * hidden_size + h
             ];
         }
@@ -4917,13 +5013,10 @@ Tensor real_attention(
 FILE: inference\cpp\runtime\residual.cpp
 ================================================================================
 
+
 #include "residual.hpp"
 
 #include <stdexcept>
-
-#ifdef _OPENMP
-#include <omp.h>
-#endif
 
 namespace axion {
 
@@ -4935,7 +5028,7 @@ Tensor residual_add(
     if (a.shape != b.shape) {
 
         throw std::runtime_error(
-            "Residual shape mismatch"
+            "Residual add shape mismatch"
         );
     }
 
@@ -4944,30 +5037,30 @@ Tensor residual_add(
     out.name =
         "residual_output";
 
-    out.shape =
-        a.shape;
-
     out.dtype =
         a.dtype;
 
-    out.data.resize(
-        a.data.size()
+    out.shape =
+        a.shape;
+
+    out.owned_data.resize(
+        a.numel()
     );
 
-    #pragma omp parallel for
     for (int64_t i = 0;
-         i < (int64_t)a.data.size();
+         i < a.numel();
          i++) {
 
-        out.data[i] =
-            a.data[i] +
-            b.data[i];
+        out.data()[i] =
+            a.data()[i] +
+            b.data()[i];
     }
 
     return out;
 }
 
 }
+
 
 
 ================================================================================
@@ -5036,14 +5129,14 @@ Tensor single_position_embedding(
     out.dtype =
         position_matrix.dtype;
 
-    out.data.resize(hidden);
+    out.owned_data.resize(hidden);
 
     for (int64_t h = 0;
          h < hidden;
          h++) {
 
-        out.data[h] =
-            position_matrix.data[
+        out.data()[h] =
+            position_matrix.data()[
                 position * hidden + h
             ];
     }
@@ -5128,14 +5221,14 @@ Tensor token_embedding(
     out.dtype =
         embedding_matrix.dtype;
 
-    out.data.resize(hidden);
+    out.owned_data.resize(hidden);
 
     for (int64_t h = 0;
          h < hidden;
          h++) {
 
-        out.data[h] =
-            embedding_matrix.data[
+        out.data()[h] =
+            embedding_matrix.data()[
                 token_id * hidden + h
             ];
     }
@@ -5194,7 +5287,7 @@ Tensor transformer_layer(
         input.shape[1]
     };
 
-    rms_weight.data.resize(
+    rms_weight.owned_data.resize(
         input.shape[1],
         1.0f
     );

@@ -39,8 +39,8 @@ Tensor softmax(
     output.shape =
         input.shape;
 
-    output.data.resize(
-        input.data.size()
+    output.owned_data.resize(
+        input.numel()
     );
 
     #pragma omp parallel for
@@ -52,7 +52,7 @@ Tensor softmax(
         for (int64_t c = 0; c < cols; c++) {
 
             float val =
-                input.data[
+                input.data()[
                     r * cols + c
                 ];
 
@@ -68,12 +68,12 @@ Tensor softmax(
 
             float exp_val =
                 std::exp(
-                    input.data[
+                    input.data()[
                         r * cols + c
                     ] - max_val
                 );
 
-            output.data[
+            output.data()[
                 r * cols + c
             ] = exp_val;
 
@@ -82,7 +82,7 @@ Tensor softmax(
 
         for (int64_t c = 0; c < cols; c++) {
 
-            output.data[
+            output.data()[
                 r * cols + c
             ] /= sum;
         }

@@ -38,7 +38,7 @@ Tensor causal_mask(
 
             if (c > r) {
 
-                output.data[
+                output.data()[
                     r * cols + c
                 ] = -1e30f;
             }

@@ -34,7 +34,7 @@ Tensor transpose(
         rows
     };
 
-    output.data.resize(
+    output.owned_data.resize(
         rows * cols
     );
 
@@ -43,10 +43,10 @@ Tensor transpose(
 
         for (int64_t c = 0; c < cols; c++) {
 
-            output.data[
+            output.data()[
                 c * rows + r
             ] =
-            input.data[
+            input.data()[
                 r * cols + c
             ];
         }

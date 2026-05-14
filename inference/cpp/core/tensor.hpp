@@ -1,4 +1,3 @@
-
 #pragma once
 
 #include <string>
@@ -14,6 +13,7 @@ enum class DType {
 };
 
 class Tensor {
+
 public:
 
     std::string name;
@@ -25,7 +25,18 @@ public:
     uint64_t offset_start = 0;
     uint64_t offset_end = 0;
 
-    std::vector<float> data;
+    // --------------------------------
+    // POINTER-BASED STORAGE
+    // --------------------------------
+
+    float* data_ptr = nullptr;
+
+    // --------------------------------
+    // OPTIONAL OWNED STORAGE
+    // for temporary tensors
+    // --------------------------------
+
+    std::vector<float> owned_data;
 
     Tensor();
 
@@ -33,8 +44,13 @@ public:
 
     size_t bytes() const;
 
+    bool owns_data() const;
+
+    float* data();
+
+    const float* data() const;
+
     void print_info() const;
 };
 
 }
-

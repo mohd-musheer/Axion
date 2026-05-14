@@ -42,7 +42,7 @@ Tensor position_embedding_lookup(
     out.dtype =
         position_matrix.dtype;
 
-    out.data.resize(
+    out.owned_data.resize(
         seq_len * hidden_size
     );
 
@@ -54,10 +54,10 @@ Tensor position_embedding_lookup(
              h < hidden_size;
              h++) {
 
-            out.data[
+            out.data()[
                 pos * hidden_size + h
             ] =
-            position_matrix.data[
+            position_matrix.data()[
                 pos * hidden_size + h
             ];
         }

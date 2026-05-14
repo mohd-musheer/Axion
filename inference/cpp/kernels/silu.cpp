@@ -24,17 +24,17 @@ Tensor silu(
     output.shape =
         input.shape;
 
-    output.data.resize(
-        input.data.size()
+    output.owned_data.resize(
+        input.owned_data.size()
     );
 
     #pragma omp parallel for
     for (int64_t i = 0;
-         i < static_cast<int64_t>(input.data.size());
+         i < static_cast<int64_t>(input.owned_data.size());
          i++) {
 
         float x =
-            input.data[i];
+            input.data()[i];
 
         float sigmoid =
             1.0f /
@@ -43,7 +43,7 @@ Tensor silu(
                 std::exp(-x)
             );
 
-        output.data[i] =
+        output.data()[i] =
             x * sigmoid;
     }
 

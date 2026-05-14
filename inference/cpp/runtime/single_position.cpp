@@ -42,14 +42,14 @@ Tensor single_position_embedding(
     out.dtype =
         position_matrix.dtype;
 
-    out.data.resize(hidden);
+    out.owned_data.resize(hidden);
 
     for (int64_t h = 0;
          h < hidden;
          h++) {
 
-        out.data[h] =
-            position_matrix.data[
+        out.data()[h] =
+            position_matrix.data()[
                 position * hidden + h
             ];
     }

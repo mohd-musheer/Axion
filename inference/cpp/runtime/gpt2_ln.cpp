@@ -27,7 +27,7 @@ Tensor gpt2_ln(
              c < cols;
              c++) {
 
-            mean += input.data[
+            mean += input.data()[
                 r * cols + c
             ];
         }
@@ -41,7 +41,7 @@ Tensor gpt2_ln(
              c++) {
 
             float v =
-                input.data[
+                input.data()[
                     r * cols + c
                 ] - mean;
 
@@ -60,16 +60,16 @@ Tensor gpt2_ln(
 
             float norm =
                 (
-                    input.data[
+                    input.data()[
                         r * cols + c
                     ] - mean
                 ) * inv_std;
 
-            out.data[
+            out.data()[
                 r * cols + c
             ] =
                 norm *
-                weight.data[c];
+                weight.data()[c];
         }
     }
 

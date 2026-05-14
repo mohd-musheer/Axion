@@ -1,3 +1,4 @@
+
 #include "blas.hpp"
 
 #include <stdexcept>
@@ -43,7 +44,7 @@ Tensor matmul(
 
     output.shape = { M, N };
 
-    output.data.resize(M * N);
+    output.owned_data.resize(M * N);
 
     #pragma omp parallel for collapse(2)
     for (int64_t i = 0; i < M; i++) {
@@ -55,15 +56,15 @@ Tensor matmul(
             for (int64_t k = 0; k < K; k++) {
 
                 float a =
-                    A.data[i * K + k];
+                    A.data()[i * K + k];
 
                 float b =
-                    B.data[k * N + j];
+                    B.data()[k * N + j];
 
                 sum += a * b;
             }
 
-            output.data[i * N + j] = sum;
+            output.data()[i * N + j] = sum;
         }
     }
 

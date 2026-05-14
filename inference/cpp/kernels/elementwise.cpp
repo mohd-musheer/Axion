@@ -32,17 +32,17 @@ Tensor elementwise_mul(
     output.shape =
         a.shape;
 
-    output.data.resize(
-        a.data.size()
+    output.owned_data.resize(
+        a.numel()
     );
 
     #pragma omp parallel for
     for (int64_t i = 0;
-         i < static_cast<int64_t>(a.data.size());
+         i < static_cast<int64_t>(a.numel());
          i++) {
 
-        output.data[i] =
-            a.data[i] * b.data[i];
+        output.data()[i] =
+            a.data()[i] * b.data()[i];
     }
 
     return output;

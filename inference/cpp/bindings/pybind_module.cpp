@@ -50,6 +50,7 @@ using namespace axion;
 
 PYBIND11_MODULE(axion_cpp, m) {
 
+
     py::class_<Tensor>(m, "Tensor")
 
         .def(py::init<>())
@@ -68,15 +69,36 @@ PYBIND11_MODULE(axion_cpp, m) {
             "numel",
             &Tensor::numel
         )
-        .def_readwrite(
+
+        // --------------------------------
+        // PYTHON DATA ACCESS
+        // --------------------------------
+
+        .def_property(
             "data",
-            &Tensor::data
+
+            [](Tensor& t) {
+
+                std::vector<float> out(
+                    t.data(),
+                    t.data() + t.numel()
+                );
+
+                return out;
+            },
+
+            [](Tensor& t,
+            const std::vector<float>& v) {
+
+                t.owned_data = v;
+            }
         )
 
         .def(
             "print_info",
             &Tensor::print_info
         );
+
 
 
     py::class_<MMapLoader>(m, "MMapLoader")
