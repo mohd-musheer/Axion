@@ -1,5 +1,5 @@
 #include "softmax.hpp"
-
+#include "../core/tensor_factory.hpp"
 #include <cmath>
 #include <stdexcept>
 #include <algorithm>
@@ -14,6 +14,13 @@ Tensor softmax(
     const Tensor& input
 ) {
 
+        if (!input.valid()) {
+
+        throw std::runtime_error(
+            "Invalid tensor in matmul"
+        );
+    }
+
     if (input.shape.size() != 2) {
 
         throw std::runtime_error(
@@ -27,20 +34,11 @@ Tensor softmax(
     int64_t cols =
         input.shape[1];
 
-    Tensor output;
-
-    output.name =
-        "softmax_output";
-
-    output.dtype =
-        DType::FLOAT32;
-
-    output.shape =
-        input.shape;
-
-    output.owned_data.resize(
-        input.numel()
-    );
+    Tensor output =
+        create_owned_tensor(
+            input.shape,
+            DType::FLOAT32
+        );
 
     #pragma omp parallel for
     for (int64_t r = 0; r < rows; r++) {

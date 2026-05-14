@@ -107,6 +107,8 @@ CMakeFiles/axion_cpp.dir/kernels/layernorm.cpp.obj: \
  c:\rtools44\x86_64-w64-mingw32.static.posix\lib\gcc\x86_64-w64-mingw32.static.posix\13.3.0\include\c++\cstdint \
  c:\rtools44\x86_64-w64-mingw32.static.posix\lib\gcc\x86_64-w64-mingw32.static.posix\13.3.0\include\stdint.h \
  c:\rtools44\x86_64-w64-mingw32.static.posix\include\stdint.h \
+ d:\llm\ projects\axion\inference\cpp\core\tensor_factory.hpp \
+ d:\llm\ projects\axion\inference\cpp\core\arena.hpp \
  c:\rtools44\x86_64-w64-mingw32.static.posix\lib\gcc\x86_64-w64-mingw32.static.posix\13.3.0\include\c++\cmath \
  c:\rtools44\x86_64-w64-mingw32.static.posix\include\math.h \
  c:\rtools44\x86_64-w64-mingw32.static.posix\lib\gcc\x86_64-w64-mingw32.static.posix\13.3.0\include\c++\bits\specfun.h \

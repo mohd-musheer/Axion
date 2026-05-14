@@ -1,5 +1,6 @@
-
 #include "add.hpp"
+
+#include "../core/tensor_factory.hpp"
 
 #include <stdexcept>
 
@@ -10,6 +11,12 @@ Tensor add(
     const Tensor& b
 ) {
 
+    if (!a.valid() || !b.valid()) {
+
+        throw std::runtime_error(
+            "Invalid tensor in matmul"
+        );
+    }
     if (a.shape != b.shape) {
 
         throw std::runtime_error(
@@ -17,20 +24,14 @@ Tensor add(
         );
     }
 
-    Tensor out;
+    Tensor out =
+        create_owned_tensor(
+            a.shape,
+            a.dtype
+        );
 
     out.name =
         "add_output";
-
-    out.dtype =
-        a.dtype;
-
-    out.shape =
-        a.shape;
-
-    out.owned_data.resize(
-        a.numel()
-    );
 
     for (int64_t i = 0;
          i < a.numel();

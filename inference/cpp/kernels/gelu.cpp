@@ -1,7 +1,8 @@
-
 #include "gelu.hpp"
+#include "../core/tensor_factory.hpp"
 
 #include <cmath>
+#include <stdexcept>
 
 namespace axion {
 
@@ -9,20 +10,21 @@ Tensor gelu(
     const Tensor& input
 ) {
 
-    Tensor out;
+    if (!input.valid()) {
+
+        throw std::runtime_error(
+            "Invalid tensor in gelu"
+        );
+    }
+
+    Tensor out =
+        create_owned_tensor(
+            input.shape,
+            DType::FLOAT32
+        );
 
     out.name =
         "gelu_output";
-
-    out.dtype =
-        input.dtype;
-
-    out.shape =
-        input.shape;
-
-    out.owned_data.resize(
-        input.numel()
-    );
 
     for (int64_t i = 0;
          i < input.numel();

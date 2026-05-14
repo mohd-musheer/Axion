@@ -1,5 +1,5 @@
 #include "residual.hpp"
-
+#include "../core/tensor_factory.hpp"
 #include <stdexcept>
 
 #ifdef _OPENMP
@@ -12,6 +12,12 @@ Tensor residual_add(
     const Tensor& x,
     const Tensor& y
 ) {
+        if (!x.valid() || !y.valid()) {
+            
+            throw std::runtime_error(
+                "Invalid tensor in matmul"
+            );
+        }
 
     if (x.shape != y.shape) {
 
@@ -20,20 +26,14 @@ Tensor residual_add(
         );
     }
 
-    Tensor output;
+    Tensor output =
+        create_owned_tensor(
+            x.shape,
+            x.dtype
+        );
 
     output.name =
         "residual_output";
-
-    output.dtype =
-        x.dtype;
-
-    output.shape =
-        x.shape;
-
-    output.owned_data.resize(
-        x.numel()
-    );
 
     #pragma omp parallel for
     for (int64_t i = 0;

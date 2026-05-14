@@ -182,15 +182,7 @@ Tensor MMapLoader::load_tensor_data(
     // DIRECT POINTER
     // --------------------------------
 
-    if (tensor.dtype == DType::FLOAT32) {
-
-        tensor.data_ptr =
-            reinterpret_cast<float*>(
-
-                file_data.data() +
-                tensor_start
-            );
-    }
+   
 //----------------------------------
     // --------------------------------
 // FLOAT32

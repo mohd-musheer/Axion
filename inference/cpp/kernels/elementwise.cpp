@@ -1,5 +1,6 @@
 
 #include "elementwise.hpp"
+#include "../core/tensor_factory.hpp"
 
 #include <stdexcept>
 
@@ -13,6 +14,12 @@ Tensor elementwise_mul(
     const Tensor& a,
     const Tensor& b
 ) {
+    if (!a.valid() || !b.valid()) {
+
+        throw std::runtime_error(
+            "Invalid tensor in matmul"
+        );
+    }
 
     if (a.shape != b.shape) {
 
@@ -21,20 +28,14 @@ Tensor elementwise_mul(
         );
     }
 
-    Tensor output;
+    Tensor output =
+        create_owned_tensor(
+            a.shape,
+            a.dtype
+        );
 
     output.name =
         "elementwise_mul";
-
-    output.dtype =
-        a.dtype;
-
-    output.shape =
-        a.shape;
-
-    output.owned_data.resize(
-        a.numel()
-    );
 
     #pragma omp parallel for
     for (int64_t i = 0;

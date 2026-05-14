@@ -1,6 +1,6 @@
 
 #include "transpose.hpp"
-
+#include "../core/tensor_factory.hpp"
 #include <stdexcept>
 
 #ifdef _OPENMP
@@ -12,6 +12,12 @@ namespace axion {
 Tensor transpose(
     const Tensor& input
 ) {
+    if (!input.valid()) {
+
+        throw std::runtime_error(
+            "Invalid tensor in matmul"
+        );
+    }
 
     if (input.shape.size() != 2) {
 
@@ -23,20 +29,13 @@ Tensor transpose(
     int64_t rows = input.shape[0];
     int64_t cols = input.shape[1];
 
-    Tensor output;
-
-    output.name = input.name + "_T";
-
-    output.dtype = input.dtype;
-
-    output.shape = {
-        cols,
-        rows
-    };
-
-    output.owned_data.resize(
-        rows * cols
-    );
+    Tensor output =
+        create_owned_tensor(
+            {cols, rows},
+            input.dtype
+        );
+    output.name =
+        "transpose_output";
 
     #pragma omp parallel for collapse(2)
     for (int64_t r = 0; r < rows; r++) {

@@ -1,5 +1,5 @@
 #include "layernorm.hpp"
-
+#include "../core/tensor_factory.hpp"
 #include <cmath>
 #include <stdexcept>
 
@@ -25,20 +25,13 @@ Tensor layernorm(
     int64_t hidden =
         input.shape[1];
 
-    Tensor output;
-
+    Tensor output =
+        create_owned_tensor(
+            input.shape,
+            DType::FLOAT32
+        );
     output.name =
         "layernorm_output";
-
-    output.shape =
-        input.shape;
-
-    output.dtype =
-        DType::FLOAT32;
-
-    output.owned_data.resize(
-        input.numel()
-    );
 
     for (int64_t r = 0;
          r < rows;

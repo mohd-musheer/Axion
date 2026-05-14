@@ -1,13 +1,15 @@
 import sys
-sys.path.append(
-    "../../inference/cpp/build"
-)
 
+sys.path.append(
+    r"D:\LLM projects\Axion\inference\cpp\build"
+)
 import axion_cpp
 
 # Create tensor A
 
-A = axion_cpp.Tensor()
+A = axion_cpp.create_owned_tensor(
+    [2, 3]
+)
 
 A.name = "A"
 
@@ -20,7 +22,9 @@ A.data = [
 
 # Create tensor B
 
-B = axion_cpp.Tensor()
+B = axion_cpp.create_owned_tensor(
+    [3, 2]
+)
 
 B.name = "B"
 

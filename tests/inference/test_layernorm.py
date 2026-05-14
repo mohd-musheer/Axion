@@ -10,9 +10,9 @@ import axion_cpp
 # INPUT
 # -------------------------
 
-x = axion_cpp.Tensor()
-
-x.shape = [2, 4]
+x = axion_cpp.create_owned_tensor(
+    [2, 4]
+)
 
 x.data = [
     1.0, 2.0, 3.0, 4.0,
@@ -23,9 +23,9 @@ x.data = [
 # WEIGHT
 # -------------------------
 
-w = axion_cpp.Tensor()
-
-w.shape = [4]
+w = axion_cpp.create_owned_tensor(
+    [4]
+)
 
 w.data = [1.0] * 4
 
@@ -33,9 +33,9 @@ w.data = [1.0] * 4
 # BIAS
 # -------------------------
 
-b = axion_cpp.Tensor()
-
-b.shape = [4]
+b = axion_cpp.create_owned_tensor(
+    [4]
+)
 
 b.data = [0.0] * 4
 

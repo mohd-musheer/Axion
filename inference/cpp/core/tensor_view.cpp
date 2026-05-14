@@ -21,8 +21,30 @@ Tensor tensor_view(
     view.shape =
         shape;
 
-    view.data_ptr =
-        const_cast<float*>(base.data());
+    view.fp16_ptr =
+        base.fp16_ptr;
+
+    view.is_fp16 =
+        base.is_fp16;
+
+// --------------------------------
+// SHARED STORAGE
+// --------------------------------
+
+    if (base.owns_data()) {
+
+        view.parent_owned_data =
+            const_cast<std::vector<float>*>(
+                &base.owned_data
+            );
+    }
+    else {
+
+        view.data_ptr =
+            const_cast<float*>(
+                base.data()
+            );
+    }
 
     view.is_view = true;
 

@@ -26,9 +26,9 @@ cache = axion_cpp.LayerKVCache()
 # TOKEN 1
 # -------------------------
 
-x1 = axion_cpp.Tensor()
-
-x1.shape = [1, 768]
+x1 = axion_cpp.create_owned_tensor(
+    [1, 768]
+)
 
 x1.data = [0.1] * 768
 
@@ -50,9 +50,9 @@ print(cache.keys.shape)
 # TOKEN 2
 # -------------------------
 
-x2 = axion_cpp.Tensor()
-
-x2.shape = [1, 768]
+x2 = axion_cpp.create_owned_tensor(
+    [1, 768]
+)
 
 x2.data = [0.2] * 768
 

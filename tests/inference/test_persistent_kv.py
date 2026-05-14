@@ -16,17 +16,17 @@ state = axion_cpp.KVState(2)
 # TOKEN 1
 # -------------------------
 
-K1 = axion_cpp.Tensor()
-
-K1.shape = [1, 4]
+K1 = axion_cpp.create_owned_tensor(
+    [1, 4]
+)
 
 K1.data = [
     1, 2, 3, 4
 ]
 
-V1 = axion_cpp.Tensor()
-
-V1.shape = [1, 4]
+V1 = axion_cpp.create_owned_tensor(
+    [1, 4]
+)
 
 V1.data = [
     5, 6, 7, 8
@@ -42,17 +42,17 @@ axion_cpp.append_kv_cache(
 # TOKEN 2
 # -------------------------
 
-K2 = axion_cpp.Tensor()
-
-K2.shape = [1, 4]
+K2 = axion_cpp.create_owned_tensor(
+    [1, 4]
+)
 
 K2.data = [
     9, 10, 11, 12
 ]
 
-V2 = axion_cpp.Tensor()
-
-V2.shape = [1, 4]
+V2 = axion_cpp.create_owned_tensor(
+    [1, 4]
+)
 
 V2.data = [
     13, 14, 15, 16

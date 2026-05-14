@@ -1,6 +1,6 @@
 
 #include "blas.hpp"
-
+#include "../core/tensor_factory.hpp"
 #include <stdexcept>
 #include <iostream>
 
@@ -17,6 +17,12 @@ Tensor matmul(
     const Tensor& A,
     const Tensor& B
 ) {
+    if (!A.valid() || !B.valid()) {
+
+        throw std::runtime_error(
+            "Invalid tensor in matmul"
+        );
+    }
 
     if (A.shape.size() != 2 ||
         B.shape.size() != 2) {
@@ -39,15 +45,14 @@ Tensor matmul(
         );
     }
 
-    Tensor output;
+Tensor output =
+    create_owned_tensor(
+        {M, N},
+        DType::FLOAT32
+    );
 
-    output.name = "matmul_output";
-
-    output.dtype = DType::FLOAT32;
-
-    output.shape = { M, N };
-
-    output.owned_data.resize(M * N);
+output.name =
+    "matmul_output";
 
     #pragma omp parallel for collapse(2)
     for (int64_t i = 0; i < M; i++) {

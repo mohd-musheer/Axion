@@ -1,18 +1,19 @@
+import sys
 
+sys.path.append(
+    r"D:\LLM projects\Axion\inference\cpp\build"
+)
 import axion_cpp
 
-x = axion_cpp.Tensor()
+x = axion_cpp.create_owned_tensor(
+    [2, 4]
+)
 
-x.name = "scores"
-
-x.shape = [2, 2]
+x.name = "hidden_state"
 
 x.data = [
-    4.0,
-    9.5,
-
-    12.0,
-    21.5
+    1.0, 2.0, 3.0, 4.0,
+    5.0, 6.0, 7.0, 8.0
 ]
 
 output = axion_cpp.softmax(

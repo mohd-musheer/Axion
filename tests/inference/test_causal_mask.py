@@ -1,11 +1,15 @@
+import sys
 
+sys.path.append(
+    r"D:\LLM projects\Axion\inference\cpp\build"
+)
 import axion_cpp
 
-scores = axion_cpp.Tensor()
+scores = axion_cpp.create_owned_tensor(
+    [3, 3]
+)
 
 scores.name = "attention_scores"
-
-scores.shape = [3, 3]
 
 scores.data = [
 

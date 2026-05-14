@@ -1,22 +1,26 @@
+import sys
 
+sys.path.append(
+    r"D:\LLM projects\Axion\inference\cpp\build"
+)
 import axion_cpp
 
-x = axion_cpp.Tensor()
+x = axion_cpp.create_owned_tensor(
+    [2, 4]
+)
 
 x.name = "hidden_state"
-
-x.shape = [2, 4]
 
 x.data = [
     1.0, 2.0, 3.0, 4.0,
     5.0, 6.0, 7.0, 8.0
 ]
 
-attention = axion_cpp.Tensor()
+attention = axion_cpp.create_owned_tensor(
+    [2, 4]
+)
 
 attention.name = "attention_output"
-
-attention.shape = [2, 4]
 
 attention.data = [
     4.9837, 5.9837, 6.9837, 7.9837,

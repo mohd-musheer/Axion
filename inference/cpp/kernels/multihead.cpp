@@ -1,6 +1,6 @@
 
 #include "multihead.hpp"
-
+#include "../core/tensor_factory.hpp"
 #include <stdexcept>
 
 namespace axion {
@@ -53,14 +53,26 @@ std::vector<Tensor> split_heads(
             head_dim
         };
 
+   
+
         // -------------------------
-        // SHARE STORAGE
+        // STORAGE ROUTING
         // -------------------------
 
-        head.data_ptr =
-            const_cast<float*>(
-                input.data()
-            );
+        if (input.owns_data()) {
+
+            head.parent_owned_data =
+                const_cast<std::vector<float>*>(
+                    &input.owned_data
+                );
+        }
+        else {
+
+            head.data_ptr =
+                const_cast<float*>(
+                    input.data()
+                );
+        }
 
         head.fp16_ptr =
             input.fp16_ptr;
@@ -114,22 +126,14 @@ Tensor merge_heads(
     int64_t hidden_dim =
         head_dim * num_heads;
 
-    Tensor output;
-
+    Tensor output =
+        create_owned_tensor(
+            {seq_len, hidden_dim},
+            heads[0].dtype
+        );
     output.name =
-        "merged_heads";
-
-    output.dtype =
-        heads[0].dtype;
-
-    output.shape = {
-        seq_len,
-        hidden_dim
-    };
-
-    output.owned_data.resize(
-        seq_len * hidden_dim
-    );
+        "merge_heads_output";
+    
 
     for (int64_t t = 0;
          t < seq_len;

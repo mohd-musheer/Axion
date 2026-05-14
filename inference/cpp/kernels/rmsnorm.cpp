@@ -1,5 +1,5 @@
 #include "rmsnorm.hpp"
-
+#include "../core/tensor_factory.hpp"
 #include <cmath>
 #include <stdexcept>
 
@@ -35,20 +35,13 @@ Tensor rmsnorm(
         );
     }
 
-    Tensor output;
-
+    Tensor output =
+        create_owned_tensor(
+            input.shape,
+            DType::FLOAT32
+        );
     output.name =
         "rmsnorm_output";
-
-    output.dtype =
-        DType::FLOAT32;
-
-    output.shape =
-        input.shape;
-
-    output.owned_data.resize(
-        input.numel()
-    );
 
     #pragma omp parallel for
     for (int64_t r = 0;

@@ -6,7 +6,9 @@ sys.path.append(
 
 import axion_cpp
 
-x = axion_cpp.Tensor()
+x = axion_cpp.create_owned_tensor(
+    [8]
+)
 
 x.name = "base"
 

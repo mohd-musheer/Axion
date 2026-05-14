@@ -49,6 +49,10 @@ public:
     // VIEW SUPPORT
     // --------------------------------
 
+// --------------------------------
+// VIEW SUPPORT
+// --------------------------------
+
     bool is_view = false;
 
     bool is_strided = false;
@@ -58,6 +62,12 @@ public:
     int64_t view_offset = 0;
 
     int64_t view_numel = 0;
+
+    // parent owned storage reference
+
+    std::vector<float>* parent_owned_data =
+        nullptr;
+
 
     Tensor();
 
@@ -75,6 +85,8 @@ public:
     ) const;
 
     void print_info() const;
+
+    bool valid() const;
 };
 
 }

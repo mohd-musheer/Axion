@@ -1,11 +1,18 @@
 
+import sys
+
+sys.path.append(
+    r"D:\LLM projects\Axion\inference\cpp\build"
+)
 import axion_cpp
 
 # -------------------------
 # ATTENTION PROBABILITIES
 # -------------------------
 
-probs = axion_cpp.Tensor()
+probs = axion_cpp.create_owned_tensor(
+    [2, 2]
+)
 
 probs.name = "attention_probs"
 
@@ -23,7 +30,9 @@ probs.data = [
 # VALUE MATRIX
 # -------------------------
 
-V = axion_cpp.Tensor()
+V = axion_cpp.create_owned_tensor(
+    [2, 4]
+)
 
 V.name = "V"
 

@@ -1,9 +1,13 @@
+import sys
 
+sys.path.append(
+    r"D:\LLM projects\Axion\inference\cpp\build"
+)
 import axion_cpp
 
-x = axion_cpp.Tensor()
-
-x.shape = [2, 8]
+x = axion_cpp.create_owned_tensor(
+    [2, 8]
+)
 
 x.data = [
 

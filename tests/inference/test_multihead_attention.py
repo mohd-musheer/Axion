@@ -1,9 +1,13 @@
+import sys
 
+sys.path.append(
+    r"D:\LLM projects\Axion\inference\cpp\build"
+)
 import axion_cpp
 
-Q = axion_cpp.Tensor()
-
-Q.shape = [2, 8]
+Q = axion_cpp.create_owned_tensor(
+    [2, 8]
+)
 
 Q.data = [
 
@@ -12,9 +16,9 @@ Q.data = [
     9,10,11,12,13,14,15,16
 ]
 
-K = axion_cpp.Tensor()
-
-K.shape = [2, 8]
+K = axion_cpp.create_owned_tensor(
+    [2, 8]
+)
 
 K.data = [
 
@@ -23,9 +27,9 @@ K.data = [
     3,2,1,0,4,3,2,1
 ]
 
-V = axion_cpp.Tensor()
-
-V.shape = [2, 8]
+V = axion_cpp.create_owned_tensor(
+    [2, 8]
+)
 
 V.data = [
 

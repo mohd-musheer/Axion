@@ -457,15 +457,7 @@ PYBIND11_MODULE(axion_cpp, m) {
             "UNKNOWN",
             DType::UNKNOWN
         );
-        m.def(
-        "create_tensor",
-        &create_tensor,
-
-        py::arg("arena"),
-        py::arg("shape"),
-        py::arg("dtype") =
-            DType::FLOAT32
-    );
+        
         m.def(
         "create_tensor",
         &create_tensor,

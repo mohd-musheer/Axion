@@ -1,6 +1,6 @@
 
 #include "causal_mask.hpp"
-
+#include "../core/tensor_factory.hpp"
 #include <stdexcept>
 
 #ifdef _OPENMP
@@ -27,7 +27,18 @@ Tensor causal_mask(
         scores.shape[1];
 
     Tensor output =
-        scores;
+        create_owned_tensor(
+            scores.shape,
+            scores.dtype
+        );
+
+    for (int64_t i = 0;
+        i < scores.numel();
+        i++) {
+
+        output.data()[i] =
+            scores.value(i);
+    }
 
     #pragma omp parallel for collapse(2)
     for (int64_t r = 0; r < rows; r++) {

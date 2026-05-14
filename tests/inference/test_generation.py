@@ -1,7 +1,13 @@
+import sys
 
+sys.path.append(
+    r"D:\LLM projects\Axion\inference\cpp\build"
+)
 import axion_cpp
 
-x = axion_cpp.Tensor()
+x = axion_cpp.create_owned_tensor(
+    [2, 4]
+)
 
 x.name = "input_hidden"
 

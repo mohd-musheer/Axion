@@ -36,23 +36,64 @@ size_t Tensor::bytes() const {
 
 bool Tensor::owns_data() const {
 
-    return !owned_data.empty();
+    return !is_view &&
+           owned_data.data() != nullptr;
 }
 
 float* Tensor::data() {
 
+    // -------------------------
+    // OWNED STORAGE
+    // -------------------------
+
     if (owns_data()) {
-        return owned_data.data() + view_offset;
+
+        return owned_data.data() +
+               view_offset;
     }
+
+    // -------------------------
+    // VIEW INTO OWNED STORAGE
+    // -------------------------
+
+    if (parent_owned_data != nullptr) {
+
+        return parent_owned_data->data() +
+               view_offset;
+    }
+
+    // -------------------------
+    // POINTER STORAGE
+    // -------------------------
 
     return data_ptr + view_offset;
 }
 
 const float* Tensor::data() const {
 
+    // -------------------------
+    // OWNED STORAGE
+    // -------------------------
+
     if (owns_data()) {
-        return owned_data.data() + view_offset;
+
+        return owned_data.data() +
+               view_offset;
     }
+
+    // -------------------------
+    // VIEW INTO OWNED STORAGE
+    // -------------------------
+
+    if (parent_owned_data != nullptr) {
+
+        return parent_owned_data->data() +
+               view_offset;
+    }
+
+    // -------------------------
+    // POINTER STORAGE
+    // -------------------------
 
     return data_ptr + view_offset;
 }
@@ -97,9 +138,57 @@ void Tensor::print_info() const {
               << std::endl;
 }
 
+
+
+
+bool Tensor::valid() const {
+
+    if (shape.empty()) {
+
+        return false;
+    }
+
+    // -------------------------
+    // FP16 MMAP
+    // -------------------------
+
+    if (is_fp16) {
+
+        return fp16_ptr != nullptr;
+    }
+
+    // -------------------------
+    // OWNED
+    // -------------------------
+
+    if (owns_data()) {
+
+        return
+            owned_data.size() >=
+            static_cast<size_t>(numel());
+    }
+
+    // -------------------------
+    // VIEW INTO OWNED
+    // -------------------------
+
+    if (parent_owned_data != nullptr) {
+
+        return true;
+    }
+
+    // -------------------------
+    // RAW POINTER
+    // -------------------------
+
+    return data_ptr != nullptr;
+}
+
+
 float Tensor::value(
     int64_t idx
 ) const {
+    
 
     int64_t actual_idx;
 
@@ -129,8 +218,18 @@ float Tensor::value(
         );
     }
 
-    return data_ptr
-        ? data_ptr[actual_idx]
-        : owned_data[actual_idx];
-}
+    if (parent_owned_data != nullptr) {
+
+        return (*parent_owned_data)
+            [actual_idx];
+    }
+
+    if (data_ptr != nullptr) {
+
+        return data_ptr[actual_idx];
+    }
+
+    return owned_data[actual_idx];
+    }
+    
 }

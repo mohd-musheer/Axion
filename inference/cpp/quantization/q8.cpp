@@ -1,5 +1,5 @@
 #include "q8.hpp"
-
+#include "../core/tensor_factory.hpp"
 #include <cmath>
 #include <algorithm>
 #include <stdexcept>
@@ -77,20 +77,13 @@ Tensor dequantize_q8(
     const Q8Tensor& q
 ) {
 
-    Tensor output;
-
-    output.name =
-        "dequantized_q8";
-
-    output.dtype =
-        DType::FLOAT32;
-
-    output.shape =
-        q.shape;
-
-    output.owned_data.resize(
-        q.data.size()
+    Tensor output =
+    create_owned_tensor(
+        q.shape,
+        DType::FLOAT32
     );
+    output.name =
+        "dequantize_q8_output";
 
     for (int64_t i = 0;
          i < (int64_t)q.data.size();
