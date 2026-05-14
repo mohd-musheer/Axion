@@ -34,7 +34,12 @@ pybind11_add_module(axion_cpp
     runtime/linear.cpp
     kernels/gelu.cpp
     runtime/last_token.cpp
+    kernels/layernorm.cpp
+    runtime/token_embedding.cpp
+    runtime/incremental_forward.cpp
     runtime/gpt2_ln.cpp
+    runtime/single_position.cpp
+    runtime/cached_attention.cpp
     kernels/add.cpp
     runtime/weight_lookup.cpp
     runtime/position_embedding.cpp
@@ -45,6 +50,7 @@ pybind11_add_module(axion_cpp
     runtime/logits.cpp
     kernels/multihead.cpp
     runtime/full_forward.cpp
+    runtime/kv_append.cpp
     runtime/layer_scheduler.cpp
     kernels/multihead_attention.cpp
     kernels/causal_mask.cpp

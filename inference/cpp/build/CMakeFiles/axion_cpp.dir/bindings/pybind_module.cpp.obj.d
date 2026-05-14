@@ -383,8 +383,9 @@ CMakeFiles/axion_cpp.dir/bindings/pybind_module.cpp.obj: \
  c:\rtools44\x86_64-w64-mingw32.static.posix\lib\gcc\x86_64-w64-mingw32.static.posix\13.3.0\include\c++\bits\stl_deque.h \
  c:\rtools44\x86_64-w64-mingw32.static.posix\lib\gcc\x86_64-w64-mingw32.static.posix\13.3.0\include\c++\bits\deque.tcc \
  c:\rtools44\x86_64-w64-mingw32.static.posix\lib\gcc\x86_64-w64-mingw32.static.posix\13.3.0\include\c++\bits\stl_stack.h \
- d:\llm\ projects\axion\inference\cpp\runtime\last_token.hpp \
+ d:\llm\ projects\axion\inference\cpp\kernels\layernorm.hpp \
  d:\llm\ projects\axion\inference\cpp\core\tensor.hpp \
+ d:\llm\ projects\axion\inference\cpp\runtime\last_token.hpp \
  C:/Users/mushe/AppData/Local/Programs/Python/Python311/Lib/site-packages/pybind11/include/pybind11/stl.h \
  c:\rtools44\x86_64-w64-mingw32.static.posix\lib\gcc\x86_64-w64-mingw32.static.posix\13.3.0\include\c++\list \
  c:\rtools44\x86_64-w64-mingw32.static.posix\lib\gcc\x86_64-w64-mingw32.static.posix\13.3.0\include\c++\bits\stl_list.h \
@@ -407,14 +408,20 @@ CMakeFiles/axion_cpp.dir/bindings/pybind_module.cpp.obj: \
  c:\rtools44\x86_64-w64-mingw32.static.posix\lib\gcc\x86_64-w64-mingw32.static.posix\13.3.0\include\c++\bits\mask_array.h \
  c:\rtools44\x86_64-w64-mingw32.static.posix\lib\gcc\x86_64-w64-mingw32.static.posix\13.3.0\include\c++\bits\indirect_array.h \
  c:\rtools44\x86_64-w64-mingw32.static.posix\lib\gcc\x86_64-w64-mingw32.static.posix\13.3.0\include\c++\variant \
+ d:\llm\ projects\axion\inference\cpp\runtime\single_position.hpp \
+ d:\llm\ projects\axion\inference\cpp\runtime\token_embedding.hpp \
+ d:\llm\ projects\axion\inference\cpp\runtime\incremental_forward.hpp \
+ d:\llm\ projects\axion\inference\cpp\core\mmap_loader.hpp \
+ d:\llm\ projects\axion\inference\cpp\runtime\kv_state.hpp \
  d:\llm\ projects\axion\inference\cpp\kernels\blas.hpp \
  d:\llm\ projects\axion\inference\cpp\runtime\residual.hpp \
  d:\llm\ projects\axion\inference\cpp\kernels\add.hpp \
+ d:\llm\ projects\axion\inference\cpp\runtime\cached_attention.hpp \
  d:\llm\ projects\axion\inference\cpp\kernels\multihead_attention.hpp \
  d:\llm\ projects\axion\inference\cpp\runtime\linear.hpp \
  d:\llm\ projects\axion\inference\cpp\kernels\rmsnorm.hpp \
+ d:\llm\ projects\axion\inference\cpp\runtime\kv_append.hpp \
  d:\llm\ projects\axion\inference\cpp\runtime\full_forward.hpp \
- d:\llm\ projects\axion\inference\cpp\core\mmap_loader.hpp \
  d:\llm\ projects\axion\inference\cpp\runtime\position_embedding.hpp \
  d:\llm\ projects\axion\inference\cpp\runtime\logits.hpp \
  d:\llm\ projects\axion\inference\cpp\runtime\embedding.hpp \

@@ -1,14 +1,21 @@
 // inference/cpp/bindings/pybind_module.cpp
 
 #include <pybind11/pybind11.h>
+#include "../kernels/layernorm.hpp"
 #include "../runtime/last_token.hpp"
 #include <pybind11/stl.h>
+#include "../runtime/single_position.hpp"
+#include "../runtime/token_embedding.hpp"
+#include "../runtime/incremental_forward.hpp"
 #include "../kernels/blas.hpp"
 #include "../runtime/residual.hpp"
 #include "../kernels/add.hpp"
+#include "../runtime/cached_attention.hpp"
 #include "../kernels/multihead_attention.hpp"
 #include "../runtime/linear.hpp"
 #include "../kernels/rmsnorm.hpp"
+#include "../runtime/kv_state.hpp"
+#include "../runtime/kv_append.hpp"
 #include "../runtime/full_forward.hpp"
 #include "../runtime/position_embedding.hpp"
 #include "../runtime/logits.hpp"
@@ -291,10 +298,65 @@ PYBIND11_MODULE(axion_cpp, m) {
             "add",
             &add
         );
+    py::class_<LayerKVCache>(
+        m,
+        "LayerKVCache"
+    )
 
+        .def(py::init<>())
 
+        .def_readwrite(
+            "keys",
+            &LayerKVCache::keys
+        )
 
+        .def_readwrite(
+            "values",
+            &LayerKVCache::values
+        );
 
+        py::class_<KVState>(
+            m,
+            "KVState"
+        )
 
+        .def(
+            py::init<int>()
+        )
+
+        .def_readwrite(
+            "layers",
+            &KVState::layers
+        );
+
+        m.def(
+            "append_kv_cache",
+            &append_kv_cache
+        );
+        m.def(
+            "cached_attention",
+            &cached_attention
+        );
+        m.def(
+            "token_embedding",
+            &token_embedding
+        );
+        m.def(
+            "single_position_embedding",
+            &single_position_embedding
+        );
+        m.def(
+            "incremental_forward",
+            &incremental_forward
+        );
+
+        m.def(
+            "layernorm",
+            &layernorm,
+            py::arg("input"),
+            py::arg("weight"),
+            py::arg("bias"),
+            py::arg("eps") = 1e-5f
+        );
 
 }

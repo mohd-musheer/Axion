@@ -6,6 +6,8 @@ FILE: .gitignore
 tests/inference/adapter_model.safetensors
 tests/inference/model.safetensors
 .vscode/settings.json
+dd.py
+data.txt
 
 
 ================================================================================
@@ -329,14 +331,31 @@ pybind11_add_module(axion_cpp
     core/mmap_loader.cpp
     kernels/attention_output.cpp
     kernels/blas.cpp
+    runtime/transformer_stack.cpp
+    runtime/residual.cpp
     kernels/rmsnorm.cpp
     runtime/generation.cpp
     runtime/embedding.cpp
+    runtime/linear.cpp
+    kernels/gelu.cpp
+    runtime/last_token.cpp
+    kernels/layernorm.cpp
+    runtime/token_embedding.cpp
+    runtime/incremental_forward.cpp
+    runtime/gpt2_ln.cpp
+    runtime/single_position.cpp
+    runtime/cached_attention.cpp
+    kernels/add.cpp
     runtime/weight_lookup.cpp
-    kernels/residual.cpp
+    runtime/position_embedding.cpp
+    runtime/real_attention.cpp
+    runtime/fused_qkv.cpp
+    runtime/final_norm.cpp
     runtime/execution_graph.cpp
     runtime/logits.cpp
     kernels/multihead.cpp
+    runtime/full_forward.cpp
+    runtime/kv_append.cpp
     runtime/layer_scheduler.cpp
     kernels/multihead_attention.cpp
     kernels/causal_mask.cpp
@@ -404,14 +423,29 @@ FILE: inference\cpp\bindings\pybind_module.cpp
 // inference/cpp/bindings/pybind_module.cpp
 
 #include <pybind11/pybind11.h>
+#include "../kernels/layernorm.hpp"
+#include "../runtime/last_token.hpp"
 #include <pybind11/stl.h>
+#include "../runtime/single_position.hpp"
+#include "../runtime/token_embedding.hpp"
+#include "../runtime/incremental_forward.hpp"
 #include "../kernels/blas.hpp"
+#include "../runtime/residual.hpp"
+#include "../kernels/add.hpp"
+#include "../runtime/cached_attention.hpp"
 #include "../kernels/multihead_attention.hpp"
+#include "../runtime/linear.hpp"
 #include "../kernels/rmsnorm.hpp"
+#include "../runtime/kv_state.hpp"
+#include "../runtime/kv_append.hpp"
+#include "../runtime/full_forward.hpp"
+#include "../runtime/position_embedding.hpp"
 #include "../runtime/logits.hpp"
 #include "../runtime/embedding.hpp"
+#include "../runtime/fused_qkv.hpp"
 #include "../runtime/kv_cache.hpp"
 #include "../runtime/weight_lookup.hpp"
+#include "../runtime/real_attention.hpp"
 #include "../runtime/execution_graph.hpp"
 #include "../core/tensor.hpp"
 #include "../runtime/layer_scheduler.hpp"
@@ -419,15 +453,18 @@ FILE: inference\cpp\bindings\pybind_module.cpp
 #include "../kernels/multihead.hpp"
 #include "../runtime/transformer_layer.hpp"
 #include "../core/mmap_loader.hpp"
+#include "../runtime/gpt2_ln.hpp"
 #include "../kernels/transpose.hpp"
 #include "../kernels/attention.hpp"
+#include "../kernels/gelu.hpp"
 #include "../kernels/softmax.hpp"
 #include "../kernels/silu.hpp"
 #include "../kernels/elementwise.hpp"
 #include "../kernels/mlp.hpp"
 #include "../kernels/attention_output.hpp"
 #include "../kernels/rope.hpp"
-#include "../kernels/residual.hpp"
+#include "../runtime/transformer_stack.hpp"
+#include "../runtime/final_norm.hpp"
 #include "../runtime/generation.hpp"
 namespace py = pybind11;
 
@@ -621,14 +658,128 @@ PYBIND11_MODULE(axion_cpp, m) {
             "argmax",
             &argmax
         );
+        m.def(
+            "real_attention",
+            &real_attention
+        );
 
 
+    py::class_<QKV>(m, "QKV")
 
+        .def_readwrite(
+            "Q",
+            &QKV::Q
+        )
 
+        .def_readwrite(
+            "K",
+            &QKV::K
+        )
 
+        .def_readwrite(
+            "V",
+            &QKV::V
+        );
+        m.def(
+            "split_fused_qkv",
+            &split_fused_qkv
+        );
+        m.def(
+            "transformer_stack",
+            &transformer_stack
+        );
+       m.def(
+            "final_norm",
+            &final_norm
+        );
+        m.def(
+            "full_forward",
+            &full_forward
+        );
+        m.def(
+            "linear",
+            &linear
+        );
+        m.def(
+            "gpt2_ln",
+            &gpt2_ln
+        );
+        m.def(
+            "gelu",
+            &gelu
+        );
+        m.def(
+            "last_token",
+            &last_token
+        );
+        m.def(
+            "position_embedding_lookup",
+            &position_embedding_lookup
+        );
+        m.def(
+            "add",
+            &add
+        );
+    py::class_<LayerKVCache>(
+        m,
+        "LayerKVCache"
+    )
 
+        .def(py::init<>())
 
+        .def_readwrite(
+            "keys",
+            &LayerKVCache::keys
+        )
 
+        .def_readwrite(
+            "values",
+            &LayerKVCache::values
+        );
+
+        py::class_<KVState>(
+            m,
+            "KVState"
+        )
+
+        .def(
+            py::init<int>()
+        )
+
+        .def_readwrite(
+            "layers",
+            &KVState::layers
+        );
+
+        m.def(
+            "append_kv_cache",
+            &append_kv_cache
+        );
+        m.def(
+            "cached_attention",
+            &cached_attention
+        );
+        m.def(
+            "token_embedding",
+            &token_embedding
+        );
+        m.def(
+            "single_position_embedding",
+            &single_position_embedding
+        );
+        m.def(
+            "incremental_forward",
+            &incremental_forward
+        );
+
+        m.def(
+            "layernorm",
+            &layernorm,
+            py::arg("input"),
+            py::arg("weight"),
+            py::arg("bias"),
+            py::arg("eps") = 1e-5f
+        );
 
 }
 
@@ -1159,6 +1310,63 @@ public:
 
 
 ================================================================================
+FILE: inference\cpp\kernels\add.cpp
+================================================================================
+
+#include "add.hpp"
+
+#include <stdexcept>
+
+namespace axion {
+
+Tensor add(
+    const Tensor& a,
+    const Tensor& b
+) {
+
+    if (a.shape != b.shape) {
+
+        throw std::runtime_error(
+            "Add shape mismatch"
+        );
+    }
+
+    Tensor out = a;
+
+    for (size_t i = 0;
+         i < a.data.size();
+         i++) {
+
+        out.data[i] =
+            a.data[i] +
+            b.data[i];
+    }
+
+    return out;
+}
+
+}
+
+
+================================================================================
+FILE: inference\cpp\kernels\add.hpp
+================================================================================
+
+#pragma once
+
+#include "../core/tensor.hpp"
+
+namespace axion {
+
+Tensor add(
+    const Tensor& a,
+    const Tensor& b
+);
+
+}
+
+
+================================================================================
 FILE: inference\cpp\kernels\attention.cpp
 ================================================================================
 
@@ -1584,6 +1792,218 @@ FILE: inference\cpp\kernels\fused_attention.cpp
 ================================================================================
 
 
+
+
+================================================================================
+FILE: inference\cpp\kernels\gelu.cpp
+================================================================================
+
+#include "gelu.hpp"
+
+#include <cmath>
+
+namespace axion {
+
+Tensor gelu(
+    const Tensor& input
+) {
+
+    Tensor out = input;
+
+    for (size_t i = 0;
+         i < input.data.size();
+         i++) {
+
+        float x =
+            input.data[i];
+
+        out.data[i] =
+            0.5f *
+            x *
+            (
+                1.0f +
+                std::tanh(
+                    std::sqrt(
+                        2.0f / M_PI
+                    ) *
+                    (
+                        x +
+                        0.044715f *
+                        x *
+                        x *
+                        x
+                    )
+                )
+            );
+    }
+
+    return out;
+}
+
+}
+
+
+================================================================================
+FILE: inference\cpp\kernels\gelu.hpp
+================================================================================
+
+#pragma once
+
+#include "../core/tensor.hpp"
+
+namespace axion {
+
+Tensor gelu(
+    const Tensor& input
+);
+
+}
+
+
+================================================================================
+FILE: inference\cpp\kernels\layernorm.cpp
+================================================================================
+
+#include "layernorm.hpp"
+
+#include <cmath>
+#include <stdexcept>
+
+namespace axion {
+
+Tensor layernorm(
+    const Tensor& input,
+    const Tensor& weight,
+    const Tensor& bias,
+    float eps
+) {
+
+    if (input.shape.size() != 2) {
+
+        throw std::runtime_error(
+            "LayerNorm expects 2D tensor"
+        );
+    }
+
+    int64_t rows =
+        input.shape[0];
+
+    int64_t hidden =
+        input.shape[1];
+
+    Tensor output;
+
+    output.name =
+        "layernorm_output";
+
+    output.shape =
+        input.shape;
+
+    output.dtype =
+        input.dtype;
+
+    output.data.resize(
+        input.data.size()
+    );
+
+    for (int64_t r = 0;
+         r < rows;
+         r++) {
+
+        // -------------------------
+        // MEAN
+        // -------------------------
+
+        float mean = 0.0f;
+
+        for (int64_t h = 0;
+             h < hidden;
+             h++) {
+
+            mean += input.data[
+                r * hidden + h
+            ];
+        }
+
+        mean /= hidden;
+
+        // -------------------------
+        // VARIANCE
+        // -------------------------
+
+        float var = 0.0f;
+
+        for (int64_t h = 0;
+             h < hidden;
+             h++) {
+
+            float x =
+                input.data[
+                    r * hidden + h
+                ] - mean;
+
+            var += x * x;
+        }
+
+        var /= hidden;
+
+        float inv_std =
+            1.0f /
+            std::sqrt(var + eps);
+
+        // -------------------------
+        // NORMALIZE
+        // -------------------------
+
+        for (int64_t h = 0;
+             h < hidden;
+             h++) {
+
+            float x =
+                input.data[
+                    r * hidden + h
+                ];
+
+            float norm =
+                (x - mean) *
+                inv_std;
+
+            norm *=
+                weight.data[h];
+
+            norm +=
+                bias.data[h];
+
+            output.data[
+                r * hidden + h
+            ] = norm;
+        }
+    }
+
+    return output;
+}
+
+}
+
+
+================================================================================
+FILE: inference\cpp\kernels\layernorm.hpp
+================================================================================
+
+#pragma once
+
+#include "../core/tensor.hpp"
+
+namespace axion {
+
+Tensor layernorm(
+    const Tensor& input,
+    const Tensor& weight,
+    const Tensor& bias,
+    float eps = 1e-5f
+);
+
+}
 
 
 ================================================================================
@@ -2599,6 +3019,174 @@ FILE: inference\cpp\runtime\batch_executor.cpp
 
 
 ================================================================================
+FILE: inference\cpp\runtime\cached_attention.cpp
+================================================================================
+
+
+#include "cached_attention.hpp"
+
+#include "fused_qkv.hpp"
+#include "kv_append.hpp"
+
+#include "../kernels/blas.hpp"
+#include "../kernels/transpose.hpp"
+#include "../kernels/rope.hpp"
+#include "../kernels/multihead_attention.hpp"
+
+namespace axion {
+
+Tensor cached_attention(
+    const Tensor& hidden,
+    MMapLoader& loader,
+    LayerKVCache& cache,
+    const std::string& fused_name,
+    int num_heads
+) {
+
+    // -------------------------
+    // LOAD FUSED QKV
+    // -------------------------
+
+    Tensor fused =
+        loader.load_tensor_data(
+            fused_name
+        );
+
+    // -------------------------
+    // SPLIT QKV
+    // -------------------------
+
+    QKV qkv =
+        split_fused_qkv(
+            fused
+        );
+
+    Tensor Wq =
+        qkv.Q;
+
+    Tensor Wk =
+        qkv.K;
+
+    Tensor Wv =
+        qkv.V;
+
+    // -------------------------
+    // TRANSPOSE
+    // -------------------------
+
+    Tensor Wq_t =
+        transpose(Wq);
+
+    Tensor Wk_t =
+        transpose(Wk);
+
+    Tensor Wv_t =
+        transpose(Wv);
+
+    // -------------------------
+    // QKV PROJECTIONS
+    // -------------------------
+
+    Tensor Q =
+        matmul(
+            hidden,
+            Wq_t
+        );
+
+    Tensor K =
+        matmul(
+            hidden,
+            Wk_t
+        );
+
+    Tensor V =
+        matmul(
+            hidden,
+            Wv_t
+        );
+
+    // -------------------------
+    // ROPE
+    // -------------------------
+
+    int hidden_size =
+        Q.shape[1];
+
+    int head_dim =
+        hidden_size / num_heads;
+
+    int position =
+        cache.keys.shape.empty()
+        ? 0
+        : cache.keys.shape[0];
+
+    apply_rope(
+        Q,
+        K,
+        position,
+        head_dim
+    );
+
+    // -------------------------
+    // APPEND KV CACHE
+    // -------------------------
+
+    append_kv_cache(
+        cache,
+        K,
+        V
+    );
+
+    // -------------------------
+    // ATTENTION
+    // -------------------------
+
+    Tensor output =
+        multihead_attention(
+            Q,
+            cache.keys,
+            cache.values,
+            num_heads
+        );
+
+    output.name =
+        "cached_attention_output";
+
+    return output;
+}
+
+}
+
+
+
+================================================================================
+FILE: inference\cpp\runtime\cached_attention.hpp
+================================================================================
+
+
+#pragma once
+
+#include "../core/tensor.hpp"
+#include "../core/mmap_loader.hpp"
+
+#include "kv_state.hpp"
+
+#include <string>
+
+namespace axion {
+
+Tensor cached_attention(
+    const Tensor& hidden,
+    MMapLoader& loader,
+    LayerKVCache& cache,
+    const std::string& fused_name,
+    int num_heads
+);
+
+}
+
+
+================================================================================
 FILE: inference\cpp\runtime\embedding.cpp
 ================================================================================
 
@@ -2861,6 +3449,256 @@ Tensor execute_model(
 
 
 ================================================================================
+FILE: inference\cpp\runtime\final_norm.cpp
+================================================================================
+
+#include "final_norm.hpp"
+
+#include "../kernels/rmsnorm.hpp"
+
+namespace axion {
+
+Tensor final_norm(
+    const Tensor& input
+) {
+
+    Tensor weight;
+
+    weight.name =
+        "final_norm_weight";
+
+    weight.shape = {
+        input.shape[1]
+    };
+
+    weight.dtype =
+        input.dtype;
+
+    weight.data.resize(
+        input.shape[1],
+        1.0f
+    );
+
+    Tensor output =
+        rmsnorm(
+            input,
+            weight
+        );
+
+    output.name =
+        "final_norm_output";
+
+    return output;
+}
+
+}
+
+
+================================================================================
+FILE: inference\cpp\runtime\final_norm.hpp
+================================================================================
+
+#pragma once
+
+#include "../core/tensor.hpp"
+
+namespace axion {
+
+Tensor final_norm(
+    const Tensor& input
+);
+
+}
+
+
+================================================================================
+FILE: inference\cpp\runtime\full_forward.cpp
+================================================================================
+
+#include "full_forward.hpp"
+
+#include "transformer_stack.hpp"
+#include "logits.hpp"
+
+namespace axion {
+
+Tensor full_forward(
+    const Tensor& embeddings,
+    MMapLoader& loader,
+    int num_layers,
+    int num_heads,
+    const Tensor& embedding_matrix
+) {
+
+    // -------------------------
+    // TRANSFORMER
+    // -------------------------
+
+    Tensor hidden =
+        transformer_stack(
+            embeddings,
+            loader,
+            num_layers,
+            num_heads
+        );
+
+    // -------------------------
+    // LOGITS
+    // -------------------------
+
+    Tensor logits =
+        compute_logits(
+            hidden,
+            embedding_matrix
+        );
+
+    logits.name =
+        "final_logits";
+
+    return logits;
+}
+
+}
+
+
+================================================================================
+FILE: inference\cpp\runtime\full_forward.hpp
+================================================================================
+
+#pragma once
+
+#include "../core/tensor.hpp"
+#include "../core/mmap_loader.hpp"
+
+namespace axion {
+
+Tensor full_forward(
+    const Tensor& embeddings,
+    MMapLoader& loader,
+    int num_layers,
+    int num_heads,
+    const Tensor& embedding_matrix
+);
+
+}
+
+
+================================================================================
+FILE: inference\cpp\runtime\fused_qkv.cpp
+================================================================================
+
+#include "fused_qkv.hpp"
+
+#include <stdexcept>
+
+namespace axion {
+
+QKV split_fused_qkv(
+    const Tensor& fused
+) {
+
+    if (fused.shape.size() != 2) {
+
+        throw std::runtime_error(
+            "Expected 2D fused tensor"
+        );
+    }
+
+    int64_t rows =
+        fused.shape[0];
+
+    int64_t cols =
+        fused.shape[1];
+
+    if (cols % 3 != 0) {
+
+        throw std::runtime_error(
+            "Fused QKV not divisible by 3"
+        );
+    }
+
+    int64_t hidden =
+        cols / 3;
+
+    Tensor Q;
+    Tensor K;
+    Tensor V;
+
+    Q.shape = { rows, hidden };
+    K.shape = { rows, hidden };
+    V.shape = { rows, hidden };
+
+    Q.data.resize(rows * hidden);
+    K.data.resize(rows * hidden);
+    V.data.resize(rows * hidden);
+
+    for (int64_t r = 0; r < rows; r++) {
+
+        for (int64_t c = 0; c < hidden; c++) {
+
+            Q.data[
+                r * hidden + c
+            ] =
+            fused.data[
+                r * cols + c
+            ];
+
+            K.data[
+                r * hidden + c
+            ] =
+            fused.data[
+                r * cols + hidden + c
+            ];
+
+            V.data[
+                r * hidden + c
+            ] =
+            fused.data[
+                r * cols + (2 * hidden) + c
+            ];
+        }
+    }
+
+    Q.name = "Q_weight";
+    K.name = "K_weight";
+    V.name = "V_weight";
+
+    return {
+        Q,
+        K,
+        V
+    };
+}
+
+}
+
+
+================================================================================
+FILE: inference\cpp\runtime\fused_qkv.hpp
+================================================================================
+
+
+#pragma once
+
+#include "../core/tensor.hpp"
+
+namespace axion {
+
+struct QKV {
+
+    Tensor Q;
+    Tensor K;
+    Tensor V;
+};
+
+QKV split_fused_qkv(
+    const Tensor& fused
+);
+
+}
+
+
+================================================================================
 FILE: inference\cpp\runtime\generation.cpp
 ================================================================================
 
@@ -2927,6 +3765,298 @@ Tensor generate_tokens(
 
 
 ================================================================================
+FILE: inference\cpp\runtime\gpt2_ln.cpp
+================================================================================
+
+#include "gpt2_ln.hpp"
+
+#include <cmath>
+
+namespace axion {
+
+Tensor gpt2_ln(
+    const Tensor& input,
+    const Tensor& weight
+) {
+
+    Tensor out = input;
+
+    int64_t rows =
+        input.shape[0];
+
+    int64_t cols =
+        input.shape[1];
+
+    for (int64_t r = 0;
+         r < rows;
+         r++) {
+
+        float mean = 0.0f;
+
+        for (int64_t c = 0;
+             c < cols;
+             c++) {
+
+            mean += input.data[
+                r * cols + c
+            ];
+        }
+
+        mean /= cols;
+
+        float var = 0.0f;
+
+        for (int64_t c = 0;
+             c < cols;
+             c++) {
+
+            float v =
+                input.data[
+                    r * cols + c
+                ] - mean;
+
+            var += v * v;
+        }
+
+        var /= cols;
+
+        float inv_std =
+            1.0f /
+            std::sqrt(var + 1e-5f);
+
+        for (int64_t c = 0;
+             c < cols;
+             c++) {
+
+            float norm =
+                (
+                    input.data[
+                        r * cols + c
+                    ] - mean
+                ) * inv_std;
+
+            out.data[
+                r * cols + c
+            ] =
+                norm *
+                weight.data[c];
+        }
+    }
+
+    return out;
+}
+
+}
+
+
+================================================================================
+FILE: inference\cpp\runtime\gpt2_ln.hpp
+================================================================================
+
+#pragma once
+
+#include "../core/tensor.hpp"
+
+namespace axion {
+
+Tensor gpt2_ln(
+    const Tensor& input,
+    const Tensor& weight
+);
+
+}
+
+
+================================================================================
+FILE: inference\cpp\runtime\incremental_forward.cpp
+================================================================================
+
+#include "incremental_forward.hpp"
+
+#include "token_embedding.hpp"
+#include "single_position.hpp"
+#include "cached_attention.hpp"
+#include "linear.hpp"
+#include "logits.hpp"
+
+#include "../kernels/add.hpp"
+#include "../kernels/transpose.hpp"
+#include "../kernels/rmsnorm.hpp"
+#include "../kernels/gelu.hpp"
+
+namespace axion {
+
+Tensor incremental_forward(
+    int token_id,
+    int position,
+    const Tensor& embedding_matrix,
+    const Tensor& position_matrix,
+    MMapLoader& loader,
+    KVState& kv_state,
+    int num_layers,
+    int num_heads
+) {
+
+    // -------------------------
+    // TOKEN EMBEDDING
+    // -------------------------
+
+    Tensor hidden =
+        token_embedding(
+            embedding_matrix,
+            token_id
+        );
+
+    // -------------------------
+    // POSITION EMBEDDING
+    // -------------------------
+
+    Tensor pos =
+        single_position_embedding(
+            position_matrix,
+            position
+        );
+
+    hidden =
+        add(hidden, pos);
+
+    // -------------------------
+    // TRANSFORMER LAYERS
+    // -------------------------
+
+    for (int layer = 0;
+         layer < num_layers;
+         layer++) {
+
+        // -------------------------
+        // ATTENTION
+        // -------------------------
+
+        Tensor attn =
+            cached_attention(
+                hidden,
+                loader,
+                kv_state.layers[layer],
+                "h." +
+                std::to_string(layer) +
+                ".attn.c_attn.weight",
+                num_heads
+            );
+
+        // -------------------------
+        // ATTN PROJ
+        // -------------------------
+
+        Tensor proj_weight =
+            loader.load_tensor_data(
+                "h." +
+                std::to_string(layer) +
+                ".attn.c_proj.weight"
+            );
+
+        Tensor proj_t =
+            transpose(
+                proj_weight
+            );
+
+        Tensor projected =
+            linear(
+                attn,
+                proj_t
+            );
+
+        hidden =
+            add(
+                hidden,
+                projected
+            );
+
+        // -------------------------
+        // MLP
+        // -------------------------
+
+        Tensor fc_weight =
+            loader.load_tensor_data(
+                "h." +
+                std::to_string(layer) +
+                ".mlp.c_fc.weight"
+            );
+
+        Tensor fc_out =
+            linear(
+                hidden,
+                fc_weight
+            );
+
+        Tensor activated =
+            gelu(
+                fc_out
+            );
+
+        Tensor proj_weight2 =
+            loader.load_tensor_data(
+                "h." +
+                std::to_string(layer) +
+                ".mlp.c_proj.weight"
+            );
+
+        Tensor mlp_out =
+            linear(
+                activated,
+                proj_weight2
+            );
+
+        hidden =
+            add(
+                hidden,
+                mlp_out
+            );
+    }
+
+    // -------------------------
+    // FINAL LOGITS
+    // -------------------------
+
+    Tensor logits =
+        compute_logits(
+            hidden,
+            embedding_matrix
+        );
+
+    return logits;
+}
+
+}
+
+
+================================================================================
+FILE: inference\cpp\runtime\incremental_forward.hpp
+================================================================================
+
+#pragma once
+
+#include "../core/tensor.hpp"
+#include "../core/mmap_loader.hpp"
+
+#include "kv_state.hpp"
+
+namespace axion {
+
+Tensor incremental_forward(
+    int token_id,
+    int position,
+    const Tensor& embedding_matrix,
+    const Tensor& position_matrix,
+    MMapLoader& loader,
+    KVState& kv_state,
+    int num_layers,
+    int num_heads
+);
+
+}
+
+
+================================================================================
 FILE: inference\cpp\runtime\inference_engine.cpp
 ================================================================================
 
@@ -2988,6 +4118,98 @@ public:
         const std::string& layer_path
     );
 };
+
+}
+
+
+================================================================================
+FILE: inference\cpp\runtime\kv_append.cpp
+================================================================================
+
+#include "kv_append.hpp"
+
+#include <stdexcept>
+
+namespace axion {
+
+void append_kv_cache(
+    LayerKVCache& cache,
+    const Tensor& K,
+    const Tensor& V
+) {
+
+    // -------------------------
+    // FIRST INSERT
+    // -------------------------
+
+    if (cache.keys.data.empty()) {
+
+        cache.keys = K;
+        cache.values = V;
+
+        return;
+    }
+
+    // -------------------------
+    // VALIDATION
+    // -------------------------
+
+    if (cache.keys.shape[1] != K.shape[1]) {
+
+        throw std::runtime_error(
+            "KV append hidden mismatch"
+        );
+    }
+
+    // -------------------------
+    // APPEND KEYS
+    // -------------------------
+
+    cache.keys.data.insert(
+        cache.keys.data.end(),
+        K.data.begin(),
+        K.data.end()
+    );
+
+    // -------------------------
+    // APPEND VALUES
+    // -------------------------
+
+    cache.values.data.insert(
+        cache.values.data.end(),
+        V.data.begin(),
+        V.data.end()
+    );
+
+    // -------------------------
+    // UPDATE SEQ LEN
+    // -------------------------
+
+    cache.keys.shape[0] +=
+        K.shape[0];
+
+    cache.values.shape[0] +=
+        V.shape[0];
+}
+
+}
+
+
+================================================================================
+FILE: inference\cpp\runtime\kv_append.hpp
+================================================================================
+
+#pragma once
+
+#include "kv_state.hpp"
+
+namespace axion {
+
+void append_kv_cache(
+    LayerKVCache& cache,
+    const Tensor& K,
+    const Tensor& V
+);
 
 }
 
@@ -3126,6 +4348,122 @@ public:
 
 
 ================================================================================
+FILE: inference\cpp\runtime\kv_state.hpp
+================================================================================
+
+#pragma once
+
+#include "../core/tensor.hpp"
+
+#include <vector>
+
+namespace axion {
+
+struct LayerKVCache {
+
+    Tensor keys;
+
+    Tensor values;
+};
+
+class KVState {
+
+public:
+
+    std::vector<LayerKVCache> layers;
+
+    KVState(
+        int num_layers
+    ) {
+
+        layers.resize(
+            num_layers
+        );
+    }
+};
+
+}
+
+
+================================================================================
+FILE: inference\cpp\runtime\last_token.cpp
+================================================================================
+
+#include "last_token.hpp"
+
+#include <stdexcept>
+
+namespace axion {
+
+Tensor last_token(
+    const Tensor& logits
+) {
+
+    if (logits.shape.size() != 2) {
+
+        throw std::runtime_error(
+            "Expected 2D logits tensor"
+        );
+    }
+
+    int64_t rows =
+        logits.shape[0];
+
+    int64_t cols =
+        logits.shape[1];
+
+    Tensor out;
+
+    out.name =
+        "last_token_logits";
+
+    out.shape = {
+        1,
+        cols
+    };
+
+    out.dtype =
+        logits.dtype;
+
+    out.data.resize(cols);
+
+    int64_t last_row =
+        rows - 1;
+
+    for (int64_t c = 0;
+         c < cols;
+         c++) {
+
+        out.data[c] =
+            logits.data[
+                last_row * cols + c
+            ];
+    }
+
+    return out;
+}
+
+}
+
+
+================================================================================
+FILE: inference\cpp\runtime\last_token.hpp
+================================================================================
+
+#pragma once
+
+#include "../core/tensor.hpp"
+
+namespace axion {
+
+Tensor last_token(
+    const Tensor& logits
+);
+
+}
+
+
+================================================================================
 FILE: inference\cpp\runtime\layer_scheduler.cpp
 ================================================================================
 
@@ -3195,6 +4533,50 @@ std::vector<std::string> discover_layers(
 
 }
 
+
+
+================================================================================
+FILE: inference\cpp\runtime\linear.cpp
+================================================================================
+
+
+#include "linear.hpp"
+
+#include "../kernels/blas.hpp"
+
+namespace axion {
+
+Tensor linear(
+    const Tensor& input,
+    const Tensor& weight
+) {
+
+    return matmul(
+        input,
+        weight
+    );
+}
+
+}
+
+
+
+================================================================================
+FILE: inference\cpp\runtime\linear.hpp
+================================================================================
+
+#pragma once
+
+#include "../core/tensor.hpp"
+
+namespace axion {
+
+Tensor linear(
+    const Tensor& input,
+    const Tensor& weight
+);
+
+}
 
 
 ================================================================================
@@ -3317,10 +4699,469 @@ FILE: inference\cpp\runtime\paged_attention.cpp
 
 
 ================================================================================
+FILE: inference\cpp\runtime\position_embedding.cpp
+================================================================================
+
+#include "position_embedding.hpp"
+
+#include <stdexcept>
+
+namespace axion {
+
+Tensor position_embedding_lookup(
+    const Tensor& position_matrix,
+    int seq_len
+) {
+
+    if (position_matrix.shape.size() != 2) {
+
+        throw std::runtime_error(
+            "Position matrix must be 2D"
+        );
+    }
+
+    int64_t max_positions =
+        position_matrix.shape[0];
+
+    int64_t hidden_size =
+        position_matrix.shape[1];
+
+    if (seq_len > max_positions) {
+
+        throw std::runtime_error(
+            "Sequence exceeds max positions"
+        );
+    }
+
+    Tensor out;
+
+    out.name =
+        "position_embeddings";
+
+    out.shape = {
+        seq_len,
+        hidden_size
+    };
+
+    out.dtype =
+        position_matrix.dtype;
+
+    out.data.resize(
+        seq_len * hidden_size
+    );
+
+    for (int pos = 0;
+         pos < seq_len;
+         pos++) {
+
+        for (int64_t h = 0;
+             h < hidden_size;
+             h++) {
+
+            out.data[
+                pos * hidden_size + h
+            ] =
+            position_matrix.data[
+                pos * hidden_size + h
+            ];
+        }
+    }
+
+    return out;
+}
+
+}
+
+
+================================================================================
+FILE: inference\cpp\runtime\position_embedding.hpp
+================================================================================
+
+#pragma once
+
+#include "../core/tensor.hpp"
+
+#include <vector>
+
+namespace axion {
+
+Tensor position_embedding_lookup(
+    const Tensor& position_matrix,
+    int seq_len
+);
+
+}
+
+
+================================================================================
+FILE: inference\cpp\runtime\real_attention.cpp
+================================================================================
+
+
+#include "real_attention.hpp"
+
+#include "../kernels/blas.hpp"
+#include "../kernels/rope.hpp"
+#include "../kernels/multihead_attention.hpp"
+
+#include "fused_qkv.hpp"
+
+namespace axion {
+
+Tensor real_attention(
+    const Tensor& hidden,
+    MMapLoader& loader,
+    const std::string& q_name,
+    const std::string& k_name,
+    const std::string& v_name,
+    int num_heads
+) {
+
+    // -------------------------
+    // LOAD FUSED WEIGHT
+    // GPT2:
+    // [768, 2304]
+    // -------------------------
+
+    Tensor fused_weight =
+        loader.load_tensor_data(q_name);
+
+    // -------------------------
+    // PROJECT
+    // [B,768] @ [768,2304]
+    // -> [B,2304]
+    // -------------------------
+
+    Tensor fused_qkv =
+        matmul(
+            hidden,
+            fused_weight
+        );
+
+    // -------------------------
+    // SPLIT ACTIVATIONS
+    // -------------------------
+
+    QKV qkv =
+        split_fused_qkv(
+            fused_qkv
+        );
+
+    Tensor Q = qkv.Q;
+    Tensor K = qkv.K;
+    Tensor V = qkv.V;
+
+    // -------------------------
+    // ROPE
+    // -------------------------
+
+    int hidden_size =
+        Q.shape[1];
+
+    int head_dim =
+        hidden_size / num_heads;
+
+    apply_rope(
+        Q,
+        K,
+        0,
+        head_dim
+    );
+
+    // -------------------------
+    // ATTENTION
+    // -------------------------
+
+    Tensor output =
+        multihead_attention(
+            Q,
+            K,
+            V,
+            num_heads
+        );
+
+    output.name =
+        "real_attention_output";
+
+    return output;
+}
+
+}
+
+
+
+================================================================================
+FILE: inference\cpp\runtime\real_attention.hpp
+================================================================================
+
+#pragma once
+
+#include "../core/tensor.hpp"
+#include "../core/mmap_loader.hpp"
+
+namespace axion {
+
+Tensor real_attention(
+    const Tensor& hidden,
+    MMapLoader& loader,
+    const std::string& q_name,
+    const std::string& k_name,
+    const std::string& v_name,
+    int num_heads
+);
+
+}
+
+
+================================================================================
+FILE: inference\cpp\runtime\residual.cpp
+================================================================================
+
+#include "residual.hpp"
+
+#include <stdexcept>
+
+#ifdef _OPENMP
+#include <omp.h>
+#endif
+
+namespace axion {
+
+Tensor residual_add(
+    const Tensor& a,
+    const Tensor& b
+) {
+
+    if (a.shape != b.shape) {
+
+        throw std::runtime_error(
+            "Residual shape mismatch"
+        );
+    }
+
+    Tensor out;
+
+    out.name =
+        "residual_output";
+
+    out.shape =
+        a.shape;
+
+    out.dtype =
+        a.dtype;
+
+    out.data.resize(
+        a.data.size()
+    );
+
+    #pragma omp parallel for
+    for (int64_t i = 0;
+         i < (int64_t)a.data.size();
+         i++) {
+
+        out.data[i] =
+            a.data[i] +
+            b.data[i];
+    }
+
+    return out;
+}
+
+}
+
+
+================================================================================
+FILE: inference\cpp\runtime\residual.hpp
+================================================================================
+
+#pragma once
+
+#include "../core/tensor.hpp"
+
+namespace axion {
+
+Tensor residual_add(
+    const Tensor& a,
+    const Tensor& b
+);
+
+}
+
+
+================================================================================
+FILE: inference\cpp\runtime\single_position.cpp
+================================================================================
+
+#include "single_position.hpp"
+
+#include <stdexcept>
+
+namespace axion {
+
+Tensor single_position_embedding(
+    const Tensor& position_matrix,
+    int position
+) {
+
+    if (position_matrix.shape.size() != 2) {
+
+        throw std::runtime_error(
+            "Position matrix must be 2D"
+        );
+    }
+
+    int64_t max_pos =
+        position_matrix.shape[0];
+
+    int64_t hidden =
+        position_matrix.shape[1];
+
+    if (position >= max_pos) {
+
+        throw std::runtime_error(
+            "Position exceeds limit"
+        );
+    }
+
+    Tensor out;
+
+    out.name =
+        "single_position_embedding";
+
+    out.shape = {
+        1,
+        hidden
+    };
+
+    out.dtype =
+        position_matrix.dtype;
+
+    out.data.resize(hidden);
+
+    for (int64_t h = 0;
+         h < hidden;
+         h++) {
+
+        out.data[h] =
+            position_matrix.data[
+                position * hidden + h
+            ];
+    }
+
+    return out;
+}
+
+}
+
+
+================================================================================
+FILE: inference\cpp\runtime\single_position.hpp
+================================================================================
+
+#pragma once
+
+#include "../core/tensor.hpp"
+
+namespace axion {
+
+Tensor single_position_embedding(
+    const Tensor& position_matrix,
+    int position
+);
+
+}
+
+
+================================================================================
 FILE: inference\cpp\runtime\speculative.cpp
 ================================================================================
 
 
+
+
+================================================================================
+FILE: inference\cpp\runtime\token_embedding.cpp
+================================================================================
+
+#include "token_embedding.hpp"
+
+#include <stdexcept>
+
+namespace axion {
+
+Tensor token_embedding(
+    const Tensor& embedding_matrix,
+    int token_id
+) {
+
+    if (embedding_matrix.shape.size() != 2) {
+
+        throw std::runtime_error(
+            "Embedding matrix must be 2D"
+        );
+    }
+
+    int64_t vocab =
+        embedding_matrix.shape[0];
+
+    int64_t hidden =
+        embedding_matrix.shape[1];
+
+    if (token_id < 0 ||
+        token_id >= vocab) {
+
+        throw std::runtime_error(
+            "Invalid token id"
+        );
+    }
+
+    Tensor out;
+
+    out.name =
+        "single_token_embedding";
+
+    out.shape = {
+        1,
+        hidden
+    };
+
+    out.dtype =
+        embedding_matrix.dtype;
+
+    out.data.resize(hidden);
+
+    for (int64_t h = 0;
+         h < hidden;
+         h++) {
+
+        out.data[h] =
+            embedding_matrix.data[
+                token_id * hidden + h
+            ];
+    }
+
+    return out;
+}
+
+}
+
+
+================================================================================
+FILE: inference\cpp\runtime\token_embedding.hpp
+================================================================================
+
+#pragma once
+
+#include "../core/tensor.hpp"
+
+namespace axion {
+
+Tensor token_embedding(
+    const Tensor& embedding_matrix,
+    int token_id
+);
+
+}
 
 
 ================================================================================
@@ -3459,6 +5300,257 @@ Tensor transformer_layer(
 
 }
 
+
+
+================================================================================
+FILE: inference\cpp\runtime\transformer_stack.cpp
+================================================================================
+
+
+#include "transformer_stack.hpp"
+#include "../kernels/gelu.hpp"
+#include "real_attention.hpp"
+#include "../kernels/transpose.hpp"
+#include "residual.hpp"
+#include "final_norm.hpp"
+#include "linear.hpp"
+#include "gpt2_ln.hpp"
+
+#include <iostream>
+
+namespace axion {
+
+Tensor transformer_stack(
+    const Tensor& input,
+    MMapLoader& loader,
+    int num_layers,
+    int num_heads
+) {
+
+    Tensor hidden =
+        input;
+
+    for (int layer = 0;
+         layer < num_layers;
+         layer++) {
+
+        std::cout
+            << "Running layer: "
+            << layer
+            << std::endl;
+
+        // ---------------------------------
+        // LOAD LN1 WEIGHT
+        // ---------------------------------
+
+        std::string ln1_name =
+            "h." +
+            std::to_string(layer) +
+            ".ln_1.weight";
+
+        Tensor ln1_weight =
+            loader.load_tensor_data(
+                ln1_name
+            );
+
+        // ---------------------------------
+        // LAYER NORM
+        // ---------------------------------
+
+        Tensor ln_hidden =
+            gpt2_ln(
+                hidden,
+                ln1_weight
+            );
+
+        // ---------------------------------
+        // ATTENTION
+        // ---------------------------------
+
+        std::string attn_name =
+            "h." +
+            std::to_string(layer) +
+            ".attn.c_attn.weight";
+
+        Tensor attn_output =
+            real_attention(
+                ln_hidden,
+                loader,
+                attn_name,
+                attn_name,
+                attn_name,
+                num_heads
+            );
+
+        // ---------------------------------
+        // LOAD ATTN PROJ
+        // ---------------------------------
+
+        std::string proj_name =
+            "h." +
+            std::to_string(layer) +
+            ".attn.c_proj.weight";
+
+        Tensor proj_weight =
+            loader.load_tensor_data(
+                proj_name
+            );
+
+        // ---------------------------------
+        // OUTPUT PROJECTION
+        // ---------------------------------
+
+        
+        Tensor proj_weight_t =
+            transpose(
+                proj_weight
+            );
+
+        Tensor projected =
+            linear(
+                attn_output,
+                proj_weight_t
+            );
+
+
+
+        // ---------------------------------
+        // RESIDUAL
+        // ---------------------------------
+
+        hidden =
+            residual_add(
+                hidden,
+                projected
+            );
+
+        // ---------------------------------
+        // LN2
+        // ---------------------------------
+
+        std::string ln2_name =
+            "h." +
+            std::to_string(layer) +
+            ".ln_2.weight";
+
+        Tensor ln2_weight =
+            loader.load_tensor_data(
+                ln2_name
+            );
+
+        Tensor mlp_input =
+            gpt2_ln(
+                hidden,
+                ln2_weight
+            );
+
+        // ---------------------------------
+        // MLP FC
+        // ---------------------------------
+
+        std::string fc_name =
+            "h." +
+            std::to_string(layer) +
+            ".mlp.c_fc.weight";
+
+        Tensor fc_weight =
+            loader.load_tensor_data(
+                fc_name
+            );
+
+        Tensor fc_out =
+            linear(
+                mlp_input,
+                fc_weight
+            );
+
+        // ---------------------------------
+        // GELU
+        // ---------------------------------
+
+        Tensor activated =
+            gelu(
+                fc_out
+            );
+
+        // ---------------------------------
+        // MLP PROJ
+        // ---------------------------------
+
+        std::string mlp_proj_name =
+            "h." +
+            std::to_string(layer) +
+            ".mlp.c_proj.weight";
+
+        Tensor mlp_proj_weight =
+            loader.load_tensor_data(
+                mlp_proj_name
+            );
+
+        Tensor mlp_out =
+            linear(
+                activated,
+                mlp_proj_weight
+            );
+
+        // ---------------------------------
+        // RESIDUAL
+        // ---------------------------------
+
+        hidden =
+            residual_add(
+                hidden,
+                mlp_out
+            );
+
+
+
+
+
+        std::cout
+            << "Output shape: ["
+            << hidden.shape[0]
+            << ", "
+            << hidden.shape[1]
+            << "]"
+            << std::endl;
+    }
+
+    // ---------------------------------
+    // FINAL NORM
+    // ---------------------------------
+
+    hidden =
+        final_norm(
+            hidden
+        );
+
+    return hidden;
+}
+
+}
+
+
+
+================================================================================
+FILE: inference\cpp\runtime\transformer_stack.hpp
+================================================================================
+
+#pragma once
+
+#include "../core/tensor.hpp"
+#include "../core/mmap_loader.hpp"
+
+namespace axion {
+
+Tensor transformer_stack(
+    const Tensor& input,
+    MMapLoader& loader,
+    int num_layers,
+    int num_heads
+);
+
+}
 
 
 ================================================================================
@@ -30126,6 +32218,237 @@ for v in scores.data:
 
 
 ================================================================================
+FILE: tests\inference\test_cached_attention.py
+================================================================================
+
+import sys
+
+sys.path.append(
+    r"D:\LLM projects\Axion\inference\cpp\build"
+)
+
+import axion_cpp
+
+# -------------------------
+# MODEL
+# -------------------------
+
+loader = axion_cpp.MMapLoader()
+
+loader.load_file(
+    r"D:\LLM projects\Axion\tests\inference\model.safetensors"
+)
+
+# -------------------------
+# CACHE
+# -------------------------
+
+cache = axion_cpp.LayerKVCache()
+
+# -------------------------
+# TOKEN 1
+# -------------------------
+
+x1 = axion_cpp.Tensor()
+
+x1.shape = [1, 768]
+
+x1.data = [0.1] * 768
+
+out1 = axion_cpp.cached_attention(
+    x1,
+    loader,
+    cache,
+    "h.0.attn.c_attn.weight",
+    12
+)
+
+print("\nSTEP 1")
+
+print("CACHE KEYS:")
+
+print(cache.keys.shape)
+
+# -------------------------
+# TOKEN 2
+# -------------------------
+
+x2 = axion_cpp.Tensor()
+
+x2.shape = [1, 768]
+
+x2.data = [0.2] * 768
+
+out2 = axion_cpp.cached_attention(
+    x2,
+    loader,
+    cache,
+    "h.0.attn.c_attn.weight",
+    12
+)
+
+
+print("\nSTEP 2")
+
+print("CACHE KEYS:")
+
+print(cache.keys.shape)
+
+print("\nOUTPUT SHAPE:")
+
+print(out2.shape)
+
+
+================================================================================
+FILE: tests\inference\test_cached_generation.py
+================================================================================
+
+import sys
+
+sys.path.append(
+    r"D:\LLM projects\Axion\inference\cpp\build"
+)
+
+import axion_cpp
+
+from inference.python.tokenizer import (
+    AxionTokenizer
+)
+
+# -------------------------
+# TOKENIZER
+# -------------------------
+
+tok = AxionTokenizer(
+    "gpt2"
+)
+
+# -------------------------
+# MODEL
+# -------------------------
+
+loader = axion_cpp.MMapLoader()
+
+loader.load_file(
+    r"D:\LLM projects\Axion\tests\inference\model.safetensors"
+)
+
+embedding_matrix = (
+    loader.load_tensor_data(
+        "wte.weight"
+    )
+)
+
+position_matrix = (
+    loader.load_tensor_data(
+        "wpe.weight"
+    )
+)
+
+# -------------------------
+# KV CACHE
+# -------------------------
+
+kv_state = (
+    axion_cpp.KVState(2)
+)
+
+# -------------------------
+# PROMPT
+# -------------------------
+
+text = "Hello Axion"
+
+tokens = tok.encode(text)
+
+print("\nINITIAL TOKENS:")
+
+print(tokens)
+
+# -------------------------
+# PREFILL
+# -------------------------
+
+for pos, token in enumerate(tokens):
+
+    logits = (
+        axion_cpp.incremental_forward(
+            token,
+            pos,
+            embedding_matrix,
+            position_matrix,
+            loader,
+            kv_state,
+            2,
+            12
+        )
+    )
+
+# -------------------------
+# GENERATION
+# -------------------------
+
+generated = list(tokens)
+
+current_token = tokens[-1]
+
+for step in range(10):
+
+    logits = (
+        axion_cpp.incremental_forward(
+            current_token,
+            len(generated) - 1,
+            embedding_matrix,
+            position_matrix,
+            loader,
+            kv_state,
+            2,
+            12
+        )
+    )
+
+    last_logits = (
+        axion_cpp.last_token(
+            logits
+        )
+    )
+
+    next_token = (
+        axion_cpp.argmax(
+            last_logits
+        )
+    )
+
+    generated.append(
+        next_token
+    )
+
+    decoded = tok.decode(
+        [next_token]
+    )
+
+    print(f"\nSTEP {step+1}")
+
+    print("TOKEN:", next_token)
+
+    print("TEXT:", repr(decoded))
+
+    current_token = next_token
+
+# -------------------------
+# FINAL TEXT
+# -------------------------
+
+final_text = tok.decode(
+    generated
+)
+
+print("\n=== FINAL TEXT ===\n")
+
+print(final_text)
+
+
+================================================================================
 FILE: tests\inference\test_causal_mask.py
 ================================================================================
 
@@ -30171,6 +32494,156 @@ for r in range(rows):
         row.append(v)
 
     print(row)
+
+
+
+================================================================================
+FILE: tests\inference\test_contextual_logits.py
+================================================================================
+
+
+import sys
+
+sys.path.append(
+    r"D:\LLM projects\Axion\inference\cpp\build"
+)
+
+import axion_cpp
+
+from inference.python.tokenizer import (
+    AxionTokenizer
+)
+
+# -------------------------
+# TOKENIZER
+# -------------------------
+
+tok = AxionTokenizer(
+    "gpt2"
+)
+
+# -------------------------
+# MODEL
+# -------------------------
+
+loader = axion_cpp.MMapLoader()
+
+loader.load_file(
+    r"D:\LLM projects\Axion\tests\inference\model.safetensors"
+)
+
+# -------------------------
+# LOAD MATRICES
+# -------------------------
+
+embedding_matrix = (
+    loader.load_tensor_data(
+        "wte.weight"
+    )
+)
+
+position_matrix = (
+    loader.load_tensor_data(
+        "wpe.weight"
+    )
+)
+
+# -------------------------
+# TOKENS
+# -------------------------
+
+text = "Hello Axion"
+
+token_ids = tok.encode(text)
+
+print("\nTOKENS:")
+
+print(token_ids)
+
+# -------------------------
+# TOKEN EMBEDDINGS
+# -------------------------
+
+embeddings = (
+    axion_cpp.embedding_lookup(
+        embedding_matrix,
+        token_ids
+    )
+)
+
+# -------------------------
+# POSITION EMBEDDINGS
+# -------------------------
+
+position_embeddings = (
+    axion_cpp.position_embedding_lookup(
+        position_matrix,
+        len(token_ids)
+    )
+)
+
+# -------------------------
+# COMBINE
+# -------------------------
+
+embeddings = (
+    axion_cpp.add(
+        embeddings,
+        position_embeddings
+    )
+)
+
+print("\nEMBED SHAPE:")
+
+print(embeddings.shape)
+
+# -------------------------
+# FULL FORWARD
+# -------------------------
+
+logits = axion_cpp.full_forward(
+    embeddings,
+    loader,
+    2,
+    12,
+    embedding_matrix
+)
+
+print("\nLOGITS SHAPE:")
+
+print(logits.shape)
+
+# -------------------------
+# LAST TOKEN
+# -------------------------
+
+last_logits = (
+    axion_cpp.last_token(
+        logits
+    )
+)
+
+# -------------------------
+# NEXT TOKEN
+# -------------------------
+
+next_token = (
+    axion_cpp.argmax(
+        last_logits
+    )
+)
+
+print("\nNEXT TOKEN:")
+
+print(next_token)
+
+decoded = tok.decode(
+    [next_token]
+)
+
+print("\nPREDICTED:")
+
+print(decoded)
 
 
 
@@ -30334,6 +32807,364 @@ print(output)
 
 
 ================================================================================
+FILE: tests\inference\test_generation_speed.py
+================================================================================
+
+import sys
+import time
+
+sys.path.append(
+    r"D:\LLM projects\Axion\inference\cpp\build"
+)
+
+import axion_cpp
+
+from inference.python.tokenizer import (
+    AxionTokenizer
+)
+
+# -------------------------
+# TOKENIZER
+# -------------------------
+
+tok = AxionTokenizer(
+    "gpt2"
+)
+
+# -------------------------
+# MODEL
+# -------------------------
+
+loader = axion_cpp.MMapLoader()
+
+loader.load_file(
+    r"D:\LLM projects\Axion\tests\inference\model.safetensors"
+)
+
+embedding_matrix = (
+    loader.load_tensor_data(
+        "wte.weight"
+    )
+)
+
+position_matrix = (
+    loader.load_tensor_data(
+        "wpe.weight"
+    )
+)
+
+# -------------------------
+# PROMPT
+# -------------------------
+
+prompt = (
+    "Axion is building a transformer "
+    "runtime from scratch"
+)
+
+tokens = tok.encode(prompt)
+
+# ==================================================
+# FULL RECOMPUTE
+# ==================================================
+
+print("\n=== FULL RECOMPUTE ===")
+
+full_tokens = list(tokens)
+
+start = time.time()
+
+for step in range(20):
+
+    embeddings = (
+        axion_cpp.embedding_lookup(
+            embedding_matrix,
+            full_tokens
+        )
+    )
+
+    pos = (
+        axion_cpp.position_embedding_lookup(
+            position_matrix,
+            len(full_tokens)
+        )
+    )
+
+    hidden = (
+        axion_cpp.add(
+            embeddings,
+            pos
+        )
+    )
+
+    logits = (
+        axion_cpp.full_forward(
+            hidden,
+            loader,
+            2,
+            12,
+            embedding_matrix
+        )
+    )
+
+    last_logits = (
+        axion_cpp.last_token(
+            logits
+        )
+    )
+
+    next_token = (
+        axion_cpp.argmax(
+            last_logits
+        )
+    )
+
+    full_tokens.append(
+        next_token
+    )
+
+end = time.time()
+
+full_time = end - start
+
+print(f"\nFULL TIME: {full_time:.4f} sec")
+
+# ==================================================
+# CACHED GENERATION
+# ==================================================
+
+print("\n=== CACHED GENERATION ===")
+
+cached_tokens = list(tokens)
+
+kv_state = (
+    axion_cpp.KVState(2)
+)
+
+start = time.time()
+
+# -------------------------
+# PREFILL
+# -------------------------
+
+for pos, token in enumerate(cached_tokens):
+
+    logits = (
+        axion_cpp.incremental_forward(
+            token,
+            pos,
+            embedding_matrix,
+            position_matrix,
+            loader,
+            kv_state,
+            2,
+            12
+        )
+    )
+
+current_token = cached_tokens[-1]
+
+# -------------------------
+# GENERATION
+# -------------------------
+
+for step in range(20):
+
+    logits = (
+        axion_cpp.incremental_forward(
+            current_token,
+            len(cached_tokens) - 1,
+            embedding_matrix,
+            position_matrix,
+            loader,
+            kv_state,
+            2,
+            12
+        )
+    )
+
+    last_logits = (
+        axion_cpp.last_token(
+            logits
+        )
+    )
+
+    next_token = (
+        axion_cpp.argmax(
+            last_logits
+        )
+    )
+
+    cached_tokens.append(
+        next_token
+    )
+
+    current_token = next_token
+
+end = time.time()
+
+cached_time = end - start
+
+print(f"\nCACHED TIME: {cached_time:.4f} sec")
+
+# ==================================================
+# SPEEDUP
+# ==================================================
+
+speedup = (
+    full_time / cached_time
+)
+
+print(f"\nSPEEDUP: {speedup:.2f}x")
+
+
+================================================================================
+FILE: tests\inference\test_gpt2_block_weights.py
+================================================================================
+
+import sys
+
+sys.path.append(
+    r"D:\LLM projects\Axion\inference\cpp\build"
+)
+
+import axion_cpp
+
+loader = axion_cpp.MMapLoader()
+
+loader.load_file(
+    r"D:\LLM projects\Axion\tests\inference\model.safetensors"
+)
+
+names = loader.list_tensors()
+
+print("\n=== GPT2 BLOCK WEIGHTS ===\n")
+
+for n in names:
+
+    if "h.0" in n:
+
+        print(n)
+    
+
+
+================================================================================
+FILE: tests\inference\test_incremental_forward.py
+================================================================================
+
+import sys
+
+sys.path.append(
+    r"D:\LLM projects\Axion\inference\cpp\build"
+)
+
+import axion_cpp
+
+from inference.python.tokenizer import (
+    AxionTokenizer
+)
+
+# -------------------------
+# TOKENIZER
+# -------------------------
+
+tok = AxionTokenizer(
+    "gpt2"
+)
+
+# -------------------------
+# MODEL
+# -------------------------
+
+loader = axion_cpp.MMapLoader()
+
+loader.load_file(
+    r"D:\LLM projects\Axion\tests\inference\model.safetensors"
+)
+
+embedding_matrix = (
+    loader.load_tensor_data(
+        "wte.weight"
+    )
+)
+
+position_matrix = (
+    loader.load_tensor_data(
+        "wpe.weight"
+    )
+)
+
+# -------------------------
+# KV CACHE
+# -------------------------
+
+kv_state = (
+    axion_cpp.KVState(2)
+)
+
+# -------------------------
+# TOKENS
+# -------------------------
+
+tokens = tok.encode(
+    "Hello Axion"
+)
+
+print("\nTOKENS:")
+
+print(tokens)
+
+# -------------------------
+# INCREMENTAL LOOP
+# -------------------------
+
+for pos, token in enumerate(tokens):
+
+    logits = (
+        axion_cpp.incremental_forward(
+            token,
+            pos,
+            embedding_matrix,
+            position_matrix,
+            loader,
+            kv_state,
+            2,
+            12
+        )
+    )
+
+    print(f"\nSTEP {pos}")
+
+    print("LOGITS:")
+
+    print(logits.shape)
+
+# -------------------------
+# NEXT TOKEN
+# -------------------------
+
+last_logits = (
+    axion_cpp.last_token(
+        logits
+    )
+)
+
+next_token = (
+    axion_cpp.argmax(
+        last_logits
+    )
+)
+
+print("\nNEXT TOKEN:")
+
+print(next_token)
+
+print(
+    tok.decode([next_token])
+)
+
+
+================================================================================
 FILE: tests\inference\test_kv_cache.py
 ================================================================================
 
@@ -30412,6 +33243,68 @@ print(all_v.shape)
 
 print(all_v.data)
 
+
+
+================================================================================
+FILE: tests\inference\test_layernorm.py
+================================================================================
+
+import sys
+
+sys.path.append(
+    r"D:\LLM projects\Axion\inference\cpp\build"
+)
+
+import axion_cpp
+
+# -------------------------
+# INPUT
+# -------------------------
+
+x = axion_cpp.Tensor()
+
+x.shape = [2, 4]
+
+x.data = [
+    1.0, 2.0, 3.0, 4.0,
+    5.0, 6.0, 7.0, 8.0
+]
+
+# -------------------------
+# WEIGHT
+# -------------------------
+
+w = axion_cpp.Tensor()
+
+w.shape = [4]
+
+w.data = [1.0] * 4
+
+# -------------------------
+# BIAS
+# -------------------------
+
+b = axion_cpp.Tensor()
+
+b.shape = [4]
+
+b.data = [0.0] * 4
+
+# -------------------------
+# LAYERNORM
+# -------------------------
+
+out = axion_cpp.layernorm(
+    x,
+    w,
+    b
+)
+
+print("\n=== LAYERNORM ===")
+
+print(out.shape)
+
+print(out.data)
 
 
 ================================================================================
@@ -30827,6 +33720,246 @@ print(output.data)
 
 
 ================================================================================
+FILE: tests\inference\test_multilayer_cache.py
+================================================================================
+
+import sys
+
+sys.path.append(
+    r"D:\LLM projects\Axion\inference\cpp\build"
+)
+
+import axion_cpp
+
+from inference.python.tokenizer import (
+    AxionTokenizer
+)
+
+# -------------------------
+# TOKENIZER
+# -------------------------
+
+tok = AxionTokenizer(
+    "gpt2"
+)
+
+# -------------------------
+# MODEL
+# -------------------------
+
+loader = axion_cpp.MMapLoader()
+
+loader.load_file(
+    r"D:\LLM projects\Axion\tests\inference\model.safetensors"
+)
+
+embedding_matrix = (
+    loader.load_tensor_data(
+        "wte.weight"
+    )
+)
+
+position_matrix = (
+    loader.load_tensor_data(
+        "wpe.weight"
+    )
+)
+
+# -------------------------
+# KV STATE
+# -------------------------
+
+num_layers = 2
+
+kv_state = (
+    axion_cpp.KVState(
+        num_layers
+    )
+)
+
+# -------------------------
+# TOKENS
+# -------------------------
+
+tokens = tok.encode(
+    "Hello Axion"
+)
+
+print("\nTOKENS:")
+
+print(tokens)
+
+# -------------------------
+# RUN TOKENS
+# -------------------------
+
+for pos, token in enumerate(tokens):
+
+    logits = (
+        axion_cpp.incremental_forward(
+            token,
+            pos,
+            embedding_matrix,
+            position_matrix,
+            loader,
+            kv_state,
+            num_layers,
+            12
+        )
+    )
+
+# -------------------------
+# INSPECT CACHE
+# -------------------------
+
+print("\n=== LAYER CACHE STATE ===")
+
+for layer in range(num_layers):
+
+    cache = (
+        kv_state.layers[layer]
+    )
+
+    print(f"\nLAYER {layer}")
+
+    print("KEY SHAPE:")
+
+    print(cache.keys.shape)
+
+    print("VALUE SHAPE:")
+
+    print(cache.values.shape)
+
+    print("KEY VALUES:")
+
+    print(cache.keys.data[:10])
+
+
+================================================================================
+FILE: tests\inference\test_persistent_kv.py
+================================================================================
+
+import sys
+
+sys.path.append(
+    r"D:\LLM projects\Axion\inference\cpp\build"
+)
+
+import axion_cpp
+
+# -------------------------
+# KV STATE
+# -------------------------
+
+state = axion_cpp.KVState(2)
+
+# -------------------------
+# TOKEN 1
+# -------------------------
+
+K1 = axion_cpp.Tensor()
+
+K1.shape = [1, 4]
+
+K1.data = [
+    1, 2, 3, 4
+]
+
+V1 = axion_cpp.Tensor()
+
+V1.shape = [1, 4]
+
+V1.data = [
+    5, 6, 7, 8
+]
+
+axion_cpp.append_kv_cache(
+    state.layers[0],
+    K1,
+    V1
+)
+
+# -------------------------
+# TOKEN 2
+# -------------------------
+
+K2 = axion_cpp.Tensor()
+
+K2.shape = [1, 4]
+
+K2.data = [
+    9, 10, 11, 12
+]
+
+V2 = axion_cpp.Tensor()
+
+V2.shape = [1, 4]
+
+V2.data = [
+    13, 14, 15, 16
+]
+
+axion_cpp.append_kv_cache(
+    state.layers[0],
+    K2,
+    V2
+)
+
+# -------------------------
+# RESULTS
+# -------------------------
+
+print("\n=== KEYS ===")
+
+print(
+    state.layers[0].keys.shape
+)
+
+print(
+    state.layers[0].keys.data
+)
+
+print("\n=== VALUES ===")
+
+print(
+    state.layers[0].values.shape
+)
+
+print(
+    state.layers[0].values.data
+)
+
+
+================================================================================
+FILE: tests\inference\test_position_weights.py
+================================================================================
+
+import sys
+
+sys.path.append(
+    r"D:\LLM projects\Axion\inference\cpp\build"
+)
+
+import axion_cpp
+
+loader = axion_cpp.MMapLoader()
+
+loader.load_file(
+    r"D:\LLM projects\Axion\tests\inference\model.safetensors"
+)
+
+names = loader.list_tensors()
+
+print("\n=== POSITION TENSORS ===\n")
+
+for n in names:
+
+    if "wpe" in n:
+
+        print(n)
+
+
+================================================================================
 FILE: tests\inference\test_qkv_projection.py
 ================================================================================
 
@@ -30893,6 +34026,266 @@ print("Delta shape:", delta.shape)
 
 print("Delta first values:")
 print(delta.data[:20])
+
+
+
+================================================================================
+FILE: tests\inference\test_real_attention.py
+================================================================================
+
+import sys
+
+sys.path.append(
+    r"D:\LLM projects\Axion\inference\cpp\build"
+)
+
+import axion_cpp
+
+# -------------------------
+# LOAD MODEL
+# -------------------------
+
+loader = axion_cpp.MMapLoader()
+
+loader.load_file(
+    r"D:\LLM projects\Axion\tests\inference\model.safetensors"
+)
+# -----------------------------------
+# LOAD FUSED GPT2 QKV
+# -----------------------------------
+
+fused = loader.load_tensor_data(
+    "h.0.attn.c_attn.weight"
+)
+
+print("\nFUSED SHAPE:")
+print(fused.shape)
+
+# -----------------------------------
+# SPLIT
+# -----------------------------------
+
+qkv = axion_cpp.split_fused_qkv(
+    fused
+)
+
+print("\nQ SHAPE:")
+print(qkv.Q.shape)
+
+print("\nK SHAPE:")
+print(qkv.K.shape)
+
+print("\nV SHAPE:")
+print(qkv.V.shape)
+
+# -----------------------------------
+# INPUT
+# -----------------------------------
+
+x = axion_cpp.Tensor()
+
+x.shape = [2, 768]
+
+x.data = [0.01] * (2 * 768)
+
+# -----------------------------------
+# TRANSPOSE
+# -----------------------------------
+
+Qw = axion_cpp.transpose(qkv.Q)
+Kw = axion_cpp.transpose(qkv.K)
+Vw = axion_cpp.transpose(qkv.V)
+
+# -----------------------------------
+# PROJECTIONS
+# -----------------------------------
+
+Q = axion_cpp.matmul(x, Qw)
+K = axion_cpp.matmul(x, Kw)
+V = axion_cpp.matmul(x, Vw)
+
+print("\nQ PROJECTION:")
+print(Q.shape)
+
+# -----------------------------------
+# ATTENTION
+# -----------------------------------
+
+output = axion_cpp.multihead_attention(
+    Q,
+    K,
+    V,
+    12
+)
+
+print("\n=== REAL ATTENTION OUTPUT ===")
+
+print(output.shape)
+
+print(output.data[:20])
+
+
+================================================================================
+FILE: tests\inference\test_real_generation.py
+================================================================================
+
+
+import sys
+
+sys.path.append(
+    r"D:\LLM projects\Axion\inference\cpp\build"
+)
+
+import axion_cpp
+
+from inference.python.tokenizer import (
+    AxionTokenizer
+)
+
+# -------------------------
+# TOKENIZER
+# -------------------------
+
+tok = AxionTokenizer(
+    "gpt2"
+)
+
+# -------------------------
+# MODEL
+# -------------------------
+
+loader = axion_cpp.MMapLoader()
+
+loader.load_file(
+    r"D:\LLM projects\Axion\tests\inference\model.safetensors"
+)
+
+# -------------------------
+# MATRICES
+# -------------------------
+
+embedding_matrix = (
+    loader.load_tensor_data(
+        "wte.weight"
+    )
+)
+
+position_matrix = (
+    loader.load_tensor_data(
+        "wpe.weight"
+    )
+)
+
+# -------------------------
+# INITIAL TEXT
+# -------------------------
+
+text = "Hello Axion"
+
+token_ids = tok.encode(text)
+
+print("\nINITIAL TOKENS:")
+
+print(token_ids)
+
+# -------------------------
+# GENERATION LOOP
+# -------------------------
+
+for step in range(10):
+
+    print(f"\nSTEP {step+1}")
+
+    # -------------------------
+    # TOKEN EMBEDDINGS
+    # -------------------------
+
+    embeddings = (
+        axion_cpp.embedding_lookup(
+            embedding_matrix,
+            token_ids
+        )
+    )
+
+    # -------------------------
+    # POSITION EMBEDDINGS
+    # -------------------------
+
+    pos = (
+        axion_cpp.position_embedding_lookup(
+            position_matrix,
+            len(token_ids)
+        )
+    )
+
+    # -------------------------
+    # COMBINE
+    # -------------------------
+
+    embeddings = (
+        axion_cpp.add(
+            embeddings,
+            pos
+        )
+    )
+
+    # -------------------------
+    # TRANSFORMER
+    # -------------------------
+
+    logits = (
+        axion_cpp.full_forward(
+            embeddings,
+            loader,
+            2,
+            12,
+            embedding_matrix
+        )
+    )
+
+    # -------------------------
+    # LAST TOKEN
+    # -------------------------
+
+    last_logits = (
+        axion_cpp.last_token(
+            logits
+        )
+    )
+
+    # -------------------------
+    # NEXT TOKEN
+    # -------------------------
+
+    next_token = (
+        axion_cpp.argmax(
+            last_logits
+        )
+    )
+
+    token_ids.append(
+        next_token
+    )
+
+    decoded = tok.decode(
+        [next_token]
+    )
+
+    print("TOKEN:", next_token)
+
+    print("TEXT:", repr(decoded))
+
+# -------------------------
+# FINAL TEXT
+# -------------------------
+
+final_text = tok.decode(
+    token_ids
+)
+
+print("\n=== FINAL TEXT ===\n")
+
+print(final_text)
 
 
 
@@ -31287,6 +34680,56 @@ print("\nValues:")
 for v in output.data:
     print(round(v, 4))
 
+
+
+================================================================================
+FILE: tests\inference\test_transformer_stack.py
+================================================================================
+
+import sys
+
+sys.path.append(
+    r"D:\LLM projects\Axion\inference\cpp\build"
+)
+
+import axion_cpp
+
+# -------------------------
+# LOAD MODEL
+# -------------------------
+
+loader = axion_cpp.MMapLoader()
+
+loader.load_file(
+    r"D:\LLM projects\Axion\tests\inference\model.safetensors"
+)
+
+# -------------------------
+# INPUT
+# -------------------------
+
+x = axion_cpp.Tensor()
+
+x.shape = [2, 768]
+
+x.data = [0.01] * (2 * 768)
+
+# -------------------------
+# STACK
+# -------------------------
+
+output = axion_cpp.transformer_stack(
+    x,
+    loader,
+    2,
+    12
+)
+
+print("\n=== FINAL STACK OUTPUT ===")
+
+print(output.shape)
+
+print(output.data[:20])
 
 
 ================================================================================

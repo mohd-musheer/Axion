@@ -408,12 +408,14 @@ CMakeFiles/axion_cpp.dir/bindings/pybind_module.cpp.obj: D:/LLM\ projects/Axion/
   C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/syslimits.h \
   D:/LLM\ projects/Axion/inference/cpp/core/mmap_loader.hpp \
   D:/LLM\ projects/Axion/inference/cpp/core/tensor.hpp \
+  D:/LLM\ projects/Axion/inference/cpp/kernels/add.hpp \
   D:/LLM\ projects/Axion/inference/cpp/kernels/attention.hpp \
   D:/LLM\ projects/Axion/inference/cpp/kernels/attention_output.hpp \
   D:/LLM\ projects/Axion/inference/cpp/kernels/blas.hpp \
   D:/LLM\ projects/Axion/inference/cpp/kernels/causal_mask.hpp \
   D:/LLM\ projects/Axion/inference/cpp/kernels/elementwise.hpp \
   D:/LLM\ projects/Axion/inference/cpp/kernels/gelu.hpp \
+  D:/LLM\ projects/Axion/inference/cpp/kernels/layernorm.hpp \
   D:/LLM\ projects/Axion/inference/cpp/kernels/mlp.hpp \
   D:/LLM\ projects/Axion/inference/cpp/kernels/multihead.hpp \
   D:/LLM\ projects/Axion/inference/cpp/kernels/multihead_attention.hpp \
@@ -422,6 +424,7 @@ CMakeFiles/axion_cpp.dir/bindings/pybind_module.cpp.obj: D:/LLM\ projects/Axion/
   D:/LLM\ projects/Axion/inference/cpp/kernels/silu.hpp \
   D:/LLM\ projects/Axion/inference/cpp/kernels/softmax.hpp \
   D:/LLM\ projects/Axion/inference/cpp/kernels/transpose.hpp \
+  D:/LLM\ projects/Axion/inference/cpp/runtime/cached_attention.hpp \
   D:/LLM\ projects/Axion/inference/cpp/runtime/embedding.hpp \
   D:/LLM\ projects/Axion/inference/cpp/runtime/execution_graph.hpp \
   D:/LLM\ projects/Axion/inference/cpp/runtime/final_norm.hpp \
@@ -429,13 +432,19 @@ CMakeFiles/axion_cpp.dir/bindings/pybind_module.cpp.obj: D:/LLM\ projects/Axion/
   D:/LLM\ projects/Axion/inference/cpp/runtime/fused_qkv.hpp \
   D:/LLM\ projects/Axion/inference/cpp/runtime/generation.hpp \
   D:/LLM\ projects/Axion/inference/cpp/runtime/gpt2_ln.hpp \
+  D:/LLM\ projects/Axion/inference/cpp/runtime/incremental_forward.hpp \
+  D:/LLM\ projects/Axion/inference/cpp/runtime/kv_append.hpp \
   D:/LLM\ projects/Axion/inference/cpp/runtime/kv_cache.hpp \
+  D:/LLM\ projects/Axion/inference/cpp/runtime/kv_state.hpp \
   D:/LLM\ projects/Axion/inference/cpp/runtime/last_token.hpp \
   D:/LLM\ projects/Axion/inference/cpp/runtime/layer_scheduler.hpp \
   D:/LLM\ projects/Axion/inference/cpp/runtime/linear.hpp \
   D:/LLM\ projects/Axion/inference/cpp/runtime/logits.hpp \
+  D:/LLM\ projects/Axion/inference/cpp/runtime/position_embedding.hpp \
   D:/LLM\ projects/Axion/inference/cpp/runtime/real_attention.hpp \
   D:/LLM\ projects/Axion/inference/cpp/runtime/residual.hpp \
+  D:/LLM\ projects/Axion/inference/cpp/runtime/single_position.hpp \
+  D:/LLM\ projects/Axion/inference/cpp/runtime/token_embedding.hpp \
   D:/LLM\ projects/Axion/inference/cpp/runtime/transformer_layer.hpp \
   D:/LLM\ projects/Axion/inference/cpp/runtime/transformer_stack.hpp \
   D:/LLM\ projects/Axion/inference/cpp/runtime/weight_lookup.hpp
@@ -900,6 +909,121 @@ CMakeFiles/axion_cpp.dir/core/tensor.cpp.obj: D:/LLM\ projects/Axion/inference/c
   C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/stddef.h \
   C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/stdint.h \
   C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/syslimits.h
+
+CMakeFiles/axion_cpp.dir/kernels/add.cpp.obj: D:/LLM\ projects/Axion/inference/cpp/kernels/add.cpp \
+  D:/LLM\ projects/Axion/inference/cpp/kernels/add.hpp \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/include/_mingw.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/include/_mingw_mac.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/include/_mingw_off_t.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/include/_mingw_secapi.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/include/_mingw_stat64.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/include/corecrt.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/include/corecrt_stdio_config.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/include/corecrt_wstdlib.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/include/crtdefs.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/include/ctype.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/include/errno.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/include/limits.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/include/locale.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/include/malloc.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/include/sdks/_mingw_ddk.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/include/sec_api/stdio_s.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/include/sec_api/stdlib_s.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/include/sec_api/wchar_s.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/include/stddef.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/include/stdint.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/include/stdio.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/include/stdlib.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/include/swprintf.inl \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/include/vadefs.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/include/wchar.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/backward/binders.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bit \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/alloc_traits.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/allocator.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/basic_string.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/basic_string.tcc \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/char_traits.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/charconv.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/concept_check.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/cpp_type_traits.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/cxxabi_forced.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/cxxabi_init_exception.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/exception.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/exception_defines.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/exception_ptr.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/functexcept.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/functional_hash.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/hash_bytes.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/invoke.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/localefwd.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/memory_resource.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/memoryfwd.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/move.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/nested_exception.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/new_allocator.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/ostream_insert.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/postypes.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/predefined_ops.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/ptr_traits.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/range_access.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/refwrap.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/requires_hosted.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/std_abs.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/stl_algobase.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/stl_bvector.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/stl_construct.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/stl_function.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/stl_iterator.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/stl_iterator_base_funcs.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/stl_iterator_base_types.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/stl_pair.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/stl_uninitialized.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/stl_vector.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/string_view.tcc \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/stringfwd.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/uses_allocator.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/uses_allocator_args.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/utility.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/vector.tcc \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/cctype \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/cerrno \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/clocale \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/cstddef \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/cstdint \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/cstdio \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/cstdlib \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/cwchar \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/debug/assertions.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/debug/debug.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/exception \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/ext/alloc_traits.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/ext/numeric_traits.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/ext/string_conversions.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/ext/type_traits.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/initializer_list \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/iosfwd \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/new \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/pstl/pstl_config.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/stdexcept \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/stdlib.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/string \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/string_view \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/tuple \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/type_traits \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/typeinfo \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/vector \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/x86_64-w64-mingw32.static.posix/bits/c++allocator.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/x86_64-w64-mingw32.static.posix/bits/c++config.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/x86_64-w64-mingw32.static.posix/bits/c++locale.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/x86_64-w64-mingw32.static.posix/bits/cpu_defines.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/x86_64-w64-mingw32.static.posix/bits/os_defines.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/limits.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/mm_malloc.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/stddef.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/stdint.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/syslimits.h \
+  D:/LLM\ projects/Axion/inference/cpp/core/tensor.hpp
 
 CMakeFiles/axion_cpp.dir/kernels/attention.cpp.obj: D:/LLM\ projects/Axion/inference/cpp/kernels/attention.cpp \
   D:/LLM\ projects/Axion/inference/cpp/kernels/attention.hpp \
@@ -1649,6 +1773,137 @@ CMakeFiles/axion_cpp.dir/kernels/gelu.cpp.obj: D:/LLM\ projects/Axion/inference/
   C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/tr1/special_function_util.h \
   C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/tuple \
   C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/type_traits \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/vector \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/x86_64-w64-mingw32.static.posix/bits/c++allocator.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/x86_64-w64-mingw32.static.posix/bits/c++config.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/x86_64-w64-mingw32.static.posix/bits/c++locale.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/x86_64-w64-mingw32.static.posix/bits/cpu_defines.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/x86_64-w64-mingw32.static.posix/bits/os_defines.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/limits.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/mm_malloc.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/stddef.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/stdint.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/syslimits.h \
+  D:/LLM\ projects/Axion/inference/cpp/core/tensor.hpp
+
+CMakeFiles/axion_cpp.dir/kernels/layernorm.cpp.obj: D:/LLM\ projects/Axion/inference/cpp/kernels/layernorm.cpp \
+  D:/LLM\ projects/Axion/inference/cpp/kernels/layernorm.hpp \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/include/_mingw.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/include/_mingw_mac.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/include/_mingw_off_t.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/include/_mingw_secapi.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/include/_mingw_stat64.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/include/corecrt.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/include/corecrt_stdio_config.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/include/corecrt_wstdlib.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/include/crtdefs.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/include/ctype.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/include/errno.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/include/limits.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/include/locale.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/include/malloc.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/include/math.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/include/sdks/_mingw_ddk.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/include/sec_api/stdio_s.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/include/sec_api/stdlib_s.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/include/sec_api/wchar_s.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/include/stddef.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/include/stdint.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/include/stdio.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/include/stdlib.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/include/swprintf.inl \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/include/vadefs.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/include/wchar.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/backward/binders.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bit \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/alloc_traits.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/allocator.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/basic_string.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/basic_string.tcc \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/char_traits.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/charconv.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/concept_check.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/cpp_type_traits.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/cxxabi_forced.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/cxxabi_init_exception.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/exception.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/exception_defines.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/exception_ptr.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/functexcept.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/functional_hash.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/hash_bytes.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/invoke.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/localefwd.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/memory_resource.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/memoryfwd.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/move.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/nested_exception.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/new_allocator.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/ostream_insert.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/postypes.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/predefined_ops.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/ptr_traits.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/range_access.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/refwrap.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/requires_hosted.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/specfun.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/std_abs.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/stl_algobase.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/stl_bvector.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/stl_construct.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/stl_function.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/stl_iterator.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/stl_iterator_base_funcs.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/stl_iterator_base_types.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/stl_pair.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/stl_uninitialized.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/stl_vector.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/string_view.tcc \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/stringfwd.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/uses_allocator.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/uses_allocator_args.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/utility.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/vector.tcc \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/cctype \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/cerrno \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/clocale \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/cmath \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/cstddef \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/cstdint \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/cstdio \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/cstdlib \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/cwchar \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/debug/assertions.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/debug/debug.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/exception \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/ext/alloc_traits.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/ext/numeric_traits.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/ext/string_conversions.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/ext/type_traits.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/initializer_list \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/iosfwd \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/limits \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/new \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/pstl/pstl_config.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/stdexcept \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/stdlib.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/string \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/string_view \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/tr1/bessel_function.tcc \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/tr1/beta_function.tcc \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/tr1/ell_integral.tcc \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/tr1/exp_integral.tcc \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/tr1/gamma.tcc \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/tr1/hypergeometric.tcc \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/tr1/legendre_function.tcc \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/tr1/modified_bessel_func.tcc \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/tr1/poly_hermite.tcc \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/tr1/poly_laguerre.tcc \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/tr1/riemann_zeta.tcc \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/tr1/special_function_util.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/tuple \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/type_traits \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/typeinfo \
   C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/vector \
   C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/x86_64-w64-mingw32.static.posix/bits/c++allocator.h \
   C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/x86_64-w64-mingw32.static.posix/bits/c++config.h \
@@ -2648,6 +2903,131 @@ CMakeFiles/axion_cpp.dir/kernels/transpose.cpp.obj: D:/LLM\ projects/Axion/infer
   C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/syslimits.h \
   D:/LLM\ projects/Axion/inference/cpp/core/tensor.hpp
 
+CMakeFiles/axion_cpp.dir/runtime/cached_attention.cpp.obj: D:/LLM\ projects/Axion/inference/cpp/runtime/cached_attention.cpp \
+  D:/LLM\ projects/Axion/inference/cpp/runtime/cached_attention.hpp \
+  D:/LLM\ projects/Axion/inference/cpp/runtime/fused_qkv.hpp \
+  D:/LLM\ projects/Axion/inference/cpp/runtime/kv_append.hpp \
+  D:/LLM\ projects/Axion/inference/cpp/runtime/kv_state.hpp \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/include/_mingw.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/include/_mingw_mac.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/include/_mingw_off_t.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/include/_mingw_secapi.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/include/_mingw_stat64.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/include/corecrt.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/include/corecrt_stdio_config.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/include/corecrt_wstdlib.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/include/crtdefs.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/include/ctype.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/include/errno.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/include/limits.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/include/locale.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/include/malloc.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/include/sdks/_mingw_ddk.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/include/sec_api/stdio_s.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/include/sec_api/stdlib_s.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/include/sec_api/wchar_s.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/include/stddef.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/include/stdint.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/include/stdio.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/include/stdlib.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/include/swprintf.inl \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/include/vadefs.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/include/wchar.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/backward/binders.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bit \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/alloc_traits.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/allocator.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/basic_string.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/basic_string.tcc \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/char_traits.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/charconv.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/concept_check.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/cpp_type_traits.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/cxxabi_forced.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/enable_special_members.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/erase_if.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/exception.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/exception_defines.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/functexcept.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/functional_hash.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/hash_bytes.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/hashtable.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/hashtable_policy.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/invoke.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/localefwd.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/memory_resource.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/memoryfwd.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/move.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/new_allocator.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/node_handle.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/ostream_insert.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/postypes.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/predefined_ops.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/ptr_traits.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/range_access.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/refwrap.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/requires_hosted.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/std_abs.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/stl_algobase.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/stl_bvector.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/stl_construct.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/stl_function.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/stl_iterator.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/stl_iterator_base_funcs.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/stl_iterator_base_types.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/stl_pair.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/stl_uninitialized.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/stl_vector.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/string_view.tcc \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/stringfwd.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/unordered_map.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/uses_allocator.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/uses_allocator_args.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/utility.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/vector.tcc \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/cctype \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/cerrno \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/clocale \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/cstddef \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/cstdint \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/cstdio \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/cstdlib \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/cwchar \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/debug/assertions.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/debug/debug.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/ext/aligned_buffer.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/ext/alloc_traits.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/ext/numeric_traits.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/ext/string_conversions.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/ext/type_traits.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/initializer_list \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/iosfwd \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/new \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/pstl/pstl_config.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/stdlib.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/string \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/string_view \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/tuple \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/type_traits \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/unordered_map \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/vector \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/x86_64-w64-mingw32.static.posix/bits/c++allocator.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/x86_64-w64-mingw32.static.posix/bits/c++config.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/x86_64-w64-mingw32.static.posix/bits/c++locale.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/x86_64-w64-mingw32.static.posix/bits/cpu_defines.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/x86_64-w64-mingw32.static.posix/bits/os_defines.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/limits.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/mm_malloc.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/stddef.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/stdint.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/syslimits.h \
+  D:/LLM\ projects/Axion/inference/cpp/core/mmap_loader.hpp \
+  D:/LLM\ projects/Axion/inference/cpp/core/tensor.hpp \
+  D:/LLM\ projects/Axion/inference/cpp/kernels/blas.hpp \
+  D:/LLM\ projects/Axion/inference/cpp/kernels/multihead_attention.hpp \
+  D:/LLM\ projects/Axion/inference/cpp/kernels/rope.hpp \
+  D:/LLM\ projects/Axion/inference/cpp/kernels/transpose.hpp
+
 CMakeFiles/axion_cpp.dir/runtime/embedding.cpp.obj: D:/LLM\ projects/Axion/inference/cpp/runtime/embedding.cpp \
   D:/LLM\ projects/Axion/inference/cpp/runtime/embedding.hpp \
   C:/rtools44/x86_64-w64-mingw32.static.posix/include/_mingw.h \
@@ -3554,6 +3934,134 @@ CMakeFiles/axion_cpp.dir/runtime/gpt2_ln.cpp.obj: D:/LLM\ projects/Axion/inferen
   C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/syslimits.h \
   D:/LLM\ projects/Axion/inference/cpp/core/tensor.hpp
 
+CMakeFiles/axion_cpp.dir/runtime/incremental_forward.cpp.obj: D:/LLM\ projects/Axion/inference/cpp/runtime/incremental_forward.cpp \
+  D:/LLM\ projects/Axion/inference/cpp/runtime/cached_attention.hpp \
+  D:/LLM\ projects/Axion/inference/cpp/runtime/incremental_forward.hpp \
+  D:/LLM\ projects/Axion/inference/cpp/runtime/kv_state.hpp \
+  D:/LLM\ projects/Axion/inference/cpp/runtime/linear.hpp \
+  D:/LLM\ projects/Axion/inference/cpp/runtime/logits.hpp \
+  D:/LLM\ projects/Axion/inference/cpp/runtime/single_position.hpp \
+  D:/LLM\ projects/Axion/inference/cpp/runtime/token_embedding.hpp \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/include/_mingw.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/include/_mingw_mac.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/include/_mingw_off_t.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/include/_mingw_secapi.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/include/_mingw_stat64.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/include/corecrt.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/include/corecrt_stdio_config.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/include/corecrt_wstdlib.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/include/crtdefs.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/include/ctype.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/include/errno.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/include/limits.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/include/locale.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/include/malloc.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/include/sdks/_mingw_ddk.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/include/sec_api/stdio_s.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/include/sec_api/stdlib_s.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/include/sec_api/wchar_s.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/include/stddef.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/include/stdint.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/include/stdio.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/include/stdlib.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/include/swprintf.inl \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/include/vadefs.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/include/wchar.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/backward/binders.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bit \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/alloc_traits.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/allocator.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/basic_string.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/basic_string.tcc \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/char_traits.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/charconv.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/concept_check.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/cpp_type_traits.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/cxxabi_forced.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/enable_special_members.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/erase_if.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/exception.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/exception_defines.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/functexcept.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/functional_hash.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/hash_bytes.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/hashtable.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/hashtable_policy.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/invoke.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/localefwd.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/memory_resource.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/memoryfwd.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/move.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/new_allocator.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/node_handle.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/ostream_insert.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/postypes.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/predefined_ops.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/ptr_traits.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/range_access.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/refwrap.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/requires_hosted.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/std_abs.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/stl_algobase.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/stl_bvector.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/stl_construct.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/stl_function.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/stl_iterator.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/stl_iterator_base_funcs.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/stl_iterator_base_types.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/stl_pair.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/stl_uninitialized.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/stl_vector.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/string_view.tcc \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/stringfwd.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/unordered_map.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/uses_allocator.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/uses_allocator_args.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/utility.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/vector.tcc \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/cctype \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/cerrno \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/clocale \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/cstddef \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/cstdint \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/cstdio \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/cstdlib \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/cwchar \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/debug/assertions.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/debug/debug.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/ext/aligned_buffer.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/ext/alloc_traits.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/ext/numeric_traits.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/ext/string_conversions.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/ext/type_traits.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/initializer_list \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/iosfwd \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/new \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/pstl/pstl_config.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/stdlib.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/string \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/string_view \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/tuple \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/type_traits \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/unordered_map \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/vector \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/x86_64-w64-mingw32.static.posix/bits/c++allocator.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/x86_64-w64-mingw32.static.posix/bits/c++config.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/x86_64-w64-mingw32.static.posix/bits/c++locale.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/x86_64-w64-mingw32.static.posix/bits/cpu_defines.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/x86_64-w64-mingw32.static.posix/bits/os_defines.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/limits.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/mm_malloc.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/stddef.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/stdint.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/syslimits.h \
+  D:/LLM\ projects/Axion/inference/cpp/core/mmap_loader.hpp \
+  D:/LLM\ projects/Axion/inference/cpp/core/tensor.hpp \
+  D:/LLM\ projects/Axion/inference/cpp/kernels/add.hpp \
+  D:/LLM\ projects/Axion/inference/cpp/kernels/gelu.hpp \
+  D:/LLM\ projects/Axion/inference/cpp/kernels/rmsnorm.hpp \
+  D:/LLM\ projects/Axion/inference/cpp/kernels/transpose.hpp
+
 CMakeFiles/axion_cpp.dir/runtime/inference_engine.cpp.obj: D:/LLM\ projects/Axion/inference/cpp/runtime/inference_engine.cpp \
   D:/LLM\ projects/Axion/inference/cpp/runtime/inference_engine.hpp \
   C:/rtools44/x86_64-w64-mingw32.static.posix/include/_mingw.h \
@@ -3715,6 +4223,122 @@ CMakeFiles/axion_cpp.dir/runtime/inference_engine.cpp.obj: D:/LLM\ projects/Axio
   C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/stdint.h \
   C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/syslimits.h \
   D:/LLM\ projects/Axion/inference/cpp/core/mmap_loader.hpp \
+  D:/LLM\ projects/Axion/inference/cpp/core/tensor.hpp
+
+CMakeFiles/axion_cpp.dir/runtime/kv_append.cpp.obj: D:/LLM\ projects/Axion/inference/cpp/runtime/kv_append.cpp \
+  D:/LLM\ projects/Axion/inference/cpp/runtime/kv_append.hpp \
+  D:/LLM\ projects/Axion/inference/cpp/runtime/kv_state.hpp \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/include/_mingw.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/include/_mingw_mac.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/include/_mingw_off_t.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/include/_mingw_secapi.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/include/_mingw_stat64.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/include/corecrt.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/include/corecrt_stdio_config.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/include/corecrt_wstdlib.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/include/crtdefs.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/include/ctype.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/include/errno.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/include/limits.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/include/locale.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/include/malloc.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/include/sdks/_mingw_ddk.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/include/sec_api/stdio_s.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/include/sec_api/stdlib_s.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/include/sec_api/wchar_s.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/include/stddef.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/include/stdint.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/include/stdio.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/include/stdlib.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/include/swprintf.inl \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/include/vadefs.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/include/wchar.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/backward/binders.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bit \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/alloc_traits.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/allocator.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/basic_string.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/basic_string.tcc \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/char_traits.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/charconv.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/concept_check.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/cpp_type_traits.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/cxxabi_forced.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/cxxabi_init_exception.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/exception.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/exception_defines.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/exception_ptr.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/functexcept.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/functional_hash.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/hash_bytes.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/invoke.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/localefwd.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/memory_resource.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/memoryfwd.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/move.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/nested_exception.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/new_allocator.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/ostream_insert.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/postypes.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/predefined_ops.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/ptr_traits.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/range_access.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/refwrap.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/requires_hosted.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/std_abs.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/stl_algobase.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/stl_bvector.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/stl_construct.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/stl_function.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/stl_iterator.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/stl_iterator_base_funcs.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/stl_iterator_base_types.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/stl_pair.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/stl_uninitialized.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/stl_vector.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/string_view.tcc \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/stringfwd.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/uses_allocator.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/uses_allocator_args.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/utility.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/vector.tcc \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/cctype \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/cerrno \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/clocale \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/cstddef \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/cstdint \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/cstdio \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/cstdlib \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/cwchar \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/debug/assertions.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/debug/debug.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/exception \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/ext/alloc_traits.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/ext/numeric_traits.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/ext/string_conversions.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/ext/type_traits.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/initializer_list \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/iosfwd \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/new \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/pstl/pstl_config.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/stdexcept \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/stdlib.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/string \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/string_view \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/tuple \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/type_traits \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/typeinfo \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/vector \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/x86_64-w64-mingw32.static.posix/bits/c++allocator.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/x86_64-w64-mingw32.static.posix/bits/c++config.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/x86_64-w64-mingw32.static.posix/bits/c++locale.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/x86_64-w64-mingw32.static.posix/bits/cpu_defines.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/x86_64-w64-mingw32.static.posix/bits/os_defines.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/limits.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/mm_malloc.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/stddef.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/stdint.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/syslimits.h \
   D:/LLM\ projects/Axion/inference/cpp/core/tensor.hpp
 
 CMakeFiles/axion_cpp.dir/runtime/kv_cache.cpp.obj: D:/LLM\ projects/Axion/inference/cpp/runtime/kv_cache.cpp \
@@ -4281,6 +4905,121 @@ CMakeFiles/axion_cpp.dir/runtime/logits.cpp.obj: D:/LLM\ projects/Axion/inferenc
   D:/LLM\ projects/Axion/inference/cpp/kernels/blas.hpp \
   D:/LLM\ projects/Axion/inference/cpp/kernels/transpose.hpp
 
+CMakeFiles/axion_cpp.dir/runtime/position_embedding.cpp.obj: D:/LLM\ projects/Axion/inference/cpp/runtime/position_embedding.cpp \
+  D:/LLM\ projects/Axion/inference/cpp/runtime/position_embedding.hpp \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/include/_mingw.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/include/_mingw_mac.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/include/_mingw_off_t.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/include/_mingw_secapi.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/include/_mingw_stat64.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/include/corecrt.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/include/corecrt_stdio_config.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/include/corecrt_wstdlib.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/include/crtdefs.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/include/ctype.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/include/errno.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/include/limits.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/include/locale.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/include/malloc.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/include/sdks/_mingw_ddk.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/include/sec_api/stdio_s.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/include/sec_api/stdlib_s.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/include/sec_api/wchar_s.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/include/stddef.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/include/stdint.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/include/stdio.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/include/stdlib.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/include/swprintf.inl \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/include/vadefs.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/include/wchar.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/backward/binders.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bit \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/alloc_traits.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/allocator.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/basic_string.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/basic_string.tcc \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/char_traits.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/charconv.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/concept_check.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/cpp_type_traits.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/cxxabi_forced.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/cxxabi_init_exception.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/exception.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/exception_defines.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/exception_ptr.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/functexcept.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/functional_hash.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/hash_bytes.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/invoke.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/localefwd.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/memory_resource.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/memoryfwd.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/move.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/nested_exception.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/new_allocator.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/ostream_insert.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/postypes.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/predefined_ops.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/ptr_traits.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/range_access.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/refwrap.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/requires_hosted.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/std_abs.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/stl_algobase.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/stl_bvector.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/stl_construct.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/stl_function.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/stl_iterator.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/stl_iterator_base_funcs.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/stl_iterator_base_types.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/stl_pair.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/stl_uninitialized.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/stl_vector.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/string_view.tcc \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/stringfwd.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/uses_allocator.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/uses_allocator_args.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/utility.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/vector.tcc \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/cctype \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/cerrno \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/clocale \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/cstddef \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/cstdint \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/cstdio \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/cstdlib \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/cwchar \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/debug/assertions.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/debug/debug.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/exception \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/ext/alloc_traits.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/ext/numeric_traits.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/ext/string_conversions.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/ext/type_traits.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/initializer_list \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/iosfwd \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/new \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/pstl/pstl_config.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/stdexcept \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/stdlib.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/string \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/string_view \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/tuple \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/type_traits \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/typeinfo \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/vector \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/x86_64-w64-mingw32.static.posix/bits/c++allocator.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/x86_64-w64-mingw32.static.posix/bits/c++config.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/x86_64-w64-mingw32.static.posix/bits/c++locale.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/x86_64-w64-mingw32.static.posix/bits/cpu_defines.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/x86_64-w64-mingw32.static.posix/bits/os_defines.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/limits.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/mm_malloc.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/stddef.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/stdint.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/syslimits.h \
+  D:/LLM\ projects/Axion/inference/cpp/core/tensor.hpp
+
 CMakeFiles/axion_cpp.dir/runtime/real_attention.cpp.obj: D:/LLM\ projects/Axion/inference/cpp/runtime/real_attention.cpp \
   D:/LLM\ projects/Axion/inference/cpp/runtime/fused_qkv.hpp \
   D:/LLM\ projects/Axion/inference/cpp/runtime/real_attention.hpp \
@@ -4514,6 +5253,236 @@ CMakeFiles/axion_cpp.dir/runtime/residual.cpp.obj: D:/LLM\ projects/Axion/infere
   C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/limits.h \
   C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/mm_malloc.h \
   C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/omp.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/stddef.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/stdint.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/syslimits.h \
+  D:/LLM\ projects/Axion/inference/cpp/core/tensor.hpp
+
+CMakeFiles/axion_cpp.dir/runtime/single_position.cpp.obj: D:/LLM\ projects/Axion/inference/cpp/runtime/single_position.cpp \
+  D:/LLM\ projects/Axion/inference/cpp/runtime/single_position.hpp \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/include/_mingw.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/include/_mingw_mac.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/include/_mingw_off_t.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/include/_mingw_secapi.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/include/_mingw_stat64.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/include/corecrt.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/include/corecrt_stdio_config.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/include/corecrt_wstdlib.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/include/crtdefs.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/include/ctype.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/include/errno.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/include/limits.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/include/locale.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/include/malloc.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/include/sdks/_mingw_ddk.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/include/sec_api/stdio_s.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/include/sec_api/stdlib_s.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/include/sec_api/wchar_s.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/include/stddef.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/include/stdint.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/include/stdio.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/include/stdlib.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/include/swprintf.inl \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/include/vadefs.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/include/wchar.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/backward/binders.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bit \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/alloc_traits.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/allocator.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/basic_string.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/basic_string.tcc \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/char_traits.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/charconv.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/concept_check.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/cpp_type_traits.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/cxxabi_forced.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/cxxabi_init_exception.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/exception.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/exception_defines.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/exception_ptr.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/functexcept.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/functional_hash.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/hash_bytes.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/invoke.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/localefwd.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/memory_resource.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/memoryfwd.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/move.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/nested_exception.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/new_allocator.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/ostream_insert.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/postypes.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/predefined_ops.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/ptr_traits.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/range_access.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/refwrap.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/requires_hosted.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/std_abs.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/stl_algobase.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/stl_bvector.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/stl_construct.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/stl_function.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/stl_iterator.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/stl_iterator_base_funcs.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/stl_iterator_base_types.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/stl_pair.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/stl_uninitialized.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/stl_vector.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/string_view.tcc \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/stringfwd.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/uses_allocator.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/uses_allocator_args.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/utility.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/vector.tcc \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/cctype \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/cerrno \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/clocale \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/cstddef \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/cstdint \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/cstdio \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/cstdlib \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/cwchar \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/debug/assertions.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/debug/debug.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/exception \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/ext/alloc_traits.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/ext/numeric_traits.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/ext/string_conversions.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/ext/type_traits.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/initializer_list \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/iosfwd \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/new \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/pstl/pstl_config.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/stdexcept \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/stdlib.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/string \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/string_view \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/tuple \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/type_traits \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/typeinfo \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/vector \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/x86_64-w64-mingw32.static.posix/bits/c++allocator.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/x86_64-w64-mingw32.static.posix/bits/c++config.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/x86_64-w64-mingw32.static.posix/bits/c++locale.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/x86_64-w64-mingw32.static.posix/bits/cpu_defines.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/x86_64-w64-mingw32.static.posix/bits/os_defines.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/limits.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/mm_malloc.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/stddef.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/stdint.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/syslimits.h \
+  D:/LLM\ projects/Axion/inference/cpp/core/tensor.hpp
+
+CMakeFiles/axion_cpp.dir/runtime/token_embedding.cpp.obj: D:/LLM\ projects/Axion/inference/cpp/runtime/token_embedding.cpp \
+  D:/LLM\ projects/Axion/inference/cpp/runtime/token_embedding.hpp \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/include/_mingw.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/include/_mingw_mac.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/include/_mingw_off_t.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/include/_mingw_secapi.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/include/_mingw_stat64.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/include/corecrt.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/include/corecrt_stdio_config.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/include/corecrt_wstdlib.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/include/crtdefs.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/include/ctype.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/include/errno.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/include/limits.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/include/locale.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/include/malloc.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/include/sdks/_mingw_ddk.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/include/sec_api/stdio_s.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/include/sec_api/stdlib_s.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/include/sec_api/wchar_s.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/include/stddef.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/include/stdint.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/include/stdio.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/include/stdlib.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/include/swprintf.inl \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/include/vadefs.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/include/wchar.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/backward/binders.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bit \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/alloc_traits.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/allocator.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/basic_string.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/basic_string.tcc \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/char_traits.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/charconv.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/concept_check.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/cpp_type_traits.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/cxxabi_forced.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/cxxabi_init_exception.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/exception.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/exception_defines.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/exception_ptr.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/functexcept.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/functional_hash.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/hash_bytes.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/invoke.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/localefwd.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/memory_resource.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/memoryfwd.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/move.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/nested_exception.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/new_allocator.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/ostream_insert.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/postypes.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/predefined_ops.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/ptr_traits.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/range_access.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/refwrap.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/requires_hosted.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/std_abs.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/stl_algobase.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/stl_bvector.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/stl_construct.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/stl_function.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/stl_iterator.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/stl_iterator_base_funcs.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/stl_iterator_base_types.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/stl_pair.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/stl_uninitialized.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/stl_vector.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/string_view.tcc \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/stringfwd.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/uses_allocator.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/uses_allocator_args.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/utility.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/vector.tcc \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/cctype \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/cerrno \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/clocale \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/cstddef \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/cstdint \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/cstdio \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/cstdlib \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/cwchar \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/debug/assertions.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/debug/debug.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/exception \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/ext/alloc_traits.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/ext/numeric_traits.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/ext/string_conversions.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/ext/type_traits.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/initializer_list \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/iosfwd \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/new \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/pstl/pstl_config.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/stdexcept \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/stdlib.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/string \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/string_view \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/tuple \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/type_traits \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/typeinfo \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/vector \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/x86_64-w64-mingw32.static.posix/bits/c++allocator.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/x86_64-w64-mingw32.static.posix/bits/c++config.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/x86_64-w64-mingw32.static.posix/bits/c++locale.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/x86_64-w64-mingw32.static.posix/bits/cpu_defines.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/x86_64-w64-mingw32.static.posix/bits/os_defines.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/limits.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/mm_malloc.h \
   C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/stddef.h \
   C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/stdint.h \
   C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/syslimits.h \
@@ -4923,9 +5892,31 @@ D:/LLM\ projects/Axion/inference/cpp/kernels/residual.hpp:
 
 D:/LLM\ projects/Axion/inference/cpp/runtime/transformer_layer.cpp:
 
+D:/LLM\ projects/Axion/inference/cpp/runtime/token_embedding.cpp:
+
 D:/LLM\ projects/Axion/inference/cpp/runtime/residual.cpp:
 
 D:/LLM\ projects/Axion/inference/cpp/runtime/real_attention.cpp:
+
+D:/LLM\ projects/Axion/inference/cpp/runtime/position_embedding.cpp:
+
+D:/LLM\ projects/Axion/inference/cpp/runtime/logits.cpp:
+
+D:/LLM\ projects/Axion/inference/cpp/runtime/linear.cpp:
+
+D:/LLM\ projects/Axion/inference/cpp/runtime/layer_scheduler.cpp:
+
+D:/LLM\ projects/Axion/inference/cpp/runtime/last_token.cpp:
+
+D:/LLM\ projects/Axion/inference/cpp/runtime/kv_cache.cpp:
+
+D:/LLM\ projects/Axion/inference/cpp/runtime/inference_engine.cpp:
+
+D:/LLM\ projects/Axion/inference/cpp/runtime/generation.cpp:
+
+D:/LLM\ projects/Axion/inference/cpp/runtime/full_forward.cpp:
+
+D:/LLM\ projects/Axion/inference/cpp/runtime/final_norm.cpp:
 
 C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/refwrap.h:
 
@@ -4962,8 +5953,6 @@ C:/rtools44/x86_64-w64-mingw32.static.posix/include/pthread_time.h:
 C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/deque:
 
 C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/exception_defines.h:
-
-D:/LLM\ projects/Axion/inference/cpp/runtime/logits.cpp:
 
 C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/gslice.h:
 
@@ -5073,8 +6062,6 @@ C:/Users/mushe/AppData/Local/Programs/Python/Python311/include/typeslots.h:
 
 C:/Users/mushe/AppData/Local/Programs/Python/Python311/include/weakrefobject.h:
 
-C:/Users/mushe/AppData/Local/Programs/Python/Python311/include/tupleobject.h:
-
 C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/memory_resource.h:
 
 C:/Users/mushe/AppData/Local/Programs/Python/Python311/include/cpython/floatobject.h:
@@ -5088,8 +6075,6 @@ D:/LLM\ projects/Axion/inference/cpp/third_party/nlohmann/ordered_map.hpp:
 C:/Users/mushe/AppData/Local/Programs/Python/Python311/include/traceback.h:
 
 C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/slice_array.h:
-
-C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/iosfwd:
 
 D:/LLM\ projects/Axion/inference/cpp/third_party/nlohmann/detail/meta/identity_tag.hpp:
 
@@ -5255,6 +6240,8 @@ C:/rtools44/x86_64-w64-mingw32.static.posix/include/sec_api/string_s.h:
 
 D:/LLM\ projects/Axion/inference/cpp/runtime/transformer_layer.hpp:
 
+D:/LLM\ projects/Axion/inference/cpp/runtime/incremental_forward.cpp:
+
 C:/Users/mushe/AppData/Local/Programs/Python/Python311/include/pycapsule.h:
 
 C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/tr1/exp_integral.tcc:
@@ -5267,7 +6254,13 @@ C:/rtools44/x86_64-w64-mingw32.static.posix/include/_mingw_secapi.h:
 
 C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/tr1/poly_laguerre.tcc:
 
+D:/LLM\ projects/Axion/inference/cpp/runtime/fused_qkv.cpp:
+
+C:/Users/mushe/AppData/Local/Programs/Python/Python311/include/pymem.h:
+
 C:/Users/mushe/AppData/Local/Programs/Python/Python311/Lib/site-packages/pybind11/include/pybind11/detail/type_caster_base.h:
+
+D:/LLM\ projects/Axion/inference/cpp/runtime/cached_attention.hpp:
 
 C:/Users/mushe/AppData/Local/Programs/Python/Python311/Lib/site-packages/pybind11/include/pybind11/attr.h:
 
@@ -5296,6 +6289,10 @@ C:/Users/mushe/AppData/Local/Programs/Python/Python311/include/cpython/pystate.h
 C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/locale_classes.tcc:
 
 C:/Users/mushe/AppData/Local/Programs/Python/Python311/Lib/site-packages/pybind11/include/pybind11/conduit/pybind11_platform_abi_id.h:
+
+D:/LLM\ projects/Axion/inference/cpp/runtime/inference_engine.hpp:
+
+C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/basic_ios.tcc:
 
 D:/LLM\ projects/Axion/inference/cpp/kernels/transpose.hpp:
 
@@ -5385,10 +6382,6 @@ C:/Users/mushe/AppData/Local/Programs/Python/Python311/include/cpython/genobject
 
 C:/rtools44/x86_64-w64-mingw32.static.posix/include/locale.h:
 
-C:/Users/mushe/AppData/Local/Programs/Python/Python311/Lib/site-packages/pybind11/include/pybind11/detail/struct_smart_holder.h:
-
-C:/Users/mushe/AppData/Local/Programs/Python/Python311/include/cpython/listobject.h:
-
 C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/cwchar:
 
 C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/streambuf.tcc:
@@ -5414,6 +6407,8 @@ C:/Users/mushe/AppData/Local/Programs/Python/Python311/include/cpython/traceback
 C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/tr1/beta_function.tcc:
 
 C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/unordered_map:
+
+D:/LLM\ projects/Axion/inference/cpp/runtime/single_position.hpp:
 
 C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/shared_ptr_base.h:
 
@@ -5491,8 +6486,6 @@ D:/LLM\ projects/Axion/inference/cpp/runtime/gpt2_ln.cpp:
 
 C:/Users/mushe/AppData/Local/Programs/Python/Python311/include/boolobject.h:
 
-D:/LLM\ projects/Axion/inference/cpp/runtime/generation.cpp:
-
 C:/Users/mushe/AppData/Local/Programs/Python/Python311/include/memoryobject.h:
 
 C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/exception_ptr.h:
@@ -5522,6 +6515,8 @@ C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.po
 C:/Users/mushe/AppData/Local/Programs/Python/Python311/include/Python.h:
 
 C:/Users/mushe/AppData/Local/Programs/Python/Python311/include/pyframe.h:
+
+D:/LLM\ projects/Axion/inference/cpp/runtime/position_embedding.hpp:
 
 C:/Users/mushe/AppData/Local/Programs/Python/Python311/include/unicodeobject.h:
 
@@ -5560,8 +6555,6 @@ C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.po
 C:/rtools44/x86_64-w64-mingw32.static.posix/include/sdks/_mingw_ddk.h:
 
 C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/tuple:
-
-D:/LLM\ projects/Axion/inference/cpp/runtime/layer_scheduler.cpp:
 
 C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/stl_construct.h:
 
@@ -5739,6 +6732,8 @@ C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.po
 
 C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/pstl/glue_memory_defs.h:
 
+D:/LLM\ projects/Axion/inference/cpp/runtime/kv_append.cpp:
+
 C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/stdexcept:
 
 C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/stdlib.h:
@@ -5791,13 +6786,11 @@ C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.po
 
 C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/x86_64-w64-mingw32.static.posix/bits/gthr-default.h:
 
+D:/LLM\ projects/Axion/inference/cpp/kernels/layernorm.hpp:
+
 C:/rtools44/x86_64-w64-mingw32.static.posix/include/vadefs.h:
 
 C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/mm_malloc.h:
-
-C:/Users/mushe/AppData/Local/Programs/Python/Python311/include/pymem.h:
-
-D:/LLM\ projects/Axion/inference/cpp/runtime/fused_qkv.cpp:
 
 C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/stl_heap.h:
 
@@ -5863,6 +6856,22 @@ D:/LLM\ projects/Axion/inference/cpp/runtime/generation.hpp:
 
 D:/LLM\ projects/Axion/inference/cpp/runtime/gpt2_ln.hpp:
 
+D:/LLM\ projects/Axion/inference/cpp/runtime/single_position.cpp:
+
+C:/Users/mushe/AppData/Local/Programs/Python/Python311/Lib/site-packages/pybind11/include/pybind11/detail/struct_smart_holder.h:
+
+C:/Users/mushe/AppData/Local/Programs/Python/Python311/include/cpython/listobject.h:
+
+D:/LLM\ projects/Axion/inference/cpp/runtime/incremental_forward.hpp:
+
+C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/iosfwd:
+
+D:/LLM\ projects/Axion/inference/cpp/runtime/kv_append.hpp:
+
+D:/LLM\ projects/Axion/inference/cpp/runtime/kv_state.hpp:
+
+D:/LLM\ projects/Axion/inference/cpp/third_party/nlohmann/detail/json_custom_base_class.hpp:
+
 D:/LLM\ projects/Axion/inference/cpp/runtime/logits.hpp:
 
 C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/set:
@@ -5872,6 +6881,8 @@ C:/rtools44/x86_64-w64-mingw32.static.posix/include/pthread_signal.h:
 C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/tr1/riemann_zeta.tcc:
 
 D:/LLM\ projects/Axion/inference/cpp/runtime/real_attention.hpp:
+
+D:/LLM\ projects/Axion/inference/cpp/runtime/token_embedding.hpp:
 
 D:/LLM\ projects/Axion/inference/cpp/core/fp16.hpp:
 
@@ -5884,6 +6895,8 @@ D:/LLM\ projects/Axion/inference/cpp/third_party/nlohmann/detail/meta/logic.hpp:
 D:/LLM\ projects/Axion/inference/cpp/third_party/nlohmann/detail/abi_macros.hpp:
 
 D:/LLM\ projects/Axion/inference/cpp/third_party/nlohmann/detail/meta/void_t.hpp:
+
+D:/LLM\ projects/Axion/inference/cpp/kernels/add.hpp:
 
 C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/filesystem:
 
@@ -5921,11 +6934,11 @@ C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.po
 
 D:/LLM\ projects/Axion/inference/cpp/third_party/nlohmann/detail/iterators/json_reverse_iterator.hpp:
 
-D:/LLM\ projects/Axion/inference/cpp/third_party/nlohmann/detail/json_custom_base_class.hpp:
-
 C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/unique_ptr.h:
 
 D:/LLM\ projects/Axion/inference/cpp/third_party/nlohmann/detail/json_pointer.hpp:
+
+D:/LLM\ projects/Axion/inference/cpp/kernels/add.cpp:
 
 D:/LLM\ projects/Axion/inference/cpp/third_party/nlohmann/detail/meta/call_std/begin.hpp:
 
@@ -5936,8 +6949,6 @@ D:/LLM\ projects/Axion/inference/cpp/third_party/nlohmann/detail/meta/cpp_future
 D:/LLM\ projects/Axion/inference/cpp/third_party/nlohmann/detail/string_concat.hpp:
 
 D:/LLM\ projects/Axion/inference/cpp/third_party/nlohmann/json_fwd.hpp:
-
-D:/LLM\ projects/Axion/inference/cpp/runtime/inference_engine.cpp:
 
 D:/LLM\ projects/Axion/inference/cpp/third_party/nlohmann/thirdparty/hedley/hedley_undef.hpp:
 
@@ -5963,6 +6974,8 @@ C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.po
 
 C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/fstream:
 
+D:/LLM\ projects/Axion/inference/cpp/kernels/layernorm.cpp:
+
 C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/iomanip:
 
 C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/x86_64-w64-mingw32.static.posix/bits/c++io.h:
@@ -5981,10 +6994,6 @@ D:/LLM\ projects/Axion/inference/cpp/kernels/blas.cpp:
 
 D:/LLM\ projects/Axion/inference/cpp/kernels/gelu.cpp:
 
-C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/basic_ios.tcc:
-
-D:/LLM\ projects/Axion/inference/cpp/runtime/inference_engine.hpp:
-
 C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/vector.tcc:
 
 C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/atomic:
@@ -6001,12 +7010,6 @@ D:/LLM\ projects/Axion/inference/cpp/runtime/last_token.hpp:
 
 D:/LLM\ projects/Axion/inference/cpp/kernels/rope.cpp:
 
-D:/LLM\ projects/Axion/inference/cpp/runtime/final_norm.cpp:
+C:/Users/mushe/AppData/Local/Programs/Python/Python311/include/tupleobject.h:
 
-D:/LLM\ projects/Axion/inference/cpp/runtime/full_forward.cpp:
-
-D:/LLM\ projects/Axion/inference/cpp/runtime/kv_cache.cpp:
-
-D:/LLM\ projects/Axion/inference/cpp/runtime/last_token.cpp:
-
-D:/LLM\ projects/Axion/inference/cpp/runtime/linear.cpp:
+D:/LLM\ projects/Axion/inference/cpp/runtime/cached_attention.cpp:
