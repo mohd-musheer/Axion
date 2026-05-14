@@ -191,14 +191,50 @@ Tensor MMapLoader::load_tensor_data(
                 tensor_start
             );
     }
+//----------------------------------
+    // --------------------------------
+// FLOAT32
+// --------------------------------
 
-    else {
+if (tensor.dtype == DType::FLOAT32) {
 
-        throw std::runtime_error(
-            "Only FLOAT32 direct mmap supported yet"
+    tensor.data_ptr =
+        reinterpret_cast<float*>(
+
+            file_data.data() +
+            tensor_start
         );
-    }
 
+    tensor.is_fp16 = false;
+}
+
+// --------------------------------
+// FLOAT16
+// --------------------------------
+
+else if (
+    tensor.dtype ==
+    DType::FLOAT16
+) {
+
+    tensor.fp16_ptr =
+        reinterpret_cast<uint16_t*>(
+
+            file_data.data() +
+            tensor_start
+        );
+
+    tensor.is_fp16 = true;
+}
+
+else {
+
+    throw std::runtime_error(
+        "Unsupported tensor dtype"
+    );
+}
+
+//----------------------------------    
     return tensor;
 }
 

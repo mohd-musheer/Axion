@@ -1,4 +1,3 @@
-
 #include "softmax.hpp"
 
 #include <cmath>
@@ -34,7 +33,7 @@ Tensor softmax(
         "softmax_output";
 
     output.dtype =
-        input.dtype;
+        DType::FLOAT32;
 
     output.shape =
         input.shape;
@@ -49,17 +48,25 @@ Tensor softmax(
         float max_val =
             -1e30f;
 
+        // -------------------------
+        // FIND MAX
+        // -------------------------
+
         for (int64_t c = 0; c < cols; c++) {
 
             float val =
-                input.data()[
+                input.value(
                     r * cols + c
-                ];
+                );
 
             if (val > max_val) {
                 max_val = val;
             }
         }
+
+        // -------------------------
+        // EXP
+        // -------------------------
 
         float sum =
             0.0f;
@@ -68,9 +75,9 @@ Tensor softmax(
 
             float exp_val =
                 std::exp(
-                    input.data()[
+                    input.value(
                         r * cols + c
-                    ] - max_val
+                    ) - max_val
                 );
 
             output.data()[
@@ -79,6 +86,10 @@ Tensor softmax(
 
             sum += exp_val;
         }
+
+        // -------------------------
+        // NORMALIZE
+        // -------------------------
 
         for (int64_t c = 0; c < cols; c++) {
 

@@ -37,8 +37,8 @@ Tensor add(
          i++) {
 
         out.data()[i] =
-            a.data()[i] +
-            b.data()[i];
+            a.value(i) +
+            b.value(i);
     }
 
     return out;

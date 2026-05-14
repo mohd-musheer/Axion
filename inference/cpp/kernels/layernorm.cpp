@@ -1,4 +1,3 @@
-
 #include "layernorm.hpp"
 
 #include <cmath>
@@ -35,7 +34,7 @@ Tensor layernorm(
         input.shape;
 
     output.dtype =
-        input.dtype;
+        DType::FLOAT32;
 
     output.owned_data.resize(
         input.numel()
@@ -55,9 +54,9 @@ Tensor layernorm(
              h < hidden;
              h++) {
 
-            mean += input.data()[
+            mean += input.value(
                 r * hidden + h
-            ];
+            );
         }
 
         mean /= hidden;
@@ -73,9 +72,9 @@ Tensor layernorm(
              h++) {
 
             float x =
-                input.data()[
+                input.value(
                     r * hidden + h
-                ] - mean;
+                ) - mean;
 
             var += x * x;
         }
@@ -84,7 +83,9 @@ Tensor layernorm(
 
         float inv_std =
             1.0f /
-            std::sqrt(var + eps);
+            std::sqrt(
+                var + eps
+            );
 
         // -------------------------
         // NORMALIZE
@@ -95,19 +96,19 @@ Tensor layernorm(
              h++) {
 
             float x =
-                input.data()[
+                input.value(
                     r * hidden + h
-                ];
+                );
 
             float norm =
                 (x - mean) *
                 inv_std;
 
             norm *=
-                weight.data()[h];
+                weight.value(h);
 
             norm +=
-                bias.data()[h];
+                bias.value(h);
 
             output.data()[
                 r * hidden + h

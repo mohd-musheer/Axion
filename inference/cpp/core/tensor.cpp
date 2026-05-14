@@ -1,5 +1,5 @@
 #include "tensor.hpp"
-
+#include "fp16.hpp"
 #include <iostream>
 
 namespace axion {
@@ -7,6 +7,10 @@ namespace axion {
 Tensor::Tensor() {}
 
 int64_t Tensor::numel() const {
+
+    if (is_view) {
+        return view_numel;
+    }
 
     int64_t total = 1;
 
@@ -38,19 +42,19 @@ bool Tensor::owns_data() const {
 float* Tensor::data() {
 
     if (owns_data()) {
-        return owned_data.data();
+        return owned_data.data() + view_offset;
     }
 
-    return data_ptr;
+    return data_ptr + view_offset;
 }
 
 const float* Tensor::data() const {
 
     if (owns_data()) {
-        return owned_data.data();
+        return owned_data.data() + view_offset;
     }
 
-    return data_ptr;
+    return data_ptr + view_offset;
 }
 
 void Tensor::print_info() const {
@@ -83,6 +87,50 @@ void Tensor::print_info() const {
     std::cout << "Owns Data: "
               << owns_data()
               << std::endl;
+
+    std::cout << "Is View: "
+              << is_view
+              << std::endl;
+
+    std::cout << "View Offset: "
+              << view_offset
+              << std::endl;
 }
 
+float Tensor::value(
+    int64_t idx
+) const {
+
+    int64_t actual_idx;
+
+    if (is_strided) {
+
+        int64_t row =
+            idx / shape[1];
+
+        int64_t col =
+            idx % shape[1];
+
+        actual_idx =
+            view_offset +
+            row * stride +
+            col;
+    }
+    else {
+
+        actual_idx =
+            idx + view_offset;
+    }
+
+    if (is_fp16) {
+
+        return fp16_to_fp32(
+            fp16_ptr[actual_idx]
+        );
+    }
+
+    return data_ptr
+        ? data_ptr[actual_idx]
+        : owned_data[actual_idx];
+}
 }

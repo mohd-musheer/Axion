@@ -29,7 +29,7 @@ Tensor gelu(
          i++) {
 
         float x =
-            input.data()[i];
+            input.value(i);
 
         out.data()[i] =
             0.5f *

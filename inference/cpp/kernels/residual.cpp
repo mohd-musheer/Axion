@@ -1,4 +1,3 @@
-
 #include "residual.hpp"
 
 #include <stdexcept>
@@ -32,17 +31,18 @@ Tensor residual_add(
     output.shape =
         x.shape;
 
-    output.data.resize(
-        x.data.size()
+    output.owned_data.resize(
+        x.numel()
     );
 
     #pragma omp parallel for
     for (int64_t i = 0;
-         i < static_cast<int64_t>(x.data.size());
+         i < x.numel();
          i++) {
 
-        output.data[i] =
-            x.data[i] + y.data[i];
+        output.data()[i] =
+            x.value(i) +
+            y.value(i);
     }
 
     return output;

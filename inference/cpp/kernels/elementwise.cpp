@@ -42,7 +42,7 @@ Tensor elementwise_mul(
          i++) {
 
         output.data()[i] =
-            a.data()[i] * b.data()[i];
+            a.value(i) * b.value(i);
     }
 
     return output;

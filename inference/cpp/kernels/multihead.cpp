@@ -42,7 +42,8 @@ std::vector<Tensor> split_heads(
         Tensor head;
 
         head.name =
-            "head_" + std::to_string(h);
+            "head_" +
+            std::to_string(h);
 
         head.dtype =
             input.dtype;
@@ -52,30 +53,37 @@ std::vector<Tensor> split_heads(
             head_dim
         };
 
-        head.owned_data.resize(
-            seq_len * head_dim
-        );
+        // -------------------------
+        // SHARE STORAGE
+        // -------------------------
 
-        for (int64_t t = 0;
-             t < seq_len;
-             t++) {
+        head.data_ptr =
+            const_cast<float*>(
+                input.data()
+            );
 
-            for (int64_t d = 0;
-                 d < head_dim;
-                 d++) {
+        head.fp16_ptr =
+            input.fp16_ptr;
 
-                int64_t src_idx =
-                    t * hidden_dim +
-                    h * head_dim +
-                    d;
+        head.is_fp16 =
+            input.is_fp16;
 
-                int64_t dst_idx =
-                    t * head_dim + d;
+        // -------------------------
+        // STRIDED VIEW
+        // -------------------------
 
-                head.data()[dst_idx] =
-                    input.data()[src_idx];
-            }
-        }
+        head.is_view = true;
+
+        head.is_strided = true;
+
+        head.view_offset =
+            h * head_dim;
+
+        head.stride =
+            hidden_dim;
+
+        head.view_numel =
+            seq_len * head_dim;
 
         heads.push_back(head);
     }
@@ -144,7 +152,7 @@ Tensor merge_heads(
                     t * head_dim + d;
 
                 output.data()[dst_idx] =
-                    heads[h].data()[src_idx];
+                    heads[h].value(src_idx);
             }
         }
     }

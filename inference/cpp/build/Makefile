@@ -153,6 +153,54 @@ bindings/pybind_module.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/axion_cpp.dir/build.make CMakeFiles/axion_cpp.dir/bindings/pybind_module.cpp.s
 .PHONY : bindings/pybind_module.cpp.s
 
+core/arena.obj: core/arena.cpp.obj
+.PHONY : core/arena.obj
+
+# target to build an object file
+core/arena.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/axion_cpp.dir/build.make CMakeFiles/axion_cpp.dir/core/arena.cpp.obj
+.PHONY : core/arena.cpp.obj
+
+core/arena.i: core/arena.cpp.i
+.PHONY : core/arena.i
+
+# target to preprocess a source file
+core/arena.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/axion_cpp.dir/build.make CMakeFiles/axion_cpp.dir/core/arena.cpp.i
+.PHONY : core/arena.cpp.i
+
+core/arena.s: core/arena.cpp.s
+.PHONY : core/arena.s
+
+# target to generate assembly for a file
+core/arena.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/axion_cpp.dir/build.make CMakeFiles/axion_cpp.dir/core/arena.cpp.s
+.PHONY : core/arena.cpp.s
+
+core/fp16.obj: core/fp16.cpp.obj
+.PHONY : core/fp16.obj
+
+# target to build an object file
+core/fp16.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/axion_cpp.dir/build.make CMakeFiles/axion_cpp.dir/core/fp16.cpp.obj
+.PHONY : core/fp16.cpp.obj
+
+core/fp16.i: core/fp16.cpp.i
+.PHONY : core/fp16.i
+
+# target to preprocess a source file
+core/fp16.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/axion_cpp.dir/build.make CMakeFiles/axion_cpp.dir/core/fp16.cpp.i
+.PHONY : core/fp16.cpp.i
+
+core/fp16.s: core/fp16.cpp.s
+.PHONY : core/fp16.s
+
+# target to generate assembly for a file
+core/fp16.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/axion_cpp.dir/build.make CMakeFiles/axion_cpp.dir/core/fp16.cpp.s
+.PHONY : core/fp16.cpp.s
+
 core/mmap_loader.obj: core/mmap_loader.cpp.obj
 .PHONY : core/mmap_loader.obj
 
@@ -200,6 +248,78 @@ core/tensor.s: core/tensor.cpp.s
 core/tensor.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/axion_cpp.dir/build.make CMakeFiles/axion_cpp.dir/core/tensor.cpp.s
 .PHONY : core/tensor.cpp.s
+
+core/tensor_factory.obj: core/tensor_factory.cpp.obj
+.PHONY : core/tensor_factory.obj
+
+# target to build an object file
+core/tensor_factory.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/axion_cpp.dir/build.make CMakeFiles/axion_cpp.dir/core/tensor_factory.cpp.obj
+.PHONY : core/tensor_factory.cpp.obj
+
+core/tensor_factory.i: core/tensor_factory.cpp.i
+.PHONY : core/tensor_factory.i
+
+# target to preprocess a source file
+core/tensor_factory.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/axion_cpp.dir/build.make CMakeFiles/axion_cpp.dir/core/tensor_factory.cpp.i
+.PHONY : core/tensor_factory.cpp.i
+
+core/tensor_factory.s: core/tensor_factory.cpp.s
+.PHONY : core/tensor_factory.s
+
+# target to generate assembly for a file
+core/tensor_factory.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/axion_cpp.dir/build.make CMakeFiles/axion_cpp.dir/core/tensor_factory.cpp.s
+.PHONY : core/tensor_factory.cpp.s
+
+core/tensor_view.obj: core/tensor_view.cpp.obj
+.PHONY : core/tensor_view.obj
+
+# target to build an object file
+core/tensor_view.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/axion_cpp.dir/build.make CMakeFiles/axion_cpp.dir/core/tensor_view.cpp.obj
+.PHONY : core/tensor_view.cpp.obj
+
+core/tensor_view.i: core/tensor_view.cpp.i
+.PHONY : core/tensor_view.i
+
+# target to preprocess a source file
+core/tensor_view.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/axion_cpp.dir/build.make CMakeFiles/axion_cpp.dir/core/tensor_view.cpp.i
+.PHONY : core/tensor_view.cpp.i
+
+core/tensor_view.s: core/tensor_view.cpp.s
+.PHONY : core/tensor_view.s
+
+# target to generate assembly for a file
+core/tensor_view.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/axion_cpp.dir/build.make CMakeFiles/axion_cpp.dir/core/tensor_view.cpp.s
+.PHONY : core/tensor_view.cpp.s
+
+gguf/gguf.obj: gguf/gguf.cpp.obj
+.PHONY : gguf/gguf.obj
+
+# target to build an object file
+gguf/gguf.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/axion_cpp.dir/build.make CMakeFiles/axion_cpp.dir/gguf/gguf.cpp.obj
+.PHONY : gguf/gguf.cpp.obj
+
+gguf/gguf.i: gguf/gguf.cpp.i
+.PHONY : gguf/gguf.i
+
+# target to preprocess a source file
+gguf/gguf.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/axion_cpp.dir/build.make CMakeFiles/axion_cpp.dir/gguf/gguf.cpp.i
+.PHONY : gguf/gguf.cpp.i
+
+gguf/gguf.s: gguf/gguf.cpp.s
+.PHONY : gguf/gguf.s
+
+# target to generate assembly for a file
+gguf/gguf.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/axion_cpp.dir/build.make CMakeFiles/axion_cpp.dir/gguf/gguf.cpp.s
+.PHONY : gguf/gguf.cpp.s
 
 kernels/add.obj: kernels/add.cpp.obj
 .PHONY : kernels/add.obj
@@ -585,6 +705,54 @@ kernels/transpose.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/axion_cpp.dir/build.make CMakeFiles/axion_cpp.dir/kernels/transpose.cpp.s
 .PHONY : kernels/transpose.cpp.s
 
+quantization/q4.obj: quantization/q4.cpp.obj
+.PHONY : quantization/q4.obj
+
+# target to build an object file
+quantization/q4.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/axion_cpp.dir/build.make CMakeFiles/axion_cpp.dir/quantization/q4.cpp.obj
+.PHONY : quantization/q4.cpp.obj
+
+quantization/q4.i: quantization/q4.cpp.i
+.PHONY : quantization/q4.i
+
+# target to preprocess a source file
+quantization/q4.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/axion_cpp.dir/build.make CMakeFiles/axion_cpp.dir/quantization/q4.cpp.i
+.PHONY : quantization/q4.cpp.i
+
+quantization/q4.s: quantization/q4.cpp.s
+.PHONY : quantization/q4.s
+
+# target to generate assembly for a file
+quantization/q4.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/axion_cpp.dir/build.make CMakeFiles/axion_cpp.dir/quantization/q4.cpp.s
+.PHONY : quantization/q4.cpp.s
+
+quantization/q8.obj: quantization/q8.cpp.obj
+.PHONY : quantization/q8.obj
+
+# target to build an object file
+quantization/q8.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/axion_cpp.dir/build.make CMakeFiles/axion_cpp.dir/quantization/q8.cpp.obj
+.PHONY : quantization/q8.cpp.obj
+
+quantization/q8.i: quantization/q8.cpp.i
+.PHONY : quantization/q8.i
+
+# target to preprocess a source file
+quantization/q8.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/axion_cpp.dir/build.make CMakeFiles/axion_cpp.dir/quantization/q8.cpp.i
+.PHONY : quantization/q8.cpp.i
+
+quantization/q8.s: quantization/q8.cpp.s
+.PHONY : quantization/q8.s
+
+# target to generate assembly for a file
+quantization/q8.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/axion_cpp.dir/build.make CMakeFiles/axion_cpp.dir/quantization/q8.cpp.s
+.PHONY : quantization/q8.cpp.s
+
 runtime/cached_attention.obj: runtime/cached_attention.cpp.obj
 .PHONY : runtime/cached_attention.obj
 
@@ -969,6 +1137,30 @@ runtime/logits.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/axion_cpp.dir/build.make CMakeFiles/axion_cpp.dir/runtime/logits.cpp.s
 .PHONY : runtime/logits.cpp.s
 
+runtime/paged_kv.obj: runtime/paged_kv.cpp.obj
+.PHONY : runtime/paged_kv.obj
+
+# target to build an object file
+runtime/paged_kv.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/axion_cpp.dir/build.make CMakeFiles/axion_cpp.dir/runtime/paged_kv.cpp.obj
+.PHONY : runtime/paged_kv.cpp.obj
+
+runtime/paged_kv.i: runtime/paged_kv.cpp.i
+.PHONY : runtime/paged_kv.i
+
+# target to preprocess a source file
+runtime/paged_kv.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/axion_cpp.dir/build.make CMakeFiles/axion_cpp.dir/runtime/paged_kv.cpp.i
+.PHONY : runtime/paged_kv.cpp.i
+
+runtime/paged_kv.s: runtime/paged_kv.cpp.s
+.PHONY : runtime/paged_kv.s
+
+# target to generate assembly for a file
+runtime/paged_kv.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/axion_cpp.dir/build.make CMakeFiles/axion_cpp.dir/runtime/paged_kv.cpp.s
+.PHONY : runtime/paged_kv.cpp.s
+
 runtime/position_embedding.obj: runtime/position_embedding.cpp.obj
 .PHONY : runtime/position_embedding.obj
 
@@ -1173,12 +1365,27 @@ help:
 	@echo "... bindings/pybind_module.obj"
 	@echo "... bindings/pybind_module.i"
 	@echo "... bindings/pybind_module.s"
+	@echo "... core/arena.obj"
+	@echo "... core/arena.i"
+	@echo "... core/arena.s"
+	@echo "... core/fp16.obj"
+	@echo "... core/fp16.i"
+	@echo "... core/fp16.s"
 	@echo "... core/mmap_loader.obj"
 	@echo "... core/mmap_loader.i"
 	@echo "... core/mmap_loader.s"
 	@echo "... core/tensor.obj"
 	@echo "... core/tensor.i"
 	@echo "... core/tensor.s"
+	@echo "... core/tensor_factory.obj"
+	@echo "... core/tensor_factory.i"
+	@echo "... core/tensor_factory.s"
+	@echo "... core/tensor_view.obj"
+	@echo "... core/tensor_view.i"
+	@echo "... core/tensor_view.s"
+	@echo "... gguf/gguf.obj"
+	@echo "... gguf/gguf.i"
+	@echo "... gguf/gguf.s"
 	@echo "... kernels/add.obj"
 	@echo "... kernels/add.i"
 	@echo "... kernels/add.s"
@@ -1227,6 +1434,12 @@ help:
 	@echo "... kernels/transpose.obj"
 	@echo "... kernels/transpose.i"
 	@echo "... kernels/transpose.s"
+	@echo "... quantization/q4.obj"
+	@echo "... quantization/q4.i"
+	@echo "... quantization/q4.s"
+	@echo "... quantization/q8.obj"
+	@echo "... quantization/q8.i"
+	@echo "... quantization/q8.s"
 	@echo "... runtime/cached_attention.obj"
 	@echo "... runtime/cached_attention.i"
 	@echo "... runtime/cached_attention.s"
@@ -1275,6 +1488,9 @@ help:
 	@echo "... runtime/logits.obj"
 	@echo "... runtime/logits.i"
 	@echo "... runtime/logits.s"
+	@echo "... runtime/paged_kv.obj"
+	@echo "... runtime/paged_kv.i"
+	@echo "... runtime/paged_kv.s"
 	@echo "... runtime/position_embedding.obj"
 	@echo "... runtime/position_embedding.i"
 	@echo "... runtime/position_embedding.s"

@@ -385,7 +385,15 @@ CMakeFiles/axion_cpp.dir/bindings/pybind_module.cpp.obj: \
  c:\rtools44\x86_64-w64-mingw32.static.posix\lib\gcc\x86_64-w64-mingw32.static.posix\13.3.0\include\c++\bits\stl_stack.h \
  d:\llm\ projects\axion\inference\cpp\kernels\layernorm.hpp \
  d:\llm\ projects\axion\inference\cpp\core\tensor.hpp \
+ d:\llm\ projects\axion\inference\cpp\runtime\paged_kv.hpp \
  d:\llm\ projects\axion\inference\cpp\runtime\last_token.hpp \
+ d:\llm\ projects\axion\inference\cpp\gguf\gguf.hpp \
+ c:\rtools44\x86_64-w64-mingw32.static.posix\lib\gcc\x86_64-w64-mingw32.static.posix\13.3.0\include\c++\fstream \
+ c:\rtools44\x86_64-w64-mingw32.static.posix\lib\gcc\x86_64-w64-mingw32.static.posix\13.3.0\include\c++\bits\codecvt.h \
+ c:\rtools44\x86_64-w64-mingw32.static.posix\lib\gcc\x86_64-w64-mingw32.static.posix\13.3.0\include\c++\x86_64-w64-mingw32.static.posix\bits\basic_file.h \
+ c:\rtools44\x86_64-w64-mingw32.static.posix\lib\gcc\x86_64-w64-mingw32.static.posix\13.3.0\include\c++\x86_64-w64-mingw32.static.posix\bits\c++io.h \
+ c:\rtools44\x86_64-w64-mingw32.static.posix\lib\gcc\x86_64-w64-mingw32.static.posix\13.3.0\include\c++\bits\fstream.tcc \
+ d:\llm\ projects\axion\inference\cpp\quantization\q8.hpp \
  C:/Users/mushe/AppData/Local/Programs/Python/Python311/Lib/site-packages/pybind11/include/pybind11/stl.h \
  c:\rtools44\x86_64-w64-mingw32.static.posix\lib\gcc\x86_64-w64-mingw32.static.posix\13.3.0\include\c++\list \
  c:\rtools44\x86_64-w64-mingw32.static.posix\lib\gcc\x86_64-w64-mingw32.static.posix\13.3.0\include\c++\bits\stl_list.h \
@@ -410,12 +418,15 @@ CMakeFiles/axion_cpp.dir/bindings/pybind_module.cpp.obj: \
  c:\rtools44\x86_64-w64-mingw32.static.posix\lib\gcc\x86_64-w64-mingw32.static.posix\13.3.0\include\c++\variant \
  d:\llm\ projects\axion\inference\cpp\runtime\single_position.hpp \
  d:\llm\ projects\axion\inference\cpp\runtime\token_embedding.hpp \
+ d:\llm\ projects\axion\inference\cpp\core\arena.hpp \
+ d:\llm\ projects\axion\inference\cpp\core\tensor_factory.hpp \
  d:\llm\ projects\axion\inference\cpp\runtime\incremental_forward.hpp \
  d:\llm\ projects\axion\inference\cpp\core\mmap_loader.hpp \
  d:\llm\ projects\axion\inference\cpp\runtime\kv_state.hpp \
  d:\llm\ projects\axion\inference\cpp\kernels\blas.hpp \
  d:\llm\ projects\axion\inference\cpp\runtime\residual.hpp \
  d:\llm\ projects\axion\inference\cpp\kernels\add.hpp \
+ d:\llm\ projects\axion\inference\cpp\quantization\q4.hpp \
  d:\llm\ projects\axion\inference\cpp\runtime\cached_attention.hpp \
  d:\llm\ projects\axion\inference\cpp\kernels\multihead_attention.hpp \
  d:\llm\ projects\axion\inference\cpp\runtime\linear.hpp \
@@ -440,6 +451,7 @@ CMakeFiles/axion_cpp.dir/bindings/pybind_module.cpp.obj: \
  d:\llm\ projects\axion\inference\cpp\kernels\gelu.hpp \
  d:\llm\ projects\axion\inference\cpp\kernels\softmax.hpp \
  d:\llm\ projects\axion\inference\cpp\kernels\silu.hpp \
+ d:\llm\ projects\axion\inference\cpp\core\tensor_view.hpp \
  d:\llm\ projects\axion\inference\cpp\kernels\elementwise.hpp \
  d:\llm\ projects\axion\inference\cpp\kernels\mlp.hpp \
  d:\llm\ projects\axion\inference\cpp\kernels\attention_output.hpp \

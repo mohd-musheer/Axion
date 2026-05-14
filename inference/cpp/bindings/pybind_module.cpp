@@ -2,14 +2,20 @@
 
 #include <pybind11/pybind11.h>
 #include "../kernels/layernorm.hpp"
+#include "../runtime/paged_kv.hpp"
 #include "../runtime/last_token.hpp"
+#include "../gguf/gguf.hpp"
+#include "../quantization/q8.hpp"
 #include <pybind11/stl.h>
 #include "../runtime/single_position.hpp"
 #include "../runtime/token_embedding.hpp"
+#include "../core/arena.hpp"
+#include "../core/tensor_factory.hpp"
 #include "../runtime/incremental_forward.hpp"
 #include "../kernels/blas.hpp"
 #include "../runtime/residual.hpp"
 #include "../kernels/add.hpp"
+#include "../quantization/q4.hpp"
 #include "../runtime/cached_attention.hpp"
 #include "../kernels/multihead_attention.hpp"
 #include "../runtime/linear.hpp"
@@ -37,6 +43,7 @@
 #include "../kernels/gelu.hpp"
 #include "../kernels/softmax.hpp"
 #include "../kernels/silu.hpp"
+#include "../core/tensor_view.hpp"
 #include "../kernels/elementwise.hpp"
 #include "../kernels/mlp.hpp"
 #include "../kernels/attention_output.hpp"
@@ -87,11 +94,49 @@ PYBIND11_MODULE(axion_cpp, m) {
                 return out;
             },
 
+            
             [](Tensor& t,
             const std::vector<float>& v) {
 
-                t.owned_data = v;
+                if ((int64_t)v.size() != t.numel()) {
+
+                    throw std::runtime_error(
+                        "Tensor size mismatch"
+                    );
+                }
+
+                // --------------------------------
+                // OWNED TENSOR
+                // --------------------------------
+
+                if (t.owns_data()) {
+
+                    t.owned_data = v;
+                    return;
+                }
+
+                // --------------------------------
+                // POINTER-BASED TENSOR
+                // --------------------------------
+
+                if (t.data_ptr != nullptr) {
+
+                    for (int64_t i = 0;
+                        i < t.numel();
+                        i++) {
+
+                        t.data_ptr[i] = v[i];
+                    }
+
+                    return;
+                }
+
+                throw std::runtime_error(
+                    "Tensor has no writable storage"
+                );
             }
+
+
         )
 
         .def(
@@ -380,5 +425,184 @@ PYBIND11_MODULE(axion_cpp, m) {
             py::arg("bias"),
             py::arg("eps") = 1e-5f
         );
+        m.def(
+            "tensor_view",
+            &tensor_view
+        );
+    py::class_<Arena>(m, "Arena")
+
+        .def(
+            py::init<int64_t>()
+        )
+
+        .def(
+            "reset",
+            &Arena::reset
+        );
+
+        
+    py::enum_<DType>(m, "DType")
+
+        .value(
+            "FLOAT16",
+            DType::FLOAT16
+        )
+
+        .value(
+            "FLOAT32",
+            DType::FLOAT32
+        )
+
+        .value(
+            "UNKNOWN",
+            DType::UNKNOWN
+        );
+        m.def(
+        "create_tensor",
+        &create_tensor,
+
+        py::arg("arena"),
+        py::arg("shape"),
+        py::arg("dtype") =
+            DType::FLOAT32
+    );
+        m.def(
+        "create_tensor",
+        &create_tensor,
+
+        py::arg("arena"),
+        py::arg("shape"),
+        py::arg("dtype") =
+            DType::FLOAT32
+        );
+
+        m.def(
+            "create_owned_tensor",
+            &create_owned_tensor,
+
+            py::arg("shape"),
+            py::arg("dtype") =
+                DType::FLOAT32
+        );
+
+
+
+        m.def(
+            "matmul_arena",
+            &matmul_arena
+        );
+        py::class_<Q8Tensor>(
+        m,
+        "Q8Tensor"
+        )
+
+        .def(py::init<>())
+
+        .def_readwrite(
+            "data",
+            &Q8Tensor::data
+        )
+
+        .def_readwrite(
+            "shape",
+            &Q8Tensor::shape
+        )
+
+        .def_readwrite(
+            "scale",
+            &Q8Tensor::scale
+        );
+        m.def(
+        "quantize_q8",
+        &quantize_q8
+        );
+
+        m.def(
+            "dequantize_q8",
+            &dequantize_q8
+        );
+
+        py::class_<Q4Tensor>(
+        m,
+        "Q4Tensor"
+    )
+
+    .def(py::init<>())
+
+    .def_readwrite(
+        "data",
+        &Q4Tensor::data
+    )
+
+    .def_readwrite(
+        "shape",
+        &Q4Tensor::shape
+    )
+
+    .def_readwrite(
+        "scale",
+        &Q4Tensor::scale
+    );
+    m.def(
+    "quantize_q4",
+    &quantize_q4
+    );
+
+    m.def(
+        "dequantize_q4",
+        &dequantize_q4
+    );
+    py::class_<GGUFLoader>(
+    m,
+    "GGUFLoader"
+    )
+
+    .def(py::init<>())
+
+    .def(
+        "load_file",
+        &GGUFLoader::load_file
+    )
+
+    .def(
+        "tensor_names",
+        &GGUFLoader::tensor_names
+    );
+    py::class_<PagedKVCache>(
+        m,
+        "PagedKVCache"
+    )
+
+    .def(py::init<>())
+
+    .def(
+        "initialize",
+        &PagedKVCache::initialize
+    )
+
+    .def(
+        "append",
+        &PagedKVCache::append
+    )
+
+    .def(
+        "materialize_keys",
+        &PagedKVCache::materialize_keys
+    )
+
+    .def(
+        "materialize_values",
+        &PagedKVCache::materialize_values
+    )
+
+    .def_readwrite(
+        "page_size",
+        &PagedKVCache::page_size
+    )
+
+    .def_readwrite(
+        "hidden_size",
+        &PagedKVCache::hidden_size
+    );
 
 }

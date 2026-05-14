@@ -46,9 +46,9 @@ Tensor transpose(
             output.data()[
                 c * rows + r
             ] =
-            input.data()[
+            input.value(
                 r * cols + c
-            ];
+            );
         }
     }
 

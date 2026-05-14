@@ -6,11 +6,14 @@
 
 namespace axion {
 
+class Arena;
 enum class DType {
     FLOAT16,
     FLOAT32,
     UNKNOWN
 };
+
+
 
 class Tensor {
 
@@ -24,19 +27,37 @@ public:
 
     uint64_t offset_start = 0;
     uint64_t offset_end = 0;
+    Arena* arena = nullptr;
 
     // --------------------------------
-    // POINTER-BASED STORAGE
+    // MMAP POINTER
     // --------------------------------
 
     float* data_ptr = nullptr;
 
+    uint16_t* fp16_ptr = nullptr;
+
+    bool is_fp16 = false;
+
     // --------------------------------
-    // OPTIONAL OWNED STORAGE
-    // for temporary tensors
+    // OWNED STORAGE
     // --------------------------------
 
     std::vector<float> owned_data;
+
+    // --------------------------------
+    // VIEW SUPPORT
+    // --------------------------------
+
+    bool is_view = false;
+
+    bool is_strided = false;
+
+    int64_t stride = 0;
+
+    int64_t view_offset = 0;
+
+    int64_t view_numel = 0;
 
     Tensor();
 
@@ -49,6 +70,9 @@ public:
     float* data();
 
     const float* data() const;
+        float value(
+        int64_t idx
+    ) const;
 
     void print_info() const;
 };

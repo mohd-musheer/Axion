@@ -23,9 +23,12 @@ pybind11_add_module(axion_cpp
     bindings/pybind_module.cpp
 
     core/tensor.cpp
+    quantization/q8.cpp
+    core/fp16.cpp
     core/mmap_loader.cpp
     kernels/attention_output.cpp
     kernels/blas.cpp
+    runtime/paged_kv.cpp
     runtime/transformer_stack.cpp
     runtime/residual.cpp
     kernels/rmsnorm.cpp
@@ -33,9 +36,14 @@ pybind11_add_module(axion_cpp
     runtime/embedding.cpp
     runtime/linear.cpp
     kernels/gelu.cpp
+    quantization/q4.cpp
     runtime/last_token.cpp
+    gguf/gguf.cpp
+    core/arena.cpp
+    core/tensor_factory.cpp
     kernels/layernorm.cpp
     runtime/token_embedding.cpp
+    core/tensor_view.cpp
     runtime/incremental_forward.cpp
     runtime/gpt2_ln.cpp
     runtime/single_position.cpp

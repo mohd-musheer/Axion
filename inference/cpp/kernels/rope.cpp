@@ -17,7 +17,7 @@ void apply_rope(
     float theta
 ) {
 
-    if (q.owned_data.size() != k.owned_data.size()) {
+    if (q.numel() != k.numel()) {
 
         throw std::runtime_error(
             "Q and K size mismatch"
@@ -31,28 +31,34 @@ void apply_rope(
         );
     }
 
-    int64_t total = q.owned_data.size();
+    int64_t total =
+        q.numel();
 
     if (total % head_dim != 0) {
 
-    throw std::runtime_error(
-        "tensor size not divisible by head_dim"
-    );
-}
+        throw std::runtime_error(
+            "tensor size not divisible by head_dim"
+        );
+    }
 
     #pragma omp parallel for
-    for (int64_t i = 0; i < total; i += head_dim) {
+    for (int64_t i = 0;
+         i < total;
+         i += head_dim) {
 
-        for (int d = 0; d < head_dim; d += 2) {
+        for (int d = 0;
+             d < head_dim;
+             d += 2) {
 
-           
             int idx1 = i + d;
             int idx2 = i + d + 1;
 
             float freq =
-                1.0f / std::pow(
+                1.0f /
+                std::pow(
                     theta,
-                    (float)d / (float)head_dim
+                    (float)d /
+                    (float)head_dim
                 );
 
             float angle =
@@ -64,10 +70,19 @@ void apply_rope(
             float sin_val =
                 std::sin(angle);
 
-            // ----- Q -----
+            // -------------------------
+            // READ Q
+            // -------------------------
 
-            float q1 = q.data()[idx1];
-            float q2 = q.data()[idx2];
+            float q1 =
+                q.value(idx1);
+
+            float q2 =
+                q.value(idx2);
+
+            // -------------------------
+            // WRITE Q
+            // -------------------------
 
             q.data()[idx1] =
                 q1 * cos_val -
@@ -77,10 +92,19 @@ void apply_rope(
                 q1 * sin_val +
                 q2 * cos_val;
 
-            // ----- K -----
+            // -------------------------
+            // READ K
+            // -------------------------
 
-            float k1 = k.data()[idx1];
-            float k2 = k.data()[idx2];
+            float k1 =
+                k.value(idx1);
+
+            float k2 =
+                k.value(idx2);
+
+            // -------------------------
+            // WRITE K
+            // -------------------------
 
             k.data()[idx1] =
                 k1 * cos_val -

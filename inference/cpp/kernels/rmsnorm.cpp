@@ -1,4 +1,3 @@
-
 #include "rmsnorm.hpp"
 
 #include <cmath>
@@ -67,9 +66,9 @@ Tensor rmsnorm(
              c++) {
 
             float val =
-                input.data()[
+                input.value(
                     r * cols + c
-                ];
+                );
 
             mean_square += val * val;
         }
@@ -91,15 +90,15 @@ Tensor rmsnorm(
              c++) {
 
             float normalized =
-                input.data()[
+                input.value(
                     r * cols + c
-                ] * inv_rms;
+                ) * inv_rms;
 
             output.data()[
                 r * cols + c
             ] =
                 normalized *
-                weight.data()[c];
+                weight.value(c);
         }
     }
 

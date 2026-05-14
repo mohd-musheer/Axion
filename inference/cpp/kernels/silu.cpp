@@ -25,7 +25,7 @@ Tensor silu(
         input.shape;
 
     output.owned_data.resize(
-        input.owned_data.size()
+        input.numel()
     );
 
     #pragma omp parallel for
@@ -34,7 +34,7 @@ Tensor silu(
          i++) {
 
         float x =
-            input.data()[i];
+            input.value(i);
 
         float sigmoid =
             1.0f /
