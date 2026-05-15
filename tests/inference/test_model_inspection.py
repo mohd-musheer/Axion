@@ -1,7 +1,11 @@
+import sys
 
+sys.path.append(
+    r"D:\LLM projects\Axion\inference\cpp\build"
+)
 import axion_cpp
 
-model_path = r"D:\LLM projects\Axion\tests\inference\model.safetensors"
+model_path = r"D:\LLM projects\Axion\tests\inference\adapter_model.safetensors"
 
 loader = axion_cpp.MMapLoader()
 

@@ -8,3 +8,5 @@ tests/inference/gguf/inferra-q4.gguf
 dd.py
 
 tests/inference/tempCodeRunnerFile.py
+tests/inference/gguf/mmproj-F16.gguf
+dd.py

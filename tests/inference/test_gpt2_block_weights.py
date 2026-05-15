@@ -9,7 +9,7 @@ import axion_cpp
 loader = axion_cpp.MMapLoader()
 
 loader.load_file(
-    r"D:\LLM projects\Axion\tests\inference\model.safetensors"
+    r"D:\LLM projects\Axion\tests\inference\adapter_model.safetensors"
 )
 
 names = loader.list_tensors()
