@@ -1,4 +1,3 @@
-
 #include "multihead_attention.hpp"
 
 #include "multihead.hpp"
@@ -15,7 +14,8 @@ Tensor multihead_attention(
     const Tensor& Q,
     const Tensor& K,
     const Tensor& V,
-    int num_heads
+    int num_heads,
+    RuntimeMemoryScheduler* scheduler
 ) {
 
     // -------------------------
@@ -41,35 +41,65 @@ Tensor multihead_attention(
          h < num_heads;
          h++) {
 
+        // --------------------------------
         // QK^T
+        // --------------------------------
 
         Tensor scores =
             attention_scores(
                 q_heads[h],
-                k_heads[h]
+                k_heads[h],
+                scheduler
             );
 
-        // causal mask
+        // --------------------------------
+        // MASK
+        // --------------------------------
 
         Tensor masked =
             causal_mask(
-                scores
+                scores,
+                scheduler
             );
 
-        // softmax
+        // scores no longer needed
+
+        if (scheduler != nullptr) {
+
+            scheduler->release_tensor(
+                scores.name
+            );
+        }
+
+        // --------------------------------
+        // SOFTMAX
+        // --------------------------------
 
         Tensor probs =
             softmax(
-                masked
+                masked,
+                scheduler
             );
 
-        // weighted values
+        // --------------------------------
+        // ATTENTION OUTPUT
+        // --------------------------------
 
         Tensor out =
             attention_output(
                 probs,
-                v_heads[h]
+                v_heads[h],
+                scheduler
             );
+
+        // probs no longer needed
+
+        if (scheduler != nullptr) {
+
+            scheduler->release_tensor(
+                probs.name
+            );
+        }
 
         outputs.push_back(out);
     }

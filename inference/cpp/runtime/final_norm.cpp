@@ -5,30 +5,17 @@
 namespace axion {
 
 Tensor final_norm(
-    const Tensor& input
+    const Tensor& input,
+    const Tensor& weight,
+    RuntimeMemoryScheduler* scheduler
 ) {
-
-    Tensor weight;
-
-    weight.name =
-        "final_norm_weight";
-
-    weight.shape = {
-        input.shape[1]
-    };
-
-    weight.dtype =
-        input.dtype;
-
-    weight.owned_data.resize(
-        input.shape[1],
-        1.0f
-    );
 
     Tensor output =
         rmsnorm(
             input,
-            weight
+            weight,
+            1e-6f,
+            scheduler
         );
 
     output.name =

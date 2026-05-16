@@ -9,7 +9,8 @@ namespace axion {
 
 Tensor attention_scores(
     const Tensor& Q,
-    const Tensor& K
+    const Tensor& K,
+    RuntimeMemoryScheduler* scheduler
 ) {
 
     if (Q.shape.size() != 2 ||
@@ -33,11 +34,37 @@ Tensor attention_scores(
         );
     }
 
+    // --------------------------------
+    // TRANSPOSE
+    // --------------------------------
+
     Tensor K_t =
-        transpose(K);
+        transpose(
+            K,
+            scheduler
+        );
+
+    // --------------------------------
+    // MATMUL
+    // --------------------------------
 
     Tensor scores =
-        matmul(Q, K_t);
+        matmul(
+            Q,
+            K_t,
+            scheduler
+        );
+
+    // --------------------------------
+    // RELEASE TEMP
+    // --------------------------------
+
+    if (scheduler != nullptr) {
+
+        scheduler->release_tensor(
+            K_t.name
+        );
+    }
 
     float scale =
         1.0f / std::sqrt(

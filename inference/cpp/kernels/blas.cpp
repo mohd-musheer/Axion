@@ -14,29 +14,30 @@
 namespace axion {
 
 Tensor matmul(
-    const Tensor& A,
-    const Tensor& B
+    const Tensor& a,
+    const Tensor& b,
+    RuntimeMemoryScheduler* scheduler
 ) {
-    if (!A.valid() || !B.valid()) {
+    if (!a.valid() || !b.valid()) {
 
         throw std::runtime_error(
             "Invalid tensor in matmul"
         );
     }
 
-    if (A.shape.size() != 2 ||
-        B.shape.size() != 2) {
+    if (a.shape.size() != 2 ||
+        b.shape.size() != 2) {
 
         throw std::runtime_error(
             "matmul only supports 2D tensors"
         );
     }
 
-    int64_t M = A.shape[0];
-    int64_t K = A.shape[1];
+    int64_t M = a.shape[0];
+    int64_t K = a.shape[1];
 
-    int64_t K2 = B.shape[0];
-    int64_t N = B.shape[1];
+    int64_t K2 = b.shape[0];
+    int64_t N = b.shape[1];
 
     if (K != K2) {
 
@@ -45,12 +46,25 @@ Tensor matmul(
         );
     }
 
-Tensor output =
-    create_owned_tensor(
-        {M, N},
-        DType::FLOAT32
-    );
+Tensor output;
 
+if (scheduler != nullptr) {
+
+    output =
+        scheduler->request_tensor(
+            "matmul_output",
+            {M, N},
+            DType::FLOAT32
+        );
+}
+else {
+
+    output =
+        create_owned_tensor(
+            {M, N},
+            DType::FLOAT32
+        );
+}
 output.name =
     "matmul_output";
 
@@ -63,13 +77,13 @@ output.name =
 
             for (int64_t k = 0; k < K; k++) {
 
-                float a =
-                    A.value(i * K + k);
+                float a_val =
+                    a.value(i * K + k);
 
-                float b =
-                    B.value(k * N + j);
+                float b_val =
+                    b.value(k * N + j);
 
-                sum += a * b;
+                sum += a_val * b_val;
             }
 
             output.data()[i * N + j] = sum;
@@ -79,24 +93,24 @@ output.name =
     return output;
 }
 Tensor matmul_arena(
-    const Tensor& A,
-    const Tensor& B,
+    const Tensor& a,
+    const Tensor& b,
     Arena& arena
 ) {
 
-    if (A.shape.size() != 2 ||
-        B.shape.size() != 2) {
+    if (a.shape.size() != 2 ||
+        b.shape.size() != 2) {
 
         throw std::runtime_error(
             "matmul only supports 2D tensors"
         );
     }
 
-    int64_t M = A.shape[0];
-    int64_t K = A.shape[1];
+    int64_t M = a.shape[0];
+    int64_t K = a.shape[1];
 
-    int64_t K2 = B.shape[0];
-    int64_t N = B.shape[1];
+    int64_t K2 = b.shape[0];
+    int64_t N = b.shape[1];
 
     if (K != K2) {
 
@@ -125,8 +139,8 @@ Tensor matmul_arena(
             for (int64_t k = 0; k < K; k++) {
 
                 sum +=
-                    A.value(i * K + k) *
-                    B.value(k * N + j);
+                    a.value(i * K + k) *
+                    b.value(k * N + j);
             }
 
             output.data_ptr[

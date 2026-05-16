@@ -1,5 +1,7 @@
 #include "residual.hpp"
+
 #include "../core/tensor_factory.hpp"
+
 #include <stdexcept>
 
 #ifdef _OPENMP
@@ -10,14 +12,16 @@ namespace axion {
 
 Tensor residual_add(
     const Tensor& x,
-    const Tensor& y
+    const Tensor& y,
+    RuntimeMemoryScheduler* scheduler
 ) {
-        if (!x.valid() || !y.valid()) {
-            
-            throw std::runtime_error(
-                "Invalid tensor in matmul"
-            );
-        }
+
+    if (!x.valid() || !y.valid()) {
+
+        throw std::runtime_error(
+            "Invalid tensor in residual_add"
+        );
+    }
 
     if (x.shape != y.shape) {
 
@@ -26,11 +30,34 @@ Tensor residual_add(
         );
     }
 
-    Tensor output =
-        create_owned_tensor(
-            x.shape,
-            x.dtype
-        );
+    Tensor output;
+
+    // --------------------------------
+    // SCHEDULER ALLOCATION
+    // --------------------------------
+
+    if (scheduler != nullptr) {
+
+        output =
+            scheduler->request_tensor(
+                "residual_output",
+                x.shape,
+                x.dtype
+            );
+    }
+
+    // --------------------------------
+    // FALLBACK
+    // --------------------------------
+
+    else {
+
+        output =
+            create_owned_tensor(
+                x.shape,
+                x.dtype
+            );
+    }
 
     output.name =
         "residual_output";

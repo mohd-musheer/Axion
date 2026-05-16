@@ -11,8 +11,9 @@
 namespace axion {
 
 Tensor softmax(
-    const Tensor& input
-) {
+    const Tensor& input,
+    RuntimeMemoryScheduler* scheduler
+){
 
         if (!input.valid()) {
 
@@ -34,11 +35,25 @@ Tensor softmax(
     int64_t cols =
         input.shape[1];
 
-    Tensor output =
-        create_owned_tensor(
-            input.shape,
-            DType::FLOAT32
-        );
+    Tensor output;
+
+    if (scheduler != nullptr) {
+
+        output =
+            scheduler->request_tensor(
+                "softmax_output",
+                input.shape,
+                input.dtype
+            );
+    }
+    else {
+
+        output =
+            create_owned_tensor(
+                input.shape,
+                input.dtype
+            );
+    }
 
     #pragma omp parallel for
     for (int64_t r = 0; r < rows; r++) {

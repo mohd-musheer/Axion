@@ -47,10 +47,8 @@ print(qkv.V.shape)
 # INPUT
 # -----------------------------------
 
-x = axion_cpp.Tensor()
-
-x.shape = [2, 768]
-
+x = axion_cpp.create_owned_tensor([2, 768])
+    
 x.data = [0.01] * (2 * 768)
 
 # -----------------------------------

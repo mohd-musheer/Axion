@@ -1,4 +1,8 @@
+import sys
 
+sys.path.append(
+    r"D:\LLM projects\Axion\inference\cpp\build"
+)
 import axion_cpp
 
 tensor_names = [

@@ -1,4 +1,3 @@
-
 #include "mlp.hpp"
 
 #include "silu.hpp"
@@ -8,17 +7,29 @@ namespace axion {
 
 Tensor mlp_block(
     const Tensor& gate,
-    const Tensor& up
+    const Tensor& up,
+    RuntimeMemoryScheduler* scheduler
 ) {
 
     Tensor activated =
-        silu(gate);
+        silu(
+            gate,
+            scheduler
+        );
 
     Tensor output =
         elementwise_mul(
             activated,
-            up
+            up,
+            scheduler
         );
+
+    if (scheduler != nullptr) {
+
+        scheduler->release_tensor(
+            activated.name
+        );
+    }
 
     output.name =
         "mlp_output";

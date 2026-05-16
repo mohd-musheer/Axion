@@ -1,4 +1,5 @@
 #include "gelu.hpp"
+
 #include "../core/tensor_factory.hpp"
 
 #include <cmath>
@@ -7,7 +8,8 @@
 namespace axion {
 
 Tensor gelu(
-    const Tensor& input
+    const Tensor& input,
+    RuntimeMemoryScheduler* scheduler
 ) {
 
     if (!input.valid()) {
@@ -17,11 +19,25 @@ Tensor gelu(
         );
     }
 
-    Tensor out =
-        create_owned_tensor(
-            input.shape,
-            DType::FLOAT32
-        );
+    Tensor out;
+
+    if (scheduler != nullptr) {
+
+        out =
+            scheduler->request_tensor(
+                "gelu_output",
+                input.shape,
+                DType::FLOAT32
+            );
+    }
+    else {
+
+        out =
+            create_owned_tensor(
+                input.shape,
+                DType::FLOAT32
+            );
+    }
 
     out.name =
         "gelu_output";

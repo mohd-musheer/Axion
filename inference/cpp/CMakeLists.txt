@@ -34,6 +34,9 @@ pybind11_add_module(axion_cpp
     kernels/rmsnorm.cpp
     runtime/generation.cpp
     runtime/embedding.cpp
+    runtime/streaming_executor.cpp
+    runtime/tensor_evictor.cpp
+    core/scheduler.cpp
     runtime/linear.cpp
     kernels/gelu.cpp
     quantization/q4.cpp

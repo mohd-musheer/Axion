@@ -8,15 +8,17 @@ namespace axion {
 
 Tensor add(
     const Tensor& a,
-    const Tensor& b
+    const Tensor& b,
+    RuntimeMemoryScheduler* scheduler
 ) {
 
     if (!a.valid() || !b.valid()) {
 
         throw std::runtime_error(
-            "Invalid tensor in matmul"
+            "Invalid tensor in add"
         );
     }
+
     if (a.shape != b.shape) {
 
         throw std::runtime_error(
@@ -24,11 +26,34 @@ Tensor add(
         );
     }
 
-    Tensor out =
-        create_owned_tensor(
-            a.shape,
-            a.dtype
-        );
+    Tensor out;
+
+    // --------------------------------
+    // SCHEDULER ALLOCATION
+    // --------------------------------
+
+    if (scheduler != nullptr) {
+
+        out =
+            scheduler->request_tensor(
+                "add_output",
+                a.shape,
+                a.dtype
+            );
+    }
+
+    // --------------------------------
+    // FALLBACK
+    // --------------------------------
+
+    else {
+
+        out =
+            create_owned_tensor(
+                a.shape,
+                a.dtype
+            );
+    }
 
     out.name =
         "add_output";

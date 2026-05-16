@@ -1,7 +1,7 @@
-
 #pragma once
 
 #include "../core/tensor.hpp"
+#include "../core/scheduler.hpp"
 
 #include <vector>
 
@@ -13,7 +13,8 @@ std::vector<Tensor> split_heads(
 );
 
 Tensor merge_heads(
-    const std::vector<Tensor>& heads
+    const std::vector<Tensor>& heads,
+    RuntimeMemoryScheduler* scheduler = nullptr
 );
 
 }

@@ -1,5 +1,5 @@
-
 #include "transformer_stack.hpp"
+
 #include "../kernels/gelu.hpp"
 #include "real_attention.hpp"
 #include "../kernels/transpose.hpp"
@@ -16,7 +16,8 @@ Tensor transformer_stack(
     const Tensor& input,
     MMapLoader& loader,
     int num_layers,
-    int num_heads
+    int num_heads,
+    RuntimeMemoryScheduler* scheduler
 ) {
 
     Tensor hidden =
@@ -32,7 +33,7 @@ Tensor transformer_stack(
             << std::endl;
 
         // ---------------------------------
-        // LOAD LN1 WEIGHT
+        // LN1 WEIGHT
         // ---------------------------------
 
         std::string ln1_name =
@@ -46,13 +47,14 @@ Tensor transformer_stack(
             );
 
         // ---------------------------------
-        // LAYER NORM
+        // LN1
         // ---------------------------------
 
         Tensor ln_hidden =
             gpt2_ln(
                 hidden,
-                ln1_weight
+                ln1_weight,
+                scheduler
             );
 
         // ---------------------------------
@@ -71,11 +73,21 @@ Tensor transformer_stack(
                 attn_name,
                 attn_name,
                 attn_name,
-                num_heads
+                num_heads,
+                scheduler
             );
 
+        // release ln_hidden
+
+        if (scheduler != nullptr) {
+
+            scheduler->release_tensor(
+                ln_hidden.name
+            );
+        }
+
         // ---------------------------------
-        // LOAD ATTN PROJ
+        // PROJ WEIGHT
         // ---------------------------------
 
         std::string proj_name =
@@ -89,32 +101,64 @@ Tensor transformer_stack(
             );
 
         // ---------------------------------
-        // OUTPUT PROJECTION
+        // TRANSPOSE
         // ---------------------------------
 
-        
         Tensor proj_weight_t =
             transpose(
-                proj_weight
+                proj_weight,
+                scheduler
             );
+
+        // ---------------------------------
+        // LINEAR
+        // ---------------------------------
 
         Tensor projected =
             linear(
                 attn_output,
-                proj_weight_t
+                proj_weight_t,
+                scheduler
             );
 
+        if (scheduler != nullptr) {
 
+            scheduler->release_tensor(
+                proj_weight_t.name
+            );
+
+            scheduler->release_tensor(
+                attn_output.name
+            );
+        }
 
         // ---------------------------------
-        // RESIDUAL
+        // RESIDUAL 1
         // ---------------------------------
 
-        hidden =
+        Tensor residual1 =
             residual_add(
                 hidden,
-                projected
+                projected,
+                scheduler
             );
+
+        if (scheduler != nullptr) {
+
+            scheduler->release_tensor(
+                projected.name
+            );
+
+            if (hidden.name != input.name) {
+
+                scheduler->release_tensor(
+                    hidden.name
+                );
+            }
+        }
+
+        hidden =
+            residual1;
 
         // ---------------------------------
         // LN2
@@ -133,11 +177,12 @@ Tensor transformer_stack(
         Tensor mlp_input =
             gpt2_ln(
                 hidden,
-                ln2_weight
+                ln2_weight,
+                scheduler
             );
 
         // ---------------------------------
-        // MLP FC
+        // FC WEIGHT
         // ---------------------------------
 
         std::string fc_name =
@@ -153,8 +198,16 @@ Tensor transformer_stack(
         Tensor fc_out =
             linear(
                 mlp_input,
-                fc_weight
+                fc_weight,
+                scheduler
             );
+
+        if (scheduler != nullptr) {
+
+            scheduler->release_tensor(
+                mlp_input.name
+            );
+        }
 
         // ---------------------------------
         // GELU
@@ -162,8 +215,16 @@ Tensor transformer_stack(
 
         Tensor activated =
             gelu(
-                fc_out
+                fc_out,
+                scheduler
             );
+
+        if (scheduler != nullptr) {
+
+            scheduler->release_tensor(
+                fc_out.name
+            );
+        }
 
         // ---------------------------------
         // MLP PROJ
@@ -182,22 +243,41 @@ Tensor transformer_stack(
         Tensor mlp_out =
             linear(
                 activated,
-                mlp_proj_weight
+                mlp_proj_weight,
+                scheduler
             );
 
+        if (scheduler != nullptr) {
+
+            scheduler->release_tensor(
+                activated.name
+            );
+        }
+
         // ---------------------------------
-        // RESIDUAL
+        // RESIDUAL 2
         // ---------------------------------
 
-        hidden =
+        Tensor residual2 =
             residual_add(
                 hidden,
-                mlp_out
+                mlp_out,
+                scheduler
             );
 
+        if (scheduler != nullptr) {
 
+            scheduler->release_tensor(
+                hidden.name
+            );
 
+            scheduler->release_tensor(
+                mlp_out.name
+            );
+        }
 
+        hidden =
+            residual2;
 
         std::cout
             << "Output shape: ["
@@ -209,15 +289,33 @@ Tensor transformer_stack(
     }
 
     // ---------------------------------
+    // FINAL NORM WEIGHT
+    // ---------------------------------
+
+    Tensor final_norm_weight =
+        loader.load_tensor_data(
+            "ln_f.weight"
+        );
+
+    // ---------------------------------
     // FINAL NORM
     // ---------------------------------
 
-    hidden =
+    Tensor output =
         final_norm(
-            hidden
+            hidden,
+            final_norm_weight,
+            scheduler
         );
 
-    return hidden;
+    if (scheduler != nullptr) {
+
+        scheduler->release_tensor(
+            hidden.name
+        );
+    }
+
+    return output;
 }
 
 }

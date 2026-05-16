@@ -2,7 +2,7 @@
 #include "causal_mask.hpp"
 #include "../core/tensor_factory.hpp"
 #include <stdexcept>
-
+#include "../core/scheduler.hpp"
 #ifdef _OPENMP
 #include <omp.h>
 #endif
@@ -10,7 +10,8 @@
 namespace axion {
 
 Tensor causal_mask(
-    const Tensor& scores
+    const Tensor& scores,
+    RuntimeMemoryScheduler* scheduler
 ) {
 
     if (scores.shape.size() != 2) {
@@ -26,17 +27,31 @@ Tensor causal_mask(
     int64_t cols =
         scores.shape[1];
 
-    Tensor output =
-        create_owned_tensor(
-            scores.shape,
-            scores.dtype
-        );
+    Tensor masked;
+
+    if (scheduler != nullptr) {
+
+        masked =
+            scheduler->request_tensor(
+                "causal_mask_output",
+                scores.shape,
+                scores.dtype
+            );
+    }
+    else {
+
+        masked =
+            create_owned_tensor(
+                scores.shape,
+                scores.dtype
+            );
+    }
 
     for (int64_t i = 0;
         i < scores.numel();
         i++) {
 
-        output.data()[i] =
+        masked.data()[i] =
             scores.value(i);
     }
 
@@ -49,17 +64,17 @@ Tensor causal_mask(
 
             if (c > r) {
 
-                output.data()[
+                masked.data()[
                     r * cols + c
                 ] = -1e30f;
             }
         }
     }
 
-    output.name =
+    masked.name =
         "causal_masked_scores";
 
-    return output;
+    return masked;
 }
 
 }

@@ -104,7 +104,8 @@ std::vector<Tensor> split_heads(
 }
 
 Tensor merge_heads(
-    const std::vector<Tensor>& heads
+    const std::vector<Tensor>& heads,
+    RuntimeMemoryScheduler* scheduler
 ) {
 
     if (heads.empty()) {
@@ -126,14 +127,28 @@ Tensor merge_heads(
     int64_t hidden_dim =
         head_dim * num_heads;
 
-    Tensor output =
-        create_owned_tensor(
-            {seq_len, hidden_dim},
-            heads[0].dtype
-        );
+    Tensor output;
+
+    if (scheduler != nullptr) {
+
+        output =
+            scheduler->request_tensor(
+                "merge_heads_output",
+                {seq_len, hidden_dim},
+                heads[0].dtype
+            );
+    }
+    else {
+
+        output =
+            create_owned_tensor(
+                {seq_len, hidden_dim},
+                heads[0].dtype
+            );
+    }
+
     output.name =
         "merge_heads_output";
-    
 
     for (int64_t t = 0;
          t < seq_len;

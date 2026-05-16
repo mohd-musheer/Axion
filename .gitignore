@@ -1,12 +1,15 @@
 tests/inference/adapter_model.safetensors
 tests/inference/model.safetensors
 .vscode/settings.json
+/.vscode/settings.json
 
-dd.py
 data.txt
 tests/inference/gguf/inferra-q4.gguf
-dd.py
 
 tests/inference/tempCodeRunnerFile.py
 tests/inference/gguf/mmproj-F16.gguf
+
+imp
 dd.py
+getdata.py
+.vscode/launch.json

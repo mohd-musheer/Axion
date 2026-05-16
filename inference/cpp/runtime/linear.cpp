@@ -7,7 +7,8 @@ namespace axion {
 
 Tensor linear(
     const Tensor& input,
-    const Tensor& weight
+    const Tensor& weight,
+    RuntimeMemoryScheduler* scheduler
 ) {
 
     return matmul(

@@ -11,8 +11,9 @@
 namespace axion {
 
 Tensor silu(
-    const Tensor& input
-) {
+    const Tensor& input,
+    RuntimeMemoryScheduler* scheduler
+){
 
     if (!input.valid()) {
 
@@ -21,11 +22,25 @@ Tensor silu(
         );
     }
 
-    Tensor output =
-        create_owned_tensor(
-            input.shape,
-            DType::FLOAT32
-        );
+    Tensor output;
+
+    if (scheduler != nullptr) {
+
+        output =
+            scheduler->request_tensor(
+                "silu_output",
+                input.shape,
+                input.dtype
+            );
+    }
+    else {
+
+        output =
+            create_owned_tensor(
+                input.shape,
+                input.dtype
+            );
+    }
 
     output.name =
         "silu_output";

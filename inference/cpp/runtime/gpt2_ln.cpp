@@ -6,7 +6,8 @@ namespace axion {
 
 Tensor gpt2_ln(
     const Tensor& input,
-    const Tensor& weight
+    const Tensor& weight,
+        RuntimeMemoryScheduler* scheduler
 ) {
 
     Tensor out = input;

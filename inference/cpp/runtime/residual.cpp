@@ -7,7 +7,8 @@ namespace axion {
 
 Tensor residual_add(
     const Tensor& a,
-    const Tensor& b
+    const Tensor& b,
+    RuntimeMemoryScheduler* scheduler
 ) {
 
     if (a.shape != b.shape) {

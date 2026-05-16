@@ -12,7 +12,8 @@ namespace axion {
 Tensor rmsnorm(
     const Tensor& input,
     const Tensor& weight,
-    float eps
+    float eps,
+    RuntimeMemoryScheduler* scheduler
 ) {
 
     if (input.shape.size() != 2) {

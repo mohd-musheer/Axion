@@ -10,8 +10,9 @@
 namespace axion {
 
 Tensor transpose(
-    const Tensor& input
-) {
+    const Tensor& input,
+    RuntimeMemoryScheduler* scheduler
+){
     if (!input.valid()) {
 
         throw std::runtime_error(
@@ -29,11 +30,31 @@ Tensor transpose(
     int64_t rows = input.shape[0];
     int64_t cols = input.shape[1];
 
-    Tensor output =
-        create_owned_tensor(
-            {cols, rows},
+Tensor output;
+
+if (scheduler != nullptr) {
+
+    output =
+        scheduler->request_tensor(
+            "transpose_output",
+            {
+                cols,
+                rows
+            },
             input.dtype
         );
+}
+else {
+
+    output =
+        create_owned_tensor(
+            {
+                cols,
+                rows
+            },
+            input.dtype
+        );
+}
     output.name =
         "transpose_output";
 

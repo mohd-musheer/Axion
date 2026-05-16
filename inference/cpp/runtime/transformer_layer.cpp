@@ -11,7 +11,8 @@
 namespace axion {
 
 Tensor transformer_layer(
-    const Tensor& input
+    const Tensor& input,
+    RuntimeMemoryScheduler* scheduler
 ) {
 
     // -------------------------
@@ -39,28 +40,32 @@ Tensor transformer_layer(
     // ATTENTION
     // -------------------------
 
-    Tensor scores =
-        attention_scores(
-            norm1,
-            norm1
-        );
+        Tensor scores =
+            attention_scores(
+                norm1,
+                norm1,
+                scheduler
+            );
 
     
         Tensor masked =
             causal_mask(
-                scores
+                scores,
+                scheduler
             );
 
         Tensor probs =
             softmax(
-                masked
+                masked,
+                scheduler
             );
 
 
     Tensor attn =
         attention_output(
             probs,
-            norm1
+            norm1,
+            scheduler
         );
 
     // -------------------------
@@ -90,7 +95,8 @@ Tensor transformer_layer(
     Tensor mlp =
         mlp_block(
             norm2,
-            norm2
+            norm2,
+            scheduler
         );
 
     // -------------------------

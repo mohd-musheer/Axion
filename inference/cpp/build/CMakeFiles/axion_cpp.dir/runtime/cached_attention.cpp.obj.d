@@ -120,6 +120,8 @@ CMakeFiles/axion_cpp.dir/runtime/cached_attention.cpp.obj: \
  D:/LLM\ projects/Axion/inference/cpp/runtime/fused_qkv.hpp \
  D:/LLM\ projects/Axion/inference/cpp/runtime/kv_append.hpp \
  d:\llm\ projects\axion\inference\cpp\kernels\blas.hpp \
+ d:\llm\ projects\axion\inference\cpp\core\arena.hpp \
+ d:\llm\ projects\axion\inference\cpp\core\scheduler.hpp \
  d:\llm\ projects\axion\inference\cpp\kernels\transpose.hpp \
  d:\llm\ projects\axion\inference\cpp\kernels\rope.hpp \
  d:\llm\ projects\axion\inference\cpp\kernels\multihead_attention.hpp

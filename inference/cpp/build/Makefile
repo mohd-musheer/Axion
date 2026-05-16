@@ -225,6 +225,30 @@ core/mmap_loader.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/axion_cpp.dir/build.make CMakeFiles/axion_cpp.dir/core/mmap_loader.cpp.s
 .PHONY : core/mmap_loader.cpp.s
 
+core/scheduler.obj: core/scheduler.cpp.obj
+.PHONY : core/scheduler.obj
+
+# target to build an object file
+core/scheduler.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/axion_cpp.dir/build.make CMakeFiles/axion_cpp.dir/core/scheduler.cpp.obj
+.PHONY : core/scheduler.cpp.obj
+
+core/scheduler.i: core/scheduler.cpp.i
+.PHONY : core/scheduler.i
+
+# target to preprocess a source file
+core/scheduler.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/axion_cpp.dir/build.make CMakeFiles/axion_cpp.dir/core/scheduler.cpp.i
+.PHONY : core/scheduler.cpp.i
+
+core/scheduler.s: core/scheduler.cpp.s
+.PHONY : core/scheduler.s
+
+# target to generate assembly for a file
+core/scheduler.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/axion_cpp.dir/build.make CMakeFiles/axion_cpp.dir/core/scheduler.cpp.s
+.PHONY : core/scheduler.cpp.s
+
 core/tensor.obj: core/tensor.cpp.obj
 .PHONY : core/tensor.obj
 
@@ -1257,6 +1281,54 @@ runtime/single_position.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/axion_cpp.dir/build.make CMakeFiles/axion_cpp.dir/runtime/single_position.cpp.s
 .PHONY : runtime/single_position.cpp.s
 
+runtime/streaming_executor.obj: runtime/streaming_executor.cpp.obj
+.PHONY : runtime/streaming_executor.obj
+
+# target to build an object file
+runtime/streaming_executor.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/axion_cpp.dir/build.make CMakeFiles/axion_cpp.dir/runtime/streaming_executor.cpp.obj
+.PHONY : runtime/streaming_executor.cpp.obj
+
+runtime/streaming_executor.i: runtime/streaming_executor.cpp.i
+.PHONY : runtime/streaming_executor.i
+
+# target to preprocess a source file
+runtime/streaming_executor.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/axion_cpp.dir/build.make CMakeFiles/axion_cpp.dir/runtime/streaming_executor.cpp.i
+.PHONY : runtime/streaming_executor.cpp.i
+
+runtime/streaming_executor.s: runtime/streaming_executor.cpp.s
+.PHONY : runtime/streaming_executor.s
+
+# target to generate assembly for a file
+runtime/streaming_executor.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/axion_cpp.dir/build.make CMakeFiles/axion_cpp.dir/runtime/streaming_executor.cpp.s
+.PHONY : runtime/streaming_executor.cpp.s
+
+runtime/tensor_evictor.obj: runtime/tensor_evictor.cpp.obj
+.PHONY : runtime/tensor_evictor.obj
+
+# target to build an object file
+runtime/tensor_evictor.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/axion_cpp.dir/build.make CMakeFiles/axion_cpp.dir/runtime/tensor_evictor.cpp.obj
+.PHONY : runtime/tensor_evictor.cpp.obj
+
+runtime/tensor_evictor.i: runtime/tensor_evictor.cpp.i
+.PHONY : runtime/tensor_evictor.i
+
+# target to preprocess a source file
+runtime/tensor_evictor.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/axion_cpp.dir/build.make CMakeFiles/axion_cpp.dir/runtime/tensor_evictor.cpp.i
+.PHONY : runtime/tensor_evictor.cpp.i
+
+runtime/tensor_evictor.s: runtime/tensor_evictor.cpp.s
+.PHONY : runtime/tensor_evictor.s
+
+# target to generate assembly for a file
+runtime/tensor_evictor.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/axion_cpp.dir/build.make CMakeFiles/axion_cpp.dir/runtime/tensor_evictor.cpp.s
+.PHONY : runtime/tensor_evictor.cpp.s
+
 runtime/token_embedding.obj: runtime/token_embedding.cpp.obj
 .PHONY : runtime/token_embedding.obj
 
@@ -1374,6 +1446,9 @@ help:
 	@echo "... core/mmap_loader.obj"
 	@echo "... core/mmap_loader.i"
 	@echo "... core/mmap_loader.s"
+	@echo "... core/scheduler.obj"
+	@echo "... core/scheduler.i"
+	@echo "... core/scheduler.s"
 	@echo "... core/tensor.obj"
 	@echo "... core/tensor.i"
 	@echo "... core/tensor.s"
@@ -1503,6 +1578,12 @@ help:
 	@echo "... runtime/single_position.obj"
 	@echo "... runtime/single_position.i"
 	@echo "... runtime/single_position.s"
+	@echo "... runtime/streaming_executor.obj"
+	@echo "... runtime/streaming_executor.i"
+	@echo "... runtime/streaming_executor.s"
+	@echo "... runtime/tensor_evictor.obj"
+	@echo "... runtime/tensor_evictor.i"
+	@echo "... runtime/tensor_evictor.s"
 	@echo "... runtime/token_embedding.obj"
 	@echo "... runtime/token_embedding.i"
 	@echo "... runtime/token_embedding.s"

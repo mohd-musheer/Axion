@@ -1,5 +1,7 @@
 #include "layernorm.hpp"
+
 #include "../core/tensor_factory.hpp"
+
 #include <cmath>
 #include <stdexcept>
 
@@ -9,7 +11,8 @@ Tensor layernorm(
     const Tensor& input,
     const Tensor& weight,
     const Tensor& bias,
-    float eps
+    float eps,
+    RuntimeMemoryScheduler* scheduler
 ) {
 
     if (input.shape.size() != 2) {
@@ -25,11 +28,26 @@ Tensor layernorm(
     int64_t hidden =
         input.shape[1];
 
-    Tensor output =
-        create_owned_tensor(
-            input.shape,
-            DType::FLOAT32
-        );
+    Tensor output;
+
+    if (scheduler != nullptr) {
+
+        output =
+            scheduler->request_tensor(
+                "layernorm_output",
+                input.shape,
+                DType::FLOAT32
+            );
+    }
+    else {
+
+        output =
+            create_owned_tensor(
+                input.shape,
+                DType::FLOAT32
+            );
+    }
+
     output.name =
         "layernorm_output";
 
@@ -37,26 +55,19 @@ Tensor layernorm(
          r < rows;
          r++) {
 
-        // -------------------------
-        // MEAN
-        // -------------------------
-
         float mean = 0.0f;
 
         for (int64_t h = 0;
              h < hidden;
              h++) {
 
-            mean += input.value(
-                r * hidden + h
-            );
+            mean +=
+                input.value(
+                    r * hidden + h
+                );
         }
 
         mean /= hidden;
-
-        // -------------------------
-        // VARIANCE
-        // -------------------------
 
         float var = 0.0f;
 
@@ -79,10 +90,6 @@ Tensor layernorm(
             std::sqrt(
                 var + eps
             );
-
-        // -------------------------
-        // NORMALIZE
-        // -------------------------
 
         for (int64_t h = 0;
              h < hidden;

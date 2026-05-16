@@ -8,7 +8,8 @@ namespace axion {
 
 Tensor attention_output(
     const Tensor& attention_probs,
-    const Tensor& V
+    const Tensor& V,
+    RuntimeMemoryScheduler* scheduler
 ) {
 
     if (attention_probs.shape.size() != 2 ||
@@ -35,7 +36,8 @@ Tensor attention_output(
     Tensor output =
         matmul(
             attention_probs,
-            V
+            V,
+            scheduler
         );
 
     output.name =
