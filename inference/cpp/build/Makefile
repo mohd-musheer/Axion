@@ -1329,6 +1329,30 @@ runtime/tensor_evictor.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/axion_cpp.dir/build.make CMakeFiles/axion_cpp.dir/runtime/tensor_evictor.cpp.s
 .PHONY : runtime/tensor_evictor.cpp.s
 
+runtime/tensor_lifetime.obj: runtime/tensor_lifetime.cpp.obj
+.PHONY : runtime/tensor_lifetime.obj
+
+# target to build an object file
+runtime/tensor_lifetime.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/axion_cpp.dir/build.make CMakeFiles/axion_cpp.dir/runtime/tensor_lifetime.cpp.obj
+.PHONY : runtime/tensor_lifetime.cpp.obj
+
+runtime/tensor_lifetime.i: runtime/tensor_lifetime.cpp.i
+.PHONY : runtime/tensor_lifetime.i
+
+# target to preprocess a source file
+runtime/tensor_lifetime.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/axion_cpp.dir/build.make CMakeFiles/axion_cpp.dir/runtime/tensor_lifetime.cpp.i
+.PHONY : runtime/tensor_lifetime.cpp.i
+
+runtime/tensor_lifetime.s: runtime/tensor_lifetime.cpp.s
+.PHONY : runtime/tensor_lifetime.s
+
+# target to generate assembly for a file
+runtime/tensor_lifetime.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/axion_cpp.dir/build.make CMakeFiles/axion_cpp.dir/runtime/tensor_lifetime.cpp.s
+.PHONY : runtime/tensor_lifetime.cpp.s
+
 runtime/token_embedding.obj: runtime/token_embedding.cpp.obj
 .PHONY : runtime/token_embedding.obj
 
@@ -1584,6 +1608,9 @@ help:
 	@echo "... runtime/tensor_evictor.obj"
 	@echo "... runtime/tensor_evictor.i"
 	@echo "... runtime/tensor_evictor.s"
+	@echo "... runtime/tensor_lifetime.obj"
+	@echo "... runtime/tensor_lifetime.i"
+	@echo "... runtime/tensor_lifetime.s"
 	@echo "... runtime/token_embedding.obj"
 	@echo "... runtime/token_embedding.i"
 	@echo "... runtime/token_embedding.s"

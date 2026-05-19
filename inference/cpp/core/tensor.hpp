@@ -7,6 +7,7 @@
 namespace axion {
 
 class Arena;
+class RuntimeMemoryScheduler;
 enum class DType {
     FLOAT16,
     FLOAT32,
@@ -43,7 +44,9 @@ public:
     TensorStorage storage =
     TensorStorage::OWNED;
     bool alive = true;
-
+    int ref_count = 1;
+    int pin_count = 0;
+    std::string parent_tensor;
 
     // --------------------------------
     // MMAP POINTER
@@ -102,6 +105,9 @@ public:
 
     void print_info() const;
 
+    void release_view(
+        RuntimeMemoryScheduler* scheduler
+    );
     bool valid() const;
 };
 

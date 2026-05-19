@@ -58,6 +58,7 @@ set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "D:/LLM projects/Axion/inference/cpp/runtime/single_position.cpp" "CMakeFiles/axion_cpp.dir/runtime/single_position.cpp.obj" "gcc" "CMakeFiles/axion_cpp.dir/runtime/single_position.cpp.obj.d"
   "D:/LLM projects/Axion/inference/cpp/runtime/streaming_executor.cpp" "CMakeFiles/axion_cpp.dir/runtime/streaming_executor.cpp.obj" "gcc" "CMakeFiles/axion_cpp.dir/runtime/streaming_executor.cpp.obj.d"
   "D:/LLM projects/Axion/inference/cpp/runtime/tensor_evictor.cpp" "CMakeFiles/axion_cpp.dir/runtime/tensor_evictor.cpp.obj" "gcc" "CMakeFiles/axion_cpp.dir/runtime/tensor_evictor.cpp.obj.d"
+  "D:/LLM projects/Axion/inference/cpp/runtime/tensor_lifetime.cpp" "CMakeFiles/axion_cpp.dir/runtime/tensor_lifetime.cpp.obj" "gcc" "CMakeFiles/axion_cpp.dir/runtime/tensor_lifetime.cpp.obj.d"
   "D:/LLM projects/Axion/inference/cpp/runtime/token_embedding.cpp" "CMakeFiles/axion_cpp.dir/runtime/token_embedding.cpp.obj" "gcc" "CMakeFiles/axion_cpp.dir/runtime/token_embedding.cpp.obj.d"
   "D:/LLM projects/Axion/inference/cpp/runtime/transformer_layer.cpp" "CMakeFiles/axion_cpp.dir/runtime/transformer_layer.cpp.obj" "gcc" "CMakeFiles/axion_cpp.dir/runtime/transformer_layer.cpp.obj.d"
   "D:/LLM projects/Axion/inference/cpp/runtime/transformer_stack.cpp" "CMakeFiles/axion_cpp.dir/runtime/transformer_stack.cpp.obj" "gcc" "CMakeFiles/axion_cpp.dir/runtime/transformer_stack.cpp.obj.d"

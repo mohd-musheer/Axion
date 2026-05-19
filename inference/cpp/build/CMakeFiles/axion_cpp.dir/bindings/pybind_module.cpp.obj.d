@@ -386,6 +386,7 @@ CMakeFiles/axion_cpp.dir/bindings/pybind_module.cpp.obj: \
  d:\llm\ projects\axion\inference\cpp\kernels\layernorm.hpp \
  d:\llm\ projects\axion\inference\cpp\core\tensor.hpp \
  d:\llm\ projects\axion\inference\cpp\core\scheduler.hpp \
+ d:\llm\ projects\axion\inference\cpp\runtime\tensor_lifetime.hpp \
  d:\llm\ projects\axion\inference\cpp\runtime\paged_kv.hpp \
  d:\llm\ projects\axion\inference\cpp\runtime\last_token.hpp \
  d:\llm\ projects\axion\inference\cpp\gguf\gguf.hpp \

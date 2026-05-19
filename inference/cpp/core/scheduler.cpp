@@ -43,19 +43,41 @@ RuntimeMemoryScheduler::find_reusable_block(
     DType dtype
 ) {
 
+    MemoryBlock* best = nullptr;
+
+    int64_t smallest_waste =
+        INT64_MAX;
+
     for (auto& block : blocks) {
 
-        if (
-            !block.in_use &&
-            block.dtype == dtype &&
-            block.capacity >= required_elements
-        ) {
+        if (block.in_use) {
+            continue;
+        }
 
-            return &block;
+        if (block.dtype != dtype) {
+            continue;
+        }
+
+        if (block.capacity <
+            required_elements) {
+
+            continue;
+        }
+
+        int64_t waste =
+            block.capacity -
+            required_elements;
+
+        if (waste < smallest_waste) {
+
+            smallest_waste =
+                waste;
+
+            best = &block;
         }
     }
 
-    return nullptr;
+    return best;
 }
 
 Tensor RuntimeMemoryScheduler::request_tensor(
@@ -64,6 +86,7 @@ Tensor RuntimeMemoryScheduler::request_tensor(
     DType dtype
   
 ) {
+    execution_step++;
 
     std::string name =
         base_name + "_" +
@@ -85,6 +108,9 @@ Tensor RuntimeMemoryScheduler::request_tensor(
         TensorStorage::SCHEDULER;
 
     t.name = name;
+        lifetime_graph.register_tensor(
+        name
+    );
     t.shape = shape;
     t.dtype = dtype;
 
@@ -94,6 +120,14 @@ Tensor RuntimeMemoryScheduler::request_tensor(
 
     if (reusable != nullptr) {
 
+        reusable->reuse_count++;
+
+        reusable->last_used_step =
+            execution_step;
+
+        reusable->wasted_elements =
+            reusable->capacity - numel;
+
         reusable->in_use = true;
 
         t.data_ptr =
@@ -102,6 +136,8 @@ Tensor RuntimeMemoryScheduler::request_tensor(
 
         active_tensors[name] =
             reusable->id;
+        tensor_registry[name] =
+        t;
 
         return t;
     }
@@ -125,6 +161,9 @@ Tensor RuntimeMemoryScheduler::request_tensor(
 
     block.storage.resize(numel);
 
+    block.last_used_step =
+        execution_step;
+
     current_bytes +=
         numel * dtype_size(dtype);
 
@@ -146,6 +185,8 @@ Tensor RuntimeMemoryScheduler::request_tensor(
 
     active_tensors[name] =
         created.id;
+    tensor_registry[name] =
+        t;
 
     return t;
 }
@@ -153,6 +194,29 @@ Tensor RuntimeMemoryScheduler::request_tensor(
 void RuntimeMemoryScheduler::release_tensor(
     const std::string& name
 ) {
+
+
+    if (!tensor_registry.count(name)) {
+
+        return;
+    }
+
+    auto& tensor =
+        tensor_registry[name];
+
+    if (tensor.storage ==
+        TensorStorage::MMAP) {
+
+        return;
+    }
+
+    if (tensor.pin_count > 0) {
+
+        return;
+    }
+    if (!lifetime_graph.can_release(name)) {
+        return;
+    }
     
 
     for (auto& block : blocks) {
@@ -186,6 +250,8 @@ void RuntimeMemoryScheduler::release_tensor(
     }
 
     active_tensors.erase(name);
+    tensor_registry.erase(name);
+    lifetime_graph.release_tensor(name);
 }
 
 void RuntimeMemoryScheduler::reset() {
@@ -219,6 +285,21 @@ void RuntimeMemoryScheduler::print_stats() const {
         << peak_bytes / (1024.0 * 1024.0)
         << " MB"
         << std::endl;
+
+    int64_t total_waste = 0;
+
+    for (const auto& block : blocks) {
+
+        total_waste +=
+            block.wasted_elements;
+    }
+
+    std::cout
+        << "Fragmentation Waste: "
+        << total_waste * sizeof(float)
+        / (1024.0 * 1024.0)
+        << " MB"
+        << std::endl;
 }
 
 int64_t
@@ -231,6 +312,35 @@ int64_t
 RuntimeMemoryScheduler::peak_memory_bytes() const {
 
     return peak_bytes;
+}
+
+void RuntimeMemoryScheduler::pin_tensor(
+    const std::string& name
+) {
+
+    if (!active_tensors.count(name)) {
+        return;
+    }
+
+    tensor_registry[name]
+        .pin_count++;
+}
+
+void RuntimeMemoryScheduler::unpin_tensor(
+    const std::string& name
+) {
+
+    if (!active_tensors.count(name)) {
+        return;
+    }
+
+    auto& tensor =
+        tensor_registry[name];
+
+    if (tensor.pin_count > 0) {
+
+        tensor.pin_count--;
+    }
 }
 
 }

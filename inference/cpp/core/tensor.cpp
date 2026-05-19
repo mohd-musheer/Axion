@@ -1,10 +1,30 @@
 #include "tensor.hpp"
 #include "fp16.hpp"
 #include <iostream>
+#include "scheduler.hpp"
 
 namespace axion {
 
 Tensor::Tensor() {}
+
+void Tensor::release_view(
+    RuntimeMemoryScheduler* scheduler
+) {
+
+    if (storage != TensorStorage::VIEW) {
+        return;
+    }
+
+    if (scheduler == nullptr) {
+        return;
+    }
+
+    scheduler->unpin_tensor(
+        parent_tensor
+    );
+}
+
+
 
 int64_t Tensor::numel() const {
 

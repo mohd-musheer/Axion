@@ -122,6 +122,7 @@ CMakeFiles/axion_cpp.dir/runtime/incremental_forward.cpp.obj: \
  D:/LLM\ projects/Axion/inference/cpp/runtime/cached_attention.hpp \
  D:/LLM\ projects/Axion/inference/cpp/runtime/linear.hpp \
  d:\llm\ projects\axion\inference\cpp\core\scheduler.hpp \
+ d:\llm\ projects\axion\inference\cpp\runtime\tensor_lifetime.hpp \
  D:/LLM\ projects/Axion/inference/cpp/runtime/logits.hpp \
  d:\llm\ projects\axion\inference\cpp\kernels\add.hpp \
  d:\llm\ projects\axion\inference\cpp\kernels\transpose.hpp \

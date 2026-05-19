@@ -122,6 +122,7 @@ CMakeFiles/axion_cpp.dir/runtime/cached_attention.cpp.obj: \
  d:\llm\ projects\axion\inference\cpp\kernels\blas.hpp \
  d:\llm\ projects\axion\inference\cpp\core\arena.hpp \
  d:\llm\ projects\axion\inference\cpp\core\scheduler.hpp \
+ d:\llm\ projects\axion\inference\cpp\runtime\tensor_lifetime.hpp \
  d:\llm\ projects\axion\inference\cpp\kernels\transpose.hpp \
  d:\llm\ projects\axion\inference\cpp\kernels\rope.hpp \
  d:\llm\ projects\axion\inference\cpp\kernels\multihead_attention.hpp

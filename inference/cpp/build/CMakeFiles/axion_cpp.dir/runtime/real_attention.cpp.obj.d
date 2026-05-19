@@ -117,6 +117,7 @@ CMakeFiles/axion_cpp.dir/runtime/real_attention.cpp.obj: \
  c:\rtools44\x86_64-w64-mingw32.static.posix\lib\gcc\x86_64-w64-mingw32.static.posix\13.3.0\include\c++\bits\node_handle.h \
  c:\rtools44\x86_64-w64-mingw32.static.posix\lib\gcc\x86_64-w64-mingw32.static.posix\13.3.0\include\c++\bits\erase_if.h \
  d:\llm\ projects\axion\inference\cpp\core\scheduler.hpp \
+ d:\llm\ projects\axion\inference\cpp\runtime\tensor_lifetime.hpp \
  d:\llm\ projects\axion\inference\cpp\kernels\blas.hpp \
  d:\llm\ projects\axion\inference\cpp\core\arena.hpp \
  d:\llm\ projects\axion\inference\cpp\kernels\rope.hpp \

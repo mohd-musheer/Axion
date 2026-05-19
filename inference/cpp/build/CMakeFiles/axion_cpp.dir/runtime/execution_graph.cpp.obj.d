@@ -120,6 +120,7 @@ CMakeFiles/axion_cpp.dir/runtime/execution_graph.cpp.obj: \
  D:/LLM\ projects/Axion/inference/cpp/runtime/weight_lookup.hpp \
  d:\llm\ projects\axion\inference\cpp\runtime\transformer_layer.hpp \
  d:\llm\ projects\axion\inference\cpp\core\scheduler.hpp \
+ d:\llm\ projects\axion\inference\cpp\runtime\tensor_lifetime.hpp \
  c:\rtools44\x86_64-w64-mingw32.static.posix\lib\gcc\x86_64-w64-mingw32.static.posix\13.3.0\include\c++\iostream \
  c:\rtools44\x86_64-w64-mingw32.static.posix\lib\gcc\x86_64-w64-mingw32.static.posix\13.3.0\include\c++\ostream \
  c:\rtools44\x86_64-w64-mingw32.static.posix\lib\gcc\x86_64-w64-mingw32.static.posix\13.3.0\include\c++\ios \

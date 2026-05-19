@@ -99,6 +99,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/axion_cpp.dir/runtime/streaming_executor.cpp.obj.d"
   "CMakeFiles/axion_cpp.dir/runtime/tensor_evictor.cpp.obj"
   "CMakeFiles/axion_cpp.dir/runtime/tensor_evictor.cpp.obj.d"
+  "CMakeFiles/axion_cpp.dir/runtime/tensor_lifetime.cpp.obj"
+  "CMakeFiles/axion_cpp.dir/runtime/tensor_lifetime.cpp.obj.d"
   "CMakeFiles/axion_cpp.dir/runtime/token_embedding.cpp.obj"
   "CMakeFiles/axion_cpp.dir/runtime/token_embedding.cpp.obj.d"
   "CMakeFiles/axion_cpp.dir/runtime/transformer_layer.cpp.obj"

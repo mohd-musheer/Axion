@@ -60,6 +60,7 @@ pybind11_add_module(axion_cpp
     runtime/execution_graph.cpp
     runtime/logits.cpp
     kernels/multihead.cpp
+    runtime/tensor_lifetime.cpp
     runtime/full_forward.cpp
     runtime/kv_append.cpp
     runtime/layer_scheduler.cpp

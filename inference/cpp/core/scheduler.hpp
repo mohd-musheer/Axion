@@ -1,7 +1,7 @@
 #pragma once
 
 #include "tensor.hpp"
-
+#include "../runtime/tensor_lifetime.hpp"
 #include <vector>
 #include <unordered_map>
 #include <string>
@@ -21,6 +21,11 @@ struct MemoryBlock {
     DType dtype = DType::FLOAT32;
 
     int64_t id = 0;
+    int64_t reuse_count = 0;
+
+    int64_t last_used_step = 0;
+
+    int64_t wasted_elements = 0;
 };
 
 class RuntimeMemoryScheduler {
@@ -28,6 +33,8 @@ class RuntimeMemoryScheduler {
 public:
 
     RuntimeMemoryScheduler();
+    TensorLifetimeGraph lifetime_graph;
+    int64_t execution_step = 0;
 
     Tensor request_tensor(
         const std::string& name,
@@ -39,6 +46,14 @@ public:
         const std::string& name
     );
 
+    void pin_tensor(
+        const std::string& name
+    );
+
+    void unpin_tensor(
+        const std::string& name
+    );
+    
     void reset();
 
     void print_stats() const;
@@ -55,6 +70,11 @@ private:
         std::string,
         int64_t
     > active_tensors;
+
+    std::unordered_map<
+        std::string,
+        Tensor
+    > tensor_registry;
 
     int64_t next_block_id = 0;
 

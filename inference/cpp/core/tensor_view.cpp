@@ -11,8 +11,13 @@ Tensor tensor_view(
 ) {
 
     Tensor view;
+
     view.storage =
         TensorStorage::VIEW;
+    
+    view.parent_tensor =
+        base.name;
+    view.pin_count = 1;
 
     view.name =
         base.name + "_view";

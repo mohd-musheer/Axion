@@ -459,6 +459,7 @@ CMakeFiles/axion_cpp.dir/bindings/pybind_module.cpp.obj: D:/LLM\ projects/Axion/
   D:/LLM\ projects/Axion/inference/cpp/runtime/single_position.hpp \
   D:/LLM\ projects/Axion/inference/cpp/runtime/streaming_executor.hpp \
   D:/LLM\ projects/Axion/inference/cpp/runtime/tensor_evictor.hpp \
+  D:/LLM\ projects/Axion/inference/cpp/runtime/tensor_lifetime.hpp \
   D:/LLM\ projects/Axion/inference/cpp/runtime/token_embedding.hpp \
   D:/LLM\ projects/Axion/inference/cpp/runtime/transformer_layer.hpp \
   D:/LLM\ projects/Axion/inference/cpp/runtime/transformer_stack.hpp \
@@ -1065,10 +1066,12 @@ CMakeFiles/axion_cpp.dir/core/scheduler.cpp.obj: D:/LLM\ projects/Axion/inferenc
   C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/mm_malloc.h \
   C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/stddef.h \
   C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/stdint.h \
-  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/syslimits.h
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/syslimits.h \
+  D:/LLM\ projects/Axion/inference/cpp/runtime/tensor_lifetime.hpp
 
 CMakeFiles/axion_cpp.dir/core/tensor.cpp.obj: D:/LLM\ projects/Axion/inference/cpp/core/tensor.cpp \
   D:/LLM\ projects/Axion/inference/cpp/core/fp16.hpp \
+  D:/LLM\ projects/Axion/inference/cpp/core/scheduler.hpp \
   D:/LLM\ projects/Axion/inference/cpp/core/tensor.hpp \
   C:/rtools44/x86_64-w64-mingw32.static.posix/include/_mingw.h \
   C:/rtools44/x86_64-w64-mingw32.static.posix/include/_mingw_mac.h \
@@ -1123,12 +1126,16 @@ CMakeFiles/axion_cpp.dir/core/tensor.cpp.obj: D:/LLM\ projects/Axion/inference/c
   C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/cpp_type_traits.h \
   C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/cxxabi_forced.h \
   C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/cxxabi_init_exception.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/enable_special_members.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/erase_if.h \
   C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/exception.h \
   C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/exception_defines.h \
   C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/exception_ptr.h \
   C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/functexcept.h \
   C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/functional_hash.h \
   C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/hash_bytes.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/hashtable.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/hashtable_policy.h \
   C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/invoke.h \
   C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/ios_base.h \
   C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/istream.tcc \
@@ -1142,6 +1149,7 @@ CMakeFiles/axion_cpp.dir/core/tensor.cpp.obj: D:/LLM\ projects/Axion/inference/c
   C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/move.h \
   C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/nested_exception.h \
   C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/new_allocator.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/node_handle.h \
   C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/ostream.tcc \
   C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/ostream_insert.h \
   C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/postypes.h \
@@ -1165,6 +1173,7 @@ CMakeFiles/axion_cpp.dir/core/tensor.cpp.obj: D:/LLM\ projects/Axion/inference/c
   C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/streambuf_iterator.h \
   C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/string_view.tcc \
   C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/stringfwd.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/unordered_map.h \
   C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/uses_allocator.h \
   C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/uses_allocator_args.h \
   C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/utility.h \
@@ -1181,6 +1190,7 @@ CMakeFiles/axion_cpp.dir/core/tensor.cpp.obj: D:/LLM\ projects/Axion/inference/c
   C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/debug/assertions.h \
   C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/debug/debug.h \
   C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/exception \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/ext/aligned_buffer.h \
   C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/ext/alloc_traits.h \
   C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/ext/atomicity.h \
   C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/ext/numeric_traits.h \
@@ -1203,6 +1213,7 @@ CMakeFiles/axion_cpp.dir/core/tensor.cpp.obj: D:/LLM\ projects/Axion/inference/c
   C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/tuple \
   C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/type_traits \
   C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/typeinfo \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/unordered_map \
   C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/vector \
   C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/x86_64-w64-mingw32.static.posix/bits/atomic_word.h \
   C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/x86_64-w64-mingw32.static.posix/bits/c++allocator.h \
@@ -1219,7 +1230,8 @@ CMakeFiles/axion_cpp.dir/core/tensor.cpp.obj: D:/LLM\ projects/Axion/inference/c
   C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/mm_malloc.h \
   C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/stddef.h \
   C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/stdint.h \
-  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/syslimits.h
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/syslimits.h \
+  D:/LLM\ projects/Axion/inference/cpp/runtime/tensor_lifetime.hpp
 
 CMakeFiles/axion_cpp.dir/core/tensor_factory.cpp.obj: D:/LLM\ projects/Axion/inference/cpp/core/tensor_factory.cpp \
   D:/LLM\ projects/Axion/inference/cpp/core/arena.hpp \
@@ -1742,7 +1754,8 @@ CMakeFiles/axion_cpp.dir/kernels/add.cpp.obj: D:/LLM\ projects/Axion/inference/c
   D:/LLM\ projects/Axion/inference/cpp/core/arena.hpp \
   D:/LLM\ projects/Axion/inference/cpp/core/scheduler.hpp \
   D:/LLM\ projects/Axion/inference/cpp/core/tensor.hpp \
-  D:/LLM\ projects/Axion/inference/cpp/core/tensor_factory.hpp
+  D:/LLM\ projects/Axion/inference/cpp/core/tensor_factory.hpp \
+  D:/LLM\ projects/Axion/inference/cpp/runtime/tensor_lifetime.hpp
 
 CMakeFiles/axion_cpp.dir/kernels/attention.cpp.obj: D:/LLM\ projects/Axion/inference/cpp/kernels/attention.cpp \
   D:/LLM\ projects/Axion/inference/cpp/kernels/attention.hpp \
@@ -1885,7 +1898,8 @@ CMakeFiles/axion_cpp.dir/kernels/attention.cpp.obj: D:/LLM\ projects/Axion/infer
   C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/syslimits.h \
   D:/LLM\ projects/Axion/inference/cpp/core/arena.hpp \
   D:/LLM\ projects/Axion/inference/cpp/core/scheduler.hpp \
-  D:/LLM\ projects/Axion/inference/cpp/core/tensor.hpp
+  D:/LLM\ projects/Axion/inference/cpp/core/tensor.hpp \
+  D:/LLM\ projects/Axion/inference/cpp/runtime/tensor_lifetime.hpp
 
 CMakeFiles/axion_cpp.dir/kernels/attention_output.cpp.obj: D:/LLM\ projects/Axion/inference/cpp/kernels/attention_output.cpp \
   D:/LLM\ projects/Axion/inference/cpp/kernels/attention_output.hpp \
@@ -2011,7 +2025,8 @@ CMakeFiles/axion_cpp.dir/kernels/attention_output.cpp.obj: D:/LLM\ projects/Axio
   C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/syslimits.h \
   D:/LLM\ projects/Axion/inference/cpp/core/arena.hpp \
   D:/LLM\ projects/Axion/inference/cpp/core/scheduler.hpp \
-  D:/LLM\ projects/Axion/inference/cpp/core/tensor.hpp
+  D:/LLM\ projects/Axion/inference/cpp/core/tensor.hpp \
+  D:/LLM\ projects/Axion/inference/cpp/runtime/tensor_lifetime.hpp
 
 CMakeFiles/axion_cpp.dir/kernels/blas.cpp.obj: D:/LLM\ projects/Axion/inference/cpp/kernels/blas.cpp \
   D:/LLM\ projects/Axion/inference/cpp/kernels/blas.hpp \
@@ -2177,7 +2192,8 @@ CMakeFiles/axion_cpp.dir/kernels/blas.cpp.obj: D:/LLM\ projects/Axion/inference/
   D:/LLM\ projects/Axion/inference/cpp/core/arena.hpp \
   D:/LLM\ projects/Axion/inference/cpp/core/scheduler.hpp \
   D:/LLM\ projects/Axion/inference/cpp/core/tensor.hpp \
-  D:/LLM\ projects/Axion/inference/cpp/core/tensor_factory.hpp
+  D:/LLM\ projects/Axion/inference/cpp/core/tensor_factory.hpp \
+  D:/LLM\ projects/Axion/inference/cpp/runtime/tensor_lifetime.hpp
 
 CMakeFiles/axion_cpp.dir/kernels/causal_mask.cpp.obj: D:/LLM\ projects/Axion/inference/cpp/kernels/causal_mask.cpp \
   D:/LLM\ projects/Axion/inference/cpp/kernels/causal_mask.hpp \
@@ -2304,7 +2320,8 @@ CMakeFiles/axion_cpp.dir/kernels/causal_mask.cpp.obj: D:/LLM\ projects/Axion/inf
   D:/LLM\ projects/Axion/inference/cpp/core/arena.hpp \
   D:/LLM\ projects/Axion/inference/cpp/core/scheduler.hpp \
   D:/LLM\ projects/Axion/inference/cpp/core/tensor.hpp \
-  D:/LLM\ projects/Axion/inference/cpp/core/tensor_factory.hpp
+  D:/LLM\ projects/Axion/inference/cpp/core/tensor_factory.hpp \
+  D:/LLM\ projects/Axion/inference/cpp/runtime/tensor_lifetime.hpp
 
 CMakeFiles/axion_cpp.dir/kernels/elementwise.cpp.obj: D:/LLM\ projects/Axion/inference/cpp/kernels/elementwise.cpp \
   D:/LLM\ projects/Axion/inference/cpp/kernels/elementwise.hpp \
@@ -2431,7 +2448,8 @@ CMakeFiles/axion_cpp.dir/kernels/elementwise.cpp.obj: D:/LLM\ projects/Axion/inf
   D:/LLM\ projects/Axion/inference/cpp/core/arena.hpp \
   D:/LLM\ projects/Axion/inference/cpp/core/scheduler.hpp \
   D:/LLM\ projects/Axion/inference/cpp/core/tensor.hpp \
-  D:/LLM\ projects/Axion/inference/cpp/core/tensor_factory.hpp
+  D:/LLM\ projects/Axion/inference/cpp/core/tensor_factory.hpp \
+  D:/LLM\ projects/Axion/inference/cpp/runtime/tensor_lifetime.hpp
 
 CMakeFiles/axion_cpp.dir/kernels/gelu.cpp.obj: D:/LLM\ projects/Axion/inference/cpp/kernels/gelu.cpp \
   D:/LLM\ projects/Axion/inference/cpp/kernels/gelu.hpp \
@@ -2573,7 +2591,8 @@ CMakeFiles/axion_cpp.dir/kernels/gelu.cpp.obj: D:/LLM\ projects/Axion/inference/
   D:/LLM\ projects/Axion/inference/cpp/core/arena.hpp \
   D:/LLM\ projects/Axion/inference/cpp/core/scheduler.hpp \
   D:/LLM\ projects/Axion/inference/cpp/core/tensor.hpp \
-  D:/LLM\ projects/Axion/inference/cpp/core/tensor_factory.hpp
+  D:/LLM\ projects/Axion/inference/cpp/core/tensor_factory.hpp \
+  D:/LLM\ projects/Axion/inference/cpp/runtime/tensor_lifetime.hpp
 
 CMakeFiles/axion_cpp.dir/kernels/layernorm.cpp.obj: D:/LLM\ projects/Axion/inference/cpp/kernels/layernorm.cpp \
   D:/LLM\ projects/Axion/inference/cpp/kernels/layernorm.hpp \
@@ -2715,7 +2734,8 @@ CMakeFiles/axion_cpp.dir/kernels/layernorm.cpp.obj: D:/LLM\ projects/Axion/infer
   D:/LLM\ projects/Axion/inference/cpp/core/arena.hpp \
   D:/LLM\ projects/Axion/inference/cpp/core/scheduler.hpp \
   D:/LLM\ projects/Axion/inference/cpp/core/tensor.hpp \
-  D:/LLM\ projects/Axion/inference/cpp/core/tensor_factory.hpp
+  D:/LLM\ projects/Axion/inference/cpp/core/tensor_factory.hpp \
+  D:/LLM\ projects/Axion/inference/cpp/runtime/tensor_lifetime.hpp
 
 CMakeFiles/axion_cpp.dir/kernels/mlp.cpp.obj: D:/LLM\ projects/Axion/inference/cpp/kernels/mlp.cpp \
   D:/LLM\ projects/Axion/inference/cpp/kernels/elementwise.hpp \
@@ -2835,7 +2855,8 @@ CMakeFiles/axion_cpp.dir/kernels/mlp.cpp.obj: D:/LLM\ projects/Axion/inference/c
   C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/stdint.h \
   C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/syslimits.h \
   D:/LLM\ projects/Axion/inference/cpp/core/scheduler.hpp \
-  D:/LLM\ projects/Axion/inference/cpp/core/tensor.hpp
+  D:/LLM\ projects/Axion/inference/cpp/core/tensor.hpp \
+  D:/LLM\ projects/Axion/inference/cpp/runtime/tensor_lifetime.hpp
 
 CMakeFiles/axion_cpp.dir/kernels/multihead.cpp.obj: D:/LLM\ projects/Axion/inference/cpp/kernels/multihead.cpp \
   D:/LLM\ projects/Axion/inference/cpp/kernels/multihead.hpp \
@@ -2961,7 +2982,8 @@ CMakeFiles/axion_cpp.dir/kernels/multihead.cpp.obj: D:/LLM\ projects/Axion/infer
   D:/LLM\ projects/Axion/inference/cpp/core/arena.hpp \
   D:/LLM\ projects/Axion/inference/cpp/core/scheduler.hpp \
   D:/LLM\ projects/Axion/inference/cpp/core/tensor.hpp \
-  D:/LLM\ projects/Axion/inference/cpp/core/tensor_factory.hpp
+  D:/LLM\ projects/Axion/inference/cpp/core/tensor_factory.hpp \
+  D:/LLM\ projects/Axion/inference/cpp/runtime/tensor_lifetime.hpp
 
 CMakeFiles/axion_cpp.dir/kernels/multihead_attention.cpp.obj: D:/LLM\ projects/Axion/inference/cpp/kernels/multihead_attention.cpp \
   D:/LLM\ projects/Axion/inference/cpp/kernels/attention.hpp \
@@ -3084,7 +3106,8 @@ CMakeFiles/axion_cpp.dir/kernels/multihead_attention.cpp.obj: D:/LLM\ projects/A
   C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/stdint.h \
   C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/syslimits.h \
   D:/LLM\ projects/Axion/inference/cpp/core/scheduler.hpp \
-  D:/LLM\ projects/Axion/inference/cpp/core/tensor.hpp
+  D:/LLM\ projects/Axion/inference/cpp/core/tensor.hpp \
+  D:/LLM\ projects/Axion/inference/cpp/runtime/tensor_lifetime.hpp
 
 CMakeFiles/axion_cpp.dir/kernels/rmsnorm.cpp.obj: D:/LLM\ projects/Axion/inference/cpp/kernels/rmsnorm.cpp \
   D:/LLM\ projects/Axion/inference/cpp/kernels/rmsnorm.hpp \
@@ -3227,7 +3250,8 @@ CMakeFiles/axion_cpp.dir/kernels/rmsnorm.cpp.obj: D:/LLM\ projects/Axion/inferen
   D:/LLM\ projects/Axion/inference/cpp/core/arena.hpp \
   D:/LLM\ projects/Axion/inference/cpp/core/scheduler.hpp \
   D:/LLM\ projects/Axion/inference/cpp/core/tensor.hpp \
-  D:/LLM\ projects/Axion/inference/cpp/core/tensor_factory.hpp
+  D:/LLM\ projects/Axion/inference/cpp/core/tensor_factory.hpp \
+  D:/LLM\ projects/Axion/inference/cpp/runtime/tensor_lifetime.hpp
 
 CMakeFiles/axion_cpp.dir/kernels/rope.cpp.obj: D:/LLM\ projects/Axion/inference/cpp/kernels/rope.cpp \
   D:/LLM\ projects/Axion/inference/cpp/kernels/rope.hpp \
@@ -3502,7 +3526,8 @@ CMakeFiles/axion_cpp.dir/kernels/silu.cpp.obj: D:/LLM\ projects/Axion/inference/
   D:/LLM\ projects/Axion/inference/cpp/core/arena.hpp \
   D:/LLM\ projects/Axion/inference/cpp/core/scheduler.hpp \
   D:/LLM\ projects/Axion/inference/cpp/core/tensor.hpp \
-  D:/LLM\ projects/Axion/inference/cpp/core/tensor_factory.hpp
+  D:/LLM\ projects/Axion/inference/cpp/core/tensor_factory.hpp \
+  D:/LLM\ projects/Axion/inference/cpp/runtime/tensor_lifetime.hpp
 
 CMakeFiles/axion_cpp.dir/kernels/softmax.cpp.obj: D:/LLM\ projects/Axion/inference/cpp/kernels/softmax.cpp \
   D:/LLM\ projects/Axion/inference/cpp/kernels/softmax.hpp \
@@ -3653,7 +3678,8 @@ CMakeFiles/axion_cpp.dir/kernels/softmax.cpp.obj: D:/LLM\ projects/Axion/inferen
   D:/LLM\ projects/Axion/inference/cpp/core/arena.hpp \
   D:/LLM\ projects/Axion/inference/cpp/core/scheduler.hpp \
   D:/LLM\ projects/Axion/inference/cpp/core/tensor.hpp \
-  D:/LLM\ projects/Axion/inference/cpp/core/tensor_factory.hpp
+  D:/LLM\ projects/Axion/inference/cpp/core/tensor_factory.hpp \
+  D:/LLM\ projects/Axion/inference/cpp/runtime/tensor_lifetime.hpp
 
 CMakeFiles/axion_cpp.dir/kernels/transpose.cpp.obj: D:/LLM\ projects/Axion/inference/cpp/kernels/transpose.cpp \
   D:/LLM\ projects/Axion/inference/cpp/kernels/transpose.hpp \
@@ -3780,7 +3806,8 @@ CMakeFiles/axion_cpp.dir/kernels/transpose.cpp.obj: D:/LLM\ projects/Axion/infer
   D:/LLM\ projects/Axion/inference/cpp/core/arena.hpp \
   D:/LLM\ projects/Axion/inference/cpp/core/scheduler.hpp \
   D:/LLM\ projects/Axion/inference/cpp/core/tensor.hpp \
-  D:/LLM\ projects/Axion/inference/cpp/core/tensor_factory.hpp
+  D:/LLM\ projects/Axion/inference/cpp/core/tensor_factory.hpp \
+  D:/LLM\ projects/Axion/inference/cpp/runtime/tensor_lifetime.hpp
 
 CMakeFiles/axion_cpp.dir/quantization/q4.cpp.obj: D:/LLM\ projects/Axion/inference/cpp/quantization/q4.cpp \
   D:/LLM\ projects/Axion/inference/cpp/quantization/q4.hpp \
@@ -4189,7 +4216,8 @@ CMakeFiles/axion_cpp.dir/runtime/cached_attention.cpp.obj: D:/LLM\ projects/Axio
   D:/LLM\ projects/Axion/inference/cpp/kernels/blas.hpp \
   D:/LLM\ projects/Axion/inference/cpp/kernels/multihead_attention.hpp \
   D:/LLM\ projects/Axion/inference/cpp/kernels/rope.hpp \
-  D:/LLM\ projects/Axion/inference/cpp/kernels/transpose.hpp
+  D:/LLM\ projects/Axion/inference/cpp/kernels/transpose.hpp \
+  D:/LLM\ projects/Axion/inference/cpp/runtime/tensor_lifetime.hpp
 
 CMakeFiles/axion_cpp.dir/runtime/embedding.cpp.obj: D:/LLM\ projects/Axion/inference/cpp/runtime/embedding.cpp \
   D:/LLM\ projects/Axion/inference/cpp/runtime/embedding.hpp \
@@ -4471,6 +4499,7 @@ CMakeFiles/axion_cpp.dir/runtime/execution_graph.cpp.obj: D:/LLM\ projects/Axion
   D:/LLM\ projects/Axion/inference/cpp/core/mmap_loader.hpp \
   D:/LLM\ projects/Axion/inference/cpp/core/scheduler.hpp \
   D:/LLM\ projects/Axion/inference/cpp/core/tensor.hpp \
+  D:/LLM\ projects/Axion/inference/cpp/runtime/tensor_lifetime.hpp \
   D:/LLM\ projects/Axion/inference/cpp/runtime/transformer_layer.hpp
 
 CMakeFiles/axion_cpp.dir/runtime/final_norm.cpp.obj: D:/LLM\ projects/Axion/inference/cpp/runtime/final_norm.cpp \
@@ -4590,7 +4619,8 @@ CMakeFiles/axion_cpp.dir/runtime/final_norm.cpp.obj: D:/LLM\ projects/Axion/infe
   C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/syslimits.h \
   D:/LLM\ projects/Axion/inference/cpp/core/scheduler.hpp \
   D:/LLM\ projects/Axion/inference/cpp/core/tensor.hpp \
-  D:/LLM\ projects/Axion/inference/cpp/kernels/rmsnorm.hpp
+  D:/LLM\ projects/Axion/inference/cpp/kernels/rmsnorm.hpp \
+  D:/LLM\ projects/Axion/inference/cpp/runtime/tensor_lifetime.hpp
 
 CMakeFiles/axion_cpp.dir/runtime/full_forward.cpp.obj: D:/LLM\ projects/Axion/inference/cpp/runtime/full_forward.cpp \
   D:/LLM\ projects/Axion/inference/cpp/runtime/embedding.hpp \
@@ -4712,7 +4742,8 @@ CMakeFiles/axion_cpp.dir/runtime/full_forward.cpp.obj: D:/LLM\ projects/Axion/in
   C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/syslimits.h \
   D:/LLM\ projects/Axion/inference/cpp/core/mmap_loader.hpp \
   D:/LLM\ projects/Axion/inference/cpp/core/scheduler.hpp \
-  D:/LLM\ projects/Axion/inference/cpp/core/tensor.hpp
+  D:/LLM\ projects/Axion/inference/cpp/core/tensor.hpp \
+  D:/LLM\ projects/Axion/inference/cpp/runtime/tensor_lifetime.hpp
 
 CMakeFiles/axion_cpp.dir/runtime/fused_qkv.cpp.obj: D:/LLM\ projects/Axion/inference/cpp/runtime/fused_qkv.cpp \
   D:/LLM\ projects/Axion/inference/cpp/runtime/fused_qkv.hpp \
@@ -4991,7 +5022,8 @@ CMakeFiles/axion_cpp.dir/runtime/generation.cpp.obj: D:/LLM\ projects/Axion/infe
   C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/stdint.h \
   C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/syslimits.h \
   D:/LLM\ projects/Axion/inference/cpp/core/scheduler.hpp \
-  D:/LLM\ projects/Axion/inference/cpp/core/tensor.hpp
+  D:/LLM\ projects/Axion/inference/cpp/core/tensor.hpp \
+  D:/LLM\ projects/Axion/inference/cpp/runtime/tensor_lifetime.hpp
 
 CMakeFiles/axion_cpp.dir/runtime/gpt2_ln.cpp.obj: D:/LLM\ projects/Axion/inference/cpp/runtime/gpt2_ln.cpp \
   D:/LLM\ projects/Axion/inference/cpp/runtime/gpt2_ln.hpp \
@@ -5125,7 +5157,8 @@ CMakeFiles/axion_cpp.dir/runtime/gpt2_ln.cpp.obj: D:/LLM\ projects/Axion/inferen
   C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/stdint.h \
   C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/syslimits.h \
   D:/LLM\ projects/Axion/inference/cpp/core/scheduler.hpp \
-  D:/LLM\ projects/Axion/inference/cpp/core/tensor.hpp
+  D:/LLM\ projects/Axion/inference/cpp/core/tensor.hpp \
+  D:/LLM\ projects/Axion/inference/cpp/runtime/tensor_lifetime.hpp
 
 CMakeFiles/axion_cpp.dir/runtime/incremental_forward.cpp.obj: D:/LLM\ projects/Axion/inference/cpp/runtime/incremental_forward.cpp \
   D:/LLM\ projects/Axion/inference/cpp/runtime/cached_attention.hpp \
@@ -5254,7 +5287,8 @@ CMakeFiles/axion_cpp.dir/runtime/incremental_forward.cpp.obj: D:/LLM\ projects/A
   D:/LLM\ projects/Axion/inference/cpp/kernels/add.hpp \
   D:/LLM\ projects/Axion/inference/cpp/kernels/gelu.hpp \
   D:/LLM\ projects/Axion/inference/cpp/kernels/rmsnorm.hpp \
-  D:/LLM\ projects/Axion/inference/cpp/kernels/transpose.hpp
+  D:/LLM\ projects/Axion/inference/cpp/kernels/transpose.hpp \
+  D:/LLM\ projects/Axion/inference/cpp/runtime/tensor_lifetime.hpp
 
 CMakeFiles/axion_cpp.dir/runtime/inference_engine.cpp.obj: D:/LLM\ projects/Axion/inference/cpp/runtime/inference_engine.cpp \
   D:/LLM\ projects/Axion/inference/cpp/runtime/inference_engine.hpp \
@@ -5995,7 +6029,8 @@ CMakeFiles/axion_cpp.dir/runtime/linear.cpp.obj: D:/LLM\ projects/Axion/inferenc
   D:/LLM\ projects/Axion/inference/cpp/core/arena.hpp \
   D:/LLM\ projects/Axion/inference/cpp/core/scheduler.hpp \
   D:/LLM\ projects/Axion/inference/cpp/core/tensor.hpp \
-  D:/LLM\ projects/Axion/inference/cpp/kernels/blas.hpp
+  D:/LLM\ projects/Axion/inference/cpp/kernels/blas.hpp \
+  D:/LLM\ projects/Axion/inference/cpp/runtime/tensor_lifetime.hpp
 
 CMakeFiles/axion_cpp.dir/runtime/logits.cpp.obj: D:/LLM\ projects/Axion/inference/cpp/runtime/logits.cpp \
   D:/LLM\ projects/Axion/inference/cpp/runtime/logits.hpp \
@@ -6117,7 +6152,8 @@ CMakeFiles/axion_cpp.dir/runtime/logits.cpp.obj: D:/LLM\ projects/Axion/inferenc
   D:/LLM\ projects/Axion/inference/cpp/core/scheduler.hpp \
   D:/LLM\ projects/Axion/inference/cpp/core/tensor.hpp \
   D:/LLM\ projects/Axion/inference/cpp/kernels/blas.hpp \
-  D:/LLM\ projects/Axion/inference/cpp/kernels/transpose.hpp
+  D:/LLM\ projects/Axion/inference/cpp/kernels/transpose.hpp \
+  D:/LLM\ projects/Axion/inference/cpp/runtime/tensor_lifetime.hpp
 
 CMakeFiles/axion_cpp.dir/runtime/paged_kv.cpp.obj: D:/LLM\ projects/Axion/inference/cpp/runtime/paged_kv.cpp \
   D:/LLM\ projects/Axion/inference/cpp/runtime/paged_kv.hpp \
@@ -6476,7 +6512,8 @@ CMakeFiles/axion_cpp.dir/runtime/real_attention.cpp.obj: D:/LLM\ projects/Axion/
   D:/LLM\ projects/Axion/inference/cpp/core/tensor.hpp \
   D:/LLM\ projects/Axion/inference/cpp/kernels/blas.hpp \
   D:/LLM\ projects/Axion/inference/cpp/kernels/multihead_attention.hpp \
-  D:/LLM\ projects/Axion/inference/cpp/kernels/rope.hpp
+  D:/LLM\ projects/Axion/inference/cpp/kernels/rope.hpp \
+  D:/LLM\ projects/Axion/inference/cpp/runtime/tensor_lifetime.hpp
 
 CMakeFiles/axion_cpp.dir/runtime/residual.cpp.obj: D:/LLM\ projects/Axion/inference/cpp/runtime/residual.cpp \
   D:/LLM\ projects/Axion/inference/cpp/runtime/residual.hpp \
@@ -6600,7 +6637,8 @@ CMakeFiles/axion_cpp.dir/runtime/residual.cpp.obj: D:/LLM\ projects/Axion/infere
   C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/stdint.h \
   C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/syslimits.h \
   D:/LLM\ projects/Axion/inference/cpp/core/scheduler.hpp \
-  D:/LLM\ projects/Axion/inference/cpp/core/tensor.hpp
+  D:/LLM\ projects/Axion/inference/cpp/core/tensor.hpp \
+  D:/LLM\ projects/Axion/inference/cpp/runtime/tensor_lifetime.hpp
 
 CMakeFiles/axion_cpp.dir/runtime/single_position.cpp.obj: D:/LLM\ projects/Axion/inference/cpp/runtime/single_position.cpp \
   D:/LLM\ projects/Axion/inference/cpp/runtime/single_position.hpp \
@@ -6888,7 +6926,8 @@ CMakeFiles/axion_cpp.dir/runtime/streaming_executor.cpp.obj: D:/LLM\ projects/Ax
   D:/LLM\ projects/Axion/inference/cpp/gguf/gguf.hpp \
   D:/LLM\ projects/Axion/inference/cpp/kernels/rmsnorm.hpp \
   D:/LLM\ projects/Axion/inference/cpp/runtime/linear.hpp \
-  D:/LLM\ projects/Axion/inference/cpp/runtime/residual.hpp
+  D:/LLM\ projects/Axion/inference/cpp/runtime/residual.hpp \
+  D:/LLM\ projects/Axion/inference/cpp/runtime/tensor_lifetime.hpp
 
 CMakeFiles/axion_cpp.dir/runtime/tensor_evictor.cpp.obj: D:/LLM\ projects/Axion/inference/cpp/runtime/tensor_evictor.cpp \
   D:/LLM\ projects/Axion/inference/cpp/runtime/tensor_evictor.hpp \
@@ -6998,6 +7037,119 @@ CMakeFiles/axion_cpp.dir/runtime/tensor_evictor.cpp.obj: D:/LLM\ projects/Axion/
   C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/stdint.h \
   C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/syslimits.h \
   D:/LLM\ projects/Axion/inference/cpp/core/tensor.hpp
+
+CMakeFiles/axion_cpp.dir/runtime/tensor_lifetime.cpp.obj: D:/LLM\ projects/Axion/inference/cpp/runtime/tensor_lifetime.cpp \
+  D:/LLM\ projects/Axion/inference/cpp/runtime/tensor_lifetime.hpp \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/include/_mingw.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/include/_mingw_mac.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/include/_mingw_off_t.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/include/_mingw_secapi.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/include/_mingw_stat64.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/include/corecrt.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/include/corecrt_stdio_config.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/include/corecrt_wstdlib.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/include/crtdefs.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/include/ctype.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/include/errno.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/include/limits.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/include/locale.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/include/malloc.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/include/sdks/_mingw_ddk.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/include/sec_api/stdio_s.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/include/sec_api/stdlib_s.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/include/sec_api/wchar_s.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/include/stddef.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/include/stdio.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/include/stdlib.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/include/swprintf.inl \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/include/vadefs.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/include/wchar.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/backward/binders.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bit \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/alloc_traits.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/allocator.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/basic_string.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/basic_string.tcc \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/char_traits.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/charconv.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/concept_check.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/cpp_type_traits.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/cxxabi_forced.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/enable_special_members.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/erase_if.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/exception.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/exception_defines.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/functexcept.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/functional_hash.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/hash_bytes.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/hashtable.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/hashtable_policy.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/invoke.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/localefwd.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/memory_resource.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/memoryfwd.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/move.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/new_allocator.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/node_handle.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/ostream_insert.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/postypes.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/predefined_ops.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/ptr_traits.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/range_access.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/refwrap.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/requires_hosted.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/std_abs.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/stl_algobase.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/stl_bvector.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/stl_construct.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/stl_function.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/stl_iterator.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/stl_iterator_base_funcs.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/stl_iterator_base_types.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/stl_pair.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/stl_uninitialized.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/stl_vector.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/string_view.tcc \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/stringfwd.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/unordered_map.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/uses_allocator.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/uses_allocator_args.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/utility.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/vector.tcc \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/cctype \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/cerrno \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/clocale \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/cstddef \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/cstdio \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/cstdlib \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/cwchar \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/debug/assertions.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/debug/debug.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/ext/aligned_buffer.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/ext/alloc_traits.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/ext/numeric_traits.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/ext/string_conversions.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/ext/type_traits.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/initializer_list \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/iosfwd \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/new \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/pstl/pstl_config.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/stdlib.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/string \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/string_view \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/tuple \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/type_traits \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/unordered_map \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/vector \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/x86_64-w64-mingw32.static.posix/bits/c++allocator.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/x86_64-w64-mingw32.static.posix/bits/c++config.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/x86_64-w64-mingw32.static.posix/bits/c++locale.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/x86_64-w64-mingw32.static.posix/bits/cpu_defines.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/x86_64-w64-mingw32.static.posix/bits/os_defines.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/limits.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/mm_malloc.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/stddef.h \
+  C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/syslimits.h
 
 CMakeFiles/axion_cpp.dir/runtime/token_embedding.cpp.obj: D:/LLM\ projects/Axion/inference/cpp/runtime/token_embedding.cpp \
   D:/LLM\ projects/Axion/inference/cpp/runtime/token_embedding.hpp \
@@ -7237,7 +7389,8 @@ CMakeFiles/axion_cpp.dir/runtime/transformer_layer.cpp.obj: D:/LLM\ projects/Axi
   D:/LLM\ projects/Axion/inference/cpp/kernels/mlp.hpp \
   D:/LLM\ projects/Axion/inference/cpp/kernels/residual.hpp \
   D:/LLM\ projects/Axion/inference/cpp/kernels/rmsnorm.hpp \
-  D:/LLM\ projects/Axion/inference/cpp/kernels/softmax.hpp
+  D:/LLM\ projects/Axion/inference/cpp/kernels/softmax.hpp \
+  D:/LLM\ projects/Axion/inference/cpp/runtime/tensor_lifetime.hpp
 
 CMakeFiles/axion_cpp.dir/runtime/transformer_stack.cpp.obj: D:/LLM\ projects/Axion/inference/cpp/runtime/transformer_stack.cpp \
   D:/LLM\ projects/Axion/inference/cpp/runtime/final_norm.hpp \
@@ -7408,7 +7561,8 @@ CMakeFiles/axion_cpp.dir/runtime/transformer_stack.cpp.obj: D:/LLM\ projects/Axi
   D:/LLM\ projects/Axion/inference/cpp/core/scheduler.hpp \
   D:/LLM\ projects/Axion/inference/cpp/core/tensor.hpp \
   D:/LLM\ projects/Axion/inference/cpp/kernels/gelu.hpp \
-  D:/LLM\ projects/Axion/inference/cpp/kernels/transpose.hpp
+  D:/LLM\ projects/Axion/inference/cpp/kernels/transpose.hpp \
+  D:/LLM\ projects/Axion/inference/cpp/runtime/tensor_lifetime.hpp
 
 CMakeFiles/axion_cpp.dir/runtime/weight_lookup.cpp.obj: D:/LLM\ projects/Axion/inference/cpp/runtime/weight_lookup.cpp \
   D:/LLM\ projects/Axion/inference/cpp/runtime/weight_lookup.hpp \
@@ -7529,6 +7683,8 @@ D:/LLM\ projects/Axion/inference/cpp/kernels/residual.hpp:
 D:/LLM\ projects/Axion/inference/cpp/runtime/transformer_layer.cpp:
 
 D:/LLM\ projects/Axion/inference/cpp/runtime/token_embedding.cpp:
+
+D:/LLM\ projects/Axion/inference/cpp/runtime/tensor_lifetime.cpp:
 
 D:/LLM\ projects/Axion/inference/cpp/runtime/tensor_evictor.cpp:
 
@@ -8442,6 +8598,10 @@ C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.po
 
 C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/typeindex:
 
+D:/LLM\ projects/Axion/inference/cpp/kernels/blas.cpp:
+
+C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/typeinfo:
+
 C:/Users/mushe/AppData/Local/Programs/Python/Python311/include/rangeobject.h:
 
 C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/unordered_set:
@@ -8582,6 +8742,8 @@ D:/LLM\ projects/Axion/inference/cpp/runtime/real_attention.hpp:
 
 D:/LLM\ projects/Axion/inference/cpp/runtime/tensor_evictor.hpp:
 
+D:/LLM\ projects/Axion/inference/cpp/runtime/tensor_lifetime.hpp:
+
 D:/LLM\ projects/Axion/inference/cpp/runtime/token_embedding.hpp:
 
 C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/bits/memory_resource.h:
@@ -8687,7 +8849,3 @@ C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.po
 D:/LLM\ projects/Axion/inference/cpp/core/tensor.cpp:
 
 D:/LLM\ projects/Axion/inference/cpp/gguf/gguf.cpp:
-
-C:/rtools44/x86_64-w64-mingw32.static.posix/lib/gcc/x86_64-w64-mingw32.static.posix/13.3.0/include/c++/typeinfo:
-
-D:/LLM\ projects/Axion/inference/cpp/kernels/blas.cpp:
