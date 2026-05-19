@@ -173,6 +173,8 @@ Tensor MMapLoader::load_tensor_data(
 
     Tensor tensor =
         tensors[tensor_name];
+    tensor.storage =
+        TensorStorage::MMAP;
 
     uint64_t tensor_start =
         8 + header_size +

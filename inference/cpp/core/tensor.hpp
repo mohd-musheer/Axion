@@ -14,6 +14,18 @@ enum class DType {
 };
 
 
+enum class TensorStorage {
+
+    OWNED,
+
+    MMAP,
+
+    SCHEDULER,
+
+    ARENA,
+
+    VIEW
+};
 
 class Tensor {
 
@@ -28,6 +40,10 @@ public:
     uint64_t offset_start = 0;
     uint64_t offset_end = 0;
     Arena* arena = nullptr;
+    TensorStorage storage =
+    TensorStorage::OWNED;
+    bool alive = true;
+
 
     // --------------------------------
     // MMAP POINTER
@@ -88,5 +104,7 @@ public:
 
     bool valid() const;
 };
+
+
 
 }

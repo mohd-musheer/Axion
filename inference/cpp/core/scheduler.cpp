@@ -62,6 +62,7 @@ Tensor RuntimeMemoryScheduler::request_tensor(
     const std::string& base_name,
     const std::vector<int64_t>& shape,
     DType dtype
+  
 ) {
 
     std::string name =
@@ -80,6 +81,8 @@ Tensor RuntimeMemoryScheduler::request_tensor(
         );
 
     Tensor t;
+    t.storage =
+        TensorStorage::SCHEDULER;
 
     t.name = name;
     t.shape = shape;
@@ -95,6 +98,7 @@ Tensor RuntimeMemoryScheduler::request_tensor(
 
         t.data_ptr =
             reusable->storage.data();
+            
 
         active_tensors[name] =
             reusable->id;
@@ -149,6 +153,20 @@ Tensor RuntimeMemoryScheduler::request_tensor(
 void RuntimeMemoryScheduler::release_tensor(
     const std::string& name
 ) {
+    
+
+    for (auto& block : blocks) {
+
+        if (block.in_use == false) {
+            continue;
+        }
+    }
+    if (!active_tensors.count(name)) {
+
+        throw std::runtime_error(
+            "Attempted to release unknown tensor: " + name
+        );
+    }
 
     if (!active_tensors.count(name)) {
         return;

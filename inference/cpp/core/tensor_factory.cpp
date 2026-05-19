@@ -9,6 +9,8 @@ Tensor create_tensor(
 ) {
 
     Tensor t;
+    t.storage =
+        TensorStorage::ARENA;
 
     t.shape = shape;
 
@@ -34,6 +36,8 @@ Tensor create_owned_tensor(
 ) {
 
     Tensor t;
+    t.storage =
+        TensorStorage::OWNED;
 
     t.shape = shape;
 

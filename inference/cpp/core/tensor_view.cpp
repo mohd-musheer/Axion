@@ -11,6 +11,8 @@ Tensor tensor_view(
 ) {
 
     Tensor view;
+    view.storage =
+        TensorStorage::VIEW;
 
     view.name =
         base.name + "_view";
