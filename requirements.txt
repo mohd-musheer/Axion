@@ -1,5 +1,0 @@
-transformers
-tokenizers
-torch
-sentencepiece
-safetensors
