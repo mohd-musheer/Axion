@@ -1,0 +1,17 @@
+tests/inference/adapter_model.safetensors
+tests/inference/model.safetensors
+.vscode/settings.json
+/.vscode/settings.json
+
+data.txt
+tests/inference/gguf/inferra-q4.gguf
+
+models/gguf/tinyllama-1.1b-chat-v1.0.Q8_0.gguf
+build
+tests/inference/tempCodeRunnerFile.py
+tests/inference/gguf/mmproj-F16.gguf
+
+imp
+dd.py
+getdata.py
+.vscode/launch.json

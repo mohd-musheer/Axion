@@ -1,0 +1,37 @@
+# Axion CI: build and run the pure-C++ runtime validation harness.
+# The pybind module is intentionally NOT built here (requires exact
+# Python 3.11 + pybind11); validation gates runtime correctness.
+
+stages:
+  - validate
+
+validate:linux:
+  stage: validate
+  image: gcc:13
+  before_script:
+    - apt-get update -qq && apt-get install -y -qq cmake > /dev/null
+  script:
+    - cmake -S inference/cpp -B build-ci -DAXION_BUILD_PYTHON_MODULE=OFF -DCMAKE_BUILD_TYPE=Release
+    - cmake --build build-ci --target axion_runtime_validation -j"$(nproc)"
+    - ./build-ci/axion_runtime_validation
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
+    - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH'
+
+# Windows validation: manual until a Windows runner budget is
+# confirmed. allow_failure keeps it from blocking merges.
+validate:windows:
+  stage: validate
+  tags:
+    - saas-windows-medium-amd64
+  script:
+    - cmake -S inference/cpp -B build-ci -DAXION_BUILD_PYTHON_MODULE=OFF
+    - cmake --build build-ci --config Release --target axion_runtime_validation
+    - .\build-ci\Release\axion_runtime_validation.exe
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
+      when: manual
+      allow_failure: true
+    - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH'
+      when: manual
+      allow_failure: true
