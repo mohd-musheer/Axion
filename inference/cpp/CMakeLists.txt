@@ -51,6 +51,7 @@ if(AXION_BUILD_PYTHON_MODULE)
         quantization/q4.cpp
         runtime/last_token.cpp
         gguf/gguf.cpp
+        gguf/tokenizer.cpp
         core/arena.cpp
         core/tensor_factory.cpp
         kernels/layernorm.cpp
@@ -238,6 +239,7 @@ if(AXION_BUILD_MODEL_VALIDATION)
         core/mapped_file.cpp
         core/mmap_loader.cpp
         gguf/gguf.cpp
+        gguf/tokenizer.cpp
         core/tensor.cpp
         core/fp16.cpp
         core/tensor_view.cpp

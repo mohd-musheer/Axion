@@ -49,8 +49,24 @@ struct GGUFMetadata {
     double      d_val = 0.0;
     std::string s_val;
 
+    // For array values (type 9): number of elements. The array contents
+    // are not retained for numeric scalar hparams, but the length is:
+    // the LLaMA-family vocab size is the length of tokenizer.ggml.tokens,
+    // since llama.vocab_size is often absent.
+    uint64_t arr_len = 0;
+
+    // Retained array contents. The tokenizer needs these: string arrays
+    // (tokenizer.ggml.tokens, .merges) and int arrays (.token_type).
+    // Float arrays (.scores) are retained as doubles in arr_f. Only the
+    // representation matching the element type is populated.
+    std::vector<std::string> arr_s;
+    std::vector<int64_t>     arr_i;
+    std::vector<double>      arr_f;
+    uint32_t                 arr_elem_type = 0;
+
     bool is_string = false;
     bool is_float  = false;
+    bool is_array  = false;
 };
 
 struct GGUFTensorInfo {
@@ -122,6 +138,38 @@ public:
     std::string get_str(
         const std::string& key,
         const std::string& fallback = ""
+    ) const;
+
+    // Length of a GGUF array-valued key (e.g. tokenizer.ggml.tokens).
+    // Returns fallback if the key is missing or is not an array.
+    uint64_t get_arr_len(
+        const std::string& key,
+        uint64_t fallback = 0
+    ) const;
+
+    // Retained string array (e.g. tokenizer.ggml.tokens, .merges).
+    // Empty if the key is absent or not a string array.
+    const std::vector<std::string>& get_str_array(
+        const std::string& key
+    ) const;
+
+    // Retained integer array (e.g. tokenizer.ggml.token_type).
+    // Empty if the key is absent or not an integer array.
+    const std::vector<int64_t>& get_i32_array(
+        const std::string& key
+    ) const;
+
+    // Retained float array (e.g. tokenizer.ggml.scores).
+    // Empty if the key is absent or not a float array.
+    const std::vector<double>& get_f32_array(
+        const std::string& key
+    ) const;
+
+    // Shape of a tensor as parsed (row-major [outer, ..., inner]).
+    // Empty if the tensor is absent. Used to derive vocab from
+    // token_embd.weight when metadata does not carry it.
+    std::vector<int64_t> tensor_shape(
+        const std::string& name
     ) const;
 
     // "general.architecture" (e.g. "llama", "qwen2"); empty if absent.

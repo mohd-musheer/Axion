@@ -71,6 +71,9 @@ public:
     struct GenerationParams {
         int            max_new_tokens = 16;
         SamplingParams sampling;
+        // Stop generation when this token id is sampled. -1 disables
+        // the check (runs the full max_new_tokens budget).
+        int            eos_token_id  = -1;
     };
 
     std::vector<int> generate(

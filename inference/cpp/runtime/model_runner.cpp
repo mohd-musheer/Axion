@@ -50,8 +50,25 @@ void ModelRunner::resolve_config() {
     cfg.rope_theta =
         loader->get_f32(a + ".rope.freq_base", 10000.0f);
 
+    // Vocab size resolution, in priority order:
+    //   1. <arch>.vocab_size scalar (often absent in LLaMA-family GGUFs)
+    //   2. length of the tokenizer.ggml.tokens array (canonical)
+    //   3. outer dimension of token_embd.weight ([vocab, hidden])
     cfg.vocab =
         static_cast<int>(loader->get_u32(a + ".vocab_size", 0));
+
+    if (cfg.vocab <= 0) {
+        cfg.vocab = static_cast<int>(
+            loader->get_arr_len("tokenizer.ggml.tokens", 0));
+    }
+
+    if (cfg.vocab <= 0) {
+        std::vector<int64_t> embd_shape =
+            loader->tensor_shape("token_embd.weight");
+        if (embd_shape.size() == 2) {
+            cfg.vocab = static_cast<int>(embd_shape[0]);
+        }
+    }
 
     cfg.rms_eps =
         loader->get_f32(
@@ -242,6 +259,9 @@ std::vector<int> ModelRunner::generate(
             int next = sample_last_row(logits, params.sampling, rng);
             if (next < 0) break;
             seq.push_back(next);
+            if (params.eos_token_id >= 0 && next == params.eos_token_id) {
+                break;
+            }
         }
         return seq;
     }
@@ -269,6 +289,9 @@ std::vector<int> ModelRunner::generate(
         int next = sample_last_row(logits, params.sampling, rng);
         if (next < 0) break;
         seq.push_back(next);
+        if (params.eos_token_id >= 0 && next == params.eos_token_id) {
+            break;
+        }
 
         Tensor row = embed_one(next);
         last_hidden = executor.decode_step(row);

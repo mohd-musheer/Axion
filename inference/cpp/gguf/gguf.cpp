@@ -5,6 +5,7 @@
 #include <stdexcept>
 #include <string>
 #include <cstring>
+#include <algorithm>
 
 namespace axion {
 
@@ -344,7 +345,21 @@ void GGUFLoader::parse_metadata() {
                     sizeof(array_len)
                 );
 
-                // skip array contents
+                // Retain the array length, element type, and (for the
+                // types the tokenizer needs) the contents. The vocab
+                // size of LLaMA-family GGUFs is the length of
+                // tokenizer.ggml.tokens; llama.vocab_size is often absent.
+                md.is_array       = true;
+                md.arr_len        = array_len;
+                md.arr_elem_type  = array_type;
+
+                if (array_type == 8) {
+                    md.arr_s.reserve(array_len);
+                } else if (array_type == 6 || array_type == 12) {
+                    md.arr_f.reserve(array_len);
+                } else {
+                    md.arr_i.reserve(array_len);
+                }
 
                 for (uint64_t j = 0;
                     j < array_len;
@@ -355,53 +370,82 @@ void GGUFLoader::parse_metadata() {
                         case 0: {
                             uint8_t v;
                             file.read(reinterpret_cast<char*>(&v), sizeof(v));
+                            md.arr_i.push_back((int64_t)v);
                             break;
                         }
 
                         case 1: {
                             int8_t v;
                             file.read(reinterpret_cast<char*>(&v), sizeof(v));
+                            md.arr_i.push_back((int64_t)v);
                             break;
                         }
 
                         case 2: {
                             uint16_t v;
                             file.read(reinterpret_cast<char*>(&v), sizeof(v));
+                            md.arr_i.push_back((int64_t)v);
                             break;
                         }
 
                         case 3: {
                             int16_t v;
                             file.read(reinterpret_cast<char*>(&v), sizeof(v));
+                            md.arr_i.push_back((int64_t)v);
                             break;
                         }
 
                         case 4: {
                             uint32_t v;
                             file.read(reinterpret_cast<char*>(&v), sizeof(v));
+                            md.arr_i.push_back((int64_t)v);
                             break;
                         }
 
                         case 5: {
                             int32_t v;
                             file.read(reinterpret_cast<char*>(&v), sizeof(v));
+                            md.arr_i.push_back((int64_t)v);
                             break;
                         }
 
                         case 6: {
                             float v;
                             file.read(reinterpret_cast<char*>(&v), sizeof(v));
+                            md.arr_f.push_back((double)v);
                             break;
                         }
 
                         case 7: {
                             bool v;
                             file.read(reinterpret_cast<char*>(&v), sizeof(v));
+                            md.arr_i.push_back(v ? 1 : 0);
                             break;
                         }
 
                         case 8: {
-                            read_gguf_string(file);
+                            md.arr_s.push_back(read_gguf_string(file));
+                            break;
+                        }
+
+                        case 10: {
+                            uint64_t v;
+                            file.read(reinterpret_cast<char*>(&v), sizeof(v));
+                            md.arr_i.push_back((int64_t)v);
+                            break;
+                        }
+
+                        case 11: {
+                            int64_t v;
+                            file.read(reinterpret_cast<char*>(&v), sizeof(v));
+                            md.arr_i.push_back(v);
+                            break;
+                        }
+
+                        case 12: {
+                            double v;
+                            file.read(reinterpret_cast<char*>(&v), sizeof(v));
+                            md.arr_f.push_back(v);
                             break;
                         }
 
@@ -540,6 +584,56 @@ std::string GGUFLoader::get_str(
     return it->second.s_val;
 }
 
+uint64_t GGUFLoader::get_arr_len(
+    const std::string& key,
+    uint64_t fallback
+) const {
+
+    auto it = metadata.find(key);
+    if (it == metadata.end()) return fallback;
+    if (!it->second.is_array) return fallback;
+    return it->second.arr_len;
+}
+
+std::vector<int64_t> GGUFLoader::tensor_shape(
+    const std::string& name
+) const {
+
+    auto it = tensors.find(name);
+    if (it == tensors.end()) return {};
+    return it->second.shape;
+}
+
+const std::vector<std::string>& GGUFLoader::get_str_array(
+    const std::string& key
+) const {
+
+    static const std::vector<std::string> empty;
+    auto it = metadata.find(key);
+    if (it == metadata.end() || !it->second.is_array) return empty;
+    return it->second.arr_s;
+}
+
+const std::vector<int64_t>& GGUFLoader::get_i32_array(
+    const std::string& key
+) const {
+
+    static const std::vector<int64_t> empty;
+    auto it = metadata.find(key);
+    if (it == metadata.end() || !it->second.is_array) return empty;
+    return it->second.arr_i;
+}
+
+const std::vector<double>& GGUFLoader::get_f32_array(
+    const std::string& key
+) const {
+
+    static const std::vector<double> empty;
+    auto it = metadata.find(key);
+    if (it == metadata.end() || !it->second.is_array) return empty;
+    return it->second.arr_f;
+}
+
 std::string GGUFLoader::architecture() const {
 
     return get_str("general.architecture", "");
@@ -567,6 +661,13 @@ void GGUFLoader::parse_tensor_directory() {
 
         info.element_count = 1;
 
+        // GGUF stores dimensions in GGML order, where ne[0] is the
+        // fastest-varying (inner) dimension. The rest of the runtime
+        // assumes standard row-major [outer, ..., inner] layout
+        // ([vocab, hidden], [out, in]). Read in file order, then reverse
+        // so shape[0] is the outer dimension. Without this, token_embd
+        // and ffn weights are transposed and RMSNorm fails with a
+        // "rmsnorm weight mismatch" on the first layer.
         for (uint32_t d = 0;
              d < n_dims;
              d++) {
@@ -579,11 +680,16 @@ void GGUFLoader::parse_tensor_directory() {
             );
 
             info.shape[d] =
-                dim;
+                static_cast<int64_t>(dim);
 
             info.element_count *=
                 dim;
         }
+
+        std::reverse(
+            info.shape.begin(),
+            info.shape.end()
+        );
 
         uint32_t ggml_type;
 
