@@ -279,6 +279,15 @@ if(AXION_BUILD_MODEL_VALIDATION)
     target_include_directories(axion_tinyllama_validation PRIVATE third_party)
     target_link_libraries(axion_tinyllama_validation PRIVATE OpenMP::OpenMP_CXX)
 
+    # Per-layer hidden-state dumper for locating the first diverging
+    # layer against a llama.cpp per-layer reference.
+    add_executable(axion_dump_layers
+        tests/dump_layers.cpp
+        ${AXION_MODEL_SOURCES}
+    )
+    target_include_directories(axion_dump_layers PRIVATE third_party)
+    target_link_libraries(axion_dump_layers PRIVATE OpenMP::OpenMP_CXX)
+
     # User-facing inference CLI.
     add_executable(axion_cli
         cli/axion_cli.cpp

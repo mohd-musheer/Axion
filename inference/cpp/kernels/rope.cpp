@@ -9,6 +9,12 @@
 
 namespace axion {
 
+// LEGACY: GPT-J / GPT-NeoX *interleaved* RoPE (pairs lane d with d+1,
+// freq exp d/head_dim). This is NOT the convention LLaMA-family GGUF
+// models use. The active LLaMA decode path applies the NEOX half-split
+// rotation in runtime/mha.cpp (pairs lane i with i+head_dim/2). Do not
+// wire this into the LLaMA path: the two conventions are not
+// interchangeable and mixing them produces position-blind attention.
 void apply_rope(
     Tensor& q,
     Tensor& k,

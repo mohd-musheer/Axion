@@ -7,6 +7,7 @@ namespace axion {
 Tensor final_norm(
     const Tensor& input,
     const Tensor& weight,
+    float eps,
     RuntimeMemoryScheduler* scheduler
 ) {
 
@@ -14,7 +15,7 @@ Tensor final_norm(
         rmsnorm(
             input,
             weight,
-            1e-6f,
+            eps,
             scheduler
         );
 

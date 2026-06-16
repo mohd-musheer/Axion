@@ -174,7 +174,7 @@ Tensor ModelRunner::forward_hidden(
         loader->load_tensor("output_norm.weight");
 
     Tensor normed =
-        final_norm(hidden, norm_w);
+        final_norm(hidden, norm_w, cfg.rms_eps);
 
     return normed;
 }
@@ -236,7 +236,7 @@ Tensor ModelRunner::embed_one(int token) {
 
 Tensor ModelRunner::logits_from_hidden_row(const Tensor& hidden_row) {
     Tensor norm_w = loader->load_tensor("output_norm.weight");
-    Tensor normed = final_norm(hidden_row, norm_w);
+    Tensor normed = final_norm(hidden_row, norm_w, cfg.rms_eps);
     Tensor w_out  = load_output_weight();
     Tensor logits = compute_logits(normed, w_out);   // [1, vocab]
     return logits;
