@@ -4,7 +4,9 @@
 #include "final_norm.hpp"
 #include "logits.hpp"
 #include "../core/tensor_factory.hpp"
+#include "../core/profile.hpp"
 
+#include <chrono>
 #include <stdexcept>
 #include <iostream>
 
@@ -278,6 +280,14 @@ std::vector<int> ModelRunner::generate(
     // building the per-layer K/V caches, then generate token-by-token.
     executor.begin_decode(n_layers, lc);
 
+    // Profiling: reset phase accumulators so the summary reflects only
+    // this generation call, and time the whole loop (env-gated).
+    if (prof::enabled()) {
+        prof::reset();
+    }
+    auto gen_start = std::chrono::steady_clock::now();
+    int tokens_generated = 0;
+
     Tensor last_hidden;
     for (size_t i = 0; i < seq.size(); i++) {
         Tensor row = embed_one(seq[i]);   // [1, hidden]
@@ -289,6 +299,7 @@ std::vector<int> ModelRunner::generate(
         int next = sample_last_row(logits, params.sampling, rng);
         if (next < 0) break;
         seq.push_back(next);
+        tokens_generated++;
         if (params.eos_token_id >= 0 && next == params.eos_token_id) {
             break;
         }
@@ -296,6 +307,11 @@ std::vector<int> ModelRunner::generate(
         Tensor row = embed_one(next);
         last_hidden = executor.decode_step(row);
     }
+
+    auto gen_end = std::chrono::steady_clock::now();
+    double total_seconds =
+        std::chrono::duration<double>(gen_end - gen_start).count();
+    executor.print_profile_summary(tokens_generated, total_seconds);
 
     return seq;
 }

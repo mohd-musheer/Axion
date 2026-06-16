@@ -1,6 +1,7 @@
 #include "gguf.hpp"
 #include "../core/tensor_factory.hpp"
 #include "../core/fp16.hpp"
+#include "../core/profile.hpp"
 #include <iostream>
 #include <stdexcept>
 #include <string>
@@ -809,10 +810,15 @@ Tensor GGUFLoader::load_tensor(
 
     std::vector<uint8_t> raw(info.byte_size);
 
-    file.read(
-        reinterpret_cast<char*>(raw.data()),
-        info.byte_size
-    );
+    {
+        // GGUF file read (seek already done above; time the raw read).
+        prof::ScopedTimer _load(prof::Phase::LOAD);
+
+        file.read(
+            reinterpret_cast<char*>(raw.data()),
+            info.byte_size
+        );
+    }
 
     // -------------------------
     // DEQUANTIZE TO FLOAT32
@@ -831,6 +837,9 @@ Tensor GGUFLoader::load_tensor(
 
     float* out = t.data();
     uint64_t n  = info.element_count;
+
+    // Time the dequantization (all branches below) as a single phase.
+    prof::ScopedTimer _dequant(prof::Phase::DEQUANT);
 
     switch (info.type) {
 

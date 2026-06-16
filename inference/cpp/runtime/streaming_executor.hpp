@@ -61,6 +61,11 @@ public:
     // the K/V caches; returns the layer-stack output [1, hidden].
     Tensor decode_step(const Tensor& hidden_row);
 
+    // Print the env-gated (AXION_PROFILE=1) generation summary and
+    // whole-run phase totals. No-op when profiling is disabled. Call
+    // once after the generation loop completes.
+    void print_profile_summary(int tokens_generated, double total_seconds);
+
 private:
     struct DecodeSession {
         bool active = false;

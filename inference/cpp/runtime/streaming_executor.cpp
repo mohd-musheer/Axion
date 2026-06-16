@@ -2,6 +2,7 @@
 #include "../kernels/blas.hpp"
 #include "../runtime/linear.hpp"
 #include "../runtime/residual.hpp"
+// transpose.hpp retained for the legacy full-sequence forward() path.
 #include "../kernels/rmsnorm.hpp"
 #include "../kernels/transpose.hpp"
 #include "../kernels/attention.hpp"
@@ -9,12 +10,14 @@
 #include "../kernels/silu.hpp"
 #include "../kernels/elementwise.hpp"
 #include "../core/tensor_factory.hpp"
+#include "../core/profile.hpp"
 #include "mha.hpp"
 
 #include <cmath>
 #include <limits>
 #include <stdexcept>
 #include <iostream>
+#include <cstdio>
 
 namespace axion {
 
@@ -267,17 +270,42 @@ Tensor StreamingExecutor::decode_layer(
     int layer_idx,
     int position
 ) {
+    // Per-layer phase accumulators are captured by diffing the global
+    // counters around each section, so a single layer's breakdown can be
+    // printed even though load/dequant are timed inside the loader.
+    prof::ScopedTimer _layer(prof::Phase::DECODE_LAYER);
+
+    const double load0      = prof::seconds(prof::Phase::LOAD);
+    const double dequant0   = prof::seconds(prof::Phase::DEQUANT);
+    const double transpose0 = prof::seconds(prof::Phase::TRANSPOSE);
+    const double attn0      = prof::seconds(prof::Phase::ATTENTION);
+    const double ffn0       = prof::seconds(prof::Phase::FFN);
+
     std::string prefix = "blk." + std::to_string(layer_idx);
 
-    Tensor attn_norm  = loader->load_tensor(prefix + ".attn_norm.weight");
-    Tensor ffn_norm   = loader->load_tensor(prefix + ".ffn_norm.weight");
-    Tensor q_weight   = loader->load_tensor(prefix + ".attn_q.weight");
-    Tensor k_weight   = loader->load_tensor(prefix + ".attn_k.weight");
-    Tensor v_weight   = loader->load_tensor(prefix + ".attn_v.weight");
-    Tensor out_weight = loader->load_tensor(prefix + ".attn_output.weight");
-    Tensor gate_weight= loader->load_tensor(prefix + ".ffn_gate.weight");
-    Tensor up_weight  = loader->load_tensor(prefix + ".ffn_up.weight");
-    Tensor down_weight= loader->load_tensor(prefix + ".ffn_down.weight");
+    Tensor attn_norm;
+    Tensor ffn_norm;
+    Tensor q_weight;
+    Tensor k_weight;
+    Tensor v_weight;
+    Tensor out_weight;
+    Tensor gate_weight;
+    Tensor up_weight;
+    Tensor down_weight;
+
+    {
+        // load_tensor internally times LOAD (file read) and DEQUANT
+        // (dequantization) separately.
+        attn_norm  = loader->load_tensor(prefix + ".attn_norm.weight");
+        ffn_norm   = loader->load_tensor(prefix + ".ffn_norm.weight");
+        q_weight   = loader->load_tensor(prefix + ".attn_q.weight");
+        k_weight   = loader->load_tensor(prefix + ".attn_k.weight");
+        v_weight   = loader->load_tensor(prefix + ".attn_v.weight");
+        out_weight = loader->load_tensor(prefix + ".attn_output.weight");
+        gate_weight= loader->load_tensor(prefix + ".ffn_gate.weight");
+        up_weight  = loader->load_tensor(prefix + ".ffn_up.weight");
+        down_weight= loader->load_tensor(prefix + ".ffn_down.weight");
+    }
 
     evictor.register_tensor(&attn_norm);
     evictor.register_tensor(&ffn_norm);
@@ -289,61 +317,86 @@ Tensor StreamingExecutor::decode_layer(
     evictor.register_tensor(&up_weight);
     evictor.register_tensor(&down_weight);
 
-    Tensor q_w_t = transpose(q_weight);
-    Tensor k_w_t = transpose(k_weight);
-    Tensor v_w_t = transpose(v_weight);
-    Tensor o_w_t = transpose(out_weight);
+    Tensor after_attn;
+    {
+        prof::ScopedTimer _a(prof::Phase::ATTENTION);
 
-    Tensor normed = rmsnorm(hidden_row, attn_norm, config.eps);
+        Tensor normed = rmsnorm(hidden_row, attn_norm, config.eps);
 
-    Tensor q = linear(normed, q_w_t);   // [1, n_head*hd]
-    Tensor k = linear(normed, k_w_t);   // [1, n_kv*hd]
-    Tensor v = linear(normed, v_w_t);   // [1, n_kv*hd]
+        // GGUF linear weights are [out, in]; multiply directly without
+        // materializing a transpose (removes the dominant per-token cost).
+        Tensor q = linear_from_gguf(normed, q_weight);   // [1, n_head*hd]
+        Tensor k = linear_from_gguf(normed, k_weight);   // [1, n_kv*hd]
+        Tensor v = linear_from_gguf(normed, v_weight);   // [1, n_kv*hd]
 
-    int n_head    = config.num_heads > 0 ? config.num_heads : 1;
-    int n_kv_head = config.n_kv_heads > 0 ? config.n_kv_heads : n_head;
-    int head_dim  = config.head_dim > 0
-        ? config.head_dim
-        : (int)(q.shape[1] / n_head);
+        int n_head    = config.num_heads > 0 ? config.num_heads : 1;
+        int n_kv_head = config.n_kv_heads > 0 ? config.n_kv_heads : n_head;
+        int head_dim  = config.head_dim > 0
+            ? config.head_dim
+            : (int)(q.shape[1] / n_head);
 
-    MHAConfig mcfg;
-    mcfg.n_head     = n_head;
-    mcfg.n_kv_head  = n_kv_head;
-    mcfg.head_dim   = head_dim;
-    mcfg.rope_theta = config.rope_theta;
-    mcfg.rope_type  = config.rope_type;
+        MHAConfig mcfg;
+        mcfg.n_head     = n_head;
+        mcfg.n_kv_head  = n_kv_head;
+        mcfg.head_dim   = head_dim;
+        mcfg.rope_theta = config.rope_theta;
+        mcfg.rope_type  = config.rope_type;
 
-    rope_apply_row_at(q, n_head,    head_dim, config.rope_theta, position, config.rope_type);
-    rope_apply_row_at(k, n_kv_head, head_dim, config.rope_theta, position, config.rope_type);
+        rope_apply_row_at(q, n_head,    head_dim, config.rope_theta, position, config.rope_type);
+        rope_apply_row_at(k, n_kv_head, head_dim, config.rope_theta, position, config.rope_type);
 
-    // Append this position's K/V to the layer cache.
-    session.k_cache[layer_idx] = append_row(session.k_cache[layer_idx], k);
-    session.v_cache[layer_idx] = append_row(session.v_cache[layer_idx], v);
+        // Append this position's K/V to the layer cache.
+        session.k_cache[layer_idx] = append_row(session.k_cache[layer_idx], k);
+        session.v_cache[layer_idx] = append_row(session.v_cache[layer_idx], v);
 
-    Tensor context =
-        mha_attention_incremental(
-            q,
-            session.k_cache[layer_idx],
-            session.v_cache[layer_idx],
-            mcfg);
+        Tensor context =
+            mha_attention_incremental(
+                q,
+                session.k_cache[layer_idx],
+                session.v_cache[layer_idx],
+                mcfg);
 
-    Tensor attn_out  = linear(context, o_w_t);
-    Tensor after_attn= residual_add(hidden_row, attn_out);
+        Tensor attn_out = linear_from_gguf(context, out_weight);
+        after_attn      = residual_add(hidden_row, attn_out);
+    }
 
-    Tensor gate_w_t = transpose(gate_weight);
-    Tensor up_w_t   = transpose(up_weight);
-    Tensor down_w_t = transpose(down_weight);
+    Tensor output;
+    {
+        prof::ScopedTimer _f(prof::Phase::FFN);
 
-    Tensor ffn_normed = rmsnorm(after_attn, ffn_norm, config.eps);
-    Tensor gate = linear(ffn_normed, gate_w_t);
-    Tensor up   = linear(ffn_normed, up_w_t);
-    Tensor activated = silu(gate);
-    Tensor gated     = elementwise_mul(activated, up);
-    Tensor ffn_out   = linear(gated, down_w_t);
-    Tensor output    = residual_add(after_attn, ffn_out);
-    output.name = "decode_layer_output";
+        Tensor ffn_normed = rmsnorm(after_attn, ffn_norm, config.eps);
+        Tensor gate = linear_from_gguf(ffn_normed, gate_weight);
+        Tensor up   = linear_from_gguf(ffn_normed, up_weight);
+        Tensor activated = silu(gate);
+        Tensor gated     = elementwise_mul(activated, up);
+        Tensor ffn_out   = linear_from_gguf(gated, down_weight);
+        output           = residual_add(after_attn, ffn_out);
+        output.name = "decode_layer_output";
+    }
 
     evictor.evict_all();
+
+    if (prof::enabled()) {
+        // The FFN block also includes its transposes; report transpose
+        // as the combined attention+ffn transpose time for the layer.
+        double load_d      = prof::seconds(prof::Phase::LOAD)      - load0;
+        double dequant_d   = prof::seconds(prof::Phase::DEQUANT)   - dequant0;
+        double transpose_d = prof::seconds(prof::Phase::TRANSPOSE) - transpose0;
+        double attn_d      = prof::seconds(prof::Phase::ATTENTION) - attn0;
+        double ffn_d       = prof::seconds(prof::Phase::FFN)       - ffn0;
+        double total_d     = load_d + dequant_d + transpose_d + attn_d + ffn_d;
+
+        std::fprintf(stderr,
+            "Layer %d:\n"
+            "  load=%.4fs\n"
+            "  dequant=%.4fs\n"
+            "  transpose=%.4fs\n"
+            "  attention=%.4fs\n"
+            "  ffn=%.4fs\n"
+            "  total=%.4fs\n",
+            layer_idx, load_d, dequant_d, transpose_d, attn_d, ffn_d, total_d);
+    }
+
     return output;
 }
 
@@ -355,6 +408,8 @@ Tensor StreamingExecutor::decode_step(
             "decode_step called before begin_decode");
     }
 
+    prof::ScopedTimer _step(prof::Phase::DECODE_STEP);
+
     int n_layers = (int)session.k_cache.size();
     Tensor h = hidden_row;
     for (int l = 0; l < n_layers; l++) {
@@ -362,6 +417,41 @@ Tensor StreamingExecutor::decode_step(
     }
     session.position++;
     return h;
+}
+
+void StreamingExecutor::print_profile_summary(
+    int tokens_generated,
+    double total_seconds
+) {
+    if (!prof::enabled()) {
+        return;
+    }
+
+    double tps = (total_seconds > 0.0)
+        ? (double)tokens_generated / total_seconds
+        : 0.0;
+
+    std::fprintf(stderr,
+        "\nGeneration summary:\n"
+        "  tokens_generated=%d\n"
+        "  total_time=%.4fs\n"
+        "  tokens_per_second=%.4f\n"
+        "\nPhase totals (whole run):\n"
+        "  load=%.4fs (%llu calls)\n"
+        "  dequant=%.4fs (%llu calls)\n"
+        "  transpose=%.4fs (%llu calls)\n"
+        "  attention=%.4fs (%llu calls)\n"
+        "  ffn=%.4fs (%llu calls)\n"
+        "  decode_layer=%.4fs (%llu calls)\n"
+        "  decode_step=%.4fs (%llu calls)\n",
+        tokens_generated, total_seconds, tps,
+        prof::seconds(prof::Phase::LOAD),         (unsigned long long)prof::calls(prof::Phase::LOAD),
+        prof::seconds(prof::Phase::DEQUANT),      (unsigned long long)prof::calls(prof::Phase::DEQUANT),
+        prof::seconds(prof::Phase::TRANSPOSE),    (unsigned long long)prof::calls(prof::Phase::TRANSPOSE),
+        prof::seconds(prof::Phase::ATTENTION),    (unsigned long long)prof::calls(prof::Phase::ATTENTION),
+        prof::seconds(prof::Phase::FFN),          (unsigned long long)prof::calls(prof::Phase::FFN),
+        prof::seconds(prof::Phase::DECODE_LAYER), (unsigned long long)prof::calls(prof::Phase::DECODE_LAYER),
+        prof::seconds(prof::Phase::DECODE_STEP),  (unsigned long long)prof::calls(prof::Phase::DECODE_STEP));
 }
 
 void StreamingExecutor::unload_tensor(
