@@ -37,9 +37,6 @@ REFERENCE = Path(__file__).resolve().parent / "data" / "llama_cpp_reference.json
 # so both engines see identical ids; update alongside the reference.
 TOKENS = [1, 1724, 338, 5132, 29973]
 
-# Logits divergence tolerances. llama.cpp runs fp16/quantized kernels and
-# Axion dequantizes to fp32, so small numerical drift is expected; a
-# convention/layout bug produces divergence orders of magnitude larger.
 MAX_ABS_TOL = 0.75
 MEAN_ABS_TOL = 0.08
 
